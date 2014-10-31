@@ -1,25 +1,169 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--HomeViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController title="HomeViewController" id="BYZ-38-t0r" customClass="HomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score My Dive" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="fZX-Of-UUe">
+                                <rect key="frame" x="6" y="20" width="363" height="43"/>
+                                <color key="backgroundColor" red="0.40000000596046448" green="0.80000001192092896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="375" id="A5t-rL-1mE"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="375" id="Jes-cj-dEZ"/>
+                                    <constraint firstAttribute="width" constant="1000" id="PTJ-vY-WOX"/>
+                                    <constraint firstAttribute="width" constant="375" id="u9e-aR-qBh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="36"/>
+                                <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="shadowOffset" width="1" height="1"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="A5t-rL-1mE"/>
+                                        <exclude reference="Jes-cj-dEZ"/>
+                                        <exclude reference="PTJ-vY-WOX"/>
+                                        <exclude reference="u9e-aR-qBh"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Brh-FX-UB8">
+                                <rect key="frame" x="203" y="105" width="126" height="40"/>
+                                <color key="backgroundColor" red="0.50196081399917603" green="0.50196081399917603" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                <inset key="titleEdgeInsets" minX="-40" minY="0.0" maxX="-40" maxY="0.0"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <state key="normal" title="Details">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jmr-UA-BIl">
+                                <rect key="frame" x="46" y="105" width="127" height="40"/>
+                                <color key="backgroundColor" red="0.50196081399917603" green="0.50196081399917603" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="jmr-UA-BIl" secondAttribute="height" multiplier="150:37" id="B23-RL-nFl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                <inset key="titleEdgeInsets" minX="-40" minY="0.0" maxX="-40" maxY="0.0"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <state key="normal" title="Quick">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="B23-RL-nFl"/>
+                                    </mask>
+                                </variation>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="The Quick Score options will give you a very basic score sheet that can be saved in the app." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BuS-lW-bhB">
+                                <rect key="frame" x="46" y="189" width="274" height="95"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="The Detail Score option will save all details about any number of divers, meets, and scores." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qf5-nV-zL3">
+                                <rect key="frame" x="46" y="286" width="274" height="95"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="BuS-lW-bhB" secondAttribute="trailing" constant="39" id="1l8-nJ-o5n"/>
+                            <constraint firstItem="jmr-UA-BIl" firstAttribute="top" secondItem="fZX-Of-UUe" secondAttribute="bottom" constant="42" id="1rL-HL-2Fa"/>
+                            <constraint firstItem="Brh-FX-UB8" firstAttribute="leading" secondItem="jmr-UA-BIl" secondAttribute="trailing" constant="30" id="3Wn-Gi-GVl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Qf5-nV-zL3" secondAttribute="trailing" constant="39" id="4cP-Yw-Fma"/>
+                            <constraint firstAttribute="centerX" secondItem="fZX-Of-UUe" secondAttribute="centerX" id="8ot-uG-dnX"/>
+                            <constraint firstItem="jmr-UA-BIl" firstAttribute="bottom" secondItem="Brh-FX-UB8" secondAttribute="bottom" id="8sU-c0-YLO"/>
+                            <constraint firstItem="Brh-FX-UB8" firstAttribute="leading" secondItem="jmr-UA-BIl" secondAttribute="trailing" constant="29" id="GRr-RE-3Kq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Brh-FX-UB8" secondAttribute="trailing" constant="20" id="Ko4-xw-TYd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Brh-FX-UB8" secondAttribute="trailing" constant="30" id="ODH-JQ-Bc1"/>
+                            <constraint firstItem="Qf5-nV-zL3" firstAttribute="top" secondItem="BuS-lW-bhB" secondAttribute="bottom" constant="5" id="SlZ-w1-lp6"/>
+                            <constraint firstItem="jmr-UA-BIl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="VbF-I4-M03"/>
+                            <constraint firstItem="BuS-lW-bhB" firstAttribute="top" secondItem="jmr-UA-BIl" secondAttribute="bottom" constant="44" id="Vyd-d9-d35"/>
+                            <constraint firstItem="Brh-FX-UB8" firstAttribute="leading" secondItem="jmr-UA-BIl" secondAttribute="trailing" constant="29" id="Wl4-CY-Qdv"/>
+                            <constraint firstItem="BuS-lW-bhB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="30" id="cJb-NV-z4A"/>
+                            <constraint firstItem="fZX-Of-UUe" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="cPG-pd-9Yl"/>
+                            <constraint firstItem="jmr-UA-BIl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="30" id="ccx-Uf-0ik"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fZX-Of-UUe" secondAttribute="trailing" constant="-10" id="eiY-rB-ZIj"/>
+                            <constraint firstItem="Brh-FX-UB8" firstAttribute="baseline" secondItem="jmr-UA-BIl" secondAttribute="baseline" id="fLw-Cq-EgD"/>
+                            <constraint firstItem="jmr-UA-BIl" firstAttribute="top" secondItem="fZX-Of-UUe" secondAttribute="bottom" constant="42" id="g7O-2G-LZz"/>
+                            <constraint firstItem="fZX-Of-UUe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-10" id="h6t-4Z-sxB"/>
+                            <constraint firstItem="jmr-UA-BIl" firstAttribute="height" secondItem="Brh-FX-UB8" secondAttribute="height" id="iGN-QY-PbW"/>
+                            <constraint firstItem="jmr-UA-BIl" firstAttribute="width" secondItem="Brh-FX-UB8" secondAttribute="height" multiplier="15:4" id="iMO-ov-7uz"/>
+                            <constraint firstItem="jmr-UA-BIl" firstAttribute="width" secondItem="Brh-FX-UB8" secondAttribute="width" id="jyp-em-mXX"/>
+                            <constraint firstItem="Brh-FX-UB8" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="101" id="k7H-Ay-qHf"/>
+                            <constraint firstItem="BuS-lW-bhB" firstAttribute="top" secondItem="jmr-UA-BIl" secondAttribute="bottom" constant="40" id="mY1-yh-8g2"/>
+                            <constraint firstItem="Brh-FX-UB8" firstAttribute="width" secondItem="jmr-UA-BIl" secondAttribute="width" id="oor-BG-e73"/>
+                            <constraint firstItem="Qf5-nV-zL3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="30" id="uoy-LN-2t0"/>
+                            <constraint firstItem="jmr-UA-BIl" firstAttribute="top" secondItem="fZX-Of-UUe" secondAttribute="bottom" constant="42" id="vpD-Bo-qRQ"/>
+                            <constraint firstItem="Brh-FX-UB8" firstAttribute="leading" secondItem="jmr-UA-BIl" secondAttribute="trailing" constant="29" id="wqE-ro-fb9"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="1rL-HL-2Fa"/>
+                                <exclude reference="8sU-c0-YLO"/>
+                                <exclude reference="VbF-I4-M03"/>
+                                <exclude reference="g7O-2G-LZz"/>
+                                <exclude reference="iGN-QY-PbW"/>
+                                <exclude reference="iMO-ov-7uz"/>
+                                <exclude reference="jyp-em-mXX"/>
+                                <exclude reference="Vyd-d9-d35"/>
+                                <exclude reference="GRr-RE-3Kq"/>
+                                <exclude reference="Ko4-xw-TYd"/>
+                                <exclude reference="Wl4-CY-Qdv"/>
+                                <exclude reference="k7H-Ay-qHf"/>
+                                <exclude reference="wqE-ro-fb9"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="buttonDetails" destination="Brh-FX-UB8" id="a4T-ry-MKZ"/>
+                        <outlet property="buttonQuick" destination="jmr-UA-BIl" id="VoD-aU-F4E"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="685.5" y="412.5"/>
         </scene>
     </scenes>
 </document>

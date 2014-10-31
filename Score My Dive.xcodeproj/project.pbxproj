@@ -9,11 +9,13 @@
 /* Begin PBXBuildFile section */
 		263AC5C71A030FD600846CB0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 263AC5C61A030FD600846CB0 /* main.m */; };
 		263AC5CA1A030FD600846CB0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 263AC5C91A030FD600846CB0 /* AppDelegate.m */; };
-		263AC5CD1A030FD600846CB0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263AC5CC1A030FD600846CB0 /* ViewController.m */; };
+		263AC5CD1A030FD600846CB0 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263AC5CC1A030FD600846CB0 /* HomeViewController.m */; };
 		263AC5D01A030FD700846CB0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 263AC5CE1A030FD700846CB0 /* Main.storyboard */; };
 		263AC5D21A030FD700846CB0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 263AC5D11A030FD700846CB0 /* Images.xcassets */; };
 		263AC5D51A030FD700846CB0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 263AC5D31A030FD700846CB0 /* LaunchScreen.xib */; };
 		263AC5E11A030FD700846CB0 /* Score_My_DiveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 263AC5E01A030FD700846CB0 /* Score_My_DiveTests.m */; };
+		26DF8AF71A043DAD00C273A6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26DF8AF61A043DAC00C273A6 /* QuartzCore.framework */; };
+		26E419881A04501800D79C05 /* TransparentPlayStoreListing.png in Resources */ = {isa = PBXBuildFile; fileRef = 26E419871A04501800D79C05 /* TransparentPlayStoreListing.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +34,16 @@
 		263AC5C61A030FD600846CB0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		263AC5C81A030FD600846CB0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		263AC5C91A030FD600846CB0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		263AC5CB1A030FD600846CB0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		263AC5CC1A030FD600846CB0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		263AC5CB1A030FD600846CB0 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		263AC5CC1A030FD600846CB0 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		263AC5CF1A030FD700846CB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		263AC5D11A030FD700846CB0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		263AC5D41A030FD700846CB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		263AC5DA1A030FD700846CB0 /* Score My DiveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Score My DiveTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		263AC5DF1A030FD700846CB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		263AC5E01A030FD700846CB0 /* Score_My_DiveTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Score_My_DiveTests.m; sourceTree = "<group>"; };
+		26DF8AF61A043DAC00C273A6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		26E419871A04501800D79C05 /* TransparentPlayStoreListing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TransparentPlayStoreListing.png; path = "../../../../Pictures/IOS Images/TransparentPlayStoreListing.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26DF8AF71A043DAD00C273A6 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +68,8 @@
 		263AC5B81A030FD600846CB0 = {
 			isa = PBXGroup;
 			children = (
+				26E419861A04500100D79C05 /* Resources */,
+				26DF8AF61A043DAC00C273A6 /* QuartzCore.framework */,
 				263AC5C31A030FD600846CB0 /* Score My Dive */,
 				263AC5DD1A030FD700846CB0 /* Score My DiveTests */,
 				263AC5C21A030FD600846CB0 /* Products */,
@@ -83,8 +90,8 @@
 			children = (
 				263AC5C81A030FD600846CB0 /* AppDelegate.h */,
 				263AC5C91A030FD600846CB0 /* AppDelegate.m */,
-				263AC5CB1A030FD600846CB0 /* ViewController.h */,
-				263AC5CC1A030FD600846CB0 /* ViewController.m */,
+				263AC5CB1A030FD600846CB0 /* HomeViewController.h */,
+				263AC5CC1A030FD600846CB0 /* HomeViewController.m */,
 				263AC5CE1A030FD700846CB0 /* Main.storyboard */,
 				263AC5D11A030FD700846CB0 /* Images.xcassets */,
 				263AC5D31A030FD700846CB0 /* LaunchScreen.xib */,
@@ -117,6 +124,14 @@
 				263AC5DF1A030FD700846CB0 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		26E419861A04500100D79C05 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				26E419871A04501800D79C05 /* TransparentPlayStoreListing.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				263AC5D01A030FD700846CB0 /* Main.storyboard in Resources */,
+				26E419881A04501800D79C05 /* TransparentPlayStoreListing.png in Resources */,
 				263AC5D51A030FD700846CB0 /* LaunchScreen.xib in Resources */,
 				263AC5D21A030FD700846CB0 /* Images.xcassets in Resources */,
 			);
@@ -219,7 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				263AC5CD1A030FD600846CB0 /* ViewController.m in Sources */,
+				263AC5CD1A030FD600846CB0 /* HomeViewController.m in Sources */,
 				263AC5CA1A030FD600846CB0 /* AppDelegate.m in Sources */,
 				263AC5C71A030FD600846CB0 /* main.m in Sources */,
 			);
@@ -414,6 +430,7 @@
 				263AC5E61A030FD700846CB0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		263AC5E71A030FD700846CB0 /* Build configuration list for PBXNativeTarget "Score My DiveTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +439,7 @@
 				263AC5E91A030FD700846CB0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
