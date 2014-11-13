@@ -12,6 +12,38 @@
 		263AC5CD1A030FD600846CB0 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263AC5CC1A030FD600846CB0 /* HomeViewController.m */; };
 		263AC5D51A030FD700846CB0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 263AC5D31A030FD700846CB0 /* LaunchScreen.xib */; };
 		263AC5E11A030FD700846CB0 /* Score_My_DiveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 263AC5E01A030FD700846CB0 /* Score_My_DiveTests.m */; };
+		2691AE6C1A0691FB000ABD3B /* DiverDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2691AE6B1A0691FB000ABD3B /* DiverDetailsVC.m */; };
+		2691AE6F1A069898000ABD3B /* MeetDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2691AE6E1A069898000ABD3B /* MeetDetailsVC.m */; };
+		26B88D231A12EF9600DBE909 /* MeetEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B88D221A12EF9600DBE909 /* MeetEdit.m */; };
+		26B88D251A130FB400DBE909 /* dive_dod.db in Resources */ = {isa = PBXBuildFile; fileRef = 26B88D241A130FB400DBE909 /* dive_dod.db */; };
+		26BE234A1A10275A00E123D0 /* QuickScores.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE233D1A10275A00E123D0 /* QuickScores.m */; };
+		26BE234B1A10275A00E123D0 /* Scores.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE233F1A10275A00E123D0 /* Scores.m */; };
+		26BE234C1A10275A00E123D0 /* Reports.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23401A10275A00E123D0 /* Reports.m */; };
+		26BE234D1A10275A00E123D0 /* DiveList.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23421A10275A00E123D0 /* DiveList.m */; };
+		26BE234E1A10275A00E123D0 /* Judges.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23451A10275A00E123D0 /* Judges.m */; };
+		26BE234F1A10275A00E123D0 /* Meet.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23471A10275A00E123D0 /* Meet.m */; };
+		26BE23501A10275A00E123D0 /* Diver.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23491A10275A00E123D0 /* Diver.m */; };
+		26BE237A1A1027CC00E123D0 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23521A1027CC00E123D0 /* DBManager.m */; };
+		26BE237B1A1027CC00E123D0 /* DiverBoardSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23541A1027CC00E123D0 /* DiverBoardSize.m */; };
+		26BE237C1A1027CC00E123D0 /* Results.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23571A1027CC00E123D0 /* Results.m */; };
+		26BE237D1A1027CC00E123D0 /* JudgeScores.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23591A1027CC00E123D0 /* JudgeScores.m */; };
+		26BE237E1A1027CC00E123D0 /* DiveTotal.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE235B1A1027CC00E123D0 /* DiveTotal.m */; };
+		26BE237F1A1027CC00E123D0 /* DiveNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE235D1A1027CC00E123D0 /* DiveNumber.m */; };
+		26BE23801A1027CC00E123D0 /* TwistPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE235F1A1027CC00E123D0 /* TwistPlatform.m */; };
+		26BE23811A1027CC00E123D0 /* ReversePlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23611A1027CC00E123D0 /* ReversePlatform.m */; };
+		26BE23821A1027CC00E123D0 /* InwardPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23631A1027CC00E123D0 /* InwardPlatform.m */; };
+		26BE23831A1027CC00E123D0 /* ForwardPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23651A1027CC00E123D0 /* ForwardPlatform.m */; };
+		26BE23841A1027CC00E123D0 /* BackPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23671A1027CC00E123D0 /* BackPlatform.m */; };
+		26BE23851A1027CC00E123D0 /* ArmstandPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23691A1027CC00E123D0 /* ArmstandPlatform.m */; };
+		26BE23861A1027CC00E123D0 /* Twist.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE236B1A1027CC00E123D0 /* Twist.m */; };
+		26BE23871A1027CC00E123D0 /* Dives.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE236D1A1027CC00E123D0 /* Dives.m */; };
+		26BE23881A1027CC00E123D0 /* Reverse.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE236F1A1027CC00E123D0 /* Reverse.m */; };
+		26BE23891A1027CC00E123D0 /* Inward.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23711A1027CC00E123D0 /* Inward.m */; };
+		26BE238A1A1027CC00E123D0 /* Forward.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23731A1027CC00E123D0 /* Forward.m */; };
+		26BE238B1A1027CC00E123D0 /* Back.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23751A1027CC00E123D0 /* Back.m */; };
+		26BE238C1A1027CC00E123D0 /* DiveCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23771A1027CC00E123D0 /* DiveCategory.m */; };
+		26BE238D1A1027CC00E123D0 /* ValidScores.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23791A1027CC00E123D0 /* ValidScores.m */; };
+		26BE23911A1028B200E123D0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 26BE23901A1028B200E123D0 /* libsqlite3.dylib */; };
 		26C07FCF1A05921700DF35B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 263AC5CE1A030FD700846CB0 /* Main.storyboard */; };
 		26DF8AF71A043DAD00C273A6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26DF8AF61A043DAC00C273A6 /* QuartzCore.framework */; };
 		26E419A11A047FDF00D79C05 /* AppIconBlack.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26E419A01A047FDF00D79C05 /* AppIconBlack.xcassets */; };
@@ -43,6 +75,68 @@
 		263AC5DA1A030FD700846CB0 /* Score My DiveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Score My DiveTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		263AC5DF1A030FD700846CB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		263AC5E01A030FD700846CB0 /* Score_My_DiveTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Score_My_DiveTests.m; sourceTree = "<group>"; };
+		2691AE6A1A0691FB000ABD3B /* DiverDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiverDetailsVC.h; sourceTree = "<group>"; };
+		2691AE6B1A0691FB000ABD3B /* DiverDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiverDetailsVC.m; sourceTree = "<group>"; };
+		2691AE6D1A069898000ABD3B /* MeetDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetDetailsVC.h; sourceTree = "<group>"; };
+		2691AE6E1A069898000ABD3B /* MeetDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetDetailsVC.m; sourceTree = "<group>"; };
+		26B88D211A12EF9600DBE909 /* MeetEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetEdit.h; sourceTree = "<group>"; };
+		26B88D221A12EF9600DBE909 /* MeetEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetEdit.m; sourceTree = "<group>"; };
+		26B88D241A130FB400DBE909 /* dive_dod.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dive_dod.db; sourceTree = "<group>"; };
+		26BE233C1A10275A00E123D0 /* QuickScores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickScores.h; sourceTree = "<group>"; };
+		26BE233D1A10275A00E123D0 /* QuickScores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickScores.m; sourceTree = "<group>"; };
+		26BE233E1A10275A00E123D0 /* Scores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scores.h; sourceTree = "<group>"; };
+		26BE233F1A10275A00E123D0 /* Scores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scores.m; sourceTree = "<group>"; };
+		26BE23401A10275A00E123D0 /* Reports.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reports.m; sourceTree = "<group>"; };
+		26BE23411A10275A00E123D0 /* DiveList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveList.h; sourceTree = "<group>"; };
+		26BE23421A10275A00E123D0 /* DiveList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveList.m; sourceTree = "<group>"; };
+		26BE23431A10275A00E123D0 /* Reports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reports.h; sourceTree = "<group>"; };
+		26BE23441A10275A00E123D0 /* Judges.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Judges.h; sourceTree = "<group>"; };
+		26BE23451A10275A00E123D0 /* Judges.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Judges.m; sourceTree = "<group>"; };
+		26BE23461A10275A00E123D0 /* Meet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Meet.h; sourceTree = "<group>"; };
+		26BE23471A10275A00E123D0 /* Meet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Meet.m; sourceTree = "<group>"; };
+		26BE23481A10275A00E123D0 /* Diver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Diver.h; sourceTree = "<group>"; };
+		26BE23491A10275A00E123D0 /* Diver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Diver.m; sourceTree = "<group>"; };
+		26BE23521A1027CC00E123D0 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
+		26BE23531A1027CC00E123D0 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
+		26BE23541A1027CC00E123D0 /* DiverBoardSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiverBoardSize.m; sourceTree = "<group>"; };
+		26BE23551A1027CC00E123D0 /* DiverBoardSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiverBoardSize.h; sourceTree = "<group>"; };
+		26BE23561A1027CC00E123D0 /* Results.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Results.h; sourceTree = "<group>"; };
+		26BE23571A1027CC00E123D0 /* Results.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Results.m; sourceTree = "<group>"; };
+		26BE23581A1027CC00E123D0 /* JudgeScores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JudgeScores.h; sourceTree = "<group>"; };
+		26BE23591A1027CC00E123D0 /* JudgeScores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JudgeScores.m; sourceTree = "<group>"; };
+		26BE235A1A1027CC00E123D0 /* DiveTotal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveTotal.h; sourceTree = "<group>"; };
+		26BE235B1A1027CC00E123D0 /* DiveTotal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveTotal.m; sourceTree = "<group>"; };
+		26BE235C1A1027CC00E123D0 /* DiveNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveNumber.h; sourceTree = "<group>"; };
+		26BE235D1A1027CC00E123D0 /* DiveNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveNumber.m; sourceTree = "<group>"; };
+		26BE235E1A1027CC00E123D0 /* TwistPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwistPlatform.h; sourceTree = "<group>"; };
+		26BE235F1A1027CC00E123D0 /* TwistPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwistPlatform.m; sourceTree = "<group>"; };
+		26BE23601A1027CC00E123D0 /* ReversePlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReversePlatform.h; sourceTree = "<group>"; };
+		26BE23611A1027CC00E123D0 /* ReversePlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReversePlatform.m; sourceTree = "<group>"; };
+		26BE23621A1027CC00E123D0 /* InwardPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InwardPlatform.h; sourceTree = "<group>"; };
+		26BE23631A1027CC00E123D0 /* InwardPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InwardPlatform.m; sourceTree = "<group>"; };
+		26BE23641A1027CC00E123D0 /* ForwardPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardPlatform.h; sourceTree = "<group>"; };
+		26BE23651A1027CC00E123D0 /* ForwardPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardPlatform.m; sourceTree = "<group>"; };
+		26BE23661A1027CC00E123D0 /* BackPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackPlatform.h; sourceTree = "<group>"; };
+		26BE23671A1027CC00E123D0 /* BackPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackPlatform.m; sourceTree = "<group>"; };
+		26BE23681A1027CC00E123D0 /* ArmstandPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArmstandPlatform.h; sourceTree = "<group>"; };
+		26BE23691A1027CC00E123D0 /* ArmstandPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArmstandPlatform.m; sourceTree = "<group>"; };
+		26BE236A1A1027CC00E123D0 /* Twist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Twist.h; sourceTree = "<group>"; };
+		26BE236B1A1027CC00E123D0 /* Twist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Twist.m; sourceTree = "<group>"; };
+		26BE236C1A1027CC00E123D0 /* Dives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dives.h; sourceTree = "<group>"; };
+		26BE236D1A1027CC00E123D0 /* Dives.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dives.m; sourceTree = "<group>"; };
+		26BE236E1A1027CC00E123D0 /* Reverse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reverse.h; sourceTree = "<group>"; };
+		26BE236F1A1027CC00E123D0 /* Reverse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reverse.m; sourceTree = "<group>"; };
+		26BE23701A1027CC00E123D0 /* Inward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inward.h; sourceTree = "<group>"; };
+		26BE23711A1027CC00E123D0 /* Inward.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inward.m; sourceTree = "<group>"; };
+		26BE23721A1027CC00E123D0 /* Forward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Forward.h; sourceTree = "<group>"; };
+		26BE23731A1027CC00E123D0 /* Forward.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Forward.m; sourceTree = "<group>"; };
+		26BE23741A1027CC00E123D0 /* Back.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Back.h; sourceTree = "<group>"; };
+		26BE23751A1027CC00E123D0 /* Back.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Back.m; sourceTree = "<group>"; };
+		26BE23761A1027CC00E123D0 /* DiveCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveCategory.h; sourceTree = "<group>"; };
+		26BE23771A1027CC00E123D0 /* DiveCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveCategory.m; sourceTree = "<group>"; };
+		26BE23781A1027CC00E123D0 /* ValidScores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidScores.h; sourceTree = "<group>"; };
+		26BE23791A1027CC00E123D0 /* ValidScores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidScores.m; sourceTree = "<group>"; };
+		26BE23901A1028B200E123D0 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		26DF8AF61A043DAC00C273A6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		26E419A01A047FDF00D79C05 /* AppIconBlack.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = AppIconBlack.xcassets; path = ../../../../../Documents/AppIconBlack.xcassets; sourceTree = "<group>"; };
 		26E419A21A0480C800D79C05 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -57,6 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26BE23911A1028B200E123D0 /* libsqlite3.dylib in Frameworks */,
 				26DF8AF71A043DAD00C273A6 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,6 +169,8 @@
 		263AC5B81A030FD600846CB0 = {
 			isa = PBXGroup;
 			children = (
+				26B88D241A130FB400DBE909 /* dive_dod.db */,
+				26BE23901A1028B200E123D0 /* libsqlite3.dylib */,
 				26DF8AF61A043DAC00C273A6 /* QuartzCore.framework */,
 				263AC5C31A030FD600846CB0 /* Score My Dive */,
 				263AC5DD1A030FD700846CB0 /* Score My DiveTests */,
@@ -93,19 +190,12 @@
 		263AC5C31A030FD600846CB0 /* Score My Dive */ = {
 			isa = PBXGroup;
 			children = (
-				26E419A01A047FDF00D79C05 /* AppIconBlack.xcassets */,
-				263AC5C81A030FD600846CB0 /* AppDelegate.h */,
-				263AC5C91A030FD600846CB0 /* AppDelegate.m */,
-				263AC5CB1A030FD600846CB0 /* HomeViewController.h */,
-				263AC5CC1A030FD600846CB0 /* HomeViewController.m */,
-				263AC5CE1A030FD700846CB0 /* Main.storyboard */,
-				263AC5D31A030FD700846CB0 /* LaunchScreen.xib */,
+				26BE23511A10276300E123D0 /* DataModel */,
+				26A07ECF1A09CFDC00997E5C /* Model */,
+				26A07E8A1A09991200997E5C /* StoryBoard */,
+				26A07E891A0998C600997E5C /* Assets */,
+				26A07E881A09963700997E5C /* ViewControllers */,
 				263AC5C41A030FD600846CB0 /* Supporting Files */,
-				26E419A21A0480C800D79C05 /* Images.xcassets */,
-				26E419A61A048E3100D79C05 /* QuickScoreViewController.h */,
-				26E419A71A048E3100D79C05 /* QuickScoreViewController.m */,
-				26EFCA9C1A051E7200474024 /* UpdateQuickViewController.h */,
-				26EFCA9D1A051E7200474024 /* UpdateQuickViewController.m */,
 			);
 			path = "Score My Dive";
 			sourceTree = "<group>";
@@ -113,6 +203,8 @@
 		263AC5C41A030FD600846CB0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				263AC5C81A030FD600846CB0 /* AppDelegate.h */,
+				263AC5C91A030FD600846CB0 /* AppDelegate.m */,
 				263AC5C51A030FD600846CB0 /* Info.plist */,
 				263AC5C61A030FD600846CB0 /* main.m */,
 			);
@@ -134,6 +226,111 @@
 				263AC5DF1A030FD700846CB0 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		26A07E881A09963700997E5C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				263AC5CB1A030FD600846CB0 /* HomeViewController.h */,
+				263AC5CC1A030FD600846CB0 /* HomeViewController.m */,
+				26E419A61A048E3100D79C05 /* QuickScoreViewController.h */,
+				26E419A71A048E3100D79C05 /* QuickScoreViewController.m */,
+				26EFCA9C1A051E7200474024 /* UpdateQuickViewController.h */,
+				26EFCA9D1A051E7200474024 /* UpdateQuickViewController.m */,
+				2691AE6A1A0691FB000ABD3B /* DiverDetailsVC.h */,
+				26B88D211A12EF9600DBE909 /* MeetEdit.h */,
+				26B88D221A12EF9600DBE909 /* MeetEdit.m */,
+				2691AE6B1A0691FB000ABD3B /* DiverDetailsVC.m */,
+				2691AE6D1A069898000ABD3B /* MeetDetailsVC.h */,
+				2691AE6E1A069898000ABD3B /* MeetDetailsVC.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		26A07E891A0998C600997E5C /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				26E419A01A047FDF00D79C05 /* AppIconBlack.xcassets */,
+				26E419A21A0480C800D79C05 /* Images.xcassets */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		26A07E8A1A09991200997E5C /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				263AC5CE1A030FD700846CB0 /* Main.storyboard */,
+				263AC5D31A030FD700846CB0 /* LaunchScreen.xib */,
+			);
+			name = StoryBoard;
+			sourceTree = "<group>";
+		};
+		26A07ECF1A09CFDC00997E5C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				26BE233C1A10275A00E123D0 /* QuickScores.h */,
+				26BE233D1A10275A00E123D0 /* QuickScores.m */,
+				26BE233E1A10275A00E123D0 /* Scores.h */,
+				26BE233F1A10275A00E123D0 /* Scores.m */,
+				26BE23401A10275A00E123D0 /* Reports.m */,
+				26BE23411A10275A00E123D0 /* DiveList.h */,
+				26BE23421A10275A00E123D0 /* DiveList.m */,
+				26BE23431A10275A00E123D0 /* Reports.h */,
+				26BE23441A10275A00E123D0 /* Judges.h */,
+				26BE23451A10275A00E123D0 /* Judges.m */,
+				26BE23461A10275A00E123D0 /* Meet.h */,
+				26BE23471A10275A00E123D0 /* Meet.m */,
+				26BE23481A10275A00E123D0 /* Diver.h */,
+				26BE23491A10275A00E123D0 /* Diver.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		26BE23511A10276300E123D0 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				26BE23521A1027CC00E123D0 /* DBManager.m */,
+				26BE23531A1027CC00E123D0 /* DBManager.h */,
+				26BE23541A1027CC00E123D0 /* DiverBoardSize.m */,
+				26BE23551A1027CC00E123D0 /* DiverBoardSize.h */,
+				26BE23561A1027CC00E123D0 /* Results.h */,
+				26BE23571A1027CC00E123D0 /* Results.m */,
+				26BE23581A1027CC00E123D0 /* JudgeScores.h */,
+				26BE23591A1027CC00E123D0 /* JudgeScores.m */,
+				26BE235A1A1027CC00E123D0 /* DiveTotal.h */,
+				26BE235B1A1027CC00E123D0 /* DiveTotal.m */,
+				26BE235C1A1027CC00E123D0 /* DiveNumber.h */,
+				26BE235D1A1027CC00E123D0 /* DiveNumber.m */,
+				26BE235E1A1027CC00E123D0 /* TwistPlatform.h */,
+				26BE235F1A1027CC00E123D0 /* TwistPlatform.m */,
+				26BE23601A1027CC00E123D0 /* ReversePlatform.h */,
+				26BE23611A1027CC00E123D0 /* ReversePlatform.m */,
+				26BE23621A1027CC00E123D0 /* InwardPlatform.h */,
+				26BE23631A1027CC00E123D0 /* InwardPlatform.m */,
+				26BE23641A1027CC00E123D0 /* ForwardPlatform.h */,
+				26BE23651A1027CC00E123D0 /* ForwardPlatform.m */,
+				26BE23661A1027CC00E123D0 /* BackPlatform.h */,
+				26BE23671A1027CC00E123D0 /* BackPlatform.m */,
+				26BE23681A1027CC00E123D0 /* ArmstandPlatform.h */,
+				26BE23691A1027CC00E123D0 /* ArmstandPlatform.m */,
+				26BE236A1A1027CC00E123D0 /* Twist.h */,
+				26BE236B1A1027CC00E123D0 /* Twist.m */,
+				26BE236C1A1027CC00E123D0 /* Dives.h */,
+				26BE236D1A1027CC00E123D0 /* Dives.m */,
+				26BE236E1A1027CC00E123D0 /* Reverse.h */,
+				26BE236F1A1027CC00E123D0 /* Reverse.m */,
+				26BE23701A1027CC00E123D0 /* Inward.h */,
+				26BE23711A1027CC00E123D0 /* Inward.m */,
+				26BE23721A1027CC00E123D0 /* Forward.h */,
+				26BE23731A1027CC00E123D0 /* Forward.m */,
+				26BE23741A1027CC00E123D0 /* Back.h */,
+				26BE23751A1027CC00E123D0 /* Back.m */,
+				26BE23761A1027CC00E123D0 /* DiveCategory.h */,
+				26BE23771A1027CC00E123D0 /* DiveCategory.m */,
+				26BE23781A1027CC00E123D0 /* ValidScores.h */,
+				26BE23791A1027CC00E123D0 /* ValidScores.m */,
+			);
+			name = DataModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,6 +414,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				26E419A11A047FDF00D79C05 /* AppIconBlack.xcassets in Resources */,
+				26B88D251A130FB400DBE909 /* dive_dod.db in Resources */,
 				26E419A31A0480C800D79C05 /* Images.xcassets in Resources */,
 				263AC5D51A030FD700846CB0 /* LaunchScreen.xib in Resources */,
 				26C07FCF1A05921700DF35B4 /* Main.storyboard in Resources */,
@@ -237,11 +435,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26BE237F1A1027CC00E123D0 /* DiveNumber.m in Sources */,
+				26BE237C1A1027CC00E123D0 /* Results.m in Sources */,
+				26BE234F1A10275A00E123D0 /* Meet.m in Sources */,
+				26BE23801A1027CC00E123D0 /* TwistPlatform.m in Sources */,
+				26B88D231A12EF9600DBE909 /* MeetEdit.m in Sources */,
+				26BE238C1A1027CC00E123D0 /* DiveCategory.m in Sources */,
+				26BE234D1A10275A00E123D0 /* DiveList.m in Sources */,
 				263AC5CD1A030FD600846CB0 /* HomeViewController.m in Sources */,
+				26BE23831A1027CC00E123D0 /* ForwardPlatform.m in Sources */,
+				2691AE6F1A069898000ABD3B /* MeetDetailsVC.m in Sources */,
+				26BE23821A1027CC00E123D0 /* InwardPlatform.m in Sources */,
 				263AC5CA1A030FD600846CB0 /* AppDelegate.m in Sources */,
+				26BE23891A1027CC00E123D0 /* Inward.m in Sources */,
 				26EFCA9E1A051E7200474024 /* UpdateQuickViewController.m in Sources */,
+				26BE234A1A10275A00E123D0 /* QuickScores.m in Sources */,
+				26BE237D1A1027CC00E123D0 /* JudgeScores.m in Sources */,
+				26BE23811A1027CC00E123D0 /* ReversePlatform.m in Sources */,
 				26E419A81A048E3100D79C05 /* QuickScoreViewController.m in Sources */,
+				26BE237B1A1027CC00E123D0 /* DiverBoardSize.m in Sources */,
+				26BE234B1A10275A00E123D0 /* Scores.m in Sources */,
+				26BE238B1A1027CC00E123D0 /* Back.m in Sources */,
+				26BE23871A1027CC00E123D0 /* Dives.m in Sources */,
+				26BE238A1A1027CC00E123D0 /* Forward.m in Sources */,
+				26BE23881A1027CC00E123D0 /* Reverse.m in Sources */,
+				26BE237E1A1027CC00E123D0 /* DiveTotal.m in Sources */,
+				26BE23851A1027CC00E123D0 /* ArmstandPlatform.m in Sources */,
+				26BE23841A1027CC00E123D0 /* BackPlatform.m in Sources */,
+				26BE237A1A1027CC00E123D0 /* DBManager.m in Sources */,
+				26BE234C1A10275A00E123D0 /* Reports.m in Sources */,
+				26BE234E1A10275A00E123D0 /* Judges.m in Sources */,
 				263AC5C71A030FD600846CB0 /* main.m in Sources */,
+				26BE23861A1027CC00E123D0 /* Twist.m in Sources */,
+				26BE23501A10275A00E123D0 /* Diver.m in Sources */,
+				2691AE6C1A0691FB000ABD3B /* DiverDetailsVC.m in Sources */,
+				26BE238D1A1027CC00E123D0 /* ValidScores.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

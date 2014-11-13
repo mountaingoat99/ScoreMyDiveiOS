@@ -10,9 +10,6 @@
 
 @interface QuickScoreViewController ()
 
-@property (nonatomic, strong) IBOutlet UIButton *buttonNewQuickScore;
-@property (nonatomic, strong) IBOutlet UIButton *buttonChooseDiver;
-
 @end
 
 @implementation QuickScoreViewController
@@ -21,19 +18,23 @@
     [super viewDidLoad];
     
     //drop shadow for the buttons
-    self.buttonNewQuickScore.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.buttonNewQuickScore.layer.shadowOffset = CGSizeMake(3.0f, 3.0f);
-    self.buttonNewQuickScore.layer.masksToBounds = NO;
-    self.buttonNewQuickScore.layer.shadowRadius = 4.0f;
-    self.buttonNewQuickScore.layer.shadowOpacity = 1.0;
+    self.btnNewSheet.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.btnNewSheet.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.btnNewSheet.layer.masksToBounds = NO;
+    self.btnNewSheet.layer.shadowOpacity = .5;
     
-    self.buttonChooseDiver.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.buttonChooseDiver.layer.shadowOffset = CGSizeMake(3.0f, 3.0f);
-    self.buttonChooseDiver.layer.masksToBounds = NO;
-    self.buttonChooseDiver.layer.shadowRadius = 4.0f;
-    self.buttonChooseDiver.layer.shadowOpacity = 1.0;
-    
+    self.btnChooseSheet.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.btnChooseSheet.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.btnChooseSheet.layer.masksToBounds = NO;
+    self.btnChooseSheet.layer.shadowOpacity = .5;
+
+    // draw the picker view container off the frame
+    _pickerViewContainer.frame = CGRectMake(0, 800, 353, 224);
+
 }
+
+
+
 
 -(void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
@@ -44,4 +45,12 @@
     
 }
 
+- (IBAction)btnNewSheet_click:(id)sender {
+}
+
+- (IBAction)btnChooseDiver_click:(id)sender {
+}
+
+- (IBAction)btnDiverChoosen_click:(id)sender {
+}
 @end

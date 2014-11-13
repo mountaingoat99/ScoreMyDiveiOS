@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UpdateQuickViewController : UIViewController 
+@interface UpdateQuickViewController : UIViewController
+
+
 
 @end

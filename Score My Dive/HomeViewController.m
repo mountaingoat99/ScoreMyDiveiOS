@@ -10,9 +10,6 @@
 
 @interface HomeViewController ()
 
-@property (nonatomic,strong) IBOutlet UIButton *buttonQuick;
-@property (nonatomic,strong) IBOutlet UIButton *buttonDetails;
-
 @end
 
 @implementation HomeViewController
@@ -22,17 +19,15 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     // drop shadow for the buttons
-    self.buttonQuick.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.buttonQuick.layer.shadowOffset = CGSizeMake(3.0f, 3.0f);
-    self.buttonQuick.layer.masksToBounds = NO;
-    self.buttonQuick.layer.shadowRadius = 4.0f;
-    self.buttonQuick.layer.shadowOpacity = 1.0;
+    self.btnQuick.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.btnQuick.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.btnQuick.layer.masksToBounds = NO;
+    self.btnQuick.layer.shadowOpacity = .5;
     
-    self.buttonDetails.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.buttonDetails.layer.shadowOffset = CGSizeMake(3.0f, 3.0f);
-    self.buttonDetails.layer.masksToBounds = NO;
-    self.buttonDetails.layer.shadowRadius = 4.0f;
-    self.buttonDetails.layer.shadowOpacity = 1.0;
+    self.btnDetails.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.btnDetails.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.btnDetails.layer.masksToBounds = NO;
+    self.btnDetails.layer.shadowOpacity = .5;
     
 }
 
