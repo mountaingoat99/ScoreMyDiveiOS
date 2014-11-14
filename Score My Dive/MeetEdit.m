@@ -21,6 +21,37 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // drop shadow for the text boxes
+    self.txtMeetName.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.txtMeetName.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.txtMeetName.layer.masksToBounds = NO;
+    self.txtMeetName.layer.shadowRadius = 4.0f;
+    self.txtMeetName.layer.shadowOpacity = .5;
+    
+    self.txtSchool.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.txtSchool.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.txtSchool.layer.masksToBounds = NO;
+    self.txtSchool.layer.shadowRadius = 4.0f;
+    self.txtSchool.layer.shadowOpacity = .5;
+    
+    self.txtCity.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.txtCity.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.txtCity.layer.masksToBounds = NO;
+    self.txtCity.layer.shadowRadius = 4.0f;
+    self.txtCity.layer.shadowOpacity = .5;
+    
+    self.txtState.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.txtState.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.txtState.layer.masksToBounds = NO;
+    self.txtState.layer.shadowRadius = 4.0f;
+    self.txtState.layer.shadowOpacity = .5;
+    
+    self.txtDate.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.txtDate.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.txtDate.layer.masksToBounds = NO;
+    self.txtDate.layer.shadowRadius = 4.0f;
+    self.txtDate.layer.shadowOpacity = .5;
+    
     self.txtMeetName.delegate = self;
     self.txtSchool.delegate = self;
     self.txtCity.delegate = self;
@@ -32,6 +63,11 @@
     //replace keyboard with a date picker
     UIDatePicker *datePicker = [[UIDatePicker alloc] init];
     datePicker.datePickerMode = UIDatePickerModeDate;
+    datePicker.layer.backgroundColor = [UIColor grayColor].CGColor;
+    datePicker.layer.shadowColor = [UIColor blackColor].CGColor;
+    datePicker.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    datePicker.layer.masksToBounds = NO;
+    datePicker.layer.shadowOpacity = .5;
     [datePicker addTarget:self action:@selector(updateTextField:) forControlEvents:UIControlEventValueChanged];
     [self.txtDate setInputView:datePicker];
 }
@@ -100,7 +136,7 @@
         } else {
             NSLog(@"Could not execute the query");
         }
-    } 
+    }
 }
 
 /*
