@@ -208,7 +208,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="lBl-bP-bI9" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="609.5" y="-157.5"/>
+            <point key="canvasLocation" x="516.5" y="-157.5"/>
         </scene>
         <!--MeetDetailsVC-->
         <scene sceneID="jLG-nF-JLA">
@@ -224,7 +224,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Fdb-RA-U6t">
                                 <rect key="frame" x="11" y="65" width="353" height="533"/>
-                                <color key="backgroundColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.50196081399917603" green="0.50196081399917603" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -260,6 +260,9 @@
                                         <exclude reference="iQg-OO-3Oj"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <segue destination="RBo-rh-fcK" kind="unwind" unwindAction="unwindToMainMenu:" id="Mo9-Iy-a78"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UhV-js-0Qq">
                                 <rect key="frame" x="335" y="25" width="29" height="29"/>
@@ -317,7 +320,7 @@
                 <exit id="RBo-rh-fcK" userLabel="Exit" sceneMemberID="exit"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xp1-5C-5xd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1669.5" y="-485.5"/>
+            <point key="canvasLocation" x="1498.5" y="-462.5"/>
         </scene>
         <!--Edit Meet-->
         <scene sceneID="pO1-Er-yVt">
@@ -355,13 +358,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" returnKeyType="done"/>
                             </textField>
-                            <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Jb3-V1-f4R">
-                                <rect key="frame" x="16" y="224" width="343" height="162"/>
-                                <color key="backgroundColor" red="0.60000002384185791" green="0.60000002384185791" blue="0.60000002384185791" alpha="1" colorSpace="calibratedRGB"/>
-                                <date key="date" timeIntervalSinceReferenceDate="437450175.07489997">
-                                    <!--2014-11-12 01:56:15 +0000-->
-                                </date>
-                            </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Add Meet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p3b-M5-Yhv">
                                 <rect key="frame" x="6" y="20" width="363" height="38"/>
                                 <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -399,13 +395,19 @@
                                     <action selector="saveInfo:" destination="1E5-M3-RA9" eventType="touchUpInside" id="3Ml-yX-KGt"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a37-ll-ghD">
+                                <rect key="frame" x="16" y="224" width="343" height="30"/>
+                                <color key="backgroundColor" red="0.50196081399917603" green="0.50196081399917603" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="Jb3-V1-f4R" firstAttribute="trailing" secondItem="Tqx-Ix-9Rb" secondAttribute="trailingMargin" id="11Y-Jq-DKx"/>
                             <constraint firstAttribute="trailingMargin" secondItem="p3b-M5-Yhv" secondAttribute="trailing" constant="-10" id="3BS-x1-w9Z"/>
                             <constraint firstItem="naO-pz-mQy" firstAttribute="top" secondItem="p3b-M5-Yhv" secondAttribute="bottom" constant="14" id="4ZV-ZJ-F4U"/>
                             <constraint firstItem="7QS-IP-qpL" firstAttribute="leading" secondItem="Tqx-Ix-9Rb" secondAttribute="leadingMargin" id="68c-wR-tUt"/>
+                            <constraint firstItem="a37-ll-ghD" firstAttribute="trailing" secondItem="Tqx-Ix-9Rb" secondAttribute="trailingMargin" id="6Cs-VS-Zdk"/>
                             <constraint firstItem="p4I-Uq-VWb" firstAttribute="trailing" secondItem="Tqx-Ix-9Rb" secondAttribute="trailingMargin" id="7wy-tM-ibK"/>
                             <constraint firstItem="p4I-Uq-VWb" firstAttribute="leading" secondItem="Tqx-Ix-9Rb" secondAttribute="leadingMargin" id="8V8-CY-y4S"/>
                             <constraint firstItem="p4I-Uq-VWb" firstAttribute="top" secondItem="naO-pz-mQy" secondAttribute="bottom" constant="8" id="8Vt-sQ-iki"/>
@@ -415,14 +417,14 @@
                             <constraint firstItem="p3b-M5-Yhv" firstAttribute="top" secondItem="qwk-tP-B0e" secondAttribute="bottom" id="K0f-lo-fST"/>
                             <constraint firstItem="Rzs-F8-4XZ" firstAttribute="leading" secondItem="p3b-M5-Yhv" secondAttribute="trailing" constant="-38" id="KXY-mk-nU1"/>
                             <constraint firstItem="XKt-MY-NjH" firstAttribute="top" secondItem="p3b-M5-Yhv" secondAttribute="bottom" constant="-29" id="Khp-Yk-65A"/>
+                            <constraint firstItem="a37-ll-ghD" firstAttribute="top" secondItem="7QS-IP-qpL" secondAttribute="bottom" constant="8" id="YFU-qT-yvA"/>
                             <constraint firstItem="p3b-M5-Yhv" firstAttribute="leading" secondItem="Tqx-Ix-9Rb" secondAttribute="leadingMargin" constant="-10" id="Yy8-29-p0z"/>
                             <constraint firstItem="WZq-Xs-eFk" firstAttribute="top" secondItem="p4I-Uq-VWb" secondAttribute="bottom" constant="8" id="bFw-ou-UwK"/>
                             <constraint firstItem="7QS-IP-qpL" firstAttribute="top" secondItem="WZq-Xs-eFk" secondAttribute="bottom" constant="8" id="caC-9U-Plw"/>
                             <constraint firstItem="WZq-Xs-eFk" firstAttribute="trailing" secondItem="Tqx-Ix-9Rb" secondAttribute="trailingMargin" id="cav-Gs-xK3"/>
                             <constraint firstItem="naO-pz-mQy" firstAttribute="leading" secondItem="Tqx-Ix-9Rb" secondAttribute="leadingMargin" id="dbu-5U-ASt"/>
                             <constraint firstItem="Rzs-F8-4XZ" firstAttribute="top" secondItem="p3b-M5-Yhv" secondAttribute="bottom" constant="-34" id="hhk-Il-HRt"/>
-                            <constraint firstItem="Jb3-V1-f4R" firstAttribute="top" secondItem="7QS-IP-qpL" secondAttribute="bottom" constant="8" id="lZn-fQ-EFF"/>
-                            <constraint firstItem="Jb3-V1-f4R" firstAttribute="leading" secondItem="Tqx-Ix-9Rb" secondAttribute="leadingMargin" id="vfp-WY-DNu"/>
+                            <constraint firstItem="a37-ll-ghD" firstAttribute="leading" secondItem="Tqx-Ix-9Rb" secondAttribute="leadingMargin" id="rvh-7Q-4oi"/>
                             <constraint firstItem="p3b-M5-Yhv" firstAttribute="leading" secondItem="XKt-MY-NjH" secondAttribute="trailing" constant="-29" id="xRg-Fo-Cee"/>
                         </constraints>
                     </view>
@@ -435,8 +437,8 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="meetDate" destination="Jb3-V1-f4R" id="3Aq-In-Ybg"/>
                         <outlet property="txtCity" destination="WZq-Xs-eFk" id="ZDa-kh-Zpz"/>
+                        <outlet property="txtDate" destination="a37-ll-ghD" id="vy4-Xp-kdm"/>
                         <outlet property="txtMeetName" destination="naO-pz-mQy" id="KoD-eN-HlY"/>
                         <outlet property="txtSchool" destination="p4I-Uq-VWb" id="u9x-bZ-hsU"/>
                         <outlet property="txtState" destination="7QS-IP-qpL" id="y1x-VK-As5"/>
@@ -445,7 +447,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ckd-A5-2jm" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="5Ao-5z-Cdv" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2206.5" y="-560.5"/>
+            <point key="canvasLocation" x="1979.5" y="-462.5"/>
         </scene>
         <!--DiverDetailsVC-->
         <scene sceneID="fga-34-Bsl">
@@ -630,7 +632,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zSO-wL-idd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="dZp-I7-oyl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1669.5" y="252.5"/>
+            <point key="canvasLocation" x="1498.5" y="250.5"/>
         </scene>
         <!--DetailedScoreHome-->
         <scene sceneID="fIu-K2-PJF">
@@ -650,7 +652,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wrr-Vs-5ig" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1166.5" y="-157.5"/>
+            <point key="canvasLocation" x="988.5" y="-157.5"/>
         </scene>
         <!--UpdateQuickViewController-->
         <scene sceneID="db2-qw-Brg">

@@ -17,6 +17,7 @@
 
 @implementation MeetEdit
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -24,8 +25,15 @@
     self.txtSchool.delegate = self;
     self.txtCity.delegate = self;
     self.txtState.delegate = self;
+    self.txtDate.delegate = self;
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    //replace keyboard with a date picker
+    UIDatePicker *datePicker = [[UIDatePicker alloc] init];
+    datePicker.datePickerMode = UIDatePickerModeDate;
+    [datePicker addTarget:self action:@selector(updateTextField:) forControlEvents:UIControlEventValueChanged];
+    [self.txtDate setInputView:datePicker];
 }
 
 // handles the return button
@@ -43,24 +51,56 @@
     return YES;
 }
 
+//updates the dateText field with values from the date picker
+-(void)updateTextField:(UIDatePicker *)sender
+{
+    //date formatter
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateStyle = NSDateFormatterLongStyle;
+    self.txtDate.text = [formatter stringFromDate:sender.date];
+}
+
+// hide the keyboard on outside touch
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    [self.view endEditing:YES];
+}
+
 // database insert
 -(IBAction)saveInfo:(id)sender{
     // prepare the query string
-    NSString *query = [NSString stringWithFormat:@"insert into meet(name, school, city, state, date) values('%@', '%@', '%@', '%@', null)", self.txtMeetName.text, self.txtSchool.text, self.txtCity.text, self.txtState.text];
-    
-    // execute the query
-    [self.dbManager executeQuery:query];
-    
-    // if the query was succesfully executed then pop the view controller
-    if (self.dbManager.affectedRows != 0) {
-        NSLog(@"Query was executed successfully. Affected Rows = %d", self.dbManager.affectedRows);
+    if (self.txtMeetName.text.length == 0 || self.txtSchool.text.length == 0 ||
+        self.txtCity.text.length == 0 || self.txtState.text.length == 0 || self.txtDate.text.length == 0) {
         
-        // pop the view controller
-        //[self.navigationController popViewControllerAnimated:YES];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                        message:@"Please enter a value for all fields"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
+        
     } else {
-        NSLog(@"Could not execute the query");
-    }
+    
+        NSString *query = [NSString stringWithFormat:
+                           @"insert into meet(name, school, city, state, date) values('%@', '%@', '%@', '%@', '%@')",
+                           self.txtMeetName.text, self.txtSchool.text, self.txtCity.text, self.txtState.text, self.txtDate.text];
+    
+        // execute the query
+        [self.dbManager executeQuery:query];
+    
+        // if the query was succesfully executed then pop the view controller
+        if (self.dbManager.affectedRows != 0) {
+            NSLog(@"Query was executed successfully. Affected Rows = %d", self.dbManager.affectedRows);
+        
+            // pop the view controller
+            //[self.navigationController popViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        } else {
+            NSLog(@"Could not execute the query");
+        }
+    } 
 }
 
 /*

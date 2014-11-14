@@ -20,6 +20,12 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
+    // drop shadow for the table
+    self.tblPeople.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.tblPeople.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    self.tblPeople.layer.masksToBounds = NO;
+    self.tblPeople.layer.shadowRadius = 4.0f;
+    self.tblPeople.layer.shadowOpacity = 1.0;
     
 }
 
