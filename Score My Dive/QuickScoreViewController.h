@@ -7,16 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QuickScoreEdit.h"
 
-@interface QuickScoreViewController : UIViewController
+@interface QuickScoreViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, QuickScoreViewControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *btnNewSheet;
-@property (weak, nonatomic) IBOutlet UIButton *btnChooseSheet;
-@property (weak, nonatomic) IBOutlet UITableView *scoreSheetTable;
-@property (strong, nonatomic) IBOutlet UIView *pickerViewContainer;
+@property (weak, nonatomic) IBOutlet UITableView *tblQuickScores;
 
-- (IBAction)btnNewSheet_click:(id)sender;
-- (IBAction)btnChooseDiver_click:(id)sender;
-- (IBAction)btnDiverChoosen_click:(id)sender;
+-(IBAction)addNewRecord:(id)sender;
+- (IBAction)returnClick:(id)sender;
 
 @end

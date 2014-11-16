@@ -10,4 +10,7 @@
 
 @interface QuickScores : NSObject
 
+
+-(double)GetQuickScoreTotal:(NSArray *)diveScores;
+
 @end

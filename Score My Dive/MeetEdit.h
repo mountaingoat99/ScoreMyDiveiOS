@@ -15,7 +15,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtCity;
 @property (weak, nonatomic) IBOutlet UITextField *txtState;
 @property (strong, nonatomic) IBOutlet UITextField *txtDate;
-//@property (weak, nonatomic) IBOutlet UIDatePicker *meetDate;
 
 -(IBAction)saveInfo:(id)sender;
 

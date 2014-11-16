@@ -58,7 +58,13 @@
     self.txtState.delegate = self;
     self.txtDate.delegate = self;
     
+    // alloc the database
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    // initilize the date to today
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateStyle = NSDateFormatterLongStyle;
+    self.txtDate.text = [formatter stringFromDate:[NSDate date]];
     
     //replace keyboard with a date picker
     UIDatePicker *datePicker = [[UIDatePicker alloc] init];

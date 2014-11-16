@@ -12,6 +12,7 @@
 		263AC5CD1A030FD600846CB0 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263AC5CC1A030FD600846CB0 /* HomeViewController.m */; };
 		263AC5D51A030FD700846CB0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 263AC5D31A030FD700846CB0 /* LaunchScreen.xib */; };
 		263AC5E11A030FD700846CB0 /* Score_My_DiveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 263AC5E01A030FD700846CB0 /* Score_My_DiveTests.m */; };
+		2651CF051A17D56E0050D587 /* QuickScoreEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2651CF041A17D56E0050D587 /* QuickScoreEdit.m */; };
 		2691AE6C1A0691FB000ABD3B /* DiverDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2691AE6B1A0691FB000ABD3B /* DiverDetailsVC.m */; };
 		2691AE6F1A069898000ABD3B /* MeetDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2691AE6E1A069898000ABD3B /* MeetDetailsVC.m */; };
 		26B88D231A12EF9600DBE909 /* MeetEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B88D221A12EF9600DBE909 /* MeetEdit.m */; };
@@ -49,7 +50,6 @@
 		26E419A11A047FDF00D79C05 /* AppIconBlack.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26E419A01A047FDF00D79C05 /* AppIconBlack.xcassets */; };
 		26E419A31A0480C800D79C05 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26E419A21A0480C800D79C05 /* Images.xcassets */; };
 		26E419A81A048E3100D79C05 /* QuickScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E419A71A048E3100D79C05 /* QuickScoreViewController.m */; };
-		26EFCA9E1A051E7200474024 /* UpdateQuickViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26EFCA9D1A051E7200474024 /* UpdateQuickViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +75,8 @@
 		263AC5DA1A030FD700846CB0 /* Score My DiveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Score My DiveTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		263AC5DF1A030FD700846CB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		263AC5E01A030FD700846CB0 /* Score_My_DiveTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Score_My_DiveTests.m; sourceTree = "<group>"; };
+		2651CF031A17D56E0050D587 /* QuickScoreEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickScoreEdit.h; sourceTree = "<group>"; };
+		2651CF041A17D56E0050D587 /* QuickScoreEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickScoreEdit.m; sourceTree = "<group>"; };
 		2691AE6A1A0691FB000ABD3B /* DiverDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiverDetailsVC.h; sourceTree = "<group>"; };
 		2691AE6B1A0691FB000ABD3B /* DiverDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiverDetailsVC.m; sourceTree = "<group>"; };
 		2691AE6D1A069898000ABD3B /* MeetDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetDetailsVC.h; sourceTree = "<group>"; };
@@ -142,8 +144,6 @@
 		26E419A21A0480C800D79C05 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		26E419A61A048E3100D79C05 /* QuickScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickScoreViewController.h; sourceTree = "<group>"; };
 		26E419A71A048E3100D79C05 /* QuickScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickScoreViewController.m; sourceTree = "<group>"; };
-		26EFCA9C1A051E7200474024 /* UpdateQuickViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateQuickViewController.h; sourceTree = "<group>"; };
-		26EFCA9D1A051E7200474024 /* UpdateQuickViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateQuickViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,12 +231,12 @@
 		26A07E881A09963700997E5C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2651CF031A17D56E0050D587 /* QuickScoreEdit.h */,
+				2651CF041A17D56E0050D587 /* QuickScoreEdit.m */,
 				263AC5CB1A030FD600846CB0 /* HomeViewController.h */,
 				263AC5CC1A030FD600846CB0 /* HomeViewController.m */,
 				26E419A61A048E3100D79C05 /* QuickScoreViewController.h */,
 				26E419A71A048E3100D79C05 /* QuickScoreViewController.m */,
-				26EFCA9C1A051E7200474024 /* UpdateQuickViewController.h */,
-				26EFCA9D1A051E7200474024 /* UpdateQuickViewController.m */,
 				2691AE6A1A0691FB000ABD3B /* DiverDetailsVC.h */,
 				26B88D211A12EF9600DBE909 /* MeetEdit.h */,
 				26B88D221A12EF9600DBE909 /* MeetEdit.m */,
@@ -442,13 +442,13 @@
 				26B88D231A12EF9600DBE909 /* MeetEdit.m in Sources */,
 				26BE238C1A1027CC00E123D0 /* DiveCategory.m in Sources */,
 				26BE234D1A10275A00E123D0 /* DiveList.m in Sources */,
+				2651CF051A17D56E0050D587 /* QuickScoreEdit.m in Sources */,
 				263AC5CD1A030FD600846CB0 /* HomeViewController.m in Sources */,
 				26BE23831A1027CC00E123D0 /* ForwardPlatform.m in Sources */,
 				2691AE6F1A069898000ABD3B /* MeetDetailsVC.m in Sources */,
 				26BE23821A1027CC00E123D0 /* InwardPlatform.m in Sources */,
 				263AC5CA1A030FD600846CB0 /* AppDelegate.m in Sources */,
 				26BE23891A1027CC00E123D0 /* Inward.m in Sources */,
-				26EFCA9E1A051E7200474024 /* UpdateQuickViewController.m in Sources */,
 				26BE234A1A10275A00E123D0 /* QuickScores.m in Sources */,
 				26BE237D1A1027CC00E123D0 /* JudgeScores.m in Sources */,
 				26BE23811A1027CC00E123D0 /* ReversePlatform.m in Sources */,

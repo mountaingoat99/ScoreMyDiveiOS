@@ -7,8 +7,12 @@
 //
 
 #import "HomeViewController.h"
+#import "DBManager.h"
 
 @interface HomeViewController ()
+
+// database
+@property (nonatomic, strong) DBManager *dbManager;
 
 @end
 
@@ -16,7 +20,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     
     // drop shadow for the buttons
     self.btnQuick.layer.shadowColor = [UIColor blackColor].CGColor;
