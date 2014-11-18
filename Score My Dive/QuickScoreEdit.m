@@ -28,7 +28,7 @@
 @property (nonatomic, strong) NSString *dive11;
 @property (nonatomic, strong) NSString *scoreTotal;
 @property (nonatomic) double totalScore;
-@property (nonatomic) NSInteger textBoxAlert;
+@property (nonatomic) int textBoxAlert;
 
 //private method to load the edited data
 -(void)loadInfoToEdit;
@@ -41,6 +41,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // sets the delegate on the numeric text fields so we can check to insure only
+    // numerics are put in
+    
     
     // alloc the database
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
@@ -163,258 +167,222 @@
     }
 }
 
-#pragma AlertView
+#pragma AlertController
 
 // this looks to see who called the alert and assigns the values to the correct labels and fields
 // to update the table
--(void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 1) {
-        switch (_textBoxAlert) {
-            case 1:
-                self.dive1Txt.text = [alertView textFieldAtIndex:0].text;
-                break;
-            case 2:
-                self.dive2Txt.text = [alertView textFieldAtIndex:0].text;
-                break;
-            case 3:
-                self.dive3Txt.text = [alertView textFieldAtIndex:0].text;
-                break;
-            case 4:
-                self.dive4Txt.text = [alertView textFieldAtIndex:0].text;
-                break;
-            case 5:
-                self.dive5Txt.text = [alertView textFieldAtIndex:0].text;
-                break;
-            case 6:
-                self.dive6Txt.text = [alertView textFieldAtIndex:0].text;
-                break;
-            case 7:
-                self.dive7Txt.text = [alertView textFieldAtIndex:0].text;
-                break;
-            case 8:
-                self.dive8Txt.text = [alertView textFieldAtIndex:0].text;
-                break;
-            case 9:
-                self.dive9Txt.text = [alertView textFieldAtIndex:0].text;
-                break;
-            case 10:
-                self.dive10Txt.text = [alertView textFieldAtIndex:0].text;
-                break;
-            case 11:
-                self.dive11Txt.text = [alertView textFieldAtIndex:0].text;
-                break;
-            case 12:
-                self.nameTxt.text = [alertView textFieldAtIndex:0].text;
-                break;
-        }
-        [self updateTotal];
-    }
+//-(void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+//    if (buttonIndex == 1) {
+//        switch (_textBoxAlert) {
+//            case 1:
+//                self.dive1Txt.text = [alertView textFieldAtIndex:0].text;
+//                break;
+//            case 2:
+//                self.dive2Txt.text = [alertView textFieldAtIndex:0].text;
+//                break;
+//            case 3:
+//                self.dive3Txt.text = [alertView textFieldAtIndex:0].text;
+//                break;
+//            case 4:
+//                self.dive4Txt.text = [alertView textFieldAtIndex:0].text;
+//                break;
+//            case 5:
+//                self.dive5Txt.text = [alertView textFieldAtIndex:0].text;
+//                break;
+//            case 6:
+//                self.dive6Txt.text = [alertView textFieldAtIndex:0].text;
+//                break;
+//            case 7:
+//                self.dive7Txt.text = [alertView textFieldAtIndex:0].text;
+//                break;
+//            case 8:
+//                self.dive8Txt.text = [alertView textFieldAtIndex:0].text;
+//                break;
+//            case 9:
+//                self.dive9Txt.text = [alertView textFieldAtIndex:0].text;
+//                break;
+//            case 10:
+//                self.dive10Txt.text = [alertView textFieldAtIndex:0].text;
+//                break;
+//            case 11:
+//                self.dive11Txt.text = [alertView textFieldAtIndex:0].text;
+//                break;
+////            case 12:
+////                self.nameTxt.text = [alertView textFieldAtIndex:0].text;
+////                break;
+//        }
+//        [self updateTotal];
+//    }
+//}
+
+// AlertController for the sheet name
+- (IBAction)nameClick:(id)sender {
+    
+    // updated alertController for iOS 8
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:@"Edit Name"
+                                          message:nil
+                                          preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField)
+     {
+         textField.placeholder = @"Enter Sheet Title";
+         textField.keyboardAppearance = UIKeyboardAppearanceDark;
+         textField.keyboardType = UIKeyboardTypeDefault;
+     }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:@"Cancel"
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       NSLog(@"Cancel Action");
+                                   }];
+    
+    UIAlertAction *okAction = [UIAlertAction
+                               actionWithTitle:@"OK"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction *action)
+                               {
+                                   NSLog(@"OK Action");
+                                   UITextField *name = alertController.textFields.firstObject;
+                                   self.nameTxt.text = name.text;
+                               }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:okAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+    
 }
 
-// methods for each button that us going to change a dive score value
-- (IBAction)nameClick:(id)sender {
-    // know who called the alert
-    _textBoxAlert = 12;
+// AlertController for the dive Numbers
+-(void)DiveAlert:(int)diveNumber TextField:(UILabel*)diveText {
     
-    UIAlertView *alertName = [[UIAlertView alloc] initWithTitle:@"EditName"
-                                                    message:nil
-                                                   delegate:self
-                                          cancelButtonTitle:@"Cancel"
-                                          otherButtonTitles:@"Save", nil];
-    alertName.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:[NSMutableString stringWithFormat:@"Edit Dive %d", diveNumber]
+                                          message:nil
+                                          preferredStyle:UIAlertControllerStyleAlert];
     
-    UITextField * alertTextField = [alertName textFieldAtIndex:0];
-    alertTextField.keyboardAppearance = UIKeyboardAppearanceDark;
-    alertTextField.keyboardType = UIKeyboardTypeDefault;
-    alertTextField.placeholder = @"Enter Sheet Title";
-    [alertName show];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField)
+     {
+         textField.placeholder = @"0.0";
+         textField.keyboardAppearance = UIKeyboardAppearanceDark;
+         textField.keyboardType = UIKeyboardTypeDefault;
+     }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:@"Cancel"
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       NSLog(@"Cancel Action");
+                                   }];
+    
+    UIAlertAction *okAction = [UIAlertAction
+                               actionWithTitle:@"OK"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction *action)
+                               {
+                                   NSLog(@"OK Action");
+                                   UITextField *score = alertController.textFields.firstObject;
+                                   diveText.text = score.text;
+                                   [self updateTotal];
+                               }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:okAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+    
 }
 
 - (IBAction)diveOneClick:(id)sender {
+    
     _textBoxAlert = 1;
     
-    UIAlertView *alertName = [[UIAlertView alloc] initWithTitle:@"Score 1"
-                                                        message:nil
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Save", nil];
-    alertName.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [self DiveAlert:_textBoxAlert TextField:self.dive1Txt];
     
-    UITextField * alertTextField = [alertName textFieldAtIndex:0];
-    alertTextField.keyboardAppearance = UIKeyboardAppearanceDark;
-    alertTextField.keyboardType = UIKeyboardTypeDecimalPad;
-    alertTextField.placeholder = @"0.0";
-    [alertName show];
 }
 
 - (IBAction)diveTwoClick:(id)sender {
+    
     _textBoxAlert = 2;
     
-    UIAlertView *alertName = [[UIAlertView alloc] initWithTitle:@"Score 2"
-                                                        message:nil
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Save", nil];
-    alertName.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [self DiveAlert:_textBoxAlert TextField:self.dive2Txt];
     
-    UITextField * alertTextField = [alertName textFieldAtIndex:0];
-    alertTextField.keyboardAppearance = UIKeyboardAppearanceDark;
-    alertTextField.keyboardType = UIKeyboardTypeDecimalPad;
-    alertTextField.placeholder = @"0.0";
-    [alertName show];
 }
 
 - (IBAction)diveThreeClick:(id)sender {
+    
     _textBoxAlert = 3;
     
-    UIAlertView *alertName = [[UIAlertView alloc] initWithTitle:@"Score 3"
-                                                        message:nil
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Save", nil];
-    alertName.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [self DiveAlert:_textBoxAlert TextField:self.dive3Txt];
     
-    UITextField * alertTextField = [alertName textFieldAtIndex:0];
-    alertTextField.keyboardAppearance = UIKeyboardAppearanceDark;
-    alertTextField.keyboardType = UIKeyboardTypeDecimalPad;
-    alertTextField.placeholder = @"0.0";
-    [alertName show];
 }
 
 - (IBAction)diveFourClick:(id)sender {
+    
     _textBoxAlert = 4;
     
-    UIAlertView *alertName = [[UIAlertView alloc] initWithTitle:@"Score 4"
-                                                        message:nil
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Save", nil];
-    alertName.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [self DiveAlert:_textBoxAlert TextField:self.dive4Txt];
     
-    UITextField * alertTextField = [alertName textFieldAtIndex:0];
-    alertTextField.keyboardAppearance = UIKeyboardAppearanceDark;
-    alertTextField.keyboardType = UIKeyboardTypeDecimalPad;
-    alertTextField.placeholder = @"0.0";
-    [alertName show];
 }
 
 - (IBAction)diveFiveClick:(id)sender {
+    
     _textBoxAlert = 5;
     
-    UIAlertView *alertName = [[UIAlertView alloc] initWithTitle:@"Score 5"
-                                                        message:nil
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Save", nil];
-    alertName.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [self DiveAlert:_textBoxAlert TextField:self.dive5Txt];
     
-    UITextField * alertTextField = [alertName textFieldAtIndex:0];
-    alertTextField.keyboardAppearance = UIKeyboardAppearanceDark;
-    alertTextField.keyboardType = UIKeyboardTypeDecimalPad;
-    alertTextField.placeholder = @"0.0";
-    [alertName show];
 }
 
 - (IBAction)diveSixClick:(id)sender {
+    
     _textBoxAlert = 6;
     
-    UIAlertView *alertName = [[UIAlertView alloc] initWithTitle:@"Score 6"
-                                                        message:nil
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Save", nil];
-    alertName.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [self DiveAlert:_textBoxAlert TextField:self.dive6Txt];
     
-    UITextField * alertTextField = [alertName textFieldAtIndex:0];
-    alertTextField.keyboardAppearance = UIKeyboardAppearanceDark;
-    alertTextField.keyboardType = UIKeyboardTypeDecimalPad;
-    alertTextField.placeholder = @"0.0";
-    [alertName show];
 }
 
 - (IBAction)diveSevenClick:(id)sender {
+    
     _textBoxAlert = 7;
     
-    UIAlertView *alertName = [[UIAlertView alloc] initWithTitle:@"Score 7"
-                                                        message:nil
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Save", nil];
-    alertName.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [self DiveAlert:_textBoxAlert TextField:self.dive7Txt];
     
-    UITextField * alertTextField = [alertName textFieldAtIndex:0];
-    alertTextField.keyboardAppearance = UIKeyboardAppearanceDark;
-    alertTextField.keyboardType = UIKeyboardTypeDecimalPad;
-    alertTextField.placeholder = @"0.0";
-    [alertName show];
 }
 
 - (IBAction)diveEightClick:(id)sender {
+    
     _textBoxAlert = 8;
     
-    UIAlertView *alertName = [[UIAlertView alloc] initWithTitle:@"Score 8"
-                                                        message:nil
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Save", nil];
-    alertName.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [self DiveAlert:_textBoxAlert TextField:self.dive8Txt];
     
-    UITextField * alertTextField = [alertName textFieldAtIndex:0];
-    alertTextField.keyboardAppearance = UIKeyboardAppearanceDark;
-    alertTextField.keyboardType = UIKeyboardTypeDecimalPad;
-    alertTextField.placeholder = @"0.0";
-    [alertName show];
 }
 
 - (IBAction)diveNineClick:(id)sender {
+    
     _textBoxAlert = 9;
     
-    UIAlertView *alertName = [[UIAlertView alloc] initWithTitle:@"Score 9"
-                                                        message:nil
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Save", nil];
-    alertName.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [self DiveAlert:_textBoxAlert TextField:self.dive9Txt];
     
-    UITextField * alertTextField = [alertName textFieldAtIndex:0];
-    alertTextField.keyboardAppearance = UIKeyboardAppearanceDark;
-    alertTextField.keyboardType = UIKeyboardTypeDecimalPad;
-    alertTextField.placeholder = @"0.0";
-    [alertName show];
 }
 
 - (IBAction)diveTenClick:(id)sender {
+    
     _textBoxAlert = 10;
     
-    UIAlertView *alertName = [[UIAlertView alloc] initWithTitle:@"Score 10"
-                                                        message:nil
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Save", nil];
-    alertName.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [self DiveAlert:_textBoxAlert TextField:self.dive10Txt];
     
-    UITextField * alertTextField = [alertName textFieldAtIndex:0];
-    alertTextField.keyboardAppearance = UIKeyboardAppearanceDark;
-    alertTextField.keyboardType = UIKeyboardTypeDecimalPad;
-    alertTextField.placeholder = @"0.0";
-    [alertName show];
 }
 
 - (IBAction)diveElevenClick:(id)sender {
+    
     _textBoxAlert = 11;
     
-    UIAlertView *alertName = [[UIAlertView alloc] initWithTitle:@"Score 11"
-                                                        message:nil
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Save", nil];
-    alertName.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [self DiveAlert:_textBoxAlert TextField:self.dive11Txt];
     
-    UITextField * alertTextField = [alertName textFieldAtIndex:0];
-    alertTextField.keyboardAppearance = UIKeyboardAppearanceDark;
-    alertTextField.keyboardType = UIKeyboardTypeDecimalPad;
-    alertTextField.placeholder = @"0.0";
-    [alertName show];
 }
 
 @end

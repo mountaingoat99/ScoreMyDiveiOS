@@ -16,7 +16,7 @@
 
 @end
 
-@interface QuickScoreEdit : UIViewController
+@interface QuickScoreEdit : UIViewController 
 
 // declaration for the delegate property
 @property (nonatomic, strong) id<QuickScoreViewControllerDelegate> delegate;
