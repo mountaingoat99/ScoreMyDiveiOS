@@ -7,10 +7,15 @@
 //
 
 #import "DiverDetailsVC.h"
+#import "Diver.h"
 
 @interface DiverDetailsVC ()
 
+@property (nonatomic) int recordIDToEdit;
 
+@property (nonatomic, strong) NSArray *arrDiverInfo;
+
+-(void)loadData;
 
 @end
 
@@ -21,31 +26,27 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
-    // drop shadow for the buttons
-    self.btnDiverNew.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.btnDiverNew.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
-    self.btnDiverNew.layer.masksToBounds = NO;
-    self.btnDiverNew.layer.shadowRadius = 4.0f;
-    self.btnDiverNew.layer.shadowOpacity = 1.0;
-    self.btnDiverReports.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.btnDiverReports.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
-    self.btnDiverReports.layer.masksToBounds = NO;
-    self.btnDiverReports.layer.shadowRadius = 4.0f;
-    self.btnDiverReports.layer.shadowOpacity = 1.0;
-    self.btnDiverHistory.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.btnDiverHistory.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
-    self.btnDiverHistory.layer.masksToBounds = NO;
-    self.btnDiverHistory.layer.shadowRadius = 4.0f;
-    self.btnDiverHistory.layer.shadowOpacity = 1.0;
-    self.btnDiverEdit.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.btnDiverEdit.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
-    self.btnDiverEdit.layer.masksToBounds = NO;
-    self.btnDiverEdit.layer.shadowRadius = 4.0f;
-    self.btnDiverEdit.layer.shadowOpacity = 1.0;
+    self.tblDivers.delegate = self;
+    self.tblDivers.dataSource = self;
+    
+    //drop shadow for the table
+    self.tblDivers.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.tblDivers.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    self.tblDivers.layer.masksToBounds = NO;
+    self.tblDivers.layer.shadowRadius = 4.0f;
+    self.tblDivers.layer.shadowOpacity = 1.0;
+    
+    [self loadData];
+  
 }
 
 -(IBAction)unwindToDiverDetails:(UIStoryboardSegue *)segue{
     
+}
+
+// handles the return click
+-(IBAction)returnClick:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,15 +54,97 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)newDiver_click:(id)sender {
+-(IBAction)addNewRecord:(id)sender {
+    self.recordIDToEdit = -1;
+    
+    [self performSegueWithIdentifier:@"idSegueEditInfo" sender:self];
 }
 
-- (IBAction)diverReports_click:(id)sender {
+// delete a row
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        // delete the selected record find the record id
+        int recordIDToDelete = [[[self.arrDiverInfo objectAtIndex:indexPath.row] objectAtIndex:0] intValue];
+        
+        // call the class method to delete a record
+        Diver *divers = [[Diver alloc] init];
+        [divers DeleteDiver:recordIDToDelete];
+        
+        //reload the table view
+        [self loadData];
+    }
 }
 
-- (IBAction)diverHistory_click:(id)sender {
+// calls the cell to edit
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    // get the record ID of the selected name and set to the recordIDToEdit property
+    self.recordIDToEdit = [[[self.arrDiverInfo objectAtIndex:indexPath.row] objectAtIndex:0] intValue];
+    
+    // perform the segue
+    [self performSegueWithIdentifier:@"idSegueEditInfo" sender:self];
 }
 
-- (IBAction)diverEdit_click:(id)sender {
+// make this viewcontroller the delegate of the MeetEdit ViewController
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    DiverEdit *diverEdit = [segue destinationViewController];
+    diverEdit.delegate = self;
+    
+    // send the id to the MeetEdit VC
+    diverEdit.recordIDToEdit = self.recordIDToEdit;
 }
+
+// delegate method to update info after the edit info is popped off
+-(void)editInfoWasFinished{
+    [self loadData];
+}
+
+#pragma private methods
+-(void)loadData{
+    
+    // get the result
+    if(self.arrDiverInfo != nil){
+        self.arrDiverInfo = nil;
+    }
+    
+    // call the class method to load the data
+    Diver *divers = [[Diver alloc] init];
+    self.arrDiverInfo = [divers GetAllDivers];
+    
+    // reload the table
+    [self.tblDivers reloadData];
+}
+
+// tells the tableView we want to have just one section
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+// specifies the total number of rows displayed in the table view
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.arrDiverInfo.count;
+}
+
+// sets each rows height
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 50.0;
+}
+
+// displays a row's data
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // dequeue the cell
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"idCellRecord" forIndexPath:indexPath];
+    
+    //set the text sizes
+    cell.textLabel.font = [UIFont systemFontOfSize:15.0];
+    cell.textLabel.numberOfLines = 2;
+    
+    // set the loaded data to the appropriate cell labels
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [[self.arrDiverInfo objectAtIndex:indexPath.row] objectAtIndex:1]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [[self.arrDiverInfo objectAtIndex:indexPath.row] objectAtIndex:4]];
+    
+    return cell;
+}
+
 @end

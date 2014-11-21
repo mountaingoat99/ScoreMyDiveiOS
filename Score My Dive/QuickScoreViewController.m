@@ -7,13 +7,12 @@
 //
 
 #import "QuickScoreViewController.h"
-#import "DBManager.h"
+#import "QuickScores.h"
 
 @interface QuickScoreViewController ()
 
 @property (nonatomic) int recordIDToEdit;
 
-@property (nonatomic, strong) DBManager *dbManager;
 @property (nonatomic, strong) NSArray *arrQuickInfo;
 
 -(void)loadData;
@@ -22,7 +21,7 @@
 
 @implementation QuickScoreViewController
 
-#pragma UIViewController
+#pragma ViewController Events
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,9 +36,6 @@
     self.tblQuickScores.layer.masksToBounds = NO;
     self.tblQuickScores.layer.shadowRadius = 4.0f;
     self.tblQuickScores.layer.shadowOpacity = 1.0;
-    
-    // Init the database
-    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     // call the load method
     [self loadData];
@@ -67,7 +63,24 @@
     [self performSegueWithIdentifier:@"idSegueEditInfo" sender:self];
 }
 
-#pragma tableViewMethods
+// user chooses a row to delete
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        // delete the selected record find the record id
+        int recordIDToDelete = [[[self.arrQuickInfo objectAtIndex:indexPath.row] objectAtIndex:0] intValue];
+        
+        // call the class method to delete a record
+        QuickScores *scores = [[QuickScores alloc] init];
+        [scores DeleteQuickScore:recordIDToDelete];
+        
+        //reload the table view
+        [self loadData];
+    }
+}
+
+// calls the edit cell
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
     // get the record ID of the selected name and set to the recordIDToEdit property
     self.recordIDToEdit = [[[self.arrQuickInfo objectAtIndex:indexPath.row] objectAtIndex:0] intValue];
@@ -85,35 +98,22 @@
     quickScoreEdit.recordIDToEdit = self.recordIDToEdit;
 }
 
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // delete the selected record
-        // find the record id
-        int recordIDToDelete = [[[self.arrQuickInfo objectAtIndex:indexPath.row] objectAtIndex:0] intValue];
-        
-        //prepare the query
-        NSString *query = [NSString stringWithFormat:@"delete from quick_score where id=%d", recordIDToDelete];
-        
-        // execute the query
-        [self.dbManager executeQuery:query];
-        
-        //reload the table view
-        [self loadData];
-    }
+// delegate method to update info after the edit info is popped off
+-(void)editInfoWasFinished{
+    [self loadData];
 }
 
-
-#pragma DataMethods
+#pragma private Methods
 -(void)loadData{
-    //form the query
-    NSString *query = @"select id, name_meet, total_score from quick_score";
     
     // get the result
     if(self.arrQuickInfo != nil){
         self.arrQuickInfo = nil;
     }
-    self.arrQuickInfo = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    // call the class method to load the data
+    QuickScores *score = [[QuickScores alloc] init];
+    self.arrQuickInfo = [score LoadAllQuickScores];
     
     // reload the table
     [self.tblQuickScores reloadData];
@@ -142,30 +142,12 @@
     //set the text size
     cell.textLabel.font = [UIFont systemFontOfSize:15.0];
     cell.textLabel.numberOfLines = 2;
-    
-    // using the column name properties in the DBManager object we will define the index of each column
-    // from the array
-    NSInteger indexOfName = [self.dbManager.arrColumnNames indexOfObject:@"name_meet"];
-    NSInteger indexOfTotalScore = [self.dbManager.arrColumnNames indexOfObject:@"total_score"];
-    
+
     // set the loaded data to the appropriate cell labels
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", [[self.arrQuickInfo objectAtIndex:indexPath.row] objectAtIndex:indexOfName]];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Score: %@", [[self.arrQuickInfo objectAtIndex:indexPath.row] objectAtIndex:indexOfTotalScore]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [[self.arrQuickInfo objectAtIndex:indexPath.row] objectAtIndex:1]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Score: %@", [[self.arrQuickInfo objectAtIndex:indexPath.row] objectAtIndex:2]];
     
     return cell;
 }
-
-// delegate method to update info after the edit info is popped off
--(void)editInfoWasFinished{
-    [self loadData];
-}
-
-
-
-
-
-
-
-
 
 @end

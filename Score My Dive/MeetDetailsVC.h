@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MeetEdit.h"
 
-@interface MeetDetailsVC : UIViewController
+@interface MeetDetailsVC : UIViewController <UITableViewDelegate, UITableViewDataSource, MeetDetailsViewControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *tblPeople;
+@property (weak, nonatomic) IBOutlet UITableView *tblMeets;
 
+
+- (IBAction)addNewRecord:(id)sender;
+
+- (IBAction)returnClick:(id)sender;
 
 @end

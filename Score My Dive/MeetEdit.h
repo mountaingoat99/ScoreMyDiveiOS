@@ -8,7 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+// lets us tell the MeetEdit View Controller we have updated
+// a field when we pop this viewcontroller off the stack
+@protocol MeetDetailsViewControllerDelegate
+
+-(void)editInfoWasFinished;
+
+@end
+
 @interface MeetEdit : UIViewController <UITextFieldDelegate, UIPickerViewDelegate>
+
+// delegate property
+@property (nonatomic, strong) id<MeetDetailsViewControllerDelegate> delegate;
+
+// edit record property
+@property (nonatomic) int recordIDToEdit;
 
 @property (weak, nonatomic) IBOutlet UITextField *txtMeetName;
 @property (weak, nonatomic) IBOutlet UITextField *txtSchool;

@@ -7,16 +7,18 @@
 //
 
 #import "MeetEdit.h"
-#import "DBManager.h"
+#import "Meet.h"
 
 @interface MeetEdit ()
 
-@property (nonatomic, strong) DBManager *dbManager;
+// private method to load the edited data
+-(void)loadInfoToEdit;
 
 @end
 
 @implementation MeetEdit
 
+#pragma View Controller Events
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,24 +29,28 @@
     self.txtMeetName.layer.masksToBounds = NO;
     self.txtMeetName.layer.shadowRadius = 4.0f;
     self.txtMeetName.layer.shadowOpacity = .5;
+    self.txtMeetName.keyboardAppearance = UIKeyboardAppearanceDark;
     
     self.txtSchool.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtSchool.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.txtSchool.layer.masksToBounds = NO;
     self.txtSchool.layer.shadowRadius = 4.0f;
     self.txtSchool.layer.shadowOpacity = .5;
+    self.txtSchool.keyboardAppearance = UIKeyboardAppearanceDark;
     
     self.txtCity.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtCity.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.txtCity.layer.masksToBounds = NO;
     self.txtCity.layer.shadowRadius = 4.0f;
     self.txtCity.layer.shadowOpacity = .5;
+    self.txtCity.keyboardAppearance = UIKeyboardAppearanceDark;
     
     self.txtState.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtState.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.txtState.layer.masksToBounds = NO;
     self.txtState.layer.shadowRadius = 4.0f;
     self.txtState.layer.shadowOpacity = .5;
+    self.txtState.keyboardAppearance = UIKeyboardAppearanceDark;
     
     self.txtDate.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtDate.layer.shadowOffset = CGSizeMake(.1f, .1f);
@@ -58,8 +64,9 @@
     self.txtState.delegate = self;
     self.txtDate.delegate = self;
     
-    // alloc the database
-    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    if (self.recordIDToEdit != -1) {
+        [self loadInfoToEdit];
+    }
     
     // initilize the date to today
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -93,14 +100,7 @@
     return YES;
 }
 
-//updates the dateText field with values from the date picker
--(void)updateTextField:(UIDatePicker *)sender
-{
-    //date formatter
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateStyle = NSDateFormatterLongStyle;
-    self.txtDate.text = [formatter stringFromDate:sender.date];
-}
+
 
 // hide the keyboard on outside touch
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -111,7 +111,8 @@
 
 // database insert
 -(IBAction)saveInfo:(id)sender{
-    // prepare the query string
+    
+    // make sure all text fields have an entry
     if (self.txtMeetName.text.length == 0 || self.txtSchool.text.length == 0 ||
         self.txtCity.text.length == 0 || self.txtState.text.length == 0 || self.txtDate.text.length == 0) {
         
@@ -124,35 +125,52 @@
         [error reloadInputViews];
         
     } else {
-    
-        NSString *query = [NSString stringWithFormat:
-                           @"insert into meet(name, school, city, state, date) values('%@', '%@', '%@', '%@', '%@')",
-                           self.txtMeetName.text, self.txtSchool.text, self.txtCity.text, self.txtState.text, self.txtDate.text];
-    
-        // execute the query
-        [self.dbManager executeQuery:query];
-    
-        // if the query was succesfully executed then pop the view controller
-        if (self.dbManager.affectedRows != 0) {
-            NSLog(@"Query was executed successfully. Affected Rows = %d", self.dbManager.affectedRows);
         
+        Meet *meet = [[Meet alloc] init];
+        
+        if ([meet UpdateMeet:self.recordIDToEdit Name:self.txtMeetName.text School:self.txtSchool.text City:self.txtCity.text State:self.txtSchool.text Date:self.txtDate.text]) {
+            
+            //inform the delegate that the edit was finished and update previous
+            //viewcontroller table rows
+            [self.delegate editInfoWasFinished];
+            
             // pop the view controller
-            //[self.navigationController popViewControllerAnimated:YES];
             [self dismissViewControllerAnimated:YES completion:nil];
+            
         } else {
-            NSLog(@"Could not execute the query");
+            //TODO: figure out something to do here
         }
     }
 }
 
-/*
-#pragma mark - Navigation
+#pragma private methods
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+// loads a current record into the text fields
+-(void)loadInfoToEdit {
+    
+    // send the id to the class method to get the results array for the text boxes
+    Meet *meet = [[Meet alloc] init];
+    NSArray *meetArray = [meet LoadMeet:self.recordIDToEdit];
+    
+    // set the data to the correct text boxes to edit
+    self.txtMeetName.text = [[meetArray objectAtIndex:0] objectAtIndex:1];
+    self.txtSchool.text = [[meetArray objectAtIndex:0] objectAtIndex:2];
+    self.txtCity.text = [[meetArray objectAtIndex:0] objectAtIndex:3];
+    self.txtState.text = [[meetArray objectAtIndex:0] objectAtIndex:4];
+    self.txtDate.text = [[meetArray objectAtIndex:0] objectAtIndex:5];
+    
 }
-*/
+
+//updates the dateText field with values from the date picker
+-(void)updateTextField:(UIDatePicker *)sender
+{
+    //date formatter
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateStyle = NSDateFormatterLongStyle;
+    self.txtDate.text = [formatter stringFromDate:sender.date];
+}
+
+
+
 
 @end

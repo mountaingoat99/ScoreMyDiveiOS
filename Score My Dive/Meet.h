@@ -10,4 +10,18 @@
 
 @interface Meet : NSObject
 
+@property (nonatomic, strong) NSString *MeetName;
+@property (nonatomic, strong) NSString *SchoolName;
+@property (nonatomic, strong) NSString *City;
+@property (nonatomic, strong) NSString *State;
+@property (nonatomic, strong) NSString *Date;
+
+-(BOOL)UpdateMeet:(int)meetid Name:(NSString*)name School:(NSString*)school City:(NSString*)city State:(NSString*)state Date:(NSString*)date;
+
+-(NSArray*)GetAllMeets;
+
+-(NSArray*)LoadMeet:(int)meetid;
+
+-(void)DeleteMeet:(int)meetid;
+
 @end

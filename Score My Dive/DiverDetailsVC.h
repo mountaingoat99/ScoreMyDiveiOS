@@ -7,17 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DiverEdit.h"
 
-@interface DiverDetailsVC : UIViewController
+@interface DiverDetailsVC : UIViewController <UITableViewDelegate, UITableViewDataSource, DiverDetailsViewControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *btnDiverNew;
-@property (weak, nonatomic) IBOutlet UIButton *btnDiverReports;
-@property (weak, nonatomic) IBOutlet UIButton *btnDiverHistory;
-@property (weak, nonatomic) IBOutlet UIButton *btnDiverEdit;
+@property (weak, nonatomic) IBOutlet UITableView *tblDivers;
 
-- (IBAction)newDiver_click:(id)sender;
-- (IBAction)diverReports_click:(id)sender;
-- (IBAction)diverHistory_click:(id)sender;
-- (IBAction)diverEdit_click:(id)sender;
+-(IBAction)addNewRecord:(id)sender;
+
+-(IBAction)returnClick:(id)sender;
 
 @end

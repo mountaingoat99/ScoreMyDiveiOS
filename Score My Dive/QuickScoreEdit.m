@@ -12,8 +12,6 @@
 
 @interface QuickScoreEdit ()
 
-@property (nonatomic, strong) DBManager *dbManager;
-
 @property (nonatomic, strong) NSString *nameText;
 @property (nonatomic, strong) NSString *dive1;
 @property (nonatomic, strong) NSString *dive2;
@@ -42,10 +40,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // sets the delegate on the numeric text fields so we can check to insure only
-    // numerics are put in
-    
-    
     // check if we load a specific record to edit
     if(self.recordIDToEdit != -1){
         [self loadInfoToEdit];
@@ -65,7 +59,6 @@
     // here we will send the params to the class to do the update
     QuickScores *quick = [[QuickScores alloc] init];
     if ([quick updateQuickScore:self.recordIDToEdit Name:_nameText Dive1:_dive1 Dive2:_dive2 Dive3:_dive3 Dive4:_dive4 Dive5:_dive5 Dive6:_dive6 Dive7:_dive7 Dive8:_dive8 Dive9:_dive9 Dive10:_dive10 Dive11:_dive11 Total:_scoreTotal]) {
-        NSLog(@"Query was executed successfully. Affected Rows = %d", self.dbManager.affectedRows);
         
         //inform the delegate that the edit was finished and update previous
         //viewcontroller table rows
@@ -75,7 +68,7 @@
         //[self.navigationController popViewControllerAnimated:YES];
         [self dismissViewControllerAnimated:YES completion:nil];
     } else {
-        NSLog(@"Could not execute the query");
+        //TODO: not sure if I should do some error handling here
     }
 }
 

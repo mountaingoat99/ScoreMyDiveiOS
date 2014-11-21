@@ -12,6 +12,7 @@
 @interface QuickScores ()
 
 @property (nonatomic, strong) DBManager *dbManager;
+@property (nonatomic, strong) NSArray *quickInfo;
 
 @end
 
@@ -34,6 +35,8 @@
 }
 
 #pragma DataInterface
+
+// insert or update a QuickScore
 -(BOOL)updateQuickScore:(int)idToEdit Name:(NSString *)name Dive1:(NSString *)dive1 Dive2:(NSString *)dive2 Dive3:(NSString *)dive3 Dive4:(NSString *)dive4 Dive5:(NSString *)dive5 Dive6:(NSString *)dive6 Dive7:(NSString *)dive7 Dive8:(NSString *)dive8 Dive9:(NSString *)dive9 Dive10:(NSString *)dive10 Dive11:(NSString *)dive11 Total:(NSString *)total {
     
     // initilize the database
@@ -66,6 +69,7 @@
     }
 }
 
+// load one quickScore
 -(NSArray*)loadInfo:(int)idToLoad {
     
     // initilize the database
@@ -80,18 +84,30 @@
     return results;
 }
 
+// load all the quick scores
+-(NSArray*)LoadAllQuickScores {
+    
+    //initilize the database
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    // create the query
+    NSString *query = @"select id, name_meet, total_score from quick_score";
+    
+    // execute the query
+    self.quickInfo = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return self.quickInfo;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+// delete the quickScore
+-(void)DeleteQuickScore:(int)idToDelete {
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"delete from quick_score where id=%d", idToDelete];
+    
+    [self.dbManager executeQuery:query];
+    
+}
 
 @end

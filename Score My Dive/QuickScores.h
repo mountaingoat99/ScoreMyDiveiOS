@@ -19,4 +19,8 @@
 
 -(NSArray*)loadInfo:(int)idToLoad;
 
+-(NSArray*)LoadAllQuickScores;
+
+-(void)DeleteQuickScore:(int)idToDelete;
+
 @end
