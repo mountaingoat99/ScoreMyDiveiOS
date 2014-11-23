@@ -11,7 +11,10 @@
 @interface HomeViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *btnQuick;
-@property (weak, nonatomic) IBOutlet UIButton *btnDetails;
+@property (weak, nonatomic) IBOutlet UIButton *btnMeetsDivers;
+@property (weak, nonatomic) IBOutlet UIButton *btnReports;
+@property (weak, nonatomic) IBOutlet UIButton *btnDetailed;
+
 
 @end
 

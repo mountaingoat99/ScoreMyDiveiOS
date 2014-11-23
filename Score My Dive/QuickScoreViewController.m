@@ -142,6 +142,7 @@
     //set the text size
     cell.textLabel.font = [UIFont systemFontOfSize:15.0];
     cell.textLabel.numberOfLines = 2;
+    //cell.contentView.backgroundColor = [UIColor darkGrayColor];
 
     // set the loaded data to the appropriate cell labels
     cell.textLabel.text = [NSString stringWithFormat:@"%@", [[self.arrQuickInfo objectAtIndex:indexPath.row] objectAtIndex:1]];

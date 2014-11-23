@@ -7,12 +7,8 @@
 //
 
 #import "HomeViewController.h"
-#import "DBManager.h"
 
 @interface HomeViewController ()
-
-// database
-@property (nonatomic, strong) DBManager *dbManager;
 
 @end
 
@@ -27,10 +23,20 @@
     self.btnQuick.layer.masksToBounds = NO;
     self.btnQuick.layer.shadowOpacity = .5;
     
-    self.btnDetails.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.btnDetails.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.btnDetails.layer.masksToBounds = NO;
-    self.btnDetails.layer.shadowOpacity = .5;
+    self.btnMeetsDivers.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.btnMeetsDivers.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.btnMeetsDivers.layer.masksToBounds = NO;
+    self.btnMeetsDivers.layer.shadowOpacity = .5;
+    
+    self.btnReports.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.btnReports.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.btnReports.layer.masksToBounds = NO;
+    self.btnReports.layer.shadowOpacity = .5;
+    
+    self.btnDetailed.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.btnDetailed.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.btnDetailed.layer.masksToBounds = NO;
+    self.btnDetailed.layer.shadowOpacity = .5;
     
 }
 
