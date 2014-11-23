@@ -14,6 +14,8 @@
 		263AC5D51A030FD700846CB0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 263AC5D31A030FD700846CB0 /* LaunchScreen.xib */; };
 		263AC5E11A030FD700846CB0 /* Score_My_DiveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 263AC5E01A030FD700846CB0 /* Score_My_DiveTests.m */; };
 		2651CF051A17D56E0050D587 /* QuickScoreEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2651CF041A17D56E0050D587 /* QuickScoreEdit.m */; };
+		267643E61A218DF000CD2CB1 /* ReportsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 267643E51A218DF000CD2CB1 /* ReportsViewController.m */; };
+		267643E91A218E2C00CD2CB1 /* ChooseMeet.m in Sources */ = {isa = PBXBuildFile; fileRef = 267643E81A218E2C00CD2CB1 /* ChooseMeet.m */; };
 		2691AE6C1A0691FB000ABD3B /* DiverDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2691AE6B1A0691FB000ABD3B /* DiverDetailsVC.m */; };
 		2691AE6F1A069898000ABD3B /* MeetDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2691AE6E1A069898000ABD3B /* MeetDetailsVC.m */; };
 		26B010901A1EE7790017F484 /* dive_dod.db in Resources */ = {isa = PBXBuildFile; fileRef = 26B0108F1A1EE7790017F484 /* dive_dod.db */; };
@@ -80,6 +82,10 @@
 		263AC5E01A030FD700846CB0 /* Score_My_DiveTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Score_My_DiveTests.m; sourceTree = "<group>"; };
 		2651CF031A17D56E0050D587 /* QuickScoreEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickScoreEdit.h; sourceTree = "<group>"; };
 		2651CF041A17D56E0050D587 /* QuickScoreEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickScoreEdit.m; sourceTree = "<group>"; };
+		267643E41A218DF000CD2CB1 /* ReportsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportsViewController.h; sourceTree = "<group>"; };
+		267643E51A218DF000CD2CB1 /* ReportsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportsViewController.m; sourceTree = "<group>"; };
+		267643E71A218E2C00CD2CB1 /* ChooseMeet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseMeet.h; sourceTree = "<group>"; };
+		267643E81A218E2C00CD2CB1 /* ChooseMeet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseMeet.m; sourceTree = "<group>"; };
 		2691AE6A1A0691FB000ABD3B /* DiverDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiverDetailsVC.h; sourceTree = "<group>"; };
 		2691AE6B1A0691FB000ABD3B /* DiverDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiverDetailsVC.m; sourceTree = "<group>"; };
 		2691AE6D1A069898000ABD3B /* MeetDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetDetailsVC.h; sourceTree = "<group>"; };
@@ -234,6 +240,10 @@
 		26A07E881A09963700997E5C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				267643E71A218E2C00CD2CB1 /* ChooseMeet.h */,
+				267643E81A218E2C00CD2CB1 /* ChooseMeet.m */,
+				267643E41A218DF000CD2CB1 /* ReportsViewController.h */,
+				267643E51A218DF000CD2CB1 /* ReportsViewController.m */,
 				262756C81A1D811200DAC877 /* DiverEdit.h */,
 				262756C91A1D811200DAC877 /* DiverEdit.m */,
 				2651CF031A17D56E0050D587 /* QuickScoreEdit.h */,
@@ -444,6 +454,7 @@
 				26BE237C1A1027CC00E123D0 /* Results.m in Sources */,
 				26BE234F1A10275A00E123D0 /* Meet.m in Sources */,
 				26BE23801A1027CC00E123D0 /* TwistPlatform.m in Sources */,
+				267643E61A218DF000CD2CB1 /* ReportsViewController.m in Sources */,
 				26B88D231A12EF9600DBE909 /* MeetEdit.m in Sources */,
 				26BE238C1A1027CC00E123D0 /* DiveCategory.m in Sources */,
 				26BE234D1A10275A00E123D0 /* DiveList.m in Sources */,
@@ -456,6 +467,7 @@
 				263AC5CA1A030FD600846CB0 /* AppDelegate.m in Sources */,
 				26BE23891A1027CC00E123D0 /* Inward.m in Sources */,
 				26BE234A1A10275A00E123D0 /* QuickScores.m in Sources */,
+				267643E91A218E2C00CD2CB1 /* ChooseMeet.m in Sources */,
 				26BE237D1A1027CC00E123D0 /* JudgeScores.m in Sources */,
 				26BE23811A1027CC00E123D0 /* ReversePlatform.m in Sources */,
 				26E419A81A048E3100D79C05 /* QuickScoreViewController.m in Sources */,
