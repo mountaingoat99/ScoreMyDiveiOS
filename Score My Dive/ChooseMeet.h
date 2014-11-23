@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChooseMeet : UIViewController
+@interface ChooseMeet : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITextField *txtChooseMeet;
+
+- (IBAction)nextClick:(id)sender;
 
 @end

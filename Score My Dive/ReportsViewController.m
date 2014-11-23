@@ -79,7 +79,6 @@
 -(void)makeDiverPicker{
     
     self.divePicker = [[UIPickerView alloc] init];
-    self.divePicker.frame = CGRectMake(0, 50, 320, 1000);
     [self.divePicker setBackgroundColor:[UIColor grayColor]];
     self.divePicker.layer.shadowColor = [UIColor blackColor].CGColor;
     self.divePicker.layer.shadowOffset = CGSizeMake(.1f, .1f);
@@ -92,7 +91,6 @@
 
 -(void)makeMeetPicker{
     self.meetPicker = [[UIPickerView alloc] init];
-    self.meetPicker.frame = CGRectMake(0, 50, 320, 1000);
     [self.meetPicker setBackgroundColor:[UIColor grayColor]];
     self.meetPicker.layer.shadowColor = [UIColor blackColor].CGColor;
     self.meetPicker.layer.shadowOffset = CGSizeMake(.1f, .1f);
@@ -105,7 +103,6 @@
 
 -(void)makeReportPicker{
     self.reportPicker = [[UIPickerView alloc] init];
-    self.reportPicker.frame = CGRectMake(0, 50, 320, 1000);
     [self.reportPicker setBackgroundColor:[UIColor grayColor]];
     self.reportPicker.layer.shadowColor = [UIColor blackColor].CGColor;
     self.reportPicker.layer.shadowOffset = CGSizeMake(.1f, .1f);
