@@ -18,6 +18,11 @@
 
 @interface QuickScoreEdit : UIViewController<UITextFieldDelegate>
 
+// Outlets for button drop shadows
+@property (weak, nonatomic) IBOutlet UIButton *btnName;
+@property (weak, nonatomic) IBOutlet UIButton *btnDive1;
+
+
 // declaration for the delegate property
 @property (nonatomic, strong) id<QuickScoreViewControllerDelegate> delegate;
 
@@ -38,6 +43,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *dive10Txt;
 @property (strong, nonatomic) IBOutlet UILabel *dive11Txt;
 @property (strong, nonatomic) IBOutlet UILabel *totalTxt;
+
+
+
 
 // button long presses to edit the data
 - (IBAction)nameClick:(id)sender;

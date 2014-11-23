@@ -39,7 +39,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     // check if we load a specific record to edit
     if(self.recordIDToEdit != -1){
         [self loadInfoToEdit];

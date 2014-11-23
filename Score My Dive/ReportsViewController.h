@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ReportsViewController : UIViewController
+@interface ReportsViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+
+// send reports
+- (IBAction)sendClick:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UITextField *txtxChooseDiver;
+@property (weak, nonatomic) IBOutlet UITextField *txtChooseMeet;
+@property (weak, nonatomic) IBOutlet UITextField *txtChooseReport;
 
 @end

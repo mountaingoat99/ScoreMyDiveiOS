@@ -49,4 +49,6 @@
     
 }
 
+//TODO: need to add a way to make sure the user cannot go into the reports, and detailed scoring screens until after data has been entered
+
 @end
