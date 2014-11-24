@@ -10,6 +10,11 @@
 
 @interface ChooseDiver : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
+@property (nonatomic) int meetRecordID;
+@property (nonatomic) int diverRecordID;
+
 @property (weak, nonatomic) IBOutlet UITextField *txtChooseDiver;
+@property (weak, nonatomic) IBOutlet UILabel *lblMeetName;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *radioDiveTotals;
 
 @end

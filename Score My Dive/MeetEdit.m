@@ -100,8 +100,6 @@
     return YES;
 }
 
-
-
 // hide the keyboard on outside touch
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -169,8 +167,5 @@
     formatter.dateStyle = NSDateFormatterLongStyle;
     self.txtDate.text = [formatter stringFromDate:sender.date];
 }
-
-
-
 
 @end

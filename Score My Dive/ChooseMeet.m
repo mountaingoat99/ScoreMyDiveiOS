@@ -7,11 +7,10 @@
 //
 
 #import "ChooseMeet.h"
+#import "ChooseDiver.h"
 #import "Meet.h"
 
 @interface ChooseMeet ()
-
-@property (nonatomic) int meetRecordID;
 
 @property (nonatomic, strong)NSArray *meetArray;
 
@@ -40,6 +39,13 @@
     self.txtChooseMeet.keyboardAppearance = UIKeyboardAppearanceDark;
 }
 
+// push id to next view controller
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+   
+    ChooseDiver *chooseDiver = [segue destinationViewController];
+    chooseDiver.meetRecordID = self.meetRecordID;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -51,8 +57,18 @@
 
 - (IBAction)nextClick:(id)sender {
     
-    //TODO: send the meet ID to the Choose Diver View Controller
-    
+    if (self.txtChooseMeet.text.length != 0) {
+        [self performSegueWithIdentifier:@"idMeetSegue" sender:self];
+    } else {
+        
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                        message:@"Please Pick a Meet"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
+    }
 }
 
 -(void)makeMeetPicker{

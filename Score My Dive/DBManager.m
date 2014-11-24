@@ -19,13 +19,19 @@
 
 //test properties and methods to make sure database attaches
 @property (nonatomic, strong) NSMutableArray *arrResults;
+@property (nonatomic, strong) NSString *oneResult;
 
-// this is a very generic method that other public methods suited to needs will call
+// this is a very generic method that other public methods suited to needs will call - multiple items returned
 -(void)runQuery:(const char *)query isQueryExecutable:(BOOL)queryExecutable;
+
+// generic method to call when you only need one result returned
+-(void)runSingleQuery:(const char *)query isQueryExecutable:(BOOL)queryExecutable;
 
 @end
 
 @implementation DBManager
+
+#pragma initdatabase and directory methods
 
 // custom init method for database
 -(instancetype)initWithDatabaseFilename:(NSString *)dive_dod{
@@ -63,7 +69,9 @@
     }
 }
 
-// dbquery methods
+#pragma query methods
+
+// dbquery method, selects multiple items and runs executable SQL statements
 -(void)runQuery:(const char *)query isQueryExecutable:(BOOL)queryExecutable{
     // Create a sqlite object.
     sqlite3 *sqlite3Database;
@@ -168,9 +176,53 @@
     sqlite3_close(sqlite3Database);
 }
 
-// this will fetch results from the database  - public method
+// does a single select
+-(void)runSingleQuery:(const char *)query isQueryExecutable:(BOOL)queryExecutable {
+    // Create a sqlite object.
+    sqlite3 *sqlite3Database;
+    
+    // Set the database file path.
+    NSString *databasePath = [self.documentsDirectory stringByAppendingPathComponent:self.databaseFilename];
+    
+    // Open the database.
+    BOOL openDatabaseResult = sqlite3_open([databasePath UTF8String], &sqlite3Database);
+    if(openDatabaseResult == SQLITE_OK) {
+        // Declare a sqlite3_stmt object in which will be stored the query after having been compiled into a SQLite statement.
+        sqlite3_stmt *compiledStatement;
+        
+        // Load all data from database to memory.
+        BOOL prepareStatementResult = sqlite3_prepare_v2(sqlite3Database, query, -1, &compiledStatement, NULL);
+        if(prepareStatementResult == SQLITE_OK) {
+                
+            // if there is a result
+            if(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+                
+                self.oneResult = [[NSString alloc] initWithUTF8String:(const char*)sqlite3_column_text(compiledStatement, 0)];
+                NSLog(@"Select result was %@", self.oneResult);
+                    
+            } else {
+                // If the database cannot be opened then show the error message on the debugger.
+                NSLog(@"%s", sqlite3_errmsg(sqlite3Database));
+                NSLog(@"No results found");
+            }
+        } else {
+            // If could not execute the query show the error message on the debugger.
+            NSLog(@"DB Error: %s", sqlite3_errmsg(sqlite3Database));
+            NSLog(@"Statement did not get prepared correctly");
+        }
+        
+    } else {
+        // If the database cannot be opened then show the error message on the debugger.
+        NSLog(@"%s", sqlite3_errmsg(sqlite3Database));
+        NSLog(@"Database did not get opened correctly");
+    }
+}
+
+#pragma Public Query methods
+
+// this will fetch multiple results from the database  - public method
 -(NSArray *)loadDataFromDB:(NSString *)query {
-    // run the query and indicate that it is not executable
+    
     // the query string is converted to a char* object
     [self runQuery:[query UTF8String] isQueryExecutable:NO];
     
@@ -178,59 +230,19 @@
     return (NSArray *)self.arrResults;
 }
 
+// this will festch one result from the database - public method
+-(NSString *)loadOneDataFromDB:(NSString *)query {
+    
+    [self runSingleQuery:[query UTF8String] isQueryExecutable:NO];
+    
+    return (NSString *)self.oneResult;
+}
+
 // this is the public execute query method
 -(void)executeQuery:(NSString *)query{
+    
     //run the query and indicate that is executable
     [self runQuery:[query UTF8String] isQueryExecutable:YES];
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @end

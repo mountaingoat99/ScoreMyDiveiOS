@@ -78,4 +78,15 @@
     
 }
 
+-(NSString*)GetMeetName:(int)meetid {
+    
+    NSString *meetName;
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select name from meet where id=%d", meetid];
+    
+    return meetName = [self.dbManager loadOneDataFromDB:query];
+}
+
 @end

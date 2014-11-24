@@ -40,6 +40,15 @@
     
 }
 
+// push the meetId to the next controller
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    MeetEdit *meetEdit = [segue destinationViewController];
+    meetEdit.delegate = self;
+    
+    // send the id to the MeetEdit VC
+    meetEdit.recordIDToEdit = self.recordIDToEdit;
+}
+
 // handles the return button from meetEdit
 -(IBAction)unwindToMeetDetails:(UIStoryboardSegue *)segue{
     
@@ -88,14 +97,7 @@
     [self performSegueWithIdentifier:@"idSegueEditInfo" sender:self];
 }
 
-// make this viewcontroller the delegate of the MeetEdit ViewController
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    MeetEdit *meetEdit = [segue destinationViewController];
-    meetEdit.delegate = self;
-    
-    // send the id to the MeetEdit VC
-    meetEdit.recordIDToEdit = self.recordIDToEdit;
-}
+
 
 // delegate method to update info after the edit info is popped off
 -(void)editInfoWasFinished{

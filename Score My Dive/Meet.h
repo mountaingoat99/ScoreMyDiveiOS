@@ -24,4 +24,6 @@
 
 -(void)DeleteMeet:(int)meetid;
 
+-(NSString*)GetMeetName:(int)meetid;
+
 @end

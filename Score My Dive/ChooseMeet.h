@@ -10,6 +10,8 @@
 
 @interface ChooseMeet : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
+@property (nonatomic) int meetRecordID;
+
 @property (weak, nonatomic) IBOutlet UITextField *txtChooseMeet;
 
 - (IBAction)nextClick:(id)sender;

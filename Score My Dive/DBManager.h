@@ -19,8 +19,11 @@
 @property (nonatomic) long long lastInsertedRowID;
 
 // public methods for the db selects and querys
-// select first
+// select multiple results first
 -(NSArray *)loadDataFromDB:(NSString *)query;
+
+// selects one value
+-(NSString *)loadOneDataFromDB:(NSString *)query;
 
 // insert, update, and delete
 -(void)executeQuery:(NSString *)query;

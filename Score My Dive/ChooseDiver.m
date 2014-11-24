@@ -8,17 +8,16 @@
 
 #import "ChooseDiver.h"
 #import "Diver.h"
+#import "Meet.h"
 
 @interface ChooseDiver ()
-
-@property (nonatomic) int meetRecordID;
-@property (nonatomic) int diverRecordID;
 
 @property (nonatomic, strong)NSArray *diverArray;
 
 @property (nonatomic, strong) UIPickerView *divePicker;
 
--(void)loadData;
+-(void)loadSpinnerData;
+-(void)getMeetName;
 
 @end
 
@@ -29,7 +28,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self loadData];
+    [self getMeetName];
+    
+    [self loadSpinnerData];
     
     [self makeDiverPicker];
     
@@ -39,6 +40,13 @@
     self.txtChooseDiver.layer.shadowRadius = 4.0f;
     self.txtChooseDiver.layer.shadowOpacity = .5;
     self.txtChooseDiver.keyboardAppearance = UIKeyboardAppearanceDark;
+    
+    self.radioDiveTotals.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.radioDiveTotals.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.radioDiveTotals.layer.masksToBounds = NO;
+    self.radioDiveTotals.layer.shadowRadius = 4.0f;
+    self.radioDiveTotals.layer.shadowOpacity = .5;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -87,13 +95,20 @@
 
 #pragma private methods
 
--(void)loadData {
+-(void)loadSpinnerData {
     if (self.diverArray != nil) {
         self.diverArray = nil;
     }
     
     Diver *divers = [[Diver alloc] init];
     self.diverArray = [divers GetAllDivers];
+    
+}
+
+-(void)getMeetName {
+    
+    Meet *meetName = [[Meet alloc] init];
+    self.lblMeetName.text = [meetName GetMeetName:self.meetRecordID];
     
 }
 
