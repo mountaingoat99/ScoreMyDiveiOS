@@ -28,30 +28,30 @@
     self.txtName.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtName.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.txtName.layer.masksToBounds = NO;
-    self.txtName.layer.shadowRadius = 4.0f;
-    self.txtName.layer.shadowOpacity = .5;
+    //self.txtName.layer.shadowRadius = 4.0f;
+    self.txtName.layer.shadowOpacity = .3;
     self.txtName.keyboardAppearance = UIKeyboardAppearanceDark;
     
     self.txtSchool.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtSchool.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.txtSchool.layer.masksToBounds = NO;
-    self.txtSchool.layer.shadowRadius = 4.0f;
-    self.txtSchool.layer.shadowOpacity = .5;
+    //self.txtSchool.layer.shadowRadius = 4.0f;
+    self.txtSchool.layer.shadowOpacity = .3;
     self.txtSchool.keyboardAppearance = UIKeyboardAppearanceDark;
     
     self.txtAge.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtAge.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.txtAge.layer.masksToBounds = NO;
-    self.txtAge.layer.shadowRadius = 4.0f;
-    self.txtAge.layer.shadowOpacity = .5;
+    //self.txtAge.layer.shadowRadius = 4.0f;
+    self.txtAge.layer.shadowOpacity = .3;
     self.txtAge.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtAge.keyboardType = UIKeyboardTypeNumberPad;
     
     self.txtGrade.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtGrade.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.txtGrade.layer.masksToBounds = NO;
-    self.txtGrade.layer.shadowRadius = 4.0f;
-    self.txtGrade.layer.shadowOpacity = .5;
+    //self.txtGrade.layer.shadowRadius = 4.0f;
+    self.txtGrade.layer.shadowOpacity = .3;
     self.txtGrade.keyboardAppearance = UIKeyboardAppearanceDark;
     
     self.txtName.delegate = self;

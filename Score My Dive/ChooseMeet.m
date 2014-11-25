@@ -34,8 +34,8 @@
     self.txtChooseMeet.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtChooseMeet.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.txtChooseMeet.layer.masksToBounds = NO;
-    self.txtChooseMeet.layer.shadowRadius = 4.0f;
-    self.txtChooseMeet.layer.shadowOpacity = .5;
+    //self.txtChooseMeet.layer.shadowRadius = 4.0f;
+    self.txtChooseMeet.layer.shadowOpacity = .3;
     self.txtChooseMeet.keyboardAppearance = UIKeyboardAppearanceDark;
 }
 
@@ -49,6 +49,13 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+// hide the PickerView on outside touch
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    [self.view endEditing:YES];
 }
 
 -(IBAction)unwindToChooseMeet:(UIStoryboardSegue *)segue{
@@ -77,7 +84,7 @@
     self.meetPicker.layer.shadowColor = [UIColor blackColor].CGColor;
     self.meetPicker.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.meetPicker.layer.masksToBounds = NO;
-    self.meetPicker.layer.shadowOpacity = .5;
+    self.meetPicker.layer.shadowOpacity = .3;
     self.meetPicker.dataSource = self;
     self.meetPicker.delegate = self;
     self.txtChooseMeet.inputView = self.meetPicker;

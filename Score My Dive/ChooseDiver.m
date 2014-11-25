@@ -38,20 +38,27 @@
     self.txtChooseDiver.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.txtChooseDiver.layer.masksToBounds = NO;
     self.txtChooseDiver.layer.shadowRadius = 4.0f;
-    self.txtChooseDiver.layer.shadowOpacity = .5;
+    self.txtChooseDiver.layer.shadowOpacity = .3;
     self.txtChooseDiver.keyboardAppearance = UIKeyboardAppearanceDark;
     
     self.radioDiveTotals.layer.shadowColor = [UIColor blackColor].CGColor;
     self.radioDiveTotals.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.radioDiveTotals.layer.masksToBounds = NO;
     self.radioDiveTotals.layer.shadowRadius = 4.0f;
-    self.radioDiveTotals.layer.shadowOpacity = .5;
+    self.radioDiveTotals.layer.shadowOpacity = .3;
     
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+// hide the PickerView on outside touch
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    [self.view endEditing:YES];
 }
 
 -(void)makeDiverPicker{
@@ -61,7 +68,7 @@
     self.divePicker.layer.shadowColor = [UIColor blackColor].CGColor;
     self.divePicker.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.divePicker.layer.masksToBounds = NO;
-    self.divePicker.layer.shadowOpacity = .5;
+    self.divePicker.layer.shadowOpacity = .3;
     self.divePicker.dataSource = self;
     self.divePicker.delegate = self;
     self.txtChooseDiver.inputView = self.divePicker;

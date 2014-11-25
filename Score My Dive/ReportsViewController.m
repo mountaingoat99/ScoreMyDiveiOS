@@ -47,22 +47,22 @@
     self.txtxChooseDiver.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtxChooseDiver.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.txtxChooseDiver.layer.masksToBounds = NO;
-    self.txtxChooseDiver.layer.shadowRadius = 4.0f;
-    self.txtxChooseDiver.layer.shadowOpacity = .5;
+    //self.txtxChooseDiver.layer.shadowRadius = 4.0f;
+    self.txtxChooseDiver.layer.shadowOpacity = .3;
     self.txtxChooseDiver.keyboardAppearance = UIKeyboardAppearanceDark;
     
     self.txtChooseMeet.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtChooseMeet.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.txtChooseMeet.layer.masksToBounds = NO;
-    self.txtChooseMeet.layer.shadowRadius = 4.0f;
-    self.txtChooseMeet.layer.shadowOpacity = .5;
+    //self.txtChooseMeet.layer.shadowRadius = 4.0f;
+    self.txtChooseMeet.layer.shadowOpacity = .3;
     self.txtChooseMeet.keyboardAppearance = UIKeyboardAppearanceDark;
     
     self.txtChooseReport.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtChooseReport.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.txtChooseReport.layer.masksToBounds = NO;
-    self.txtChooseReport.layer.shadowRadius = 4.0f;
-    self.txtChooseReport.layer.shadowOpacity = .5;
+    //self.txtChooseReport.layer.shadowRadius = 4.0f;
+    self.txtChooseReport.layer.shadowOpacity = .3;
     self.txtChooseReport.keyboardAppearance = UIKeyboardAppearanceDark;
 
 }
@@ -70,6 +70,13 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+// hide the PickerView on outside touch
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    [self.view endEditing:YES];
 }
 
 - (IBAction)sendClick:(id)sender {
@@ -83,7 +90,7 @@
     self.divePicker.layer.shadowColor = [UIColor blackColor].CGColor;
     self.divePicker.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.divePicker.layer.masksToBounds = NO;
-    self.divePicker.layer.shadowOpacity = .5;
+    self.divePicker.layer.shadowOpacity = .3;
     self.divePicker.dataSource = self;
     self.divePicker.delegate = self;
     self.txtxChooseDiver.inputView = self.divePicker;
@@ -95,7 +102,7 @@
     self.meetPicker.layer.shadowColor = [UIColor blackColor].CGColor;
     self.meetPicker.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.meetPicker.layer.masksToBounds = NO;
-    self.meetPicker.layer.shadowOpacity = .5;
+    self.meetPicker.layer.shadowOpacity = .3;
     self.meetPicker.dataSource = self;
     self.meetPicker.delegate = self;
     self.txtChooseMeet.inputView = self.meetPicker;
@@ -107,7 +114,7 @@
     self.reportPicker.layer.shadowColor = [UIColor blackColor].CGColor;
     self.reportPicker.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.reportPicker.layer.masksToBounds = NO;
-    self.reportPicker.layer.shadowOpacity = .5;
+    self.reportPicker.layer.shadowOpacity = .3;
     self.reportPicker.dataSource = self;
     self.reportPicker.delegate = self;
     self.txtChooseReport.inputView = self.reportPicker;

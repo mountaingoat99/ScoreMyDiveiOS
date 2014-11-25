@@ -27,36 +27,36 @@
     self.txtMeetName.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtMeetName.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.txtMeetName.layer.masksToBounds = NO;
-    self.txtMeetName.layer.shadowRadius = 4.0f;
-    self.txtMeetName.layer.shadowOpacity = .5;
+    //self.txtMeetName.layer.shadowRadius = 4.0f;
+    self.txtMeetName.layer.shadowOpacity = .3;
     self.txtMeetName.keyboardAppearance = UIKeyboardAppearanceDark;
     
     self.txtSchool.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtSchool.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.txtSchool.layer.masksToBounds = NO;
-    self.txtSchool.layer.shadowRadius = 4.0f;
-    self.txtSchool.layer.shadowOpacity = .5;
+    //self.txtSchool.layer.shadowRadius = 4.0f;
+    self.txtSchool.layer.shadowOpacity = .3;
     self.txtSchool.keyboardAppearance = UIKeyboardAppearanceDark;
     
     self.txtCity.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtCity.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.txtCity.layer.masksToBounds = NO;
-    self.txtCity.layer.shadowRadius = 4.0f;
-    self.txtCity.layer.shadowOpacity = .5;
+    //self.txtCity.layer.shadowRadius = 4.0f;
+    self.txtCity.layer.shadowOpacity = .3;
     self.txtCity.keyboardAppearance = UIKeyboardAppearanceDark;
     
     self.txtState.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtState.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.txtState.layer.masksToBounds = NO;
-    self.txtState.layer.shadowRadius = 4.0f;
-    self.txtState.layer.shadowOpacity = .5;
+    //self.txtState.layer.shadowRadius = 4.0f;
+    self.txtState.layer.shadowOpacity = .3;
     self.txtState.keyboardAppearance = UIKeyboardAppearanceDark;
     
     self.txtDate.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtDate.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.txtDate.layer.masksToBounds = NO;
-    self.txtDate.layer.shadowRadius = 4.0f;
-    self.txtDate.layer.shadowOpacity = .5;
+    //self.txtDate.layer.shadowRadius = 4.0f;
+    self.txtDate.layer.shadowOpacity = .3;
     
     self.txtMeetName.delegate = self;
     self.txtSchool.delegate = self;

@@ -21,6 +21,16 @@
 // Outlets for button drop shadows
 @property (weak, nonatomic) IBOutlet UIButton *btnName;
 @property (weak, nonatomic) IBOutlet UIButton *btnDive1;
+@property (weak, nonatomic) IBOutlet UIButton *btnDive2;
+@property (weak, nonatomic) IBOutlet UIButton *btnDive3;
+@property (weak, nonatomic) IBOutlet UIButton *btnDive4;
+@property (weak, nonatomic) IBOutlet UIButton *btnDive5;
+@property (weak, nonatomic) IBOutlet UIButton *btnDive6;
+@property (weak, nonatomic) IBOutlet UIButton *btnDive7;
+@property (weak, nonatomic) IBOutlet UIButton *btnDive8;
+@property (weak, nonatomic) IBOutlet UIButton *btnDive9;
+@property (weak, nonatomic) IBOutlet UIButton *btnDive10;
+@property (weak, nonatomic) IBOutlet UIButton *btnDive11;
 
 
 // declaration for the delegate property
@@ -43,8 +53,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *dive10Txt;
 @property (strong, nonatomic) IBOutlet UILabel *dive11Txt;
 @property (strong, nonatomic) IBOutlet UILabel *totalTxt;
-
-
 
 
 // button long presses to edit the data
