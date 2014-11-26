@@ -3002,10 +3002,13 @@
                                     <segment title="7.5M"/>
                                     <segment title="10M"/>
                                 </segments>
-                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.60000002384185791" green="0.60000002384185791" blue="0.60000002384185791" alpha="1" colorSpace="calibratedRGB"/>
                                 <variation key="widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="103" y="172" width="281" height="29"/>
                                 </variation>
+                                <connections>
+                                    <action selector="BoardSizeIndexChanged:" destination="O1M-Zl-WrP" eventType="valueChanged" id="e6k-zd-baC"/>
+                                </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4s0-He-YWu">
                                 <rect key="frame" x="164" y="152" width="420" height="29"/>
@@ -3014,24 +3017,33 @@
                                     <segment title="6 Dives"/>
                                     <segment title="11 Dives"/>
                                 </segments>
-                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.60000002384185791" green="0.60000002384185791" blue="0.60000002384185791" alpha="1" colorSpace="calibratedRGB"/>
                                 <variation key="widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="156" y="134" width="228" height="29"/>
                                 </variation>
+                                <connections>
+                                    <action selector="DiveTotalIndexChanged:" destination="O1M-Zl-WrP" eventType="valueChanged" id="O3h-Rt-1gl"/>
+                                </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mua-fE-Rtc">
                                 <rect key="frame" x="16" y="246" width="280" height="30"/>
-                                <color key="backgroundColor" red="0.50196081399917603" green="0.50196081399917603" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.60000002384185791" green="0.60000002384185791" blue="0.60000002384185791" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Enter List">
                                     <color key="titleShadowColor" red="0.50196081399917603" green="0.50196081399917603" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="EnterListClick:" destination="O1M-Zl-WrP" eventType="touchUpInside" id="GDd-ON-Hs6"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dyn-XZ-qo0">
                                 <rect key="frame" x="304" y="246" width="280" height="30"/>
-                                <color key="backgroundColor" red="0.50196081399917603" green="0.50196081399917603" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.60000002384185791" green="0.60000002384185791" blue="0.60000002384185791" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Enter Scores">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="EnterScoresClick:" destination="O1M-Zl-WrP" eventType="touchUpInside" id="kFt-Pl-gKb"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
@@ -3133,8 +3145,11 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="SCBoardSize" destination="DgL-ZQ-iav" id="eKX-4n-EJN"/>
+                        <outlet property="SCDiveTotals" destination="4s0-He-YWu" id="PH3-NP-mXb"/>
+                        <outlet property="btnEnterList" destination="mua-fE-Rtc" id="erK-yD-8KQ"/>
+                        <outlet property="btnEnterScores" destination="Dyn-XZ-qo0" id="HZm-Pa-AMz"/>
                         <outlet property="lblMeetName" destination="VAZ-Z5-1q7" id="occ-rI-kNi"/>
-                        <outlet property="radioDiveTotals" destination="4s0-He-YWu" id="5a9-ZN-FnX"/>
                         <outlet property="txtChooseDiver" destination="I0i-tt-Zsr" id="7wP-qx-a7e"/>
                     </connections>
                 </viewController>

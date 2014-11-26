@@ -23,4 +23,6 @@
 
 -(void)DeleteDiver:(int)diverid;
 
+//TODO: Make a remove diver from meet public method
+
 @end

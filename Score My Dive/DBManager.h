@@ -22,8 +22,14 @@
 // select multiple results first
 -(NSArray *)loadDataFromDB:(NSString *)query;
 
-// selects one value
+// selects one NSString value
 -(NSString *)loadOneDataFromDB:(NSString *)query;
+
+// select one int value
+-(int)loadIntFromDB:(NSString *)query;
+
+// select one double value
+-(double)loadDoubleFromDB:(NSString *)query;
 
 // insert, update, and delete
 -(void)executeQuery:(NSString *)query;

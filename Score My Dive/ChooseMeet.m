@@ -41,9 +41,13 @@
 
 // push id to next view controller
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if([segue.identifier isEqualToString:@"idMeetSegue"]) {
    
     ChooseDiver *chooseDiver = [segue destinationViewController];
     chooseDiver.meetRecordID = self.meetRecordID;
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning {

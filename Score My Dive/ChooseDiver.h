@@ -12,9 +12,26 @@
 
 @property (nonatomic) int meetRecordID;
 @property (nonatomic) int diverRecordID;
+@property (nonatomic) int diveTotalID;
+@property (nonatomic) double boardSize1ID;
+@property (nonatomic) double boardSize2ID;
+@property (nonatomic) double boardSize3ID;
 
 @property (weak, nonatomic) IBOutlet UITextField *txtChooseDiver;
 @property (weak, nonatomic) IBOutlet UILabel *lblMeetName;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *radioDiveTotals;
+
+@property (weak, nonatomic) IBOutlet UISegmentedControl *SCDiveTotals;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *SCBoardSize;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnEnterList;
+@property (weak, nonatomic) IBOutlet UIButton *btnEnterScores;
+
+//segmented control methods
+- (IBAction)DiveTotalIndexChanged:(UISegmentedControl *)sender;
+- (IBAction)BoardSizeIndexChanged:(UISegmentedControl *)sender;
+
+// button methods
+- (IBAction)EnterListClick:(id)sender;
+- (IBAction)EnterScoresClick:(id)sender;
 
 @end

@@ -211,6 +211,9 @@
             NSLog(@"Statement did not get prepared correctly");
         }
         
+        // Release the compiled statement from memory.
+        sqlite3_finalize(compiledStatement);
+        
     } else {
         // If the database cannot be opened then show the error message on the debugger.
         NSLog(@"%s", sqlite3_errmsg(sqlite3Database));
@@ -230,12 +233,28 @@
     return (NSArray *)self.arrResults;
 }
 
-// this will festch one result from the database - public method
+// this will fetch one NSString result from the database - public method
 -(NSString *)loadOneDataFromDB:(NSString *)query {
     
     [self runSingleQuery:[query UTF8String] isQueryExecutable:NO];
     
     return (NSString *)self.oneResult;
+}
+
+//this will fetch one int result from the database - public method
+-(int)loadIntFromDB:(NSString *)query{
+    
+    [self runSingleQuery:[query UTF8String] isQueryExecutable:NO];
+    
+    return (int)self.oneResult;
+}
+
+//this will fetch one double result from the database - public method
+-(double)loadDoubleFromDB:(NSString *)query{
+    
+    [self runSingleQuery:[query UTF8String] isQueryExecutable:NO];
+    
+    return [self.oneResult doubleValue];
 }
 
 // this is the public execute query method
