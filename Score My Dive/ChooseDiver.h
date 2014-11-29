@@ -19,12 +19,15 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *txtChooseDiver;
 @property (weak, nonatomic) IBOutlet UILabel *lblMeetName;
+@property (weak, nonatomic) IBOutlet UILabel *lblDiveTotal;
+@property (weak, nonatomic) IBOutlet UILabel *lblBoardSize;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *SCDiveTotals;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *SCBoardSize;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnEnterList;
 @property (weak, nonatomic) IBOutlet UIButton *btnEnterScores;
+@property (weak, nonatomic) IBOutlet UIButton *btnResetDiver;
 
 //segmented control methods
 - (IBAction)DiveTotalIndexChanged:(UISegmentedControl *)sender;
@@ -33,5 +36,6 @@
 // button methods
 - (IBAction)EnterListClick:(id)sender;
 - (IBAction)EnterScoresClick:(id)sender;
+- (IBAction)ResetDiverClick:(id)sender;
 
 @end

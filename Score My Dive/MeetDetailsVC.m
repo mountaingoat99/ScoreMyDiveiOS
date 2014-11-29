@@ -8,6 +8,7 @@
 
 #import "MeetDetailsVC.h"
 #import "Meet.h"
+#import "MeetHistory.h"
 
 @interface MeetDetailsVC ()
 
@@ -42,11 +43,22 @@
 
 // push the meetId to the next controller
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    MeetEdit *meetEdit = [segue destinationViewController];
-    meetEdit.delegate = self;
     
-    // send the id to the MeetEdit VC
-    meetEdit.recordIDToEdit = self.recordIDToEdit;
+    // send the id to the MeetEdit
+    if ([segue.identifier isEqualToString:@"idSegueEditInfo"]) {
+        MeetEdit *meetEdit = [segue destinationViewController];
+        meetEdit.delegate = self;
+        
+        // send the id to the MeetEdit VC
+        meetEdit.recordIDToEdit = self.recordIDToEdit;
+    }
+    
+    // send the id to the MeetHistory
+    if ([segue.identifier isEqualToString:@"idSegueMeetInfo"]) {
+        MeetHistory *history = [[MeetHistory alloc] init];
+        
+        history.recordIdToEdit = self.recordIDToEdit;
+    }
 }
 
 // handles the return button from meetEdit
@@ -97,29 +109,6 @@
     [self performSegueWithIdentifier:@"idSegueEditInfo" sender:self];
 }
 
-
-
-// delegate method to update info after the edit info is popped off
--(void)editInfoWasFinished{
-    [self loadData];
-}
-
-#pragma private methods
--(void)loadData{
-    
-    // get the result
-    if(self.arrMeetInfo != nil){
-        self.arrMeetInfo = nil;
-    }
-    
-    // call the class method to load the data
-    Meet *meets = [[Meet alloc] init];
-    self.arrMeetInfo = [meets GetAllMeets];
-    
-    // reload the table
-    [self.tblMeets reloadData];
-}
-
 // tells the tableView we want to have just one section
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -150,5 +139,28 @@
     
     return cell;
 }
+
+// delegate method to update info after the edit info is popped off
+-(void)editInfoWasFinished{
+    [self loadData];
+}
+
+#pragma private methods
+-(void)loadData{
+    
+    // get the result
+    if(self.arrMeetInfo != nil){
+        self.arrMeetInfo = nil;
+    }
+    
+    // call the class method to load the data
+    Meet *meets = [[Meet alloc] init];
+    self.arrMeetInfo = [meets GetAllMeets];
+    
+    // reload the table
+    [self.tblMeets reloadData];
+}
+
+
 
 @end

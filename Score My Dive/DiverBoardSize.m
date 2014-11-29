@@ -42,9 +42,9 @@
     }
 }
 
--(double)GetBoardSize:(int)meetid DiverID:(int)diverid BoardNumber:(int)boardnumber {
+-(NSNumber*)GetBoardSize:(int)meetid DiverID:(int)diverid BoardNumber:(int)boardnumber {
     
-    double boardSize = 0.0;
+    NSNumber *boardSize;
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
@@ -58,7 +58,7 @@
         query = [NSString stringWithFormat:@"select third_board from diver_board_size where meet_id=%d and diver_id=%d", meetid, diverid];
     }
     
-    return boardSize = [self.dbManager loadIntFromDB:query];
+    return boardSize = [self.dbManager loadNumberFromDB:query];
     
 }
 

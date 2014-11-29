@@ -9,6 +9,7 @@
 #import "ChooseDiver.h"
 #import "Diver.h"
 #import "Meet.h"
+#import "MeetCollection.h"
 #import "DiveTotal.h"
 #import "DiverBoardSize.h"
 
@@ -76,7 +77,11 @@
     [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributes forState:UIControlStateNormal];
     [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributes forState:UIControlStateHighlighted];
     [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributes forState:UIControlStateSelected];
-     
+    
+    // hide button and labels until a diver is choosen and has meet records
+    [self.btnResetDiver setHidden:YES];
+    [self.lblDiveTotal setHidden:YES];
+    [self.lblBoardSize setHidden:YES];
     
 }
 
@@ -174,9 +179,15 @@
     
     DiverBoardSize *board = [[DiverBoardSize alloc] init];
     [board CreateBoardSize:self.meetRecordID DiverID:self.diverRecordID Total:self.boardSize1ID TotalBoards:1];
+    
+    MeetCollection *meetsInfo = [[MeetCollection alloc] init];
+    [meetsInfo GetMeetCollection:self.meetRecordID];
 }
 
 - (IBAction)EnterScoresClick:(id)sender {
+}
+
+- (IBAction)ResetDiverClick:(id)sender {
 }
 
 #pragma private methods

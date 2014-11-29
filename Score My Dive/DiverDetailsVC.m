@@ -88,11 +88,15 @@
 
 // make this viewcontroller the delegate of the MeetEdit ViewController
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    DiverEdit *diverEdit = [segue destinationViewController];
-    diverEdit.delegate = self;
     
-    // send the id to the MeetEdit VC
-    diverEdit.recordIDToEdit = self.recordIDToEdit;
+    if ([segue.identifier isEqualToString:@"idSegueEditInfo"]) {
+        DiverEdit *diverEdit = [segue destinationViewController];
+        diverEdit.delegate = self;
+        
+        // send the id to the MeetEdit VC
+        diverEdit.recordIDToEdit = self.recordIDToEdit;
+    }
+    
 }
 
 // delegate method to update info after the edit info is popped off

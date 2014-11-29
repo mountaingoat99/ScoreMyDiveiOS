@@ -9,6 +9,7 @@
 #import "ChooseMeet.h"
 #import "ChooseDiver.h"
 #import "Meet.h"
+#import "Judges.h"
 
 @interface ChooseMeet ()
 
@@ -27,6 +28,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.judgeTotal = @2;
+    
     [self loadData];
     
     [self makeMeetPicker];
@@ -37,6 +40,22 @@
     //self.txtChooseMeet.layer.shadowRadius = 4.0f;
     self.txtChooseMeet.layer.shadowOpacity = .3;
     self.txtChooseMeet.keyboardAppearance = UIKeyboardAppearanceDark;
+    
+    self.SCJudges.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.SCJudges.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.SCJudges.layer.masksToBounds = NO;
+    //self.SCJudges.layer.shadowRadius = 4.0f;
+    self.SCJudges.layer.shadowOpacity = .7;
+
+    // color attributes for the segmented controls
+    NSDictionary *segmentedControlTextAttributes = @{NSForegroundColorAttributeName:[UIColor blackColor]};
+    
+    [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributes forState:UIControlStateNormal];
+    [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributes forState:UIControlStateHighlighted];
+    [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributes forState:UIControlStateSelected];
+    
+    [self.SCJudges setHidden:YES];
+    [self.lblJudges setHidden:YES];
 }
 
 // push id to next view controller
@@ -69,6 +88,11 @@
 - (IBAction)nextClick:(id)sender {
     
     if (self.txtChooseMeet.text.length != 0) {
+        
+        Judges *judges = [[Judges alloc] init];
+        [judges UpdateJudges:self.meetRecordID Total:self.judgeTotal];
+        
+        
         [self performSegueWithIdentifier:@"idMeetSegue" sender:self];
     } else {
         
@@ -79,6 +103,24 @@
                                               otherButtonTitles:nil];
         [error show];
         [error reloadInputViews];
+    }
+}
+
+- (IBAction)JudgesClick:(UISegmentedControl *)sender {
+    
+    switch (self.SCJudges.selectedSegmentIndex) {
+        case 0:
+            self.judgeTotal = @2;
+            break;
+        case 1:
+            self.judgeTotal = @3;
+            break;
+        case 2:
+            self.judgeTotal = @5;
+            break;
+        case 3:
+            self.judgeTotal = @7;
+            break;
     }
 }
 
@@ -106,14 +148,27 @@
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     // assign the first item in array to text box right away, so user doesn't have to
     self.txtChooseMeet.text = [self.meetArray [row] objectAtIndex:1];
+    // get the meet id to see if a judge total has been picked yet
     self.meetRecordID = [[self.meetArray [row] objectAtIndex:0] intValue];
+    
+    // set the visiblity of the judge controls once a row is shown
+    [self.lblJudges setHidden:NO];
+    [self.SCJudges setHidden:NO];
+    
+    // update the control
+    [self updateJudgeControls];
+    
     return [self.meetArray[row]objectAtIndex:1];
    
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
+    // sets the text box for the choosen meet
     self.txtChooseMeet.text = [self.meetArray [row] objectAtIndex:1];
+    
+    // update the judge control again
+    [self updateJudgeControls];
     [self.txtChooseMeet resignFirstResponder];
     self.meetRecordID = [[self.meetArray [row] objectAtIndex:0] intValue];
    
@@ -129,6 +184,36 @@
     
     Meet *meets = [[Meet alloc] init];
     self.meetArray = [meets GetAllMeets];
+    
+}
+
+-(void)updateJudgeControls {
+    
+    Judges *judges = [[Judges alloc] init];
+    self.judgeTotal = [judges getJudges:self.meetRecordID];
+    
+    if ([self.judgeTotal  isEqualToNumber: @2]) {
+        self.SCJudges.selectedSegmentIndex = 0;
+        NSLog(@"Judges total is %@", self.judgeTotal);
+        NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
+    } else if ([self.judgeTotal isEqualToNumber:@3]) {
+        self.SCJudges.selectedSegmentIndex = 1;
+        NSLog(@"Judges total is %@", self.judgeTotal);
+        NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
+    } else if ([self.judgeTotal  isEqualToNumber: @5]) {
+        self.SCJudges.selectedSegmentIndex = 3;
+        NSLog(@"Judges total is %@", self.judgeTotal);
+        NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
+    } else if ([self.judgeTotal  isEqualToNumber: @7]) {
+        self.SCJudges.selectedSegmentIndex = 4;
+        NSLog(@"Judges total is %@", self.judgeTotal);
+        NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
+    } else {
+        self.SCJudges.selectedSegmentIndex = 0;
+        NSLog(@"Judges total is %@", self.judgeTotal);
+        NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
+        self.judgeTotal = @2;
+    }
     
 }
 

@@ -10,10 +10,10 @@
 
 @interface DiveTotal : NSObject
 
-@property (nonatomic) int *diveTotal;
+@property (nonatomic, strong) NSNumber *diveTotal;
 
 -(BOOL)CreateDiveTotal:(int)meetid DiverID:(int)diverid Total:(int)total;
 
--(int)GetDiveTotal:(int)meetid DiverID:(int)diverid;
+-(NSNumber*)GetDiveTotal:(int)meetid DiverID:(int)diverid;
 
 @end

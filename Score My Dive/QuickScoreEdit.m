@@ -8,7 +8,6 @@
 
 #import "QuickScoreEdit.h"
 #import "QuickScores.h"
-#import "DBManager.h"
 
 @interface QuickScoreEdit ()
 

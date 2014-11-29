@@ -17,6 +17,8 @@
 
 -(BOOL)UpdateDiver:(int)diverid Name:(NSString*)name Age:(NSString*)age Grade:(NSString*)grade School:(NSString*)school;
 
+-(NSArray*)DiversAtMeet:(int)meetid;
+
 -(NSArray*)GetAllDivers;
 
 -(NSArray*)LoadDiver:(int)diverid;

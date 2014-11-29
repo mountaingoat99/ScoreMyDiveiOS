@@ -10,13 +10,14 @@
 
 @interface Meet : NSObject
 
-@property (nonatomic, strong) NSString *MeetName;
-@property (nonatomic, strong) NSString *SchoolName;
-@property (nonatomic, strong) NSString *City;
-@property (nonatomic, strong) NSString *State;
-@property (nonatomic, strong) NSString *Date;
+@property NSString *meetID;
+@property NSString *meetName;
+@property NSString *schoolName;
+@property NSString *city;
+@property NSString *state;
+@property NSString *date;
 
--(BOOL)UpdateMeet:(int)meetid Name:(NSString*)name School:(NSString*)school City:(NSString*)city State:(NSString*)state Date:(NSString*)date;
+-(BOOL)UpdateMeet:(int)mMeetId Name:(NSString*)mName School:(NSString*)mSchool City:(NSString*)mCity State:(NSString*)mState Date:(NSString*)mDate;
 
 -(NSArray*)GetAllMeets;
 
@@ -25,5 +26,9 @@
 -(void)DeleteMeet:(int)meetid;
 
 -(NSString*)GetMeetName:(int)meetid;
+
+-(NSArray*)GetTheMeet:(int)meetid;
+
+-(NSArray*)GetMeetHistory:(int)diverid;
 
 @end

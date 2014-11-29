@@ -10,10 +10,10 @@
 
 @interface DiverBoardSize : NSObject
 
-@property (nonatomic) double *boardSize;
+@property (nonatomic) NSNumber *boardSize;
 
 -(BOOL)CreateBoardSize:(int)meetid DiverID:(int)diverid Total:(double)size TotalBoards:(int)totalboards;
 
--(double)GetBoardSize:(int)meetid DiverID:(int)diverid BoardNumber:(int)boardnumber;
+-(NSNumber*)GetBoardSize:(int)meetid DiverID:(int)diverid BoardNumber:(int)boardnumber;
 
 @end

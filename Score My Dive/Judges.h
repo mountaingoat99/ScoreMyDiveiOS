@@ -10,4 +10,8 @@
 
 @interface Judges : NSObject
 
+-(BOOL)UpdateJudges:(int)meetid Total:(NSNumber*)total;
+
+-(NSNumber*)getJudges:(int)meetid;
+
 @end

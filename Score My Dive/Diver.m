@@ -81,4 +81,18 @@
     
 }
 
+-(NSArray*)DiversAtMeet:(int)meetid {
+    
+    NSArray *divers = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"SELECT d.id, d.name FROM diver d INNER JOIN results r on (d.id = r.diver_id) WHERE r.meet_id=%d", meetid];
+    
+    divers = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return divers;
+    
+}
+
 @end

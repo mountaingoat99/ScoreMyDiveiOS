@@ -19,7 +19,8 @@
 
 //test properties and methods to make sure database attaches
 @property (nonatomic, strong) NSMutableArray *arrResults;
-@property (nonatomic, strong) NSString *oneResult;
+@property (nonatomic, strong) NSString *oneStringResult;
+@property (nonatomic) NSNumber *oneNumberResult;
 
 // this is a very generic method that other public methods suited to needs will call - multiple items returned
 -(void)runQuery:(const char *)query isQueryExecutable:(BOOL)queryExecutable;
@@ -153,6 +154,7 @@
                     
                     // Keep the last inserted row ID.
                     self.lastInsertedRowID = sqlite3_last_insert_rowid(sqlite3Database);
+                    NSLog(@"LastInsertRecord: %lld", self.lastInsertedRowID);
                 }
                 else {
                     // If could not execute the query show the error message on the debugger.
@@ -197,8 +199,8 @@
             // if there is a result
             if(sqlite3_step(compiledStatement) == SQLITE_ROW) {
                 
-                self.oneResult = [[NSString alloc] initWithUTF8String:(const char*)sqlite3_column_text(compiledStatement, 0)];
-                NSLog(@"Select result was %@", self.oneResult);
+                self.oneStringResult = [[NSString alloc] initWithUTF8String:(const char*)sqlite3_column_text(compiledStatement, 0)];
+                NSLog(@"Select result was %@", self.oneStringResult);
                     
             } else {
                 // If the database cannot be opened then show the error message on the debugger.
@@ -238,23 +240,15 @@
     
     [self runSingleQuery:[query UTF8String] isQueryExecutable:NO];
     
-    return (NSString *)self.oneResult;
+    return self.oneStringResult;
 }
 
 //this will fetch one int result from the database - public method
--(int)loadIntFromDB:(NSString *)query{
+-(NSNumber*)loadNumberFromDB:(NSString *)query{
     
     [self runSingleQuery:[query UTF8String] isQueryExecutable:NO];
     
-    return (int)self.oneResult;
-}
-
-//this will fetch one double result from the database - public method
--(double)loadDoubleFromDB:(NSString *)query{
-    
-    [self runSingleQuery:[query UTF8String] isQueryExecutable:NO];
-    
-    return [self.oneResult doubleValue];
+    return self.oneNumberResult = [NSNumber numberWithInteger:[self.oneStringResult integerValue]];
 }
 
 // this is the public execute query method

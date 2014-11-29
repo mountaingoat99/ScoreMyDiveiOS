@@ -26,10 +26,7 @@
 -(NSString *)loadOneDataFromDB:(NSString *)query;
 
 // select one int value
--(int)loadIntFromDB:(NSString *)query;
-
-// select one double value
--(double)loadDoubleFromDB:(NSString *)query;
+-(NSNumber*)loadNumberFromDB:(NSString *)query;
 
 // insert, update, and delete
 -(void)executeQuery:(NSString *)query;
