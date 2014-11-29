@@ -12,6 +12,7 @@
 #import "MeetCollection.h"
 #import "DiveTotal.h"
 #import "DiverBoardSize.h"
+#import "DiveListEnter.h"
 
 @interface ChooseDiver ()
 
@@ -48,13 +49,11 @@
     self.SCDiveTotals.layer.shadowColor = [UIColor blackColor].CGColor;
     self.SCDiveTotals.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.SCDiveTotals.layer.masksToBounds = NO;
-    //self.SCDiveTotals.layer.shadowRadius = 4.0f;
     self.SCDiveTotals.layer.shadowOpacity = .7;
     
     self.SCBoardSize.layer.shadowColor = [UIColor blackColor].CGColor;
     self.SCBoardSize.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.SCBoardSize.layer.masksToBounds = NO;
-    //self.SCBoardSize.layer.shadowRadius = 4.0f;
     self.SCBoardSize.layer.shadowOpacity = .7;
     
     
@@ -72,7 +71,7 @@
     
     
     // color attributes for the segmented controls
-    NSDictionary *segmentedControlTextAttributes = @{NSForegroundColorAttributeName:[UIColor blackColor]};
+    NSDictionary *segmentedControlTextAttributes = @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont systemFontOfSize:10.0f]};
     
     [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributes forState:UIControlStateNormal];
     [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributes forState:UIControlStateHighlighted];
@@ -88,6 +87,21 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(IBAction)unwindToChooseDiver:(UIStoryboardSegue *)segue{
+    
+}
+
+// push id to next view controller
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if([segue.identifier isEqualToString:@"idSegueDiveList"]) {
+        
+        DiveListEnter *diver = [segue destinationViewController];
+        diver.meetRecordID = self.meetRecordID;
+        diver.diverRecordID = self.diverRecordID;
+    }
 }
 
 // hide the PickerView on outside touch

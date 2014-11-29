@@ -20,6 +20,8 @@
 		267A3FCB1A280E370068FA9E /* DiverHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 267A3FCA1A280E370068FA9E /* DiverHistory.m */; };
 		268857611A28EBCE000AEFF2 /* DiverMeetScores.m in Sources */ = {isa = PBXBuildFile; fileRef = 268857601A28EBCE000AEFF2 /* DiverMeetScores.m */; };
 		268857671A291981000AEFF2 /* DiveInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 268857661A291981000AEFF2 /* DiveInfo.m */; };
+		2688576A1A29693B000AEFF2 /* DiveListEnter.m in Sources */ = {isa = PBXBuildFile; fileRef = 268857691A29693B000AEFF2 /* DiveListEnter.m */; };
+		2688576D1A298365000AEFF2 /* DiveTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 2688576C1A298365000AEFF2 /* DiveTypes.m */; };
 		2691AE6C1A0691FB000ABD3B /* DiverDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2691AE6B1A0691FB000ABD3B /* DiverDetailsVC.m */; };
 		2691AE6F1A069898000ABD3B /* MeetDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2691AE6E1A069898000ABD3B /* MeetDetailsVC.m */; };
 		26A248F71A2299C400760F38 /* ChooseDiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A248F61A2299C400760F38 /* ChooseDiver.m */; };
@@ -38,18 +40,6 @@
 		26BE237D1A1027CC00E123D0 /* JudgeScores.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23591A1027CC00E123D0 /* JudgeScores.m */; };
 		26BE237E1A1027CC00E123D0 /* DiveTotal.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE235B1A1027CC00E123D0 /* DiveTotal.m */; };
 		26BE237F1A1027CC00E123D0 /* DiveNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE235D1A1027CC00E123D0 /* DiveNumber.m */; };
-		26BE23801A1027CC00E123D0 /* TwistPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE235F1A1027CC00E123D0 /* TwistPlatform.m */; };
-		26BE23811A1027CC00E123D0 /* ReversePlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23611A1027CC00E123D0 /* ReversePlatform.m */; };
-		26BE23821A1027CC00E123D0 /* InwardPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23631A1027CC00E123D0 /* InwardPlatform.m */; };
-		26BE23831A1027CC00E123D0 /* ForwardPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23651A1027CC00E123D0 /* ForwardPlatform.m */; };
-		26BE23841A1027CC00E123D0 /* BackPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23671A1027CC00E123D0 /* BackPlatform.m */; };
-		26BE23851A1027CC00E123D0 /* ArmstandPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23691A1027CC00E123D0 /* ArmstandPlatform.m */; };
-		26BE23861A1027CC00E123D0 /* Twist.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE236B1A1027CC00E123D0 /* Twist.m */; };
-		26BE23871A1027CC00E123D0 /* Dives.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE236D1A1027CC00E123D0 /* Dives.m */; };
-		26BE23881A1027CC00E123D0 /* Reverse.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE236F1A1027CC00E123D0 /* Reverse.m */; };
-		26BE23891A1027CC00E123D0 /* Inward.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23711A1027CC00E123D0 /* Inward.m */; };
-		26BE238A1A1027CC00E123D0 /* Forward.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23731A1027CC00E123D0 /* Forward.m */; };
-		26BE238B1A1027CC00E123D0 /* Back.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23751A1027CC00E123D0 /* Back.m */; };
 		26BE238C1A1027CC00E123D0 /* DiveCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23771A1027CC00E123D0 /* DiveCategory.m */; };
 		26BE238D1A1027CC00E123D0 /* ValidScores.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23791A1027CC00E123D0 /* ValidScores.m */; };
 		26BE23911A1028B200E123D0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 26BE23901A1028B200E123D0 /* libsqlite3.dylib */; };
@@ -101,6 +91,10 @@
 		268857601A28EBCE000AEFF2 /* DiverMeetScores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiverMeetScores.m; sourceTree = "<group>"; };
 		268857651A291981000AEFF2 /* DiveInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveInfo.h; sourceTree = "<group>"; };
 		268857661A291981000AEFF2 /* DiveInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveInfo.m; sourceTree = "<group>"; };
+		268857681A29693B000AEFF2 /* DiveListEnter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveListEnter.h; sourceTree = "<group>"; };
+		268857691A29693B000AEFF2 /* DiveListEnter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveListEnter.m; sourceTree = "<group>"; };
+		2688576B1A298365000AEFF2 /* DiveTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveTypes.h; sourceTree = "<group>"; };
+		2688576C1A298365000AEFF2 /* DiveTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveTypes.m; sourceTree = "<group>"; };
 		2691AE6A1A0691FB000ABD3B /* DiverDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiverDetailsVC.h; sourceTree = "<group>"; };
 		2691AE6B1A0691FB000ABD3B /* DiverDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiverDetailsVC.m; sourceTree = "<group>"; };
 		2691AE6D1A069898000ABD3B /* MeetDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetDetailsVC.h; sourceTree = "<group>"; };
@@ -136,30 +130,6 @@
 		26BE235B1A1027CC00E123D0 /* DiveTotal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveTotal.m; sourceTree = "<group>"; };
 		26BE235C1A1027CC00E123D0 /* DiveNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveNumber.h; sourceTree = "<group>"; };
 		26BE235D1A1027CC00E123D0 /* DiveNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveNumber.m; sourceTree = "<group>"; };
-		26BE235E1A1027CC00E123D0 /* TwistPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwistPlatform.h; sourceTree = "<group>"; };
-		26BE235F1A1027CC00E123D0 /* TwistPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwistPlatform.m; sourceTree = "<group>"; };
-		26BE23601A1027CC00E123D0 /* ReversePlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReversePlatform.h; sourceTree = "<group>"; };
-		26BE23611A1027CC00E123D0 /* ReversePlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReversePlatform.m; sourceTree = "<group>"; };
-		26BE23621A1027CC00E123D0 /* InwardPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InwardPlatform.h; sourceTree = "<group>"; };
-		26BE23631A1027CC00E123D0 /* InwardPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InwardPlatform.m; sourceTree = "<group>"; };
-		26BE23641A1027CC00E123D0 /* ForwardPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardPlatform.h; sourceTree = "<group>"; };
-		26BE23651A1027CC00E123D0 /* ForwardPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardPlatform.m; sourceTree = "<group>"; };
-		26BE23661A1027CC00E123D0 /* BackPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackPlatform.h; sourceTree = "<group>"; };
-		26BE23671A1027CC00E123D0 /* BackPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackPlatform.m; sourceTree = "<group>"; };
-		26BE23681A1027CC00E123D0 /* ArmstandPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArmstandPlatform.h; sourceTree = "<group>"; };
-		26BE23691A1027CC00E123D0 /* ArmstandPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArmstandPlatform.m; sourceTree = "<group>"; };
-		26BE236A1A1027CC00E123D0 /* Twist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Twist.h; sourceTree = "<group>"; };
-		26BE236B1A1027CC00E123D0 /* Twist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Twist.m; sourceTree = "<group>"; };
-		26BE236C1A1027CC00E123D0 /* Dives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dives.h; sourceTree = "<group>"; };
-		26BE236D1A1027CC00E123D0 /* Dives.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dives.m; sourceTree = "<group>"; };
-		26BE236E1A1027CC00E123D0 /* Reverse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reverse.h; sourceTree = "<group>"; };
-		26BE236F1A1027CC00E123D0 /* Reverse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reverse.m; sourceTree = "<group>"; };
-		26BE23701A1027CC00E123D0 /* Inward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inward.h; sourceTree = "<group>"; };
-		26BE23711A1027CC00E123D0 /* Inward.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inward.m; sourceTree = "<group>"; };
-		26BE23721A1027CC00E123D0 /* Forward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Forward.h; sourceTree = "<group>"; };
-		26BE23731A1027CC00E123D0 /* Forward.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Forward.m; sourceTree = "<group>"; };
-		26BE23741A1027CC00E123D0 /* Back.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Back.h; sourceTree = "<group>"; };
-		26BE23751A1027CC00E123D0 /* Back.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Back.m; sourceTree = "<group>"; };
 		26BE23761A1027CC00E123D0 /* DiveCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveCategory.h; sourceTree = "<group>"; };
 		26BE23771A1027CC00E123D0 /* DiveCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveCategory.m; sourceTree = "<group>"; };
 		26BE23781A1027CC00E123D0 /* ValidScores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidScores.h; sourceTree = "<group>"; };
@@ -261,6 +231,8 @@
 		26A07E881A09963700997E5C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				268857681A29693B000AEFF2 /* DiveListEnter.h */,
+				268857691A29693B000AEFF2 /* DiveListEnter.m */,
 				268857651A291981000AEFF2 /* DiveInfo.h */,
 				268857661A291981000AEFF2 /* DiveInfo.m */,
 				2688575F1A28EBCE000AEFF2 /* DiverMeetScores.h */,
@@ -351,34 +323,12 @@
 				26BE235B1A1027CC00E123D0 /* DiveTotal.m */,
 				26BE235C1A1027CC00E123D0 /* DiveNumber.h */,
 				26BE235D1A1027CC00E123D0 /* DiveNumber.m */,
-				26BE235E1A1027CC00E123D0 /* TwistPlatform.h */,
-				26BE235F1A1027CC00E123D0 /* TwistPlatform.m */,
-				26BE23601A1027CC00E123D0 /* ReversePlatform.h */,
-				26BE23611A1027CC00E123D0 /* ReversePlatform.m */,
-				26BE23621A1027CC00E123D0 /* InwardPlatform.h */,
-				26BE23631A1027CC00E123D0 /* InwardPlatform.m */,
-				26BE23641A1027CC00E123D0 /* ForwardPlatform.h */,
-				26BE23651A1027CC00E123D0 /* ForwardPlatform.m */,
-				26BE23661A1027CC00E123D0 /* BackPlatform.h */,
-				26BE23671A1027CC00E123D0 /* BackPlatform.m */,
-				26BE23681A1027CC00E123D0 /* ArmstandPlatform.h */,
-				26BE23691A1027CC00E123D0 /* ArmstandPlatform.m */,
-				26BE236A1A1027CC00E123D0 /* Twist.h */,
-				26BE236B1A1027CC00E123D0 /* Twist.m */,
-				26BE236C1A1027CC00E123D0 /* Dives.h */,
-				26BE236D1A1027CC00E123D0 /* Dives.m */,
-				26BE236E1A1027CC00E123D0 /* Reverse.h */,
-				26BE236F1A1027CC00E123D0 /* Reverse.m */,
-				26BE23701A1027CC00E123D0 /* Inward.h */,
-				26BE23711A1027CC00E123D0 /* Inward.m */,
-				26BE23721A1027CC00E123D0 /* Forward.h */,
-				26BE23731A1027CC00E123D0 /* Forward.m */,
-				26BE23741A1027CC00E123D0 /* Back.h */,
-				26BE23751A1027CC00E123D0 /* Back.m */,
 				26BE23761A1027CC00E123D0 /* DiveCategory.h */,
 				26BE23771A1027CC00E123D0 /* DiveCategory.m */,
 				26BE23781A1027CC00E123D0 /* ValidScores.h */,
 				26BE23791A1027CC00E123D0 /* ValidScores.m */,
+				2688576B1A298365000AEFF2 /* DiveTypes.h */,
+				2688576C1A298365000AEFF2 /* DiveTypes.m */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -489,7 +439,6 @@
 				26A248F71A2299C400760F38 /* ChooseDiver.m in Sources */,
 				26BE237C1A1027CC00E123D0 /* Results.m in Sources */,
 				26BE234F1A10275A00E123D0 /* Meet.m in Sources */,
-				26BE23801A1027CC00E123D0 /* TwistPlatform.m in Sources */,
 				267643E61A218DF000CD2CB1 /* ReportsViewController.m in Sources */,
 				26B88D231A12EF9600DBE909 /* MeetEdit.m in Sources */,
 				26BE238C1A1027CC00E123D0 /* DiveCategory.m in Sources */,
@@ -497,36 +446,27 @@
 				267A3FC81A280DE80068FA9E /* MeetHistory.m in Sources */,
 				2651CF051A17D56E0050D587 /* QuickScoreEdit.m in Sources */,
 				26EDBF0D1A25F61B00C1A95B /* MeetCollection.m in Sources */,
+				2688576D1A298365000AEFF2 /* DiveTypes.m in Sources */,
 				263AC5CD1A030FD600846CB0 /* HomeViewController.m in Sources */,
-				26BE23831A1027CC00E123D0 /* ForwardPlatform.m in Sources */,
 				262756CA1A1D811200DAC877 /* DiverEdit.m in Sources */,
 				2691AE6F1A069898000ABD3B /* MeetDetailsVC.m in Sources */,
-				26BE23821A1027CC00E123D0 /* InwardPlatform.m in Sources */,
 				263AC5CA1A030FD600846CB0 /* AppDelegate.m in Sources */,
-				26BE23891A1027CC00E123D0 /* Inward.m in Sources */,
 				26BE234A1A10275A00E123D0 /* QuickScores.m in Sources */,
 				267643E91A218E2C00CD2CB1 /* ChooseMeet.m in Sources */,
 				26BE237D1A1027CC00E123D0 /* JudgeScores.m in Sources */,
-				26BE23811A1027CC00E123D0 /* ReversePlatform.m in Sources */,
 				26E419A81A048E3100D79C05 /* QuickScoreViewController.m in Sources */,
 				26BE237B1A1027CC00E123D0 /* DiverBoardSize.m in Sources */,
 				267A3FCB1A280E370068FA9E /* DiverHistory.m in Sources */,
 				26BE234B1A10275A00E123D0 /* Scores.m in Sources */,
-				26BE238B1A1027CC00E123D0 /* Back.m in Sources */,
-				26BE23871A1027CC00E123D0 /* Dives.m in Sources */,
 				26EDBF0A1A25F5DC00C1A95B /* DiverCollection.m in Sources */,
-				26BE238A1A1027CC00E123D0 /* Forward.m in Sources */,
-				26BE23881A1027CC00E123D0 /* Reverse.m in Sources */,
 				26BE237E1A1027CC00E123D0 /* DiveTotal.m in Sources */,
-				26BE23851A1027CC00E123D0 /* ArmstandPlatform.m in Sources */,
-				26BE23841A1027CC00E123D0 /* BackPlatform.m in Sources */,
 				26BE237A1A1027CC00E123D0 /* DBManager.m in Sources */,
 				26BE234C1A10275A00E123D0 /* Reports.m in Sources */,
 				26BE234E1A10275A00E123D0 /* Judges.m in Sources */,
 				263AC5C71A030FD600846CB0 /* main.m in Sources */,
-				26BE23861A1027CC00E123D0 /* Twist.m in Sources */,
 				268857671A291981000AEFF2 /* DiveInfo.m in Sources */,
 				268857611A28EBCE000AEFF2 /* DiverMeetScores.m in Sources */,
+				2688576A1A29693B000AEFF2 /* DiveListEnter.m in Sources */,
 				26BE23501A10275A00E123D0 /* Diver.m in Sources */,
 				2691AE6C1A0691FB000ABD3B /* DiverDetailsVC.m in Sources */,
 				26BE238D1A1027CC00E123D0 /* ValidScores.m in Sources */,
