@@ -51,6 +51,28 @@
     
 }
 
+// keeps the color of the selected cell the same -
+// in Ipad because of some unknown apple logic
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.contentView.backgroundColor = [UIColor colorWithRed:.50 green:.50 blue:.50 alpha:1];
+    
+}
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath  {
+    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.contentView.backgroundColor = [UIColor colorWithRed:.40 green:.40 blue:.40 alpha:1];
+    
+}
+
+-(void)tableView:(UITableView*)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    cell.contentView.backgroundColor = [UIColor colorWithRed:.40 green:.40 blue:.40 alpha:1];
+    
+}
+
 // tells the tableView we want to have just one section
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -63,7 +85,15 @@
 
 // sets each rows height
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50.0;
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        
+        return 50.0;
+        
+    } else {
+        
+        return 50.0;
+    }
 }
 
 // displays a row's data
@@ -72,8 +102,22 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"idCellRecord" forIndexPath:indexPath];
     
     //set the text size
-    cell.textLabel.font = [UIFont systemFontOfSize:15.0];
-    cell.textLabel.numberOfLines = 2;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        
+        cell.textLabel.font = [UIFont systemFontOfSize:15.0];
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
+        cell.textLabel.numberOfLines = 2;
+        cell.contentView.backgroundColor = [UIColor colorWithRed:.40 green:.40 blue:.40 alpha:1];
+        
+    } else {
+        
+        cell.textLabel.font = [UIFont systemFontOfSize:20.0];
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:16.0];
+        cell.textLabel.numberOfLines = 2;
+        cell.contentView.backgroundColor = [UIColor colorWithRed:.40 green:.40 blue:.40 alpha:1];
+        
+    }
+
     
     // set the loaded data to the appropriate cell labels
     cell.textLabel.text = [NSString stringWithFormat:@"%@", [[self.arrDiverHistory objectAtIndex:indexPath.row] objectAtIndex:1]];

@@ -12,6 +12,7 @@
 @interface MeetDetailsVC : UIViewController <UITableViewDelegate, UITableViewDataSource, MeetDetailsViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tblMeets;
+@property (weak, nonatomic) IBOutlet UITabBarItem *tbItem;
 
 
 - (IBAction)addNewRecord:(id)sender;
