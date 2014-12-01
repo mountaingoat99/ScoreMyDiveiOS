@@ -10,12 +10,12 @@
 
 @interface Meet : NSObject
 
-@property NSString *meetID;
-@property NSString *meetName;
-@property NSString *schoolName;
-@property NSString *city;
-@property NSString *state;
-@property NSString *date;
+@property (nonatomic, retain) NSString *meetID;
+@property (nonatomic, retain) NSString *meetName;
+@property (nonatomic, retain) NSString *schoolName;
+@property (nonatomic, retain) NSString *city;
+@property (nonatomic, retain) NSString *state;
+@property (nonatomic, retain) NSString *date;
 
 -(BOOL)UpdateMeet:(int)mMeetId Name:(NSString*)mName School:(NSString*)mSchool City:(NSString*)mCity State:(NSString*)mState Date:(NSString*)mDate;
 

@@ -11,6 +11,8 @@
 @interface DiverHistory : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic) int recordIdToEdit;
+@property (nonatomic) int meetId;
+@property (nonatomic) int callingIdToReturnTo;
 
 @property (weak, nonatomic) IBOutlet UITableView *tblHistory;
 

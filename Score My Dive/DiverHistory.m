@@ -8,6 +8,7 @@
 
 #import "DiverHistory.h"
 #import "Meet.h"
+#import "DiverMeetScores.h"
 
 @interface DiverHistory ()
 
@@ -39,7 +40,16 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    //TODO: Send if to the MeetScores
+    if ([segue.identifier isEqualToString:@"idSegueDiverHistToScores"]) {
+        DiverMeetScores *scores = [segue destinationViewController];
+        
+        // assign 1 to the DiverMeetScore Segue knows who to return to
+        self.callingIdToReturnTo = 2;
+        
+        scores.diverIdToView = self.recordIdToEdit;
+        scores.meetIdToView = self.meetId;
+        scores.callingIDToReturnTo = self.callingIdToReturnTo;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,6 +67,9 @@
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.contentView.backgroundColor = [UIColor colorWithRed:.50 green:.50 blue:.50 alpha:1];
+    
+    // assigns the meetid clicked so it can be sent to the DivermeetScore controller
+    self.meetId = [[[self.arrDiverHistory objectAtIndex:indexPath.row] objectAtIndex:0] intValue];
     
 }
 

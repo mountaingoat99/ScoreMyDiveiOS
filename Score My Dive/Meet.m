@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) DBManager *dbManager;
 
+
 @end
 
 @implementation Meet
@@ -80,13 +81,13 @@
 
 -(NSString*)GetMeetName:(int)meetid {
     
-    NSString *meetName;
+    NSString *theMeetName;
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select name from meet where id=%d", meetid];
     
-    return meetName = [self.dbManager loadOneDataFromDB:query];
+    return theMeetName = [self.dbManager loadOneDataFromDB:query];
 }
 
 -(NSArray*)GetTheMeet:(int)meetid {
@@ -94,13 +95,14 @@
     //init DB, Array, and Object
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     NSArray *meetInfo = [[NSArray alloc] init];
+    //Meet *theMeet = [[Meet alloc] init];
 
     // query
     NSString *query = [NSString stringWithFormat:@"select * from meet where id=%d", meetid];
     
     // get the data
     meetInfo = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
-   
+    
     return meetInfo;
 }
 

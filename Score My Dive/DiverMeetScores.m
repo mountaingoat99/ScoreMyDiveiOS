@@ -7,6 +7,10 @@
 //
 
 #import "DiverMeetScores.h"
+#import "Diver.h"
+#import "Meet.h"
+#import "Results.h"
+#import "DiverBoardSize.h"
 
 @interface DiverMeetScores ()
 
@@ -29,8 +33,11 @@
 @property (nonatomic, strong) NSString *dive10;
 @property (nonatomic, strong) NSString *dive11;
 
-// private method to load the data
--(void)loadInfoToEdit;
+// private methods to load the data
+-(void)loadDiverInfo;
+-(void)loadMeetInfo;
+-(void)loadType;
+-(void)loadResults;
 
 @end
 
@@ -131,55 +138,77 @@
 
 - (IBAction)btnDive1Click:(id)sender {
     
+    self.diveNumber = 1;
+    
     [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
 }
 
 - (IBAction)btnDive2Click:(id)sender {
+    
+    self.diveNumber = 2;
     
     [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
 }
 
 - (IBAction)btnDive3Click:(id)sender {
     
+    self.diveNumber = 3;
+    
     [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
 }
 
 - (IBAction)btnDive4Click:(id)sender {
+    
+    self.diveNumber = 4;
     
     [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
 }
 
 - (IBAction)btnDive5Click:(id)sender {
     
+    self.diveNumber = 5;
+    
     [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
 }
 
 - (IBAction)btnDive6Click:(id)sender {
+    
+    self.diveNumber = 6;
     
     [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
 }
 
 - (IBAction)btnDive7Click:(id)sender {
     
+    self.diveNumber = 7;
+    
     [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
 }
 
 - (IBAction)btnDive8Click:(id)sender {
+    
+    self.diveNumber = 8;
     
     [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
 }
 
 - (IBAction)btnDive9Click:(id)sender {
     
+    self.diveNumber = 9;
+    
     [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
 }
 
 - (IBAction)btnDive10Click:(id)sender {
     
+    self.diveNumber = 10;
+    
     [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
 }
 
 - (IBAction)btnDive11Click:(id)sender {
+    
+    self.diveNumber = 11;
     
     [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
 }
@@ -187,7 +216,95 @@
 #pragma Private methods
 
 // loads the current record to update
--(void)loadInfoToEdit {
+-(void)loadDiverInfo {
+    
+    Diver *diver = [[Diver alloc] init];
+    
+    NSArray *diverInfo = [diver LoadDiver:self.diverIdToView];
+    
+    self.lblName.text = [[diverInfo objectAtIndex:0 ] objectAtIndex:1];
+    self.lblSchool.text = [[diverInfo objectAtIndex:0] objectAtIndex:4];
     
 }
+
+-(void)loadMeetInfo {
+    
+    Meet *meet = [[Meet alloc] init];
+    NSString *schoolAndDate;
+    NSString *cityState;
+    
+    NSArray *meetInfo = [meet LoadMeet:self.meetIdToView];
+    
+    self.lblMeetName.text = [[meetInfo objectAtIndex:0] objectAtIndex:1];
+    schoolAndDate = [[meetInfo objectAtIndex:0] objectAtIndex:2];
+    schoolAndDate = [schoolAndDate stringByAppendingString:@" - "];
+    self.lblSchoolName.text = [schoolAndDate stringByAppendingString:[[meetInfo objectAtIndex:0] objectAtIndex:5]];
+    cityState = [[meetInfo objectAtIndex:0] objectAtIndex:3];
+    cityState = [cityState stringByAppendingString:@", "];
+    self.lblCity.text = [cityState stringByAppendingString:[[meetInfo objectAtIndex:0] objectAtIndex:4]];
+
+}
+
+-(void)loadType {
+    
+    DiverBoardSize *board = [[DiverBoardSize alloc] init];
+    NSString *boardType;
+    
+    int boardsize = 1;
+    
+    NSNumber *type = [board BoardSize:self.meetIdToView DiverID:self.diverIdToView BoardNumber:boardsize];
+    
+    boardType = [type stringValue];
+    self.lblBoardType.text = [boardType stringByAppendingString:@" Meter"];
+    
+}
+
+-(void)loadResults {
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @end

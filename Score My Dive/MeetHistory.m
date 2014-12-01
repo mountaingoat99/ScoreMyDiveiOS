@@ -8,8 +8,9 @@
 
 #import "MeetHistory.h"
 #import "Diver.h"
-
+#import "DiverMeetScores.h"
 #import "Meet.h"
+#import "MeetCollection.h"
 
 @interface MeetHistory ()
 
@@ -20,6 +21,8 @@
 @end
 
 @implementation MeetHistory
+
+@synthesize recordIDToEdit;
 
 #pragma View Controller Events
 
@@ -36,13 +39,24 @@
     self.tblHistory.layer.shadowRadius = 4.0f;
     self.tblHistory.layer.shadowOpacity = 1.0;
     
-    [self loadData];
-    
+    if (self.recordIDToEdit != -1) {
+        [self loadData];
+    }
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    //TODO: Send the id to the Meet Scores
+    //TODO: Send the id's to the Diver Meet Scores
+    if ([segue.identifier isEqualToString:@"idSegueMeetHistToScores"]) {
+        DiverMeetScores *scores = [[DiverMeetScores alloc] init];
+        
+        // assign 1 to the DiverMeetScore Segue knows who to return to
+        self.callingIdToReturnTo = 1;
+        
+        scores.meetIdToView = self.recordIDToEdit;
+        scores.diverIdToView = self.diverid;
+        scores.callingIDToReturnTo = self.callingIdToReturnTo;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,6 +75,9 @@
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.contentView.backgroundColor = [UIColor colorWithRed:.50 green:.50 blue:.50 alpha:1];
+    
+    // assigns the diverid clicked so it can be sent to the DiverMeetScore controller
+    self.diverid = [[[self.arrMeetHistory objectAtIndex:indexPath.row] objectAtIndex:0] intValue];
     
 }
 
@@ -124,6 +141,7 @@
     
     // set the loaded data to the appropriate cell labels
     cell.textLabel.text = [NSString stringWithFormat:@"%@", [[self.arrMeetHistory objectAtIndex:indexPath.row] objectAtIndex:1]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [[self.arrMeetHistory objectAtIndex:indexPath.row] objectAtIndex:2]];
     
     return cell;
 }
@@ -137,8 +155,11 @@
         self.arrMeetHistory = nil;
     }
     
-    Diver *diver = [[Diver alloc] init];
-    self.arrMeetHistory = [diver DiversAtMeet:self.recordIdToEdit];
+    MeetCollection *meets = [[MeetCollection alloc] init];
+    self.arrMeetHistory = [meets GetMeetCollection:self.recordIDToEdit];
+    
+    //Diver *diver = [[Diver alloc] init];
+    //self.arrMeetHistory = [diver DiversAtMeet:self.recordIdToEdit];
     
     // reload the table
     [self.tblHistory reloadData];

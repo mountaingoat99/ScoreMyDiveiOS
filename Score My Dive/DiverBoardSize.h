@@ -14,6 +14,6 @@
 
 -(BOOL)CreateBoardSize:(int)meetid DiverID:(int)diverid Total:(double)size TotalBoards:(int)totalboards;
 
--(NSNumber*)GetBoardSize:(int)meetid DiverID:(int)diverid BoardNumber:(int)boardnumber;
+-(NSNumber*)BoardSize:(int)meetid DiverID:(int)diverid BoardNumber:(int)boardnumber;
 
 @end

@@ -10,7 +10,9 @@
 
 @interface MeetHistory : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic) int recordIdToEdit;
+@property (nonatomic) int recordIDToEdit;
+@property (nonatomic) int diverid;
+@property (nonatomic) int callingIdToReturnTo;
 
 @property (weak, nonatomic) IBOutlet UITableView *tblHistory;
 

@@ -24,6 +24,8 @@
 
 @implementation MeetDetailsVC
 
+@synthesize recordIDToEdit;
+
 #pragma mark - UIViewController
 
 -(void)viewDidLoad {
@@ -58,10 +60,10 @@
     }
     
     // send the id to the MeetHistory
-    if ([segue.identifier isEqualToString:@"idSegueMeetInfo"]) {
-        MeetHistory *history = [[MeetHistory alloc] init];
+    if ([segue.identifier isEqualToString:@"idSegueMeetHistory"]) {
+        MeetHistory *history = [segue destinationViewController];
         
-        history.recordIdToEdit = self.recordIDToEdit;
+        history.recordIDToEdit = self.recordIDToEdit;
     }
 }
 
@@ -117,9 +119,12 @@
 // in Ipad because of some unknown apple logic
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    self.recordIDToEdit = [[[self.arrMeetInfo objectAtIndex:indexPath.row] objectAtIndex:0] intValue];
+    
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.contentView.backgroundColor = [UIColor colorWithRed:.50 green:.50 blue:.50 alpha:1];
     
+    [self performSegueWithIdentifier:@"idSegueMeetHistory" sender:self];
 }
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath  {

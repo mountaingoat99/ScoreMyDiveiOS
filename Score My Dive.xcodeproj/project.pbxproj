@@ -48,8 +48,6 @@
 		26E419A11A047FDF00D79C05 /* AppIconBlack.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26E419A01A047FDF00D79C05 /* AppIconBlack.xcassets */; };
 		26E419A31A0480C800D79C05 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26E419A21A0480C800D79C05 /* Images.xcassets */; };
 		26E419A81A048E3100D79C05 /* QuickScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E419A71A048E3100D79C05 /* QuickScoreViewController.m */; };
-		26EDBF0A1A25F5DC00C1A95B /* DiverCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 26EDBF091A25F5DC00C1A95B /* DiverCollection.m */; };
-		26EDBF0D1A25F61B00C1A95B /* MeetCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 26EDBF0C1A25F61B00C1A95B /* MeetCollection.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,10 +138,6 @@
 		26E419A21A0480C800D79C05 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		26E419A61A048E3100D79C05 /* QuickScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickScoreViewController.h; sourceTree = "<group>"; };
 		26E419A71A048E3100D79C05 /* QuickScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickScoreViewController.m; sourceTree = "<group>"; };
-		26EDBF081A25F5DC00C1A95B /* DiverCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiverCollection.h; sourceTree = "<group>"; };
-		26EDBF091A25F5DC00C1A95B /* DiverCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiverCollection.m; sourceTree = "<group>"; };
-		26EDBF0B1A25F61B00C1A95B /* MeetCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetCollection.h; sourceTree = "<group>"; };
-		26EDBF0C1A25F61B00C1A95B /* MeetCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetCollection.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,13 +291,9 @@
 				26BE23441A10275A00E123D0 /* Judges.h */,
 				26BE23451A10275A00E123D0 /* Judges.m */,
 				26BE23461A10275A00E123D0 /* Meet.h */,
-				26EDBF081A25F5DC00C1A95B /* DiverCollection.h */,
-				26EDBF091A25F5DC00C1A95B /* DiverCollection.m */,
 				26BE23471A10275A00E123D0 /* Meet.m */,
 				26BE23481A10275A00E123D0 /* Diver.h */,
 				26BE23491A10275A00E123D0 /* Diver.m */,
-				26EDBF0B1A25F61B00C1A95B /* MeetCollection.h */,
-				26EDBF0C1A25F61B00C1A95B /* MeetCollection.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -445,7 +435,6 @@
 				26BE234D1A10275A00E123D0 /* DiveList.m in Sources */,
 				267A3FC81A280DE80068FA9E /* MeetHistory.m in Sources */,
 				2651CF051A17D56E0050D587 /* QuickScoreEdit.m in Sources */,
-				26EDBF0D1A25F61B00C1A95B /* MeetCollection.m in Sources */,
 				2688576D1A298365000AEFF2 /* DiveTypes.m in Sources */,
 				263AC5CD1A030FD600846CB0 /* HomeViewController.m in Sources */,
 				262756CA1A1D811200DAC877 /* DiverEdit.m in Sources */,
@@ -458,7 +447,6 @@
 				26BE237B1A1027CC00E123D0 /* DiverBoardSize.m in Sources */,
 				267A3FCB1A280E370068FA9E /* DiverHistory.m in Sources */,
 				26BE234B1A10275A00E123D0 /* Scores.m in Sources */,
-				26EDBF0A1A25F5DC00C1A95B /* DiverCollection.m in Sources */,
 				26BE237E1A1027CC00E123D0 /* DiveTotal.m in Sources */,
 				26BE237A1A1027CC00E123D0 /* DBManager.m in Sources */,
 				26BE234C1A10275A00E123D0 /* Reports.m in Sources */,

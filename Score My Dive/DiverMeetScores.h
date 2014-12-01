@@ -10,8 +10,10 @@
 
 @interface DiverMeetScores : UIViewController
 
-@property (nonatomic) int recordIdToView;
+@property (nonatomic) int meetIdToView;
+@property (nonatomic) int diverIdToView;
 @property (nonatomic) int callingIDToReturnTo;
+@property (nonatomic) int diveNumber;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
 @property (weak, nonatomic) IBOutlet UILabel *lblSchool;

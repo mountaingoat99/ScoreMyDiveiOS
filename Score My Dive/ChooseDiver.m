@@ -9,7 +9,6 @@
 #import "ChooseDiver.h"
 #import "Diver.h"
 #import "Meet.h"
-#import "MeetCollection.h"
 #import "DiveTotal.h"
 #import "DiverBoardSize.h"
 #import "DiveListEnter.h"
@@ -208,8 +207,8 @@
     DiverBoardSize *board = [[DiverBoardSize alloc] init];
     [board CreateBoardSize:self.meetRecordID DiverID:self.diverRecordID Total:self.boardSize1ID TotalBoards:1];
     
-    MeetCollection *meetsInfo = [[MeetCollection alloc] init];
-    [meetsInfo GetMeetCollection:self.meetRecordID];
+    //MeetCollection *meetsInfo = [[MeetCollection alloc] init];
+    //[meetsInfo GetMeetCollection:self.meetRecordID];
 }
 
 - (IBAction)EnterScoresClick:(id)sender {
