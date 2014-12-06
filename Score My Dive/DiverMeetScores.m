@@ -11,6 +11,7 @@
 #import "Meet.h"
 #import "Results.h"
 #import "DiverBoardSize.h"
+#import "DiveInfo.h"
 
 @interface DiverMeetScores ()
 
@@ -134,6 +135,18 @@
 
 -(IBAction)unwindToDiverMeetScores:(UIStoryboardSegue*)segue {
     
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"idSegueDiverScores"]) {
+        DiveInfo *info = [[DiveInfo alloc] init];
+        
+        info.callingIDToReturnTo = self.callingIDToReturnTo;
+        info.meetIdToView = self.meetIdToView;
+        info.diverIdToView = self.diverIdToView;
+        info.diveNumber = self.diveNumber;
+    }
 }
 
 - (IBAction)btnDive1Click:(id)sender {
@@ -261,7 +274,23 @@
 
 -(void)loadResults {
     
+    Results *result = [[Results alloc] init];
+    NSArray *results;
     
+    results = [result GetResults:self.meetIdToView DiverId:self.diverIdToView];
+    
+    self.lblDive1.text = [[results objectAtIndex:0] objectAtIndex:0];
+    self.lblDive2.text = [[results objectAtIndex:0] objectAtIndex:1];
+    self.lblDive3.text = [[results objectAtIndex:0] objectAtIndex:2];
+    self.lblDive4.text = [[results objectAtIndex:0] objectAtIndex:3];
+    self.lblDive5.text = [[results objectAtIndex:0] objectAtIndex:4];
+    self.lblDive6.text = [[results objectAtIndex:0] objectAtIndex:5];
+    self.lblDive7.text = [[results objectAtIndex:0] objectAtIndex:6];
+    self.lblDive8.text = [[results objectAtIndex:0] objectAtIndex:7];
+    self.lblDive9.text = [[results objectAtIndex:0] objectAtIndex:8];
+    self.lblDive10.text = [[results objectAtIndex:0] objectAtIndex:9];
+    self.lblDive11.text = [[results objectAtIndex:0] objectAtIndex:10];
+    self.lblTotal.text = [[results objectAtIndex:0] objectAtIndex:11];
     
 }
 

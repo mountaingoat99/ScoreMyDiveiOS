@@ -10,4 +10,9 @@
 
 @interface DiveInfo : UIViewController
 
+@property (nonatomic) int meetIdToView;
+@property (nonatomic) int diverIdToView;
+@property (nonatomic) int callingIDToReturnTo;
+@property (nonatomic) int diveNumber;
+
 @end

@@ -10,7 +10,6 @@
 #import "Diver.h"
 #import "DiverMeetScores.h"
 #import "Meet.h"
-#import "MeetCollection.h"
 
 @interface MeetHistory ()
 
@@ -46,7 +45,7 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    //TODO: Send the id's to the Diver Meet Scores
+    // Send the id's to the Diver Meet Scores
     if ([segue.identifier isEqualToString:@"idSegueMeetHistToScores"]) {
         DiverMeetScores *scores = [[DiverMeetScores alloc] init];
         
@@ -154,10 +153,7 @@
     if (self.arrMeetHistory != nil) {
         self.arrMeetHistory = nil;
     }
-    
-    MeetCollection *meets = [[MeetCollection alloc] init];
-    self.arrMeetHistory = [meets GetMeetCollection:self.recordIDToEdit];
-    
+       
     //Diver *diver = [[Diver alloc] init];
     //self.arrMeetHistory = [diver DiversAtMeet:self.recordIdToEdit];
     

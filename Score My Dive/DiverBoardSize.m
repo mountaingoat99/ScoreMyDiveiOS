@@ -34,10 +34,10 @@
     [self.dbManager executeQuery:query];
     
     if (self.dbManager.affectedRows != 0) {
-        NSLog(@"query was executed successfully. Affected Rows = %d", self.dbManager.affectedRows);
+        NSLog(@"DiverBoardSize query was executed successfully. Affected Rows = %d", self.dbManager.affectedRows);
         return true;
     } else {
-        NSLog(@"Could not execute query");
+        NSLog(@"DiverBoardSize could not execute query");
         return  false;
     }
 }

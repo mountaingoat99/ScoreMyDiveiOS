@@ -9,7 +9,6 @@
 #import "DiveListEnter.h"
 #import "Diver.h"
 #import "Meet.h"
-#import "MeetCollection.h"
 #import "DiveTotal.h"
 #import "DiverBoardSize.h"
 #import "DiveCategory.h"
