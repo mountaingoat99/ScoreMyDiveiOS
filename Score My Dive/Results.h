@@ -10,18 +10,18 @@
 
 @interface Results : NSObject
 
-@property (nonatomic) NSNumber *dive1;
-@property (nonatomic) NSNumber *dive2;
-@property (nonatomic) NSNumber *dive3;
-@property (nonatomic) NSNumber *dive4;
-@property (nonatomic) NSNumber *dive5;
-@property (nonatomic) NSNumber *dive6;
-@property (nonatomic) NSNumber *dive7;
-@property (nonatomic) NSNumber *dive8;
-@property (nonatomic) NSNumber *dive9;
-@property (nonatomic) NSNumber *dive10;
-@property (nonatomic) NSNumber *dive11;
-@property (nonatomic) NSNumber *totalScoreTotal;
+@property (nonatomic, copy) NSNumber *dive1;
+@property (nonatomic, copy) NSNumber *dive2;
+@property (nonatomic, copy) NSNumber *dive3;
+@property (nonatomic, copy) NSNumber *dive4;
+@property (nonatomic, copy) NSNumber *dive5;
+@property (nonatomic, copy) NSNumber *dive6;
+@property (nonatomic, copy) NSNumber *dive7;
+@property (nonatomic, copy) NSNumber *dive8;
+@property (nonatomic, copy) NSNumber *dive9;
+@property (nonatomic, copy) NSNumber *dive10;
+@property (nonatomic, copy) NSNumber *dive11;
+@property (nonatomic, copy) NSNumber *totalScoreTotal;
 
 -(BOOL)CreateResult:(int)meetid DiverID:(int)diverid Dive1:(NSNumber*)dive1 Dive2:(NSNumber*)dive2 Dive3:(NSNumber*)dive3 Dive4:(NSNumber*)dive4 Dive5:(NSNumber*)dive5 Dive6:(NSNumber*)dive6 Dive7:(NSNumber*)dive7 Dive8:(NSNumber*)dive8 Dive9:(NSNumber*)dive9 Dive10:(NSNumber*)dive10 Dive11:(NSNumber*)dive11 DiveScoreTotal:(NSNumber*)divescoretotal;
 

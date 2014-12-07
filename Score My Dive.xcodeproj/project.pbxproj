@@ -13,6 +13,7 @@
 		263AC5CD1A030FD600846CB0 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263AC5CC1A030FD600846CB0 /* HomeViewController.m */; };
 		263AC5D51A030FD700846CB0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 263AC5D31A030FD700846CB0 /* LaunchScreen.xib */; };
 		263AC5E11A030FD700846CB0 /* Score_My_DiveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 263AC5E01A030FD700846CB0 /* Score_My_DiveTests.m */; };
+		2642AB6A1A32A2CD002E8DFA /* MeetCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2642AB691A32A2CD002E8DFA /* MeetCollection.m */; };
 		2651CF051A17D56E0050D587 /* QuickScoreEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2651CF041A17D56E0050D587 /* QuickScoreEdit.m */; };
 		267643E61A218DF000CD2CB1 /* ReportsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 267643E51A218DF000CD2CB1 /* ReportsViewController.m */; };
 		267643E91A218E2C00CD2CB1 /* ChooseMeet.m in Sources */ = {isa = PBXBuildFile; fileRef = 267643E81A218E2C00CD2CB1 /* ChooseMeet.m */; };
@@ -26,6 +27,7 @@
 		2691AE6F1A069898000ABD3B /* MeetDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2691AE6E1A069898000ABD3B /* MeetDetailsVC.m */; };
 		26A248F71A2299C400760F38 /* ChooseDiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A248F61A2299C400760F38 /* ChooseDiver.m */; };
 		26B010901A1EE7790017F484 /* dive_dod.db in Resources */ = {isa = PBXBuildFile; fileRef = 26B0108F1A1EE7790017F484 /* dive_dod.db */; };
+		26B1D05C1A3355CC00112692 /* DiverCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B1D05B1A3355CC00112692 /* DiverCollection.m */; };
 		26B88D231A12EF9600DBE909 /* MeetEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B88D221A12EF9600DBE909 /* MeetEdit.m */; };
 		26BE234A1A10275A00E123D0 /* QuickScores.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE233D1A10275A00E123D0 /* QuickScores.m */; };
 		26BE234B1A10275A00E123D0 /* Scores.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE233F1A10275A00E123D0 /* Scores.m */; };
@@ -75,6 +77,8 @@
 		263AC5DA1A030FD700846CB0 /* Score My DiveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Score My DiveTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		263AC5DF1A030FD700846CB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		263AC5E01A030FD700846CB0 /* Score_My_DiveTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Score_My_DiveTests.m; sourceTree = "<group>"; };
+		2642AB681A32A2CD002E8DFA /* MeetCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetCollection.h; sourceTree = "<group>"; };
+		2642AB691A32A2CD002E8DFA /* MeetCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetCollection.m; sourceTree = "<group>"; };
 		2651CF031A17D56E0050D587 /* QuickScoreEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickScoreEdit.h; sourceTree = "<group>"; };
 		2651CF041A17D56E0050D587 /* QuickScoreEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickScoreEdit.m; sourceTree = "<group>"; };
 		267643E41A218DF000CD2CB1 /* ReportsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportsViewController.h; sourceTree = "<group>"; };
@@ -100,6 +104,8 @@
 		26A248F51A2299C400760F38 /* ChooseDiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseDiver.h; sourceTree = "<group>"; };
 		26A248F61A2299C400760F38 /* ChooseDiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseDiver.m; sourceTree = "<group>"; };
 		26B0108F1A1EE7790017F484 /* dive_dod.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dive_dod.db; sourceTree = "<group>"; };
+		26B1D05A1A3355CC00112692 /* DiverCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiverCollection.h; sourceTree = "<group>"; };
+		26B1D05B1A3355CC00112692 /* DiverCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiverCollection.m; sourceTree = "<group>"; };
 		26B88D211A12EF9600DBE909 /* MeetEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetEdit.h; sourceTree = "<group>"; };
 		26B88D221A12EF9600DBE909 /* MeetEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetEdit.m; sourceTree = "<group>"; };
 		26BE233C1A10275A00E123D0 /* QuickScores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickScores.h; sourceTree = "<group>"; };
@@ -319,6 +325,10 @@
 				26BE23791A1027CC00E123D0 /* ValidScores.m */,
 				2688576B1A298365000AEFF2 /* DiveTypes.h */,
 				2688576C1A298365000AEFF2 /* DiveTypes.m */,
+				2642AB681A32A2CD002E8DFA /* MeetCollection.h */,
+				2642AB691A32A2CD002E8DFA /* MeetCollection.m */,
+				26B1D05A1A3355CC00112692 /* DiverCollection.h */,
+				26B1D05B1A3355CC00112692 /* DiverCollection.m */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -443,6 +453,7 @@
 				26BE234A1A10275A00E123D0 /* QuickScores.m in Sources */,
 				267643E91A218E2C00CD2CB1 /* ChooseMeet.m in Sources */,
 				26BE237D1A1027CC00E123D0 /* JudgeScores.m in Sources */,
+				2642AB6A1A32A2CD002E8DFA /* MeetCollection.m in Sources */,
 				26E419A81A048E3100D79C05 /* QuickScoreViewController.m in Sources */,
 				26BE237B1A1027CC00E123D0 /* DiverBoardSize.m in Sources */,
 				267A3FCB1A280E370068FA9E /* DiverHistory.m in Sources */,
@@ -455,6 +466,7 @@
 				268857671A291981000AEFF2 /* DiveInfo.m in Sources */,
 				268857611A28EBCE000AEFF2 /* DiverMeetScores.m in Sources */,
 				2688576A1A29693B000AEFF2 /* DiveListEnter.m in Sources */,
+				26B1D05C1A3355CC00112692 /* DiverCollection.m in Sources */,
 				26BE23501A10275A00E123D0 /* Diver.m in Sources */,
 				2691AE6C1A0691FB000ABD3B /* DiverDetailsVC.m in Sources */,
 				26BE238D1A1027CC00E123D0 /* ValidScores.m in Sources */,

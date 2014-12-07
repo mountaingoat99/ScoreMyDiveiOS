@@ -34,15 +34,25 @@
 @property (nonatomic, strong) NSString *dive10;
 @property (nonatomic, strong) NSString *dive11;
 
+//@property NSArray* meetInfo;
+
 // private methods to load the data
 -(void)loadDiverInfo;
 -(void)loadMeetInfo;
 -(void)loadType;
 -(void)loadResults;
 
+// test
+//-(void)GetMeetCollection;
+
 @end
 
 @implementation DiverMeetScores
+
+@synthesize meetIdToView;
+@synthesize diverIdToView;
+@synthesize callingIDToReturnTo;
+@synthesize diveNumber;
 
 #pragma ViewController Events
 
@@ -126,6 +136,7 @@
     [[self.btnDive11 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
     [[self.btnDive11 layer] setMasksToBounds:NO];
     [[self.btnDive11 layer] setShadowOpacity:.3];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -140,7 +151,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([segue.identifier isEqualToString:@"idSegueDiverScores"]) {
-        DiveInfo *info = [[DiveInfo alloc] init];
+        DiveInfo *info = [segue destinationViewController];
         
         info.callingIDToReturnTo = self.callingIDToReturnTo;
         info.meetIdToView = self.meetIdToView;
@@ -293,7 +304,6 @@
     self.lblTotal.text = [[results objectAtIndex:0] objectAtIndex:11];
     
 }
-
 
 
 

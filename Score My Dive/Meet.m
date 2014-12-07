@@ -13,7 +13,6 @@
 
 @property (nonatomic, strong) DBManager *dbManager;
 
-
 @end
 
 @implementation Meet

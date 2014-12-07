@@ -10,10 +10,11 @@
 
 @interface Diver : NSObject
 
-@property (nonatomic, strong) NSString *Name;
-@property (nonatomic, strong) NSString *Age;
-@property (nonatomic, strong) NSString *Grade;
-@property (nonatomic, strong) NSString *School;
+@property (nonatomic, copy) NSString *diverID;
+@property (nonatomic, copy) NSString *Name;
+@property (nonatomic, copy) NSString *Age;
+@property (nonatomic, copy) NSString *Grade;
+@property (nonatomic, copy) NSString *School;
 
 -(BOOL)UpdateDiver:(int)diverid Name:(NSString*)name Age:(NSString*)age Grade:(NSString*)grade School:(NSString*)school;
 
@@ -25,6 +26,6 @@
 
 -(void)DeleteDiver:(int)diverid;
 
-//TODO: Make a remove diver from meet public method
+-(void)RemoveDiverFromMeet:(int)meetid diverid:(int)diverid;
 
 @end

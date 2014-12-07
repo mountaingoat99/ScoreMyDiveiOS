@@ -10,6 +10,8 @@
 
 @interface Judges : NSObject
 
+@property (nonatomic, copy) NSNumber *judgeTotal;
+
 -(BOOL)UpdateJudges:(int)meetid Total:(NSNumber*)total;
 
 -(NSNumber*)getJudges:(int)meetid;

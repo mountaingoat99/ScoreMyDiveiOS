@@ -7,7 +7,98 @@
 //
 
 #import "DiveList.h"
+#import "DBManager.h"
+
+@interface DiveList ()
+
+@property (nonatomic, strong) DBManager *dbManager;
+
+@end
 
 @implementation DiveList
+
+-(BOOL)UpdateDiveList:(int)meetid diverid:(int)diverid listfilled:(NSNumber*)listfilled noList:(NSNumber*)nolist {
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query;
+    
+    query = [NSString stringWithFormat:@"insert into dive_list(meet_id, diver_id, list_filled, no_list) values(%d, %d, %@, %@)", meetid, diverid, listfilled, nolist];
+    
+    [self.dbManager executeQuery:query];
+    
+    if(self.dbManager.affectedRows != 0) {
+        NSLog(@"query was executed successfully. Affected Rows = %d", self.dbManager.affectedRows);
+        return true;
+    } else {
+        NSLog(@"Could not execute query");
+        return  false;
+    }
+}
+
+-(NSArray*)GetDiveList:(int)meetid diverid:(int)diverid {
+    
+    NSArray *list;
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select * from dive_list where meet_id=%d and diver_id=%d", meetid, diverid];
+    
+    list = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return list;
+    
+}
+
+-(BOOL)CheckForNoList:(int)meetid diverid:(int)diverid {
+    
+    NSNumber *num;
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select no_list from dive_list where meet_id=%d and diver_id=%d", meetid, diverid];
+    
+    num = [self.dbManager loadNumberFromDB:query];
+    
+    if ([num isEqualToNumber:@0]) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+-(void)MarkNoList:(int)meetid diverid:(int)diverid {
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"update dive_list set no_list=1 where meet_id=%d and diver_id=%d", meetid, diverid];
+    
+    [self.dbManager loadDataFromDB:query];
+    
+}
+
+-(void)UpdateListFilled:(int)meetid diverid:(int)diverid key:(NSNumber*)key {
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"update dive_list set list_filled=%@ where meet_id=%d and diver_id=%d", key, meetid, diverid];
+    
+    [self.dbManager loadDataFromDB:query];
+
+}
+
+-(NSNumber*)IsListFinished:(int)meetid diverid:(int)diverid {
+    
+    NSNumber *num;
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select list_filled from dive_list where meet_id=%d and diver_id=%d", meetid, diverid];
+    
+    num = [self.dbManager loadNumberFromDB:query];
+    
+    return num;
+    
+}
 
 @end

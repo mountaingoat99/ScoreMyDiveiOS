@@ -49,7 +49,7 @@
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
-    NSString *query = @"select * from diver";
+    NSString *query = [NSString stringWithFormat:@"select * from diver"];
     
     divers = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     
@@ -94,5 +94,58 @@
     return divers;
     
 }
+
+-(void)RemoveDiverFromMeet:(int)meetid diverid:(int)diverid {
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query1 = [NSString stringWithFormat:@"delete from dive_number where meet_id=%d and diver_id=%d", meetid, diverid];
+    
+    NSString *query2 = [NSString stringWithFormat:@"delete from judges_scores where meet_id=%d and diver_id=%d", meetid, diverid];
+    
+    NSString *query3 = [NSString stringWithFormat:@"delete from results where meet_id=%d and diver_id=%d", meetid, diverid];
+    
+    NSString *query4 = [NSString stringWithFormat:@"delete from dive_total where meet_id=%d and diver_id=%d", meetid, diverid];
+    
+    NSString *query5 = [NSString stringWithFormat:@"delete from diver_board_size where meet_id=%d and diver_id=%d", meetid, diverid];
+    
+    NSString *query6 = [NSString stringWithFormat:@"delete from dive_list where meet_id=%d and diver_id=%d", meetid, diverid];
+    
+    [self.dbManager loadDataFromDB:query1];
+    [self.dbManager loadDataFromDB:query2];
+    [self.dbManager loadDataFromDB:query3];
+    [self.dbManager loadDataFromDB:query4];
+    [self.dbManager loadDataFromDB:query5];
+    [self.dbManager loadDataFromDB:query6];
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end

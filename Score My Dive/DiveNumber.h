@@ -10,4 +10,13 @@
 
 @interface DiveNumber : NSObject
 
+@property (nonatomic, copy) NSNumber *number;
+@property (nonatomic, copy) NSNumber *boardSize;
+
+-(BOOL)CreateDiveNumber:(int)meetid diverid:(int)diverid number:(NSNumber*)number boardsize:(NSNumber*)boardsize;
+
+-(NSNumber*)WhatDiveNumber:(int)meetid diverid:(int)diverid;
+
+-(void)UpdateDiveNumber:(int)meetid diverid:(int)diverid divenumber:(NSNumber*)divenumber;
+
 @end
