@@ -10,6 +10,8 @@
 
 @interface DiverMeetScores : UIViewController
 
+// for the collection of meet objects
+@property (nonatomic, strong) NSArray *meetInfo;
 @property (nonatomic) int meetIdToView;
 @property (nonatomic) int diverIdToView;
 @property (nonatomic) int callingIDToReturnTo;
@@ -57,5 +59,8 @@
 - (IBAction)btnDive9Click:(id)sender;
 - (IBAction)btnDive10Click:(id)sender;
 - (IBAction)btnDive11Click:(id)sender;
+
+- (IBAction)btnReturnClick:(id)sender;
+
 
 @end

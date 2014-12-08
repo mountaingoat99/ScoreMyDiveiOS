@@ -15,7 +15,7 @@
 
 -(Meet*)CallMeet:(int)meetid;
 -(Judges*)CallJudges:(int)meetid;
--(NSArray*)CallDivers:(int)meetid;
+-(NSArray*)CallDivers:(int)meetid diverid:(int)diverid;
 
 @end
 
@@ -25,7 +25,7 @@
 
 // this public method will make calls to methods in the child objects of a meet
 // this returns all the divers on a selected meet
--(NSArray*)GetMeetAndDiverInfo:(int)meetId {
+-(NSArray*)GetMeetAndDiverInfo:(int)meetId diverid:(int)diverid {
     
     // collection objects, meet collection is the array that will hold the objects
     NSArray *meetCollec;
@@ -40,7 +40,7 @@
     judges = [self CallJudges:meetId];
     
     //get the diversCollection
-    diverCollection = [self CallDivers:meetId];
+    diverCollection = [self CallDivers:meetId diverid:diverid];
     
     meetCollec = [[NSArray alloc] initWithObjects:meet, judges, diverCollection, nil];
     
@@ -76,21 +76,28 @@
     
     meetInfo = [meetCall GetTheMeet:meetid];
     
-    NSString *theMeetid = [[NSString alloc] initWithString:[[meetInfo objectAtIndex:0] objectAtIndex:0]];
-    NSString *meetName = [[NSString alloc] initWithString:[[meetInfo objectAtIndex:0] objectAtIndex:1]];
-    NSString *schoolName = [[NSString alloc] initWithString:[[meetInfo objectAtIndex:0] objectAtIndex:2]];
-    NSString *city = [[NSString alloc] initWithString:[[meetInfo objectAtIndex:0] objectAtIndex:3]];
-    NSString *state = [[NSString alloc] initWithString:[[meetInfo objectAtIndex:0] objectAtIndex:4]];
-    NSString *date = [[NSString alloc] initWithString:[[meetInfo objectAtIndex:0] objectAtIndex:5]];
+    if (meetInfo.count > 0) {
     
-    meetCall.meetID = theMeetid;
-    meetCall.meetName = meetName;
-    meetCall.schoolName = schoolName;
-    meetCall.city = city;
-    meetCall.state = state;
-    meetCall.date = date;
+        NSString *theMeetid = [[NSString alloc] initWithString:[[meetInfo objectAtIndex:0] objectAtIndex:0]];
+        NSString *meetName = [[NSString alloc] initWithString:[[meetInfo objectAtIndex:0] objectAtIndex:1]];
+        NSString *schoolName = [[NSString alloc] initWithString:[[meetInfo objectAtIndex:0] objectAtIndex:2]];
+        NSString *city = [[NSString alloc] initWithString:[[meetInfo objectAtIndex:0] objectAtIndex:3]];
+        NSString *state = [[NSString alloc] initWithString:[[meetInfo objectAtIndex:0] objectAtIndex:4]];
+        NSString *date = [[NSString alloc] initWithString:[[meetInfo objectAtIndex:0] objectAtIndex:5]];
+        
+        meetCall.meetID = theMeetid;
+        meetCall.meetName = meetName;
+        meetCall.schoolName = schoolName;
+        meetCall.city = city;
+        meetCall.state = state;
+        meetCall.date = date;
+        
+        return meetCall;
     
-    return meetCall;
+    } else {
+        return meetCall = nil;
+    }
+    
 }
 
 -(Judges*)CallJudges:(int)meetid {
@@ -105,12 +112,12 @@
     return judges;
 }
 
--(NSArray*)CallDivers:(int)meetid {
+-(NSArray*)CallDivers:(int)meetid diverid:(int)diverid {
     
     NSArray *diverCollection;
     DiverCollection *divers = [[DiverCollection alloc] init];
     
-    diverCollection = [[NSArray alloc] initWithObjects:[divers GetDiverInfoByMeet:meetid], nil];
+    diverCollection = [[NSArray alloc] initWithObjects:[divers GetDiverInfoByMeet:meetid diverid:diverid], nil];
     
     return diverCollection;
     

@@ -49,10 +49,6 @@
     if (self.recordIDToEdit != -1) {
         [self loadData];
     }
-    
-    // load the meet collection array
-    [self CollectionOfMeets];
-    
 }
 
 // we will need to call a method to get the correct diver child for the meet
@@ -66,6 +62,7 @@
         // assign 1 to the DiverMeetScore Segue knows who to return to
         self.callingIdToReturnTo = 1;
         
+        scores.meetInfo = self.meetInfo;
         scores.meetIdToView = self.recordIDToEdit;
         scores.diverIdToView = self.diverid;
         scores.callingIDToReturnTo = self.callingIdToReturnTo;
@@ -91,6 +88,12 @@
     
     // assigns the diverid clicked so it can be sent to the DiverMeetScore controller
     self.diverid = [[[self.arrMeetHistory objectAtIndex:indexPath.row] objectAtIndex:0] intValue];
+    
+    // load the meet collection array
+    [self CollectionOfMeets];
+    
+    // this actually send the chosen cell to the next screen
+    [self performSegueWithIdentifier:@"idSegueMeetHistToScores" sender:self];
     
 }
 
@@ -167,9 +170,9 @@
     if (self.arrMeetHistory != nil) {
         self.arrMeetHistory = nil;
     }
-       
-    //Diver *diver = [[Diver alloc] init];
-    //self.arrMeetHistory = [diver DiversAtMeet:self.recordIdToEdit];
+    
+    Diver *divers = [[Diver alloc] init];
+    self.arrMeetHistory = [divers DiversAtMeet:recordIDToEdit];
     
     // reload the table
     [self.tblHistory reloadData];
@@ -181,7 +184,7 @@
     
     MeetCollection *collection = [[MeetCollection alloc] init];
     
-    self.meetInfo = [collection GetMeetAndDiverInfo:self.recordIDToEdit];
+    self.meetInfo = [collection GetMeetAndDiverInfo:recordIDToEdit diverid:self.diverid];
     
     // doing this to test and log that we get the correct data
     Meet *testMeet = [[Meet alloc] init];

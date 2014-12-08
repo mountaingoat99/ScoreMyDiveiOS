@@ -12,7 +12,7 @@
 
 @interface MeetCollection : NSObject
 
--(NSArray*)GetMeetAndDiverInfo:(int)meetId;
+-(NSArray*)GetMeetAndDiverInfo:(int)meetId diverid:(int)diverid;
 
 -(NSArray*)GetMeetInfo:(int)meetid;
 

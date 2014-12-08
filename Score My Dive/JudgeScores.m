@@ -50,11 +50,25 @@
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
-    NSString *query = [NSString stringWithFormat:@"select score_1, score_2, score_3, score_4, score_5, score_6, score_7 from judges_scores where meet_id=%d and diver_id=%d and dive_number=%@", meetid, diverid, divenumber];
+    NSString *query = [NSString stringWithFormat:@"select total_score, score_1, score_2, score_3, score_4, score_5, score_6, score_7 from judges_scores where meet_id=%d and diver_id=%d and dive_number=%@", meetid, diverid, divenumber];
     
     scores = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     
     return scores;
+}
+
+-(NSArray*)FetchJudgeScoreObject:(int)meetid diverid:(int)diverid {
+    
+    NSArray *scores = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select * from judges_scores where meet_id=%d and diver_id=%d", meetid, diverid];
+    
+    scores = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return scores;
+    
 }
 
 -(NSNumber*)GetMultiplier:(int)meetid diverid:(int)diverid divenumber:(NSNumber*)divenumber {

@@ -12,8 +12,8 @@
 
 @interface DiverCollection : NSObject
 
--(NSArray*)GetDiverInfo:(int)diverid;
+-(NSMutableArray*)GetDiverInfoByMeet:(int)meetid diverid:(int)diverid;
 
--(NSArray*)GetDiverInfoByMeet:(int)meetid;
+-(NSMutableArray*)GetDiverInfo:(int)diverid;
 
 @end

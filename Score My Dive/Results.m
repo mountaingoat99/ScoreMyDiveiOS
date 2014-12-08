@@ -64,6 +64,20 @@
     
 }
 
+-(NSArray*)GetResultObject:(int)meetid DiverId:(int)diverid {
+    
+    NSArray *results = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select * from results where meet_id=%d and diver_id=%d", meetid, diverid];
+    
+    results = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return results;
+    
+}
+
 -(NSNumber*)GetResultTotal:(int)meetid DiverID:(int)diverid {
     
     NSNumber *totalScore;

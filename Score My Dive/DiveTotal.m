@@ -49,4 +49,18 @@
     
 }
 
+-(NSArray*)GetDiveTotalObject:(int)meetid DiverID:(int)diverid {
+    
+    NSArray *diveTotal;
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query;
+    
+    query = [NSString stringWithFormat:@"select * from dive_total where meet_id=%d and diver_id=%d", meetid, diverid];
+    
+    return diveTotal = [self.dbManager loadDataFromDB:query];
+    
+}
+
 @end

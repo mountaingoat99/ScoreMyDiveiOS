@@ -10,6 +10,9 @@
 
 @interface JudgeScores : NSObject
 
+@property (nonatomic, copy) NSString *judgeScoreID;
+@property (nonatomic, copy) NSString *meetid;
+@property (nonatomic, copy) NSString *diverid;
 @property (nonatomic, copy) NSNumber *boardSize;
 @property (nonatomic, copy) NSNumber *diveNumber;
 @property (nonatomic, copy) NSString *diveCategory;
@@ -29,6 +32,8 @@
 -(BOOL)CreateJudgeScores:(int)meetid diverid:(int)diverid boardsize:(NSNumber*)boardsize divenumber:(NSNumber*)divenumber divecategory:(NSString*)divecategory divetype:(NSString*)divetype diveposition:(NSString*)diveposition failed:(NSString*)failed multiplier:(NSNumber*)multiplier totalscore:(NSNumber*)totalscore score1:(NSNumber*)score1 score2:(NSNumber*)score2 score3:(NSNumber*)score3 score4:(NSNumber*)score4 score5:(NSNumber*)score5 score6:(NSNumber*)score6 score7:(NSNumber*)score7;
 
 -(NSArray*)FetchJudgeScores:(int)meetid diverid:(int)diverid divenumber:(NSNumber*)divenumber;
+
+-(NSArray*)FetchJudgeScoreObject:(int)meetid diverid:(int)diverid;
 
 -(NSNumber*)GetMultiplier:(int)meetid diverid:(int)diverid divenumber:(NSNumber*)divenumber;
 

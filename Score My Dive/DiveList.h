@@ -10,6 +10,9 @@
 
 @interface DiveList : NSObject
 
+@property (nonatomic, copy) NSString *listId;
+@property (nonatomic, copy) NSString *meetId;
+@property (nonatomic, copy) NSString *diverId;
 @property (nonatomic, copy) NSNumber *listFilled;
 @property (nonatomic, copy) NSNumber *noList;
 

@@ -62,4 +62,18 @@
     
 }
 
+-(NSArray*)GetBoardSizeObject:(int)meetid diverid:(int)diverid {
+    
+    NSArray *boards;
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query;
+    
+    query = [NSString stringWithFormat:@"select * from diver_board_size where meet_id=%d and diver_id=%d", meetid, diverid];
+    
+    return boards = [self.dbManager loadDataFromDB:query];
+    
+}
+
 @end

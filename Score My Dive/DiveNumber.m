@@ -48,6 +48,18 @@
     
 }
 
+-(NSArray*)GetDiveNumber:(int)meetid diverid:(int)diverid {
+    
+    NSArray *num;
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select * from dive_number where meet_id=%d and diver_id=%d", meetid, diverid];
+    
+    return num = [self.dbManager loadDataFromDB:query];
+    
+}
+
 -(void)UpdateDiveNumber:(int)meetid diverid:(int)diverid divenumber:(NSNumber*)divenumber {
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];

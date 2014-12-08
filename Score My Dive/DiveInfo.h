@@ -10,9 +10,26 @@
 
 @interface DiveInfo : UIViewController
 
+@property (nonatomic, strong) NSArray *meetInfo;
 @property (nonatomic) int meetIdToView;
 @property (nonatomic) int diverIdToView;
 @property (nonatomic) int callingIDToReturnTo;
 @property (nonatomic) int diveNumber;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblDiverName;
+@property (weak, nonatomic) IBOutlet UILabel *lblDiverSchool;
+@property (weak, nonatomic) IBOutlet UILabel *lblDiveType;
+@property (weak, nonatomic) IBOutlet UILabel *lblDivePostion;
+@property (weak, nonatomic) IBOutlet UILabel *lblDivedd;
+@property (weak, nonatomic) IBOutlet UILabel *lblScoreTotal;
+@property (weak, nonatomic) IBOutlet UILabel *lblFailed;
+@property (weak, nonatomic) IBOutlet UILabel *lblJudge1;
+@property (weak, nonatomic) IBOutlet UILabel *lblJudge2;
+@property (weak, nonatomic) IBOutlet UILabel *lblJudge3;
+@property (weak, nonatomic) IBOutlet UILabel *lblJudge4;
+@property (weak, nonatomic) IBOutlet UILabel *lblJudge5;
+@property (weak, nonatomic) IBOutlet UILabel *lblJudge6;
+@property (weak, nonatomic) IBOutlet UILabel *lblJudge7;
+
 
 @end

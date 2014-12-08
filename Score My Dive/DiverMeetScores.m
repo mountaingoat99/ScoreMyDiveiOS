@@ -15,27 +15,6 @@
 
 @interface DiverMeetScores ()
 
-@property (nonatomic, strong) NSString *nameAgeText;
-@property (nonatomic, strong) NSString *schoolText;
-@property (nonatomic, strong) NSString *meetNameText;
-@property (nonatomic, strong) NSString *meetSchoolDateText;
-@property (nonatomic, strong) NSString *CityStateText;
-@property (nonatomic, strong) NSString *scoreTotalText;
-@property (nonatomic, strong) NSString *boardTypeText;
-@property (nonatomic, strong) NSString *dive1;
-@property (nonatomic, strong) NSString *dive2;
-@property (nonatomic, strong) NSString *dive3;
-@property (nonatomic, strong) NSString *dive4;
-@property (nonatomic, strong) NSString *dive5;
-@property (nonatomic, strong) NSString *dive6;
-@property (nonatomic, strong) NSString *dive7;
-@property (nonatomic, strong) NSString *dive8;
-@property (nonatomic, strong) NSString *dive9;
-@property (nonatomic, strong) NSString *dive10;
-@property (nonatomic, strong) NSString *dive11;
-
-//@property NSArray* meetInfo;
-
 // private methods to load the data
 -(void)loadDiverInfo;
 -(void)loadMeetInfo;
@@ -48,11 +27,6 @@
 @end
 
 @implementation DiverMeetScores
-
-@synthesize meetIdToView;
-@synthesize diverIdToView;
-@synthesize callingIDToReturnTo;
-@synthesize diveNumber;
 
 #pragma ViewController Events
 
@@ -137,6 +111,12 @@
     [[self.btnDive11 layer] setMasksToBounds:NO];
     [[self.btnDive11 layer] setShadowOpacity:.3];
     
+    if (self.meetInfo.count > 0) {
+        [self loadDiverInfo];
+        [self loadMeetInfo];
+        [self loadType];
+        [self loadResults];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -157,6 +137,7 @@
         info.meetIdToView = self.meetIdToView;
         info.diverIdToView = self.diverIdToView;
         info.diveNumber = self.diveNumber;
+        info.meetInfo = self.meetInfo;
     }
 }
 
@@ -237,6 +218,15 @@
     [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
 }
 
+- (IBAction)btnReturnClick:(id)sender {
+    
+    if (self.callingIDToReturnTo == 1) {
+        [self performSegueWithIdentifier:@"idSegueMeetHistToScores" sender:self];
+    } else {
+        [self performSegueWithIdentifier:@"idSegueDiverHistToScores" sender:self];
+    }
+}
+
 #pragma Private methods
 
 // loads the current record to update
@@ -244,10 +234,10 @@
     
     Diver *diver = [[Diver alloc] init];
     
-    NSArray *diverInfo = [diver LoadDiver:self.diverIdToView];
+    diver = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:0];
     
-    self.lblName.text = [[diverInfo objectAtIndex:0 ] objectAtIndex:1];
-    self.lblSchool.text = [[diverInfo objectAtIndex:0] objectAtIndex:4];
+    self.lblName.text = diver.Name;
+    self.lblSchool.text = diver.School;
     
 }
 
@@ -257,28 +247,26 @@
     NSString *schoolAndDate;
     NSString *cityState;
     
-    NSArray *meetInfo = [meet LoadMeet:self.meetIdToView];
+    meet = [self.meetInfo objectAtIndex:0];
     
-    self.lblMeetName.text = [[meetInfo objectAtIndex:0] objectAtIndex:1];
-    schoolAndDate = [[meetInfo objectAtIndex:0] objectAtIndex:2];
+    self.lblMeetName.text = meet.meetName;
+    schoolAndDate = meet.schoolName;
     schoolAndDate = [schoolAndDate stringByAppendingString:@" - "];
-    self.lblSchoolName.text = [schoolAndDate stringByAppendingString:[[meetInfo objectAtIndex:0] objectAtIndex:5]];
-    cityState = [[meetInfo objectAtIndex:0] objectAtIndex:3];
+    self.lblSchoolName.text = [schoolAndDate stringByAppendingString:meet.date];
+    cityState = meet.city;
     cityState = [cityState stringByAppendingString:@", "];
-    self.lblCity.text = [cityState stringByAppendingString:[[meetInfo objectAtIndex:0] objectAtIndex:4]];
+    self.lblCity.text = [cityState stringByAppendingString:meet.state];
 
 }
 
 -(void)loadType {
     
     DiverBoardSize *board = [[DiverBoardSize alloc] init];
+    
+    board = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:4];
     NSString *boardType;
     
-    int boardsize = 1;
-    
-    NSNumber *type = [board BoardSize:self.meetIdToView DiverID:self.diverIdToView BoardNumber:boardsize];
-    
-    boardType = [type stringValue];
+    boardType = [board.firstSize stringValue];
     self.lblBoardType.text = [boardType stringByAppendingString:@" Meter"];
     
 }
@@ -286,22 +274,21 @@
 -(void)loadResults {
     
     Results *result = [[Results alloc] init];
-    NSArray *results;
     
-    results = [result GetResults:self.meetIdToView DiverId:self.diverIdToView];
+    result = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:5];
     
-    self.lblDive1.text = [[results objectAtIndex:0] objectAtIndex:0];
-    self.lblDive2.text = [[results objectAtIndex:0] objectAtIndex:1];
-    self.lblDive3.text = [[results objectAtIndex:0] objectAtIndex:2];
-    self.lblDive4.text = [[results objectAtIndex:0] objectAtIndex:3];
-    self.lblDive5.text = [[results objectAtIndex:0] objectAtIndex:4];
-    self.lblDive6.text = [[results objectAtIndex:0] objectAtIndex:5];
-    self.lblDive7.text = [[results objectAtIndex:0] objectAtIndex:6];
-    self.lblDive8.text = [[results objectAtIndex:0] objectAtIndex:7];
-    self.lblDive9.text = [[results objectAtIndex:0] objectAtIndex:8];
-    self.lblDive10.text = [[results objectAtIndex:0] objectAtIndex:9];
-    self.lblDive11.text = [[results objectAtIndex:0] objectAtIndex:10];
-    self.lblTotal.text = [[results objectAtIndex:0] objectAtIndex:11];
+    self.lblDive1.text = [result.dive1 stringValue];
+    self.lblDive2.text = [result.dive2 stringValue];
+    self.lblDive3.text = [result.dive3 stringValue];
+    self.lblDive4.text = [result.dive4 stringValue];
+    self.lblDive5.text = [result.dive5 stringValue];
+    self.lblDive6.text = [result.dive6 stringValue];
+    self.lblDive7.text = [result.dive7 stringValue];
+    self.lblDive8.text = [result.dive8 stringValue];
+    self.lblDive9.text = [result.dive9 stringValue];
+    self.lblDive10.text = [result.dive10 stringValue];
+    self.lblDive11.text = [result.dive11 stringValue];
+    self.lblTotal.text = [result.totalScoreTotal stringValue];
     
 }
 
