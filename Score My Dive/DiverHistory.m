@@ -9,12 +9,17 @@
 #import "DiverHistory.h"
 #import "Meet.h"
 #import "DiverMeetScores.h"
+#import "Diver.h"
+#import "DiverCollection.h"
+#import "MeetCollection.h"
+#import "Judges.h"
 
 @interface DiverHistory ()
 
 @property (nonatomic, strong) NSArray *arrDiverHistory;
 
 -(void)loadData;
+-(void)CollectionOfDivers;
 
 @end
 
@@ -35,17 +40,21 @@
     self.tblHistory.layer.shadowRadius = 4.0f;
     self.tblHistory.layer.shadowOpacity = 1.0;
     
-    [self loadData];
+    if (self.recordIdToEdit != -1) {
+        [self loadData];
+    }
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
+    // Send the id's to the Diver Meet Scores
     if ([segue.identifier isEqualToString:@"idSegueDiverHistToScores"]) {
         DiverMeetScores *scores = [segue destinationViewController];
         
         // assign 1 to the DiverMeetScore Segue knows who to return to
         self.callingIdToReturnTo = 2;
         
+        scores.meetInfo = self.diverInfo;
         scores.diverIdToView = self.recordIdToEdit;
         scores.meetIdToView = self.meetId;
         scores.callingIDToReturnTo = self.callingIdToReturnTo;
@@ -70,6 +79,11 @@
     
     // assigns the meetid clicked so it can be sent to the DivermeetScore controller
     self.meetId = [[[self.arrDiverHistory objectAtIndex:indexPath.row] objectAtIndex:0] intValue];
+    
+    [self CollectionOfDivers];
+    
+    // this actually sends the chosen cell to the next screen
+    [self performSegueWithIdentifier:@"idSegueDiverHistToScores" sender:self];
     
 }
 
@@ -134,6 +148,7 @@
     
     // set the loaded data to the appropriate cell labels
     cell.textLabel.text = [NSString stringWithFormat:@"%@", [[self.arrDiverHistory objectAtIndex:indexPath.row] objectAtIndex:1]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [[self.arrDiverHistory objectAtIndex:indexPath.row] objectAtIndex:2]];
     
     return cell;
 }
@@ -152,6 +167,39 @@
     
     // reload the table
     [self.tblHistory reloadData];
+}
+
+//here we will get a collection of all the meet and thier children objects
+-(void)CollectionOfDivers {
+    
+    MeetCollection *collection = [[MeetCollection alloc] init];
+    
+    self.diverInfo = [collection GetMeetAndDiverInfo:self.meetId diverid:self.recordIdToEdit];
+    
+    // doing this to test and log that we get the correct data
+    Meet *testMeet = [[Meet alloc] init];
+    Judges *testJudges = [[Judges alloc] init];
+    
+    testMeet = [self.diverInfo objectAtIndex:0];
+    testJudges = [self.diverInfo objectAtIndex:1];
+    
+    // here we just want to let the log know we have the correct meet chosen
+    NSString *test = testMeet.meetID;
+    NSString *testName = testMeet.meetName;
+    NSString *testSchool = testMeet.schoolName;
+    NSString *testCity = testMeet.city;
+    NSString *testState = testMeet.state;
+    NSString *testDate = testMeet.date;
+    NSNumber *testJudgeTotal = testJudges.judgeTotal;
+    
+    NSLog(@"the meetid is %@", test);
+    NSLog(@"the meetname is %@", testName);
+    NSLog(@"the meetschool is %@", testSchool);
+    NSLog(@"the meetcity is %@", testCity);
+    NSLog(@"the meetstate is %@", testState);
+    NSLog(@"the meetdate is %@", testDate);
+    NSLog(@"the judgetotal is %@", testJudgeTotal);
+    
 }
 
 @end

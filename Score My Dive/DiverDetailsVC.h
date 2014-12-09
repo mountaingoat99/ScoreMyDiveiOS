@@ -11,6 +11,8 @@
 
 @interface DiverDetailsVC : UIViewController <UITableViewDelegate, UITableViewDataSource, DiverDetailsViewControllerDelegate>
 
+@property (nonatomic) int recordIDToEdit;
+
 @property (weak, nonatomic) IBOutlet UITableView *tblDivers;
 
 -(IBAction)addNewRecord:(id)sender;

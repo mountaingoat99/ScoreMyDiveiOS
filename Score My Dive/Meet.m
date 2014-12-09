@@ -111,7 +111,7 @@
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
-    NSString *query = [NSString stringWithFormat:@"SELECT m.id, m.name FROM meet m INNER JOIN results r on (m.id = r.meet_id) WHERE r.diver_id=%d", diverid];
+    NSString *query = [NSString stringWithFormat:@"SELECT m.id, m.name, m.date FROM meet m INNER JOIN results r on (m.id = r.meet_id) WHERE r.diver_id=%d", diverid];
     
     divers = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     

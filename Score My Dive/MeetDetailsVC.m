@@ -82,7 +82,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 - (IBAction)addNewRecord:(id)sender {
     self.recordIDToEdit = -1;
     

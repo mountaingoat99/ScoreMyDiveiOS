@@ -19,9 +19,6 @@
 @property (nonatomic, strong) NSArray *arrMeetHistory;
 
 
-// for the collection of meet objects
-@property (nonatomic, strong) NSArray *meetInfo;
-
 -(void)loadData;
 -(void)CollectionOfMeets;
 
@@ -178,7 +175,7 @@
     [self.tblHistory reloadData];
 }
 
-// here wil will get a collection of all the
+// here we will get a collection of all the
 // meets and thier children objects
 -(void)CollectionOfMeets {
     

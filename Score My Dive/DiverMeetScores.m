@@ -12,6 +12,8 @@
 #import "Results.h"
 #import "DiverBoardSize.h"
 #import "DiveInfo.h"
+#import "MeetHistory.h"
+#import "DiverHistory.h"
 
 @interface DiverMeetScores ()
 
@@ -139,6 +141,25 @@
         info.diveNumber = self.diveNumber;
         info.meetInfo = self.meetInfo;
     }
+    
+    if ([segue.identifier isEqualToString:@"idSegueScoresToMeetHistory"]) {
+        MeetHistory *history = [segue destinationViewController];
+        
+        history.meetInfo = self.meetInfo;
+        history.recordIDToEdit = self.meetIdToView;
+        history.diverid = self.diverIdToView;
+        history.callingIdToReturnTo = self.callingIDToReturnTo;
+        
+    }
+    
+    if ([segue.identifier isEqualToString:@"idSegueScoresToDiverHistory"]) {
+        DiverHistory *history = [segue destinationViewController];
+        
+        history.diverInfo = self.meetInfo;
+        history.recordIdToEdit = self.diverIdToView;
+        history.meetId = self.meetIdToView;
+        history.callingIdToReturnTo = self.callingIDToReturnTo;
+    }
 }
 
 - (IBAction)btnDive1Click:(id)sender {
@@ -221,9 +242,10 @@
 - (IBAction)btnReturnClick:(id)sender {
     
     if (self.callingIDToReturnTo == 1) {
-        [self performSegueWithIdentifier:@"idSegueMeetHistToScores" sender:self];
+        
+        [self performSegueWithIdentifier:@"idSegueScoresToMeetHistory" sender:self];
     } else {
-        [self performSegueWithIdentifier:@"idSegueDiverHistToScores" sender:self];
+        [self performSegueWithIdentifier:@"idSegueScoresToDiverHistory" sender:self];
     }
 }
 

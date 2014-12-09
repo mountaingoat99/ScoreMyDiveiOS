@@ -961,9 +961,6 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <connections>
-                                            <segue destination="c6d-dK-TJN" kind="show" id="vk9-V1-dfQ"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -994,6 +991,7 @@
                     <tabBarItem key="tabBarItem" title="View Divers" id="5mh-rt-6Y9"/>
                     <connections>
                         <outlet property="tblDivers" destination="HR7-eP-Gw7" id="cfb-RP-1Tt"/>
+                        <segue destination="c6d-dK-TJN" kind="show" identifier="idSegueDiverHistory" id="whQ-J6-X7O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zSO-wL-idd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -7514,6 +7512,8 @@
                         <outlet property="lblSchoolName" destination="f14-Bu-9AM" id="JYW-aD-ANt"/>
                         <outlet property="lblTotal" destination="hp6-NU-9FC" id="0JJ-AN-93U"/>
                         <segue destination="kpl-IZ-9aV" kind="show" identifier="idSegueDiverScores" id="ax7-NL-7ON"/>
+                        <segue destination="ql9-Zz-keF" kind="show" identifier="idSegueScoresToMeetHistory" id="Egm-yZ-Z6w"/>
+                        <segue destination="c6d-dK-TJN" kind="show" identifier="idSegueScoresToDiverHistory" id="7UA-br-TXQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oaM-Zo-Gmf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -8464,6 +8464,8 @@
         <image name="BackButton" width="29" height="29"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="whQ-J6-X7O"/>
         <segue reference="wgX-g2-prF"/>
+        <segue reference="QLA-Pd-hj2"/>
     </inferredMetricsTieBreakers>
 </document>

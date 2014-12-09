@@ -9,10 +9,11 @@
 #import "DiverDetailsVC.h"
 #import "Diver.h"
 #import "AppDelegate.h"
+#import "DiverHistory.h"
 
 @interface DiverDetailsVC ()
 
-@property (nonatomic) int recordIDToEdit;
+
 
 @property (nonatomic, strong) NSArray *arrDiverInfo;
 
@@ -22,6 +23,8 @@
 @end
 
 @implementation DiverDetailsVC
+
+@synthesize recordIDToEdit;
 
 #pragma mark  - UIViewController
 
@@ -43,6 +46,27 @@
     [self loadData];
   
 }
+
+// make this viewcontroller the delegate of the MeetEdit ViewController
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    
+    if ([segue.identifier isEqualToString:@"idSegueEditInfo"]) {
+        DiverEdit *diverEdit = [segue destinationViewController];
+        diverEdit.delegate = self;
+        
+        // send the id to the MeetEdit VC
+        diverEdit.recordIDToEdit = self.recordIDToEdit;
+    }
+    
+    // send the id to the MeetHistory
+    if ([segue.identifier isEqualToString:@"idSegueDiverHistory"]) {
+        DiverHistory *history = [segue destinationViewController];
+        
+        history.recordIdToEdit = self.recordIDToEdit;
+    }
+}
+
 
 -(IBAction)unwindToDiverDetails:(UIStoryboardSegue *)segue{
     
@@ -95,8 +119,12 @@
 // in Ipad because of some unknown apple logic
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    self.recordIDToEdit = [[[self.arrDiverInfo objectAtIndex:indexPath.row] objectAtIndex:0] intValue];
+    
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.contentView.backgroundColor = [UIColor colorWithRed:.50 green:.50 blue:.50 alpha:1];
+    
+    [self performSegueWithIdentifier:@"idSegueDiverHistory" sender:self];
     
 }
 
@@ -111,40 +139,6 @@
     
     cell.contentView.backgroundColor = [UIColor colorWithRed:.40 green:.40 blue:.40 alpha:1];
     
-}
-
-// make this viewcontroller the delegate of the MeetEdit ViewController
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    if ([segue.identifier isEqualToString:@"idSegueEditInfo"]) {
-        DiverEdit *diverEdit = [segue destinationViewController];
-        diverEdit.delegate = self;
-        
-        // send the id to the MeetEdit VC
-        diverEdit.recordIDToEdit = self.recordIDToEdit;
-    }
-    
-}
-
-// delegate method to update info after the edit info is popped off
--(void)editInfoWasFinished{
-    [self loadData];
-}
-
-#pragma private methods
--(void)loadData{
-    
-    // get the result
-    if(self.arrDiverInfo != nil){
-        self.arrDiverInfo = nil;
-    }
-    
-    // call the class method to load the data
-    Diver *divers = [[Diver alloc] init];
-    self.arrDiverInfo = [divers GetAllDivers];
-    
-    // reload the table
-    [self.tblDivers reloadData];
 }
 
 // tells the tableView we want to have just one section
@@ -197,6 +191,27 @@
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [[self.arrDiverInfo objectAtIndex:indexPath.row] objectAtIndex:4]];
     
     return cell;
+}
+
+// delegate method to update info after the edit info is popped off
+-(void)editInfoWasFinished{
+    [self loadData];
+}
+
+#pragma private methods
+-(void)loadData{
+    
+    // get the result
+    if(self.arrDiverInfo != nil){
+        self.arrDiverInfo = nil;
+    }
+    
+    // call the class method to load the data
+    Diver *divers = [[Diver alloc] init];
+    self.arrDiverInfo = [divers GetAllDivers];
+    
+    // reload the table
+    [self.tblDivers reloadData];
 }
 
 -(void)TabBarSelection {

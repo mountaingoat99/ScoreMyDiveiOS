@@ -13,8 +13,8 @@
 @property (nonatomic) int recordIDToEdit;
 @property (nonatomic) int diverid;
 @property (nonatomic) int callingIdToReturnTo;
+@property (nonatomic, strong) NSArray *meetInfo;
 
 @property (weak, nonatomic) IBOutlet UITableView *tblHistory;
-
 
 @end
