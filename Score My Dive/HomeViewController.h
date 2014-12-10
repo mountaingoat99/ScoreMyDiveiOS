@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnReports;
 @property (weak, nonatomic) IBOutlet UIButton *btnDetailed;
 
+- (IBAction)btnReportClick:(id)sender;
+- (IBAction)btnDetailedScoringClick:(id)sender;
 
 @end
 

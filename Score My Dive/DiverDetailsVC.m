@@ -10,6 +10,7 @@
 #import "Diver.h"
 #import "AppDelegate.h"
 #import "DiverHistory.h"
+#import "JudgeScores.h"
 
 @interface DiverDetailsVC ()
 
@@ -119,12 +120,33 @@
 // in Ipad because of some unknown apple logic
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    self.recordIDToEdit = [[[self.arrDiverInfo objectAtIndex:indexPath.row] objectAtIndex:0] intValue];
+    BOOL check;
+    JudgeScores *scores = [[JudgeScores alloc] init];
     
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.contentView.backgroundColor = [UIColor colorWithRed:.50 green:.50 blue:.50 alpha:1];
+    check = [scores MeetsWithScores];
     
-    [self performSegueWithIdentifier:@"idSegueDiverHistory" sender:self];
+    if (check) {
+    
+        self.recordIDToEdit = [[[self.arrDiverInfo objectAtIndex:indexPath.row] objectAtIndex:0] intValue];
+        
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        cell.contentView.backgroundColor = [UIColor colorWithRed:.50 green:.50 blue:.50 alpha:1];
+        
+        [self performSegueWithIdentifier:@"idSegueDiverHistory" sender:self];
+        
+    } else {
+        
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                        message:@"There are no meets with scores yet"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
+        
+        [self.tblDivers reloadData];
+        
+    }
     
 }
 

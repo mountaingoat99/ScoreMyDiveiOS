@@ -30,7 +30,7 @@
                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="w5B-nA-pM5" kind="show" id="Afu-Ec-dYT"/>
+                                    <action selector="btnReportClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="n5N-om-CZw"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Score My Dive" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vCU-Qr-uPu">
@@ -141,7 +141,7 @@
                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="gyi-Um-8hX" kind="show" id="pgl-pl-N2W"/>
+                                    <action selector="btnDetailedScoringClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="25B-eU-HhB"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Detailed Scoring" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="auL-il-gNh">
@@ -231,6 +231,8 @@
                         <outlet property="btnMeetsDivers" destination="Brh-FX-UB8" id="Mo8-pG-ISV"/>
                         <outlet property="btnQuick" destination="jmr-UA-BIl" id="Oi8-Ye-Ons"/>
                         <outlet property="btnReports" destination="8lc-EQ-hPd" id="hRe-yy-fMX"/>
+                        <segue destination="gyi-Um-8hX" kind="show" identifier="idSegueHomeToChooseMeet" id="ODQ-1S-U5a"/>
+                        <segue destination="w5B-nA-pM5" kind="show" identifier="idSegueHomeToReports" id="w4U-Wl-UcP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -4488,7 +4490,7 @@
                                     <constraint firstItem="5QN-E6-u21" firstAttribute="leading" secondItem="qcI-67-t1R" secondAttribute="leading" id="ihz-wY-cfc"/>
                                     <constraint firstItem="fey-yq-NnH" firstAttribute="centerY" secondItem="yaC-5j-mWc" secondAttribute="centerY" id="jO1-gK-hZw"/>
                                     <constraint firstItem="bVx-gr-Rea" firstAttribute="top" secondItem="HK8-Fk-UZQ" secondAttribute="top" constant="8" id="jnJ-7d-v97">
-                                        <variation key="widthClass=compact" constant="8"/>
+                                        <variation key="widthClass=compact" constant="6"/>
                                     </constraint>
                                     <constraint firstItem="5QN-E6-u21" firstAttribute="leading" secondItem="cwx-iu-yRv" secondAttribute="leading" id="jve-8X-AzB"/>
                                     <constraint firstItem="ZdJ-Wn-f4g" firstAttribute="leading" secondItem="0Dl-K3-P2X" secondAttribute="leading" id="koU-xS-knx"/>

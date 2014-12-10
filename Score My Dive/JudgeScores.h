@@ -55,4 +55,6 @@
 
 -(void)DeleteJudgeScore:(int)meetid diverid:(int)diverid divenumber:(NSNumber*)divenumber;
 
+-(BOOL)MeetsWithScores;
+
 @end

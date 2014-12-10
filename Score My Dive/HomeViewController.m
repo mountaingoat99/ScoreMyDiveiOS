@@ -7,6 +7,9 @@
 //
 
 #import "HomeViewController.h"
+#import "JudgeScores.h"
+#import "Meet.h"
+#import "Diver.h"
 
 @interface HomeViewController ()
 
@@ -49,6 +52,55 @@
     
 }
 
-//TODO: need to add a way to make sure the user cannot go into the reports, and detailed scoring screens until after data has been entered
+- (IBAction)btnReportClick:(id)sender {
+    
+    BOOL check;
+    JudgeScores *scores = [[JudgeScores alloc] init];
+    
+    check = [scores MeetsWithScores];
+    
+    if (check) {
+        
+        [self performSegueWithIdentifier:@"idSegueHomeToReports" sender:self];
+        
+    } else {
+        
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                      message:@"There are no meets with scores yet"
+                                                     delegate:nil
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+      [error show];
+      [error reloadInputViews];
+        
+    }
+}
 
+- (IBAction)btnDetailedScoringClick:(id)sender {
+    
+    NSArray *meets;
+    NSArray *divers;
+    
+    Meet *meet = [[Meet alloc] init];
+    Diver *diver = [[Diver alloc] init];
+    
+    meets = [meet GetAllMeets];
+    divers = [diver GetAllDivers];
+    
+    if (meets.count > 0 && divers.count > 0) {
+        
+        [self performSegueWithIdentifier:@"idSegueHomeToChooseMeet" sender:self];
+        
+    } else {
+        
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                        message:@"Add at least one meet and one diver to go here."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
+        
+    }
+}
 @end

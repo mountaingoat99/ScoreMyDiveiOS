@@ -12,15 +12,16 @@
 #import "DiveTotal.h"
 #import "DiverBoardSize.h"
 #import "DiveListEnter.h"
+#import "Results.h"
 
 @interface ChooseDiver ()
 
 @property (nonatomic, strong)NSArray *diverArray;
-
 @property (nonatomic, strong) UIPickerView *divePicker;
 
 -(void)loadSpinnerData;
 -(void)getMeetName;
+-(void)checkForPreviousMeetInfo;
 
 @end
 
@@ -162,6 +163,8 @@
     [self.txtChooseDiver resignFirstResponder];
     self.diverRecordID = [[self.diverArray [row] objectAtIndex:0] intValue];
     
+    [self checkForPreviousMeetInfo];
+    
 }
 
 //segmented control methods
@@ -233,6 +236,30 @@
     
     Meet *meetName = [[Meet alloc] init];
     self.lblMeetName.text = [meetName GetMeetName:self.meetRecordID];
+    
+}
+
+-(void)checkForPreviousMeetInfo {
+    
+    NSArray *valid;
+    
+    Results *results = [[Results alloc] init];
+    
+    valid = [results GetResultObject:self.meetRecordID DiverId:self.diverRecordID];
+    
+    if (valid != nil) {
+        
+        [self.SCBoardSize setHidden:YES];
+        [self.SCDiveTotals setHidden:YES];
+        
+    } else {
+        
+        // hide button and labels until a diver is choosen and has meet records
+        [self.btnResetDiver setHidden:YES];
+        [self.lblDiveTotal setHidden:YES];
+        [self.lblBoardSize setHidden:YES];
+        
+    }
     
 }
 

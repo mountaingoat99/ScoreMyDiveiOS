@@ -14,6 +14,7 @@
 @property (nonatomic, strong) DBManager *dbManager;
 
 -(NSNumber*)calcTotal:(NSNumber*)oneJudge TwoJudge:(NSNumber*)twoJudge ThreeJudge:(NSNumber*)threeJudge FourJudge:(NSNumber*)fourJudge FiveJudge:(NSNumber*)fiveJudge SixJudge:(NSNumber*)SixJudge SevenJudge:(NSNumber*)sevenJudge;
+-(NSArray*)GetAllJudgeScores;
 
 @end
 
@@ -205,6 +206,41 @@
     
 }
 
+-(BOOL)MeetsWithScores {
+    
+    NSArray *check;
+    
+    check = [self GetAllJudgeScores];
+    
+    if (check.count > 0) {
+        
+        int count = check.count;
+        
+        for (int index = 0; index < count; index++) {
+            
+            NSString *diveNumberString = [[NSString alloc] initWithString:[[check objectAtIndex:index] objectAtIndex:4]];
+            
+            _diveNumber = [NSNumber numberWithDouble:[diveNumberString doubleValue]];
+            
+            if (_diveNumber > 0) {
+                
+                return true;
+                
+            } else {
+                
+                return false;
+                
+            }
+        }
+        
+    } else {
+        
+        return false;
+    }
+    
+    return false;
+}
+
 #pragma private methods
 
 -(NSNumber*)calcTotal:(NSNumber*)oneJudge TwoJudge:(NSNumber*)twoJudge ThreeJudge:(NSNumber*)threeJudge FourJudge:(NSNumber*)fourJudge FiveJudge:(NSNumber*)fiveJudge SixJudge:(NSNumber*)SixJudge SevenJudge:(NSNumber*)sevenJudge {
@@ -217,6 +253,19 @@
     
     return finalTotal = [NSNumber numberWithDouble:total];
     
+}
+
+-(NSArray*)GetAllJudgeScores {
+    
+    NSArray *scores;
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select * from judges_scores"];
+    
+    scores = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return scores;
 }
 
 @end
