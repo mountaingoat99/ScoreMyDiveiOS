@@ -13,6 +13,7 @@
 #import "DiverBoardSize.h"
 #import "DiveCategory.h"
 #import "DiveTypes.h"
+#import "DiveNumber.h"
 
 @interface DiveListEnter ()
 
@@ -24,9 +25,11 @@
 -(void)loadGroupPicker;
 -(void)loadDivePicker;
 -(void)fillText;
+-(void)fillDiveNumber;
 -(void)calcDiveDD;
 -(void)makeGroupPicker;
 -(void)makeDivePicker;
+-(void)hideInitialControls;
 
 @end
 
@@ -37,8 +40,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self loadGroupPicker];
     [self fillText];
+    
+    [self loadGroupPicker];
     
     [self makeGroupPicker];
     
@@ -89,9 +93,8 @@
         
     }
     
-    // hide the scrollView until there are dives in the list
-    //TODO: enable scroll view only when it is bigger than screen
-    //[self.scrollView setHidden:YES];
+    // lets hide some controls
+    [self hideInitialControls];
     
 }
 
@@ -253,12 +256,59 @@
 
 -(void)fillText {
     
+    // meet info
+    Meet *meet = [[Meet alloc] init];
+    meet = [self.meetInfo objectAtIndex:0];
+    self.lblMeetName.text = meet.meetName;
     
+    // diver info
+    Diver *diver = [[Diver alloc] init];
+    diver = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:0];
+    self.lblDiverName.text = diver.Name;
     
+    [self fillDiveNumber];
+    
+}
+
+-(void)fillDiveNumber {
+    
+    NSString *diveNum = @"Dive ";
+    
+    DiveNumber *number = [[DiveNumber alloc] init];
+    number = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:3];
+    diveNum = [diveNum stringByAppendingString:[number.number stringValue]];
+    self.lblDiveNumber.text = diveNum;
 }
 
 // call this from the load event?
 -(void)calcDiveDD {
+    
+}
+
+-(void)hideInitialControls {
+    
+    [self.lblDive1 setHidden:YES];
+    [self.lblDive2 setHidden:YES];
+    [self.lblDive3 setHidden:YES];
+    [self.lblDive4 setHidden:YES];
+    [self.lblDive5 setHidden:YES];
+    [self.lblDive6 setHidden:YES];
+    [self.lblDive7 setHidden:YES];
+    [self.lblDive8 setHidden:YES];
+    [self.lblDive9 setHidden:YES];
+    [self.lblDive10 setHidden:YES];
+    [self.lblDive11 setHidden:YES];
+    [self.lblDive1text setHidden:YES];
+    [self.lblDive2text setHidden:YES];
+    [self.lblDive3text setHidden:YES];
+    [self.lblDive4text setHidden:YES];
+    [self.lblDive5text setHidden:YES];
+    [self.lblDive6text setHidden:YES];
+    [self.lblDive7text setHidden:YES];
+    [self.lblDive8text setHidden:YES];
+    [self.lblDive9text setHidden:YES];
+    [self.lblDive10text setHidden:YES];
+    [self.lblDive11text setHidden:YES];
     
 }
 

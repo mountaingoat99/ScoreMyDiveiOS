@@ -16,7 +16,7 @@
 @property (nonatomic, copy) NSNumber *number;
 @property (nonatomic, copy) NSNumber *boardSize;
 
--(BOOL)CreateDiveNumber:(int)meetid diverid:(int)diverid number:(NSNumber*)number boardsize:(NSNumber*)boardsize;
+-(BOOL)CreateDiveNumber:(int)meetid diverid:(int)diverid number:(NSNumber*)number boardsize:(double)boardsize;
 
 -(NSNumber*)WhatDiveNumber:(int)meetid diverid:(int)diverid;
 

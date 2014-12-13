@@ -9,7 +9,12 @@
 #import "ChooseDiver.h"
 #import "Diver.h"
 #import "Meet.h"
+#import "MeetCollection.h"
 #import "DiveTotal.h"
+#import "DiveNumber.h"
+#import "DiveList.h"
+#import "JudgeScores.h"
+#import "Judges.h"
 #import "DiverBoardSize.h"
 #import "DiveListEnter.h"
 #import "Results.h"
@@ -21,7 +26,11 @@
 
 -(void)loadSpinnerData;
 -(void)getMeetName;
--(void)checkForPreviousMeetInfo;
+-(BOOL)PreviousMeetInfo;
+-(void)HideControls;
+-(void)writeNewDiveCollection;
+-(void)GetCollectionofMeetInfo;
+-(void)DeleteAllDiverMeetInfo;
 
 @end
 
@@ -31,6 +40,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.diveTotalID = 6;
+    self.boardSize1ID = 1;
     
     [self getMeetName];
     
@@ -113,8 +125,10 @@
     if([segue.identifier isEqualToString:@"idSegueDiveList"]) {
         
         DiveListEnter *diver = [segue destinationViewController];
-        diver.meetRecordID = self.meetRecordID;
-        diver.diverRecordID = self.diverRecordID;
+        // here we will just send a collection instead of the individual items
+        diver.meetInfo = self.meetInfo;
+        //diver.meetRecordID = self.meetRecordID;
+        //diver.diverRecordID = self.diverRecordID;
     }
 }
 
@@ -153,6 +167,10 @@
     // assign the first item in array to text box right away, so user doesn't have to
     self.txtChooseDiver.text = [self.diverArray [row] objectAtIndex:1];
     self.diverRecordID = [[self.diverArray [row] objectAtIndex:0] intValue];
+    
+    //call the method to check if a driver has been assigned to a meet and hid controls
+    [self HideControls];
+    
     return [self.diverArray[row]objectAtIndex:1];
     
 }
@@ -163,7 +181,9 @@
     [self.txtChooseDiver resignFirstResponder];
     self.diverRecordID = [[self.diverArray [row] objectAtIndex:0] intValue];
     
-    [self checkForPreviousMeetInfo];
+    //call the method to check if a driver has been assigned to a meet and hid controls
+    [self HideControls];
+    
     
 }
 
@@ -204,20 +224,60 @@
 //button methods
 - (IBAction)EnterListClick:(id)sender {
     
-    DiveTotal *total = [[DiveTotal alloc] init];
-    [total CreateDiveTotal:self.meetRecordID DiverID:self.diverRecordID Total:self.diveTotalID];
+    BOOL previousInfo = [self PreviousMeetInfo];
     
-    DiverBoardSize *board = [[DiverBoardSize alloc] init];
-    [board CreateBoardSize:self.meetRecordID DiverID:self.diverRecordID Total:self.boardSize1ID TotalBoards:1];
+    if (!previousInfo) {
+        
+        [self writeNewDiveCollection];
+    }
     
-    //MeetCollection *meetsInfo = [[MeetCollection alloc] init];
-    //[meetsInfo GetMeetCollection:self.meetRecordID];
+    [self GetCollectionofMeetInfo];
+    
 }
 
 - (IBAction)EnterScoresClick:(id)sender {
+    
+    BOOL previousInfo = [self PreviousMeetInfo];
+    
+    if (!previousInfo) {
+        
+        [self writeNewDiveCollection];
+    }
+    
+    [self GetCollectionofMeetInfo];
+    
 }
 
 - (IBAction)ResetDiverClick:(id)sender {
+    
+    // updated alertController for iOS 8
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:@"Be warned, this remove all diver info from a meet, including scores and dive lists."
+                                          message:nil
+                                          preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:@"Cancel"
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       NSLog(@"Cancel Action");
+                                   }];
+    
+    UIAlertAction *okAction = [UIAlertAction
+                               actionWithTitle:@"OK"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction *action)
+                               {
+                                   NSLog(@"OK Action");
+                                   [self DeleteAllDiverMeetInfo];
+                               }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:okAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+
 }
 
 #pragma private methods
@@ -239,7 +299,7 @@
     
 }
 
--(void)checkForPreviousMeetInfo {
+-(BOOL)PreviousMeetInfo {
     
     NSArray *valid;
     
@@ -247,19 +307,115 @@
     
     valid = [results GetResultObject:self.meetRecordID DiverId:self.diverRecordID];
     
-    if (valid != nil) {
+    if (valid.count > 0) {
+        
+        return true;
+        
+    } else {
+        
+        return false;
+        
+    }
+}
+
+-(void)HideControls{
+    
+    BOOL previousInfo = false;
+    
+    previousInfo = [self PreviousMeetInfo];
+    
+    if (previousInfo) {
+        
+        [self GetCollectionofMeetInfo];
         
         [self.SCBoardSize setHidden:YES];
         [self.SCDiveTotals setHidden:YES];
+        [self.btnResetDiver setHidden:NO];
+        [self.lblDiveTotal setHidden:NO];
+        [self.lblBoardSize setHidden:NO];
+        
+        DiveTotal *total = [[DiveTotal alloc] init];
+        DiverBoardSize *bSize = [[DiverBoardSize alloc] init];
+        
+        total = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:2];
+        bSize = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:4];
+        
+        self.lblDiveTotal.text = [total.diveTotal stringValue];
+        self.lblBoardSize.text = [bSize.firstSize stringValue];
         
     } else {
         
         // hide button and labels until a diver is choosen and has meet records
+        [self.SCBoardSize setHidden:NO];
+        [self.SCDiveTotals setHidden:NO];
         [self.btnResetDiver setHidden:YES];
         [self.lblDiveTotal setHidden:YES];
         [self.lblBoardSize setHidden:YES];
         
     }
+    
+}
+
+-(void)writeNewDiveCollection {
+    
+    DiveList *list = [[DiveList alloc] init];
+    [list UpdateDiveList:self.meetRecordID diverid:self.diverRecordID listfilled:@0 noList:@0];
+    
+    DiveTotal *total = [[DiveTotal alloc] init];
+    [total CreateDiveTotal:self.meetRecordID DiverID:self.diverRecordID Total:self.diveTotalID];
+    
+    DiveNumber *number = [[DiveNumber alloc] init];
+    [number CreateDiveNumber:self.meetRecordID diverid:self.diverRecordID number:@1 boardsize:self.boardSize1ID];
+    
+    DiverBoardSize *board = [[DiverBoardSize alloc] init];
+    [board CreateBoardSize:self.meetRecordID DiverID:self.diverRecordID Total:self.boardSize1ID TotalBoards:1];
+    
+    JudgeScores *scores = [[JudgeScores alloc] init];
+    [scores CreateJudgeScores:self.meetRecordID diverid:self.diverRecordID boardsize:self.boardSize1ID divenumber:@0 divecategory:@"''" divetype:@"''" diveposition:@"''" failed:@"''" multiplier:@0 totalscore:@0 score1:@0 score2:@0 score3:@0 score4:@0 score5:@0 score6:@0 score7:@0];
+    
+    Results *result = [[Results alloc] init];
+    
+    [result CreateResult:self.meetRecordID DiverID:self.diverRecordID Dive1:@0 Dive2:@0 Dive3:@0 Dive4:@0 Dive5:@0 Dive6:@0 Dive7:@0 Dive8:@0 Dive9:@0 Dive10:@0 Dive11:@0 DiveScoreTotal:@0];
+    
+}
+
+-(void)GetCollectionofMeetInfo {
+    
+    MeetCollection *meetCollection = [[MeetCollection alloc] init];
+    
+    self.meetInfo = [meetCollection GetMeetAndDiverInfo:self.meetRecordID diverid:self.diverRecordID];
+    
+    // doing this to test and log that we get the correct data
+    Meet *testMeet = [[Meet alloc] init];
+    Judges *testJudges = [[Judges alloc] init];
+    
+    testMeet = [self.meetInfo objectAtIndex:0];
+    testJudges = [self.meetInfo objectAtIndex:1];
+    
+    // here we just want to let the log know we have the correct meet chosen
+    NSString *test = testMeet.meetID;
+    NSString *testName = testMeet.meetName;
+    NSString *testSchool = testMeet.schoolName;
+    NSString *testCity = testMeet.city;
+    NSString *testState = testMeet.state;
+    NSString *testDate = testMeet.date;
+    NSNumber *testJudgeTotal = testJudges.judgeTotal;
+    
+    NSLog(@"the meetid is %@", test);
+    NSLog(@"the meetname is %@", testName);
+    NSLog(@"the meetschool is %@", testSchool);
+    NSLog(@"the meetcity is %@", testCity);
+    NSLog(@"the meetstate is %@", testState);
+    NSLog(@"the meetdate is %@", testDate);
+    NSLog(@"the judgetotal is %@", testJudgeTotal);
+    
+}
+
+-(void)DeleteAllDiverMeetInfo {
+    
+    Diver *diver = [[Diver alloc] init];
+    
+    [diver RemoveDiverFromMeet:self.meetRecordID diverid:self.diverRecordID];
     
 }
 

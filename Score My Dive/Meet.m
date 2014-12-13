@@ -17,7 +17,9 @@
 
 @implementation Meet
 
--(BOOL)UpdateMeet:(int)mMeetid Name:(NSString*)mName School:(NSString*)mSchool City:(NSString*)mCity State:(NSString*)mState Date:(NSString*)mDate {
+-(int)UpdateMeet:(int)mMeetid Name:(NSString*)mName School:(NSString*)mSchool City:(NSString*)mCity State:(NSString*)mState Date:(NSString*)mDate {
+    
+    int lastInsertRecord;
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
@@ -35,10 +37,10 @@
     
     if(self.dbManager.affectedRows != 0) {
         NSLog(@"query was executed successfully. Affected Rows = %d", self.dbManager.affectedRows);
-        return true;
+        return lastInsertRecord = (int)self.dbManager.lastInsertedRowID;
     } else {
         NSLog(@"Could not execute query");
-        return  false;
+        return 0;
     }
 }
 

@@ -33,7 +33,7 @@
     
     NSString *result = [self CheckResults:meetid DiverID:diverid];
     
-    if ([result isEqualToString:nil]) {
+    if (result == nil) {
         query = [NSString stringWithFormat:@"insert into results(meet_id, diver_id, dive_1, dive_2, dive_3, dive_4, dive_5, dive_6, dive_7, dive_8, dive_9, dive_10, dive_11, total_score) values(%d, %d, %@, %@, %@, %@, %@, %@, %@, %@, %@, %@, %@, %@)", meetid, diverid, dive1, dive2, dive3, dive4, dive5, dive6, dive7, dive8, dive9, dive10, dive11, total];
     } else {
         query = [NSString stringWithFormat:@"update results set dive_1=%@, dive_2=%@, dive_3=%@, dive_4=%@, dive_5=%@, dive_6=%@, dive_7=%@, dive_8=%@, dive_9=%@, dive_10=%@, dive_11=%@, total_score=%@ where meet_id=%d and diver_id=%d", dive1, dive2, dive3, dive4, dive5, dive6, dive7, dive8, dive9, dive10, dive11, total, meetid, diverid];

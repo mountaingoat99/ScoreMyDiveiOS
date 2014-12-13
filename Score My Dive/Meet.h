@@ -17,7 +17,7 @@
 @property (nonatomic, copy) NSString *state;
 @property (nonatomic, copy) NSString *date;
 
--(BOOL)UpdateMeet:(int)mMeetId Name:(NSString*)mName School:(NSString*)mSchool City:(NSString*)mCity State:(NSString*)mState Date:(NSString*)mDate;
+-(int)UpdateMeet:(int)mMeetId Name:(NSString*)mName School:(NSString*)mSchool City:(NSString*)mCity State:(NSString*)mState Date:(NSString*)mDate;
 
 -(NSArray*)GetAllMeets;
 

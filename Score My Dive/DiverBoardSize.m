@@ -24,7 +24,7 @@
     NSString *query;
     
     if (totalboards == 1) {
-        query = [NSString stringWithFormat:@"insert into diver_board_size(meet_id, diver_id, first_board) values(%d, %d, %f)", meetid, diverid, size];
+        query = [NSString stringWithFormat:@"insert into diver_board_size(meet_id, diver_id, first_board, second_board, third_board) values(%d, %d, %f, %f, %f)", meetid, diverid, size, 0.0, 0.0];
     } else if (totalboards == 2) {
         query = [NSString stringWithFormat:@"update diver_board_size set second_board=%f where meet_id=%d and diver_id=%d", size, meetid, diverid];
     } else if (totalboards == 3) {

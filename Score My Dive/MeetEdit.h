@@ -23,13 +23,16 @@
 
 // edit record property
 @property (nonatomic) int recordIDToEdit;
+@property (nonatomic) NSNumber *judgeTotal;
 
 @property (weak, nonatomic) IBOutlet UITextField *txtMeetName;
 @property (weak, nonatomic) IBOutlet UITextField *txtSchool;
 @property (weak, nonatomic) IBOutlet UITextField *txtCity;
 @property (weak, nonatomic) IBOutlet UITextField *txtState;
 @property (strong, nonatomic) IBOutlet UITextField *txtDate;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *SCJudges;
 
 -(IBAction)saveInfo:(id)sender;
+- (IBAction)JudgesClick:(UISegmentedControl *)sender;
 
 @end

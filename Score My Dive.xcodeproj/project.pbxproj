@@ -13,6 +13,7 @@
 		263AC5CD1A030FD600846CB0 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263AC5CC1A030FD600846CB0 /* HomeViewController.m */; };
 		263AC5D51A030FD700846CB0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 263AC5D31A030FD700846CB0 /* LaunchScreen.xib */; };
 		263AC5E11A030FD700846CB0 /* Score_My_DiveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 263AC5E01A030FD700846CB0 /* Score_My_DiveTests.m */; };
+		26424DA91A3B37300061AC8E /* dive_dod.db in Resources */ = {isa = PBXBuildFile; fileRef = 26424DA81A3B37300061AC8E /* dive_dod.db */; };
 		2642AB6A1A32A2CD002E8DFA /* MeetCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2642AB691A32A2CD002E8DFA /* MeetCollection.m */; };
 		2651CF051A17D56E0050D587 /* QuickScoreEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2651CF041A17D56E0050D587 /* QuickScoreEdit.m */; };
 		267643E61A218DF000CD2CB1 /* ReportsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 267643E51A218DF000CD2CB1 /* ReportsViewController.m */; };
@@ -26,7 +27,6 @@
 		2691AE6C1A0691FB000ABD3B /* DiverDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2691AE6B1A0691FB000ABD3B /* DiverDetailsVC.m */; };
 		2691AE6F1A069898000ABD3B /* MeetDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2691AE6E1A069898000ABD3B /* MeetDetailsVC.m */; };
 		26A248F71A2299C400760F38 /* ChooseDiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A248F61A2299C400760F38 /* ChooseDiver.m */; };
-		26B010901A1EE7790017F484 /* dive_dod.db in Resources */ = {isa = PBXBuildFile; fileRef = 26B0108F1A1EE7790017F484 /* dive_dod.db */; };
 		26B1D05C1A3355CC00112692 /* DiverCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B1D05B1A3355CC00112692 /* DiverCollection.m */; };
 		26B88D231A12EF9600DBE909 /* MeetEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B88D221A12EF9600DBE909 /* MeetEdit.m */; };
 		26BE234A1A10275A00E123D0 /* QuickScores.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE233D1A10275A00E123D0 /* QuickScores.m */; };
@@ -77,6 +77,7 @@
 		263AC5DA1A030FD700846CB0 /* Score My DiveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Score My DiveTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		263AC5DF1A030FD700846CB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		263AC5E01A030FD700846CB0 /* Score_My_DiveTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Score_My_DiveTests.m; sourceTree = "<group>"; };
+		26424DA81A3B37300061AC8E /* dive_dod.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dive_dod.db; sourceTree = "<group>"; };
 		2642AB681A32A2CD002E8DFA /* MeetCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetCollection.h; sourceTree = "<group>"; };
 		2642AB691A32A2CD002E8DFA /* MeetCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetCollection.m; sourceTree = "<group>"; };
 		2651CF031A17D56E0050D587 /* QuickScoreEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickScoreEdit.h; sourceTree = "<group>"; };
@@ -103,7 +104,6 @@
 		2691AE6E1A069898000ABD3B /* MeetDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetDetailsVC.m; sourceTree = "<group>"; };
 		26A248F51A2299C400760F38 /* ChooseDiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseDiver.h; sourceTree = "<group>"; };
 		26A248F61A2299C400760F38 /* ChooseDiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseDiver.m; sourceTree = "<group>"; };
-		26B0108F1A1EE7790017F484 /* dive_dod.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dive_dod.db; sourceTree = "<group>"; };
 		26B1D05A1A3355CC00112692 /* DiverCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiverCollection.h; sourceTree = "<group>"; };
 		26B1D05B1A3355CC00112692 /* DiverCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiverCollection.m; sourceTree = "<group>"; };
 		26B88D211A12EF9600DBE909 /* MeetEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetEdit.h; sourceTree = "<group>"; };
@@ -169,7 +169,7 @@
 		263AC5B81A030FD600846CB0 = {
 			isa = PBXGroup;
 			children = (
-				26B0108F1A1EE7790017F484 /* dive_dod.db */,
+				26424DA81A3B37300061AC8E /* dive_dod.db */,
 				26BE23901A1028B200E123D0 /* libsqlite3.dylib */,
 				26DF8AF61A043DAC00C273A6 /* QuartzCore.framework */,
 				263AC5C31A030FD600846CB0 /* Score My Dive */,
@@ -414,7 +414,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				26E419A11A047FDF00D79C05 /* AppIconBlack.xcassets in Resources */,
-				26B010901A1EE7790017F484 /* dive_dod.db in Resources */,
+				26424DA91A3B37300061AC8E /* dive_dod.db in Resources */,
 				26E419A31A0480C800D79C05 /* Images.xcassets in Resources */,
 				263AC5D51A030FD700846CB0 /* LaunchScreen.xib in Resources */,
 				26C07FCF1A05921700DF35B4 /* Main.storyboard in Resources */,

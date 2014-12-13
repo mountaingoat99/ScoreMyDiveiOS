@@ -12,6 +12,8 @@
 
 @property (nonatomic) int meetRecordID;
 @property (nonatomic) int diverRecordID;
+@property (nonatomic, strong) NSArray *meetInfo;
+
 
 @property (nonatomic) int diveGroupID;
 @property (nonatomic) int diveID;
@@ -36,7 +38,19 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblDive8;
 @property (weak, nonatomic) IBOutlet UILabel *lblDive9;
 @property (weak, nonatomic) IBOutlet UILabel *lblDive10;
-@property (weak, nonatomic) IBOutlet UILabel *lblbDive11;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive11;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblDive1text;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive2text;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive3text;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive4text;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive5text;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive6text;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive7text;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive8text;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive9text;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive10text;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive11text;
 
 - (IBAction)PositionIndexChanged:(UISegmentedControl *)sender;
 - (IBAction)btnEnterDive:(id)sender;

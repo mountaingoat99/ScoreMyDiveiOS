@@ -17,13 +17,13 @@
 
 @implementation DiveNumber
 
--(BOOL)CreateDiveNumber:(int)meetid diverid:(int)diverid number:(NSNumber*)number boardsize:(NSNumber*)boardsize {
+-(BOOL)CreateDiveNumber:(int)meetid diverid:(int)diverid number:(NSNumber*)number boardsize:(double)boardsize {
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query;
     
-    query = [NSString stringWithFormat:@"insert into dive_number(meet_id, diver_id, number, board_size) values(%d, %d, %@, %@)", meetid, diverid, number, boardsize];
+    query = [NSString stringWithFormat:@"insert into dive_number(meet_id, diver_id, number, board_size) values(%d, %d, %@, %f)", meetid, diverid, number, boardsize];
     
     [self.dbManager executeQuery:query];
     

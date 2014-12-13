@@ -14,10 +14,12 @@
 @interface ChooseMeet ()
 
 @property (nonatomic, strong)NSArray *meetArray;
+@property (nonatomic, strong) NSNumber *judgeTotal;
 
 @property (nonatomic, strong) UIPickerView *meetPicker;
 
 -(void)loadData;
+-(void)ShowJudgeTotal;
 
 @end
 
@@ -28,8 +30,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.judgeTotal = @2;
-    
     [self loadData];
     
     [self makeMeetPicker];
@@ -37,38 +37,9 @@
     self.txtChooseMeet.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtChooseMeet.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.txtChooseMeet.layer.masksToBounds = NO;
-    //self.txtChooseMeet.layer.shadowRadius = 4.0f;
     self.txtChooseMeet.layer.shadowOpacity = .3;
     self.txtChooseMeet.keyboardAppearance = UIKeyboardAppearanceDark;
     
-    self.SCJudges.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.SCJudges.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.SCJudges.layer.masksToBounds = NO;
-    //self.SCJudges.layer.shadowRadius = 4.0f;
-    self.SCJudges.layer.shadowOpacity = .7;
-
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        
-        // color attributes for the segmented controls in iphone
-        NSDictionary *segmentedControlTextAttributes = @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont systemFontOfSize:10.0f]};
-        
-        [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributes forState:UIControlStateNormal];
-        [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributes forState:UIControlStateHighlighted];
-        [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributes forState:UIControlStateSelected];
-        
-        
-    } else {
-        
-        // color and size attributes for the SC in iPad
-        NSDictionary *segmentedControlTextAttributesiPad = @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont systemFontOfSize:14.0f]};
-        
-        [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributesiPad forState:UIControlStateNormal];
-        [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributesiPad forState:UIControlStateHighlighted];
-        [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributesiPad forState:UIControlStateSelected];
-        
-    }
-    
-    [self.SCJudges setHidden:YES];
     [self.lblJudges setHidden:YES];
 }
 
@@ -103,10 +74,6 @@
     
     if (self.txtChooseMeet.text.length != 0) {
         
-        Judges *judges = [[Judges alloc] init];
-        [judges UpdateJudges:self.meetRecordID Total:self.judgeTotal];
-        
-        
         [self performSegueWithIdentifier:@"idMeetSegue" sender:self];
     } else {
         
@@ -117,24 +84,6 @@
                                               otherButtonTitles:nil];
         [error show];
         [error reloadInputViews];
-    }
-}
-
-- (IBAction)JudgesClick:(UISegmentedControl *)sender {
-    
-    switch (self.SCJudges.selectedSegmentIndex) {
-        case 0:
-            self.judgeTotal = @2;
-            break;
-        case 1:
-            self.judgeTotal = @3;
-            break;
-        case 2:
-            self.judgeTotal = @5;
-            break;
-        case 3:
-            self.judgeTotal = @7;
-            break;
     }
 }
 
@@ -167,10 +116,9 @@
     
     // set the visiblity of the judge controls once a row is shown
     [self.lblJudges setHidden:NO];
-    [self.SCJudges setHidden:NO];
     
     // update the control
-    [self updateJudgeControls];
+    [self ShowJudgeTotal];
     
     return [self.meetArray[row]objectAtIndex:1];
    
@@ -181,10 +129,11 @@
     // sets the text box for the choosen meet
     self.txtChooseMeet.text = [self.meetArray [row] objectAtIndex:1];
     
-    // update the judge control again
-    [self updateJudgeControls];
     [self.txtChooseMeet resignFirstResponder];
     self.meetRecordID = [[self.meetArray [row] objectAtIndex:0] intValue];
+    
+    // update the judge control again
+    [self ShowJudgeTotal];
    
 }
 
@@ -201,31 +150,26 @@
     
 }
 
--(void)updateJudgeControls {
+-(void)ShowJudgeTotal {
     
     Judges *judges = [[Judges alloc] init];
     self.judgeTotal = [judges getJudges:self.meetRecordID];
     
     if ([self.judgeTotal  isEqualToNumber: @2]) {
-        self.SCJudges.selectedSegmentIndex = 0;
+        self.lblJudges.text = @"2 Judges";
         NSLog(@"Judges total is %@", self.judgeTotal);
-        NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
     } else if ([self.judgeTotal isEqualToNumber:@3]) {
-        self.SCJudges.selectedSegmentIndex = 1;
+        self.lblJudges.text = @"3 Judges";
         NSLog(@"Judges total is %@", self.judgeTotal);
-        NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
     } else if ([self.judgeTotal  isEqualToNumber: @5]) {
-        self.SCJudges.selectedSegmentIndex = 3;
+        self.lblJudges.text = @"4 Judges";
         NSLog(@"Judges total is %@", self.judgeTotal);
-        NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
     } else if ([self.judgeTotal  isEqualToNumber: @7]) {
-        self.SCJudges.selectedSegmentIndex = 4;
+        self.lblJudges.text = @"7 Judges";
         NSLog(@"Judges total is %@", self.judgeTotal);
-        NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
     } else {
-        self.SCJudges.selectedSegmentIndex = 0;
+        self.lblJudges.text = @"2 Judges";
         NSLog(@"Judges total is %@", self.judgeTotal);
-        NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
         self.judgeTotal = @2;
     }
     

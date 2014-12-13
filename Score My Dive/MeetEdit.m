@@ -8,11 +8,13 @@
 
 #import "MeetEdit.h"
 #import "Meet.h"
+#import "Judges.h"
 
 @interface MeetEdit ()
 
 // private method to load the edited data
 -(void)loadInfoToEdit;
+-(void)updateJudgeControls;
 
 @end
 
@@ -22,6 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.judgeTotal = @2;
     
     // drop shadow for the text boxes
     self.txtMeetName.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -64,8 +68,37 @@
     self.txtState.delegate = self;
     self.txtDate.delegate = self;
     
+    self.SCJudges.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.SCJudges.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.SCJudges.layer.masksToBounds = NO;
+    //self.SCJudges.layer.shadowRadius = 4.0f;
+    self.SCJudges.layer.shadowOpacity = .7;
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        
+        // color attributes for the segmented controls in iphone
+        NSDictionary *segmentedControlTextAttributes = @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont systemFontOfSize:10.0f]};
+        
+        [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributes forState:UIControlStateNormal];
+        [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributes forState:UIControlStateHighlighted];
+        [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributes forState:UIControlStateSelected];
+        
+        
+    } else {
+        
+        // color and size attributes for the SC in iPad
+        NSDictionary *segmentedControlTextAttributesiPad = @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont systemFontOfSize:14.0f]};
+        
+        [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributesiPad forState:UIControlStateNormal];
+        [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributesiPad forState:UIControlStateHighlighted];
+        [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributesiPad forState:UIControlStateSelected];
+        
+    }
+    
     if (self.recordIDToEdit != -1) {
+        
         [self loadInfoToEdit];
+        
     }
     
     // initilize the date to today
@@ -124,9 +157,28 @@
         
     } else {
         
+        int lastInsertRecord;
+        
         Meet *meet = [[Meet alloc] init];
         
-        if ([meet UpdateMeet:self.recordIDToEdit Name:self.txtMeetName.text School:self.txtSchool.text City:self.txtCity.text State:self.txtSchool.text Date:self.txtDate.text]) {
+        lastInsertRecord = [meet UpdateMeet:self.recordIDToEdit Name:self.txtMeetName.text School:self.txtSchool.text City:self.txtCity.text State:self.txtSchool.text Date:self.txtDate.text];
+        
+        if (lastInsertRecord > 0) {
+            
+            Judges *judges = [[Judges alloc] init];
+            [judges UpdateJudges:lastInsertRecord Total:self.judgeTotal];
+            
+            //inform the delegate that the edit was finished and update previous
+            //viewcontroller table rows
+            [self.delegate editInfoWasFinished];
+            
+            // pop the view controller
+            [self dismissViewControllerAnimated:YES completion:nil];
+        
+        } else if (self.recordIDToEdit != 0) {
+            
+            Judges *judges = [[Judges alloc] init];
+            [judges UpdateJudges:self.recordIDToEdit Total:self.judgeTotal];
             
             //inform the delegate that the edit was finished and update previous
             //viewcontroller table rows
@@ -135,9 +187,25 @@
             // pop the view controller
             [self dismissViewControllerAnimated:YES completion:nil];
             
-        } else {
-            //TODO: figure out something to do here
         }
+    }
+}
+
+- (IBAction)JudgesClick:(UISegmentedControl *)sender {
+    
+    switch (self.SCJudges.selectedSegmentIndex) {
+        case 0:
+            self.judgeTotal = @2;
+            break;
+        case 1:
+            self.judgeTotal = @3;
+            break;
+        case 2:
+            self.judgeTotal = @5;
+            break;
+        case 3:
+            self.judgeTotal = @7;
+            break;
     }
 }
 
@@ -157,6 +225,9 @@
     self.txtState.text = [[meetArray objectAtIndex:0] objectAtIndex:4];
     self.txtDate.text = [[meetArray objectAtIndex:0] objectAtIndex:5];
     
+    // update the control
+    [self updateJudgeControls];
+    
 }
 
 //updates the dateText field with values from the date picker
@@ -166,6 +237,36 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateStyle = NSDateFormatterLongStyle;
     self.txtDate.text = [formatter stringFromDate:sender.date];
+}
+
+-(void)updateJudgeControls {
+    
+    Judges *judges = [[Judges alloc] init];
+    self.judgeTotal = [judges getJudges:self.recordIDToEdit];
+    
+    if ([self.judgeTotal  isEqualToNumber: @2]) {
+        self.SCJudges.selectedSegmentIndex = 0;
+        NSLog(@"Judges total is %@", self.judgeTotal);
+        NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
+    } else if ([self.judgeTotal isEqualToNumber:@3]) {
+        self.SCJudges.selectedSegmentIndex = 1;
+        NSLog(@"Judges total is %@", self.judgeTotal);
+        NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
+    } else if ([self.judgeTotal  isEqualToNumber: @5]) {
+        self.SCJudges.selectedSegmentIndex = 2;
+        NSLog(@"Judges total is %@", self.judgeTotal);
+        NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
+    } else if ([self.judgeTotal  isEqualToNumber: @7]) {
+        self.SCJudges.selectedSegmentIndex = 3;
+        NSLog(@"Judges total is %@", self.judgeTotal);
+        NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
+    } else {
+        self.SCJudges.selectedSegmentIndex = 0;
+        NSLog(@"Judges total is %@", self.judgeTotal);
+        NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
+        self.judgeTotal = @2;
+    }
+    
 }
 
 @end
