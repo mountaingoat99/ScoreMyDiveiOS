@@ -14,6 +14,7 @@
 #import "DiveCategory.h"
 #import "DiveTypes.h"
 #import "DiveNumber.h"
+#import "JudgeScores.h"
 
 @interface DiveListEnter ()
 
@@ -21,11 +22,15 @@
 @property (nonatomic, strong) NSArray *diveArray;
 @property (nonatomic, strong) UIPickerView *groupPicker;
 @property (nonatomic, strong) UIPickerView *divePicker;
+@property (nonatomic, strong) NSNumber *onDiveNumber;
+@property (nonatomic, strong) NSNumber *boardSize;
 
 -(void)loadGroupPicker;
 -(void)loadDivePicker;
 -(void)fillText;
+-(void)DiverBoardSize;
 -(void)fillDiveNumber;
+-(void)fillDiveInfo;
 -(void)calcDiveDD;
 -(void)makeGroupPicker;
 -(void)makeDivePicker;
@@ -41,6 +46,10 @@
     [super viewDidLoad];
     
     [self fillText];
+    
+    [self fillDiveNumber];
+    
+    [self DiverBoardSize];
     
     [self loadGroupPicker];
     
@@ -170,19 +179,18 @@
     
     if (pickerView == self.groupPicker) {
         
-        // assign the first item in array to text box right away, so user doesn't have to
         self.txtDiveGroup.text = [self.diveGroupArray [row] objectAtIndex:1];
         self.diveGroupID = [[self.diveGroupArray [row] objectAtIndex:0] intValue];
-        return [self.diveGroupArray[row]objectAtIndex:1];
         
-        // here we need to call the loadDivePicker when a group gets choosen
+        [self loadDivePicker];
+        return [self.diveGroupArray[row]objectAtIndex:1];
         
     } else {
         
         // assign the first item in array to text box right away, so user doesn't have to
-        self.txtDive.text = [self.diveArray [row] objectAtIndex:1];
+        self.txtDive.text = [self.diveArray [row] objectAtIndex:3];
         self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
-        return [self.diveArray[row]objectAtIndex:1];
+        return [self.diveArray[row]objectAtIndex:3];
     }
 }
 
@@ -192,13 +200,16 @@
         
         self.txtDiveGroup.text = [self.diveGroupArray [row] objectAtIndex:1];
         [self.txtDiveGroup resignFirstResponder];
-        self.diveGroupID = [[self.diveGroupArray [row] objectAtIndex:0] intValue];\
+        self.diveGroupID = [[self.diveGroupArray [row] objectAtIndex:0] intValue];
         
-        // here we need to call the loadDivePicker when a group gets choosen
-
+        //when a different dive cat is chosen take out the entry in the txtDive
+        self.txtDive.text = @"";
+        
+        [self loadDivePicker];
+        
     } else {
         
-        self.txtDive.text = [self.diveArray [row] objectAtIndex:1];
+        self.txtDive.text = [self.diveArray [row] objectAtIndex:3];
         [self.txtDive resignFirstResponder];
         self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
         
@@ -238,8 +249,18 @@
         self.diveGroupArray = nil;
     }
     
-    // call the class method to fill the array
-    // we will need board size id from the previous page
+    if ([self.boardSize  isEqual: @1.0] || [self.boardSize  isEqual: @3.0]) {
+        
+        DiveCategory *cat = [[DiveCategory alloc] init];
+        self.diveGroupArray = [cat GetSpringboardCategories];
+        
+    }
+    else {
+        
+        DiveCategory *cat = [[DiveCategory alloc] init];
+        self.diveGroupArray = [cat GetPlatformCategories];
+        
+    }
     
 }
 
@@ -249,8 +270,11 @@
         self.diveArray = nil;
     }
     
-    // call the class method to fill the array
-    // might need an identityID sent here from the picker choice
+    DiveTypes *types = [[DiveTypes alloc] init];
+    
+    self.diveArray = [types LoadDivePicker:self.diveGroupID BoardSize:self.boardSize];
+    
+    [self makeDivePicker];
     
 }
 
@@ -266,7 +290,15 @@
     diver = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:0];
     self.lblDiverName.text = diver.Name;
     
-    [self fillDiveNumber];
+}
+
+-(void)DiverBoardSize {
+    
+    DiverBoardSize *board = [[DiverBoardSize alloc] init];
+    
+    board = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:4];
+    
+    self.boardSize = board.firstSize;
     
 }
 
@@ -276,6 +308,8 @@
     
     DiveNumber *number = [[DiveNumber alloc] init];
     number = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:3];
+    // here we will set the value for the whole class to use
+    self.onDiveNumber = number.number;
     diveNum = [diveNum stringByAppendingString:[number.number stringValue]];
     self.lblDiveNumber.text = diveNum;
 }
@@ -283,6 +317,88 @@
 // call this from the load event?
 -(void)calcDiveDD {
     
+}
+
+-(void)fillDiveInfo {
+    
+    JudgeScores *diveInfo = [[JudgeScores alloc] init];
+    
+    if ((int)self.onDiveNumber >= 1) {
+        self.lblDive1.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:self.onDiveNumber];
+        [self.lblDive1 setHidden:NO];
+        [self.lblDive1text setHidden:NO];
+        
+    }
+    
+    if ((int)self.onDiveNumber >= 2) {
+        self.lblDive2.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:self.onDiveNumber];
+        [self.lblDive2 setHidden:NO];
+        [self.lblDive2text setHidden:NO];
+        
+    }
+    
+    if ((int)self.onDiveNumber >= 3) {
+        self.lblDive3.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:self.onDiveNumber];
+        [self.lblDive3 setHidden:NO];
+        [self.lblDive3text setHidden:NO];
+        
+    }
+    
+    if ((int)self.onDiveNumber >= 4) {
+        self.lblDive4.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:self.onDiveNumber];
+        [self.lblDive4 setHidden:NO];
+        [self.lblDive4text setHidden:NO];
+        
+    }
+    
+    if ((int)self.onDiveNumber >= 5) {
+        self.lblDive5.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:self.onDiveNumber];
+        [self.lblDive5 setHidden:NO];
+        [self.lblDive5text setHidden:NO];
+        
+    }
+    
+    if ((int)self.onDiveNumber >= 6) {
+        self.lblDive6.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:self.onDiveNumber];
+        [self.lblDive6 setHidden:NO];
+        [self.lblDive6text setHidden:NO];
+        
+    }
+    
+    if ((int)self.onDiveNumber >= 7) {
+        self.lblDive7.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:self.onDiveNumber];
+        [self.lblDive7 setHidden:NO];
+        [self.lblDive7text setHidden:NO];
+        
+    }
+    
+    if ((int)self.onDiveNumber >= 8) {
+        self.lblDive8.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:self.onDiveNumber];
+        [self.lblDive8 setHidden:NO];
+        [self.lblDive8text setHidden:NO];
+        
+    }
+    
+    if ((int)self.onDiveNumber >= 9) {
+        self.lblDive9.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:self.onDiveNumber];
+        [self.lblDive9 setHidden:NO];
+        [self.lblDive9text setHidden:NO];
+        
+    }
+    
+    if ((int)self.onDiveNumber >= 10) {
+        self.lblDive10.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:self.onDiveNumber];
+        [self.lblDive10 setHidden:NO];
+        [self.lblDive10text setHidden:NO];
+        
+    }
+    
+    if ((int)self.onDiveNumber >= 11) {
+        self.lblDive11.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:self.onDiveNumber];
+        [self.lblDive11 setHidden:NO];
+        [self.lblDive11text setHidden:NO];
+        
+    }
 }
 
 -(void)hideInitialControls {

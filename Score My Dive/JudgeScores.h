@@ -43,7 +43,7 @@
 
 -(NSArray*)GetDiveNumbers:(int)meetid diverid:(int)diverid;
 
--(NSArray*)GetCatAndName:(int)meetid diverid:(int)diverid divenumber:(NSNumber*)divenumber;
+-(NSString*)GetCatAndName:(int)meetid diverid:(int)diverid divenumber:(NSNumber*)divenumber;
 
 -(void)UpdateJudgeScoreTypes:(int)meetid diverid:(int)diverid divecat:(NSString*)divecat divetype:(NSString*)divetype divepos:(NSString*)divepos multiplier:(NSNumber*)multiplier divenumber:(NSNumber*)divenumber;
 

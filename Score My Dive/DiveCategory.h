@@ -10,4 +10,8 @@
 
 @interface DiveCategory : NSObject
 
+-(NSArray*)GetSpringboardCategories;
+
+-(NSArray*)GetPlatformCategories;
+
 @end
