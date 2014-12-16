@@ -125,10 +125,10 @@
     if([segue.identifier isEqualToString:@"idSegueDiveList"]) {
         
         DiveListEnter *diver = [segue destinationViewController];
-        // here we will just send a collection instead of the individual items
+        // here we will just send a collection and the diver and meetid
         diver.meetInfo = self.meetInfo;
-        //diver.meetRecordID = self.meetRecordID;
-        //diver.diverRecordID = self.diverRecordID;
+        diver.meetRecordID = self.meetRecordID;
+        diver.diverRecordID = self.diverRecordID;
     }
 }
 
@@ -224,27 +224,52 @@
 //button methods
 - (IBAction)EnterListClick:(id)sender {
     
-    BOOL previousInfo = [self PreviousMeetInfo];
-    
-    if (!previousInfo) {
+    if (self.txtChooseDiver.text.length != 0) {
         
-        [self writeNewDiveCollection];
+        BOOL previousInfo = [self PreviousMeetInfo];
+        
+        if (!previousInfo) {
+            [self writeNewDiveCollection];
+        }
+        [self GetCollectionofMeetInfo];
+        
+        [self performSegueWithIdentifier:@"idSegueDiveList" sender:self];
+        
+    } else {
+        
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                        message:@"Please Pick a Diver"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
     }
-    
-    [self GetCollectionofMeetInfo];
-    
 }
 
 - (IBAction)EnterScoresClick:(id)sender {
     
-    BOOL previousInfo = [self PreviousMeetInfo];
-    
-    if (!previousInfo) {
+    if (self.txtChooseDiver.text.length != 0) {
         
-        [self writeNewDiveCollection];
+        BOOL previousInfo = [self PreviousMeetInfo];
+        
+        if (!previousInfo) {
+            [self writeNewDiveCollection];
+        }
+        [self GetCollectionofMeetInfo];
+        
+        [self performSegueWithIdentifier:@"" sender:self];  //TODO: put the new segue here*********************************************************************
+        
+    } else {
+        
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                        message:@"Please Pick a Diver"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
     }
-    
-    [self GetCollectionofMeetInfo];
     
 }
 
@@ -365,7 +390,7 @@
     [total CreateDiveTotal:self.meetRecordID DiverID:self.diverRecordID Total:self.diveTotalID];
     
     DiveNumber *number = [[DiveNumber alloc] init];
-    [number CreateDiveNumber:self.meetRecordID diverid:self.diverRecordID number:@1 boardsize:self.boardSize1ID];
+    [number CreateDiveNumber:self.meetRecordID diverid:self.diverRecordID number:@0 boardsize:self.boardSize1ID];
     
     DiverBoardSize *board = [[DiverBoardSize alloc] init];
     [board CreateBoardSize:self.meetRecordID DiverID:self.diverRecordID Total:self.boardSize1ID TotalBoards:1];

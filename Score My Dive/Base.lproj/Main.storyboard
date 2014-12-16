@@ -5170,7 +5170,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nys-Jn-fQf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="54X-zD-crJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1221" y="1497"/>
+            <point key="canvasLocation" x="1062" y="1499"/>
         </scene>
         <!--ChooseDiver-->
         <scene sceneID="pBj-w2-qU9">
@@ -5346,7 +5346,6 @@
                                 </variation>
                                 <connections>
                                     <action selector="EnterListClick:" destination="O1M-Zl-WrP" eventType="touchUpInside" id="GDd-ON-Hs6"/>
-                                    <segue destination="ptW-d7-ktO" kind="show" identifier="idSegueDiveList" id="YJd-b0-NcR"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dyn-XZ-qo0">
@@ -5719,6 +5718,7 @@
                         <outlet property="lblDiveTotal" destination="YTT-ed-3qz" id="YRL-qF-tGW"/>
                         <outlet property="lblMeetName" destination="VAZ-Z5-1q7" id="occ-rI-kNi"/>
                         <outlet property="txtChooseDiver" destination="I0i-tt-Zsr" id="7wP-qx-a7e"/>
+                        <segue destination="ptW-d7-ktO" kind="show" identifier="idSegueDiveList" id="dNx-uA-EZo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Y4-1Q-c7b" userLabel="First Responder" sceneMemberID="firstResponder"/>

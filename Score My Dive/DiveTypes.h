@@ -48,7 +48,7 @@
 // gets the id from the dive by dive name
 -(NSNumber*)GetDiveID:(NSString*)diveName DivePosition:(NSNumber*)diveposition BoardType:(NSNumber*)boardtype;
 
-// gets the dive dod
--(NSNumber*)getDiveDOD:(NSNumber*)diveid DivePosition:(NSNumber*)diveposition BoardType:(NSNumber*)boardtype;
+// gets the all the dive dods
+-(NSArray*)GetAllDiveDODs:(int)divecat DiveTypeId:(int)divetypeid BoardType:(NSNumber*)boardsize;
 
 @end

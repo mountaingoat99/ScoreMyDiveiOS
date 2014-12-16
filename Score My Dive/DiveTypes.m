@@ -13,6 +13,38 @@
 
 @property (nonatomic, strong) DBManager *dbManager;
 
+// springboard
+-(NSArray*)GetForwardOneSpringboardById:(int)diveId;
+-(NSArray*)GetForwardThreeSpringboardById:(int)diveId;
+-(NSArray*)GetBackOneSpringboardById:(int)diveId;
+-(NSArray*)GetBackThreeSpringboardById:(int)diveId;
+-(NSArray*)GetInwardOneSpringboardById:(int)diveId;
+-(NSArray*)GetInwardThreeSpringboardById:(int)diveId;
+-(NSArray*)GetReverseOneSpringboardById:(int)diveId;
+-(NSArray*)GetReverseThreeSpringboardById:(int)diveId;
+-(NSArray*)GetTwistOneSpringboardById:(int)diveId;
+-(NSArray*)GetTwistThreeSpringboardById:(int)diveId;
+
+// platform
+-(NSArray*)GetForwardFivePlatformById:(int)diveId;
+-(NSArray*)GetForwardSevenFivePlatformById:(int)diveId;
+-(NSArray*)GetForwardTenPlatformById:(int)diveId;
+-(NSArray*)GetBackFivePlatformById:(int)diveId;
+-(NSArray*)GetBackSevenFivePlatformById:(int)diveId;
+-(NSArray*)GetBackTenPlatformById:(int)diveId;
+-(NSArray*)GetInwardFivePlatformById:(int)diveId;
+-(NSArray*)GetInwardSevenFivePlatformById:(int)diveId;
+-(NSArray*)GetInwardTenPlatformById:(int)diveId;
+-(NSArray*)GetReverseFivePlatformById:(int)diveId;
+-(NSArray*)GetReverseSevenFivePlatformById:(int)diveId;
+-(NSArray*)GetReverseTenPlatformById:(int)diveId;
+-(NSArray*)GetTwistFivePlatformById:(int)diveId;
+-(NSArray*)GetTwistSevenFivePlatformById:(int)diveId;
+-(NSArray*)GetTwistTenPlatformById:(int)diveId;
+-(NSArray*)GetArmstandFivePlatformById:(int)diveId;
+-(NSArray*)GetArmstandSevenFivePlatformById:(int)diveId;
+-(NSArray*)GetArmstandTenPlatformById:(int)diveId;
+
 @end
 
 @implementation DiveTypes
@@ -511,12 +543,484 @@
 }
 
 // gets the dive dod
--(NSNumber*)getDiveDOD:(NSNumber*)diveid DivePosition:(NSNumber*)diveposition BoardType:(NSNumber*)boardtype {
+-(NSArray*)GetAllDiveDODs:(int)divecat DiveTypeId:(int)divetypeid BoardType:(NSNumber*)boardsize {
     
-    NSNumber* dod;
+    NSArray *diveTypes = [[NSArray alloc] init];
     
+    switch (divecat) {
+        case 1:
+            if ([boardsize isEqual: @1.0]) {
+                diveTypes = [self GetForwardOneSpringboardById:divetypeid];
+            } else if ([boardsize isEqual: @3.0]) {
+                diveTypes = [self GetForwardThreeSpringboardById:divetypeid];
+            } else if ([boardsize isEqual: @5.0]) {
+                diveTypes = [self GetForwardFivePlatformById:divetypeid];
+            } else if ([boardsize isEqual: @7.5]) {
+                diveTypes = [self GetForwardSevenFivePlatformById:divetypeid];
+            } else {
+                diveTypes = [self GetForwardTenPlatformById:divetypeid];
+            }
+            break;
+        case 2:
+            if ([boardsize isEqual: @1.0]) {
+                diveTypes = [self GetBackOneSpringboardById:divetypeid];
+            } else if ([boardsize isEqual: @3.0]) {
+                diveTypes = [self GetBackThreeSpringboardById:divetypeid];
+            } else if ([boardsize isEqual: @5.0]) {
+                diveTypes = [self GetBackFivePlatformById:divetypeid];
+            } else if ([boardsize isEqual: @7.5]) {
+                diveTypes = [self GetBackSevenFivePlatformById:divetypeid];
+            } else {
+                diveTypes = [self GetBackTenPlatformById:divetypeid];
+            }
+            break;
+        case 3:
+            if ([boardsize isEqual: @1.0]) {
+                diveTypes = [self GetReverseOneSpringboardById:divetypeid];
+            } else if ([boardsize isEqual: @3.0]) {
+                diveTypes = [self GetReverseThreeSpringboardById:divetypeid];
+            } else if ([boardsize isEqual: @5.0]) {
+                diveTypes = [self GetReverseFivePlatformById:divetypeid];
+            } else if ([boardsize isEqual: @7.5]) {
+                diveTypes = [self GetReverseSevenFivePlatformById:divetypeid];
+            } else {
+                diveTypes = [self GetReverseTenPlatformById:divetypeid];
+            }
+            break;
+        case 4:
+            if ([boardsize isEqual: @1.0]) {
+                diveTypes = [self GetInwardOneSpringboardById:divetypeid];
+            } else if ([boardsize isEqual: @3.0]) {
+                diveTypes = [self GetInwardThreeSpringboardById:divetypeid];
+            } else if ([boardsize isEqual: @5.0]) {
+                diveTypes = [self GetInwardFivePlatformById:divetypeid];
+            } else if ([boardsize isEqual: @7.5]) {
+                diveTypes = [self GetInwardSevenFivePlatformById:divetypeid];
+            } else {
+                diveTypes = [self GetInwardTenPlatformById:divetypeid];
+            }
+            break;
+        case 5:
+            if ([boardsize isEqual: @1.0]) {
+                diveTypes = [self GetTwistOneSpringboardById:divetypeid];
+            } else if ([boardsize isEqual: @3.0]) {
+                diveTypes = [self GetTwistThreeSpringboardById:divetypeid];
+            } else if ([boardsize isEqual: @5.0]) {
+                diveTypes = [self GetTwistFivePlatformById:divetypeid];
+            } else if ([boardsize isEqual: @7.5]) {
+                diveTypes = [self GetTwistSevenFivePlatformById:divetypeid];
+            } else {
+                diveTypes = [self GetTwistTenPlatformById:divetypeid];
+            }
+            break;
+        case 6:
+            if ([boardsize isEqual: @5.0]) {
+                diveTypes = [self GetArmstandFivePlatformById:divetypeid];
+            } else if ([boardsize isEqual: @7.5]) {
+                diveTypes = [self GetArmstandSevenFivePlatformById:divetypeid];
+            } else {
+                diveTypes = [self GetArmstandTenPlatformById:divetypeid];
+            }
+            break;
+    }
     
-    return dod;
+    return diveTypes;
+    
+}
+
+#pragma private methods
+
+// springboard
+-(NSArray*)GetForwardOneSpringboardById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select oneS, oneP, oneT, oneF from springboard_forward where one_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+
+-(NSArray*)GetForwardThreeSpringboardById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select threeS, threeP, threeT, threeF from springboard_forward where three_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+
+-(NSArray*)GetBackOneSpringboardById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select oneS, oneP, oneT, oneF from springboard_back where one_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+
+-(NSArray*)GetBackThreeSpringboardById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select threeS, threeP, threeT, threeF from springboard_back where three_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+
+-(NSArray*)GetInwardOneSpringboardById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select oneS, oneP, oneT, oneF from springboard_inward where one_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+
+-(NSArray*)GetInwardThreeSpringboardById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select threeS, threeP, threeT, threeF from springboard_inwardwhere three_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+
+-(NSArray*)GetReverseOneSpringboardById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select oneS, oneP, oneT, oneF from springboard_reverse where one_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+
+-(NSArray*)GetReverseThreeSpringboardById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select threeS, threeP, threeT, threeF from springboard_reverse where three_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+
+-(NSArray*)GetTwistOneSpringboardById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select oneS, oneP, oneT, oneF from springboard_twist where one_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+
+-(NSArray*)GetTwistThreeSpringboardById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select threeS, threeP, threeT, threeF from springboard_tewist where three_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+
+// platform
+-(NSArray*)GetForwardFivePlatformById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select fiveS, fiveP, fiveT, fiveF from platform_front where five_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+
+-(NSArray*)GetForwardSevenFivePlatformById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select seven_fiveS, seven_fiveP, seven_fiveT, seven_fiveF from platform_front where seven_five_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+
+-(NSArray*)GetForwardTenPlatformById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select tenS, tenP, tenT, tenF from platform_front where ten_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+
+-(NSArray*)GetBackFivePlatformById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select fiveS, fiveP, fiveT, fiveF from platform_back where five_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+
+-(NSArray*)GetBackSevenFivePlatformById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select seven_fiveS, seven_fiveP, seven_fiveT, seven_fiveF from platform_back where seven_five_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+
+-(NSArray*)GetBackTenPlatformById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select tenS, tenP, tenT, tenF from platform_back where ten_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+
+-(NSArray*)GetInwardFivePlatformById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select fiveS, fiveP, fiveT, fiveF from platform_inward where five_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+
+-(NSArray*)GetInwardSevenFivePlatformById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select seven_fiveS, seven_fiveP, seven_fiveT, seven_fiveF from platform_inward where seven_five_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+
+-(NSArray*)GetInwardTenPlatformById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select tenS, tenP, tenT, tenF from platform_inward where ten_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+
+-(NSArray*)GetReverseFivePlatformById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select fiveS, fiveP, fiveT, fiveF from platform_reverse where five_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+
+-(NSArray*)GetReverseSevenFivePlatformById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select seven_fiveS, seven_fiveP, seven_fiveT, seven_fiveF from platform_reverse where seven_five_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+
+-(NSArray*)GetReverseTenPlatformById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select tenS, tenP, tenT, tenF from platform_reverse where ten_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+
+-(NSArray*)GetTwistFivePlatformById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select fiveS, fiveP, fiveT, fiveF from platform_twist where five_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+
+-(NSArray*)GetTwistSevenFivePlatformById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select seven_fiveS, seven_fiveP, seven_fiveT, seven_fiveF from platform_twist where seven_five_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+
+-(NSArray*)GetTwistTenPlatformById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select tenS, tenP, tenT, tenF from platform_twist where ten_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+
+-(NSArray*)GetArmstandFivePlatformById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select fiveS, fiveP, fiveT, fiveF from platform_armstand where five_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+
+-(NSArray*)GetArmstandSevenFivePlatformById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select seven_fiveS, seven_fiveP, seven_fiveT, seven_fiveF from platform_armstand where seven_five_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
+}
+-(NSArray*)GetArmstandTenPlatformById:(int)diveId {
+    
+    NSArray *names = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select tenS, tenP, tenT, tenF from platform_armstand where ten_meter=1 and id=%d", diveId];
+    
+    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return names;
+    
 }
 
 @end

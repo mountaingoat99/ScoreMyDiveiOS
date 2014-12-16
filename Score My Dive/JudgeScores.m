@@ -179,11 +179,11 @@
     
 }
 
--(void)UpdateJudgeScoreTypes:(int)meetid diverid:(int)diverid divecat:(NSString*)divecat divetype:(NSString*)divetype divepos:(NSString*)divepos multiplier:(NSNumber*)multiplier divenumber:(NSNumber*)divenumber {
+-(void)UpdateJudgeScoreTypes:(int)meetid diverid:(int)diverid divecat:(NSString*)divecat divetype:(NSString*)divetype divepos:(NSString*)divepos multiplier:(NSNumber*)multiplier oldDiveNumber:(NSNumber*)olddivenumber divenumber:(NSNumber*)divenumber {
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
-    NSString *query = [NSString stringWithFormat:@"update judges_scores set dive_category=%@, dive_type=%@, dive_position=%@, multiplier=%@ where meet_id=%d and diver_id=%d and dive_number=%@", divecat, divetype, divepos, multiplier, meetid, diverid, divenumber];
+    NSString *query = [NSString stringWithFormat:@"update judges_scores set dive_category=\"%@\", dive_type=\"%@\", dive_position=\"%@\", dive_number=%@, multiplier=%@ where meet_id=%d and diver_id=%d and dive_number=%@", divecat, divetype, divepos, divenumber, multiplier, meetid, diverid, olddivenumber];
     
     [self.dbManager loadDataFromDB:query];
     

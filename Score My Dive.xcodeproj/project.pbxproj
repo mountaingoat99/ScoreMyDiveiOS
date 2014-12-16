@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2601559B1A3FCDF600D3B4ED /* dive_dod.db in Resources */ = {isa = PBXBuildFile; fileRef = 2601559A1A3FCDF600D3B4ED /* dive_dod.db */; };
 		262756CA1A1D811200DAC877 /* DiverEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 262756C91A1D811200DAC877 /* DiverEdit.m */; };
 		263AC5C71A030FD600846CB0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 263AC5C61A030FD600846CB0 /* main.m */; };
 		263AC5CA1A030FD600846CB0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 263AC5C91A030FD600846CB0 /* AppDelegate.m */; };
 		263AC5CD1A030FD600846CB0 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263AC5CC1A030FD600846CB0 /* HomeViewController.m */; };
 		263AC5D51A030FD700846CB0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 263AC5D31A030FD700846CB0 /* LaunchScreen.xib */; };
 		263AC5E11A030FD700846CB0 /* Score_My_DiveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 263AC5E01A030FD700846CB0 /* Score_My_DiveTests.m */; };
-		26424DA91A3B37300061AC8E /* dive_dod.db in Resources */ = {isa = PBXBuildFile; fileRef = 26424DA81A3B37300061AC8E /* dive_dod.db */; };
 		2642AB6A1A32A2CD002E8DFA /* MeetCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2642AB691A32A2CD002E8DFA /* MeetCollection.m */; };
 		2651CF051A17D56E0050D587 /* QuickScoreEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2651CF041A17D56E0050D587 /* QuickScoreEdit.m */; };
 		267643E61A218DF000CD2CB1 /* ReportsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 267643E51A218DF000CD2CB1 /* ReportsViewController.m */; };
@@ -63,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2601559A1A3FCDF600D3B4ED /* dive_dod.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dive_dod.db; sourceTree = "<group>"; };
 		262756C81A1D811200DAC877 /* DiverEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiverEdit.h; sourceTree = "<group>"; };
 		262756C91A1D811200DAC877 /* DiverEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiverEdit.m; sourceTree = "<group>"; };
 		263AC5C11A030FD600846CB0 /* Score My Dive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Score My Dive.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,7 +78,6 @@
 		263AC5DA1A030FD700846CB0 /* Score My DiveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Score My DiveTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		263AC5DF1A030FD700846CB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		263AC5E01A030FD700846CB0 /* Score_My_DiveTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Score_My_DiveTests.m; sourceTree = "<group>"; };
-		26424DA81A3B37300061AC8E /* dive_dod.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dive_dod.db; sourceTree = "<group>"; };
 		2642AB681A32A2CD002E8DFA /* MeetCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetCollection.h; sourceTree = "<group>"; };
 		2642AB691A32A2CD002E8DFA /* MeetCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetCollection.m; sourceTree = "<group>"; };
 		2651CF031A17D56E0050D587 /* QuickScoreEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickScoreEdit.h; sourceTree = "<group>"; };
@@ -169,7 +169,7 @@
 		263AC5B81A030FD600846CB0 = {
 			isa = PBXGroup;
 			children = (
-				26424DA81A3B37300061AC8E /* dive_dod.db */,
+				2601559A1A3FCDF600D3B4ED /* dive_dod.db */,
 				26BE23901A1028B200E123D0 /* libsqlite3.dylib */,
 				26DF8AF61A043DAC00C273A6 /* QuartzCore.framework */,
 				263AC5C31A030FD600846CB0 /* Score My Dive */,
@@ -414,7 +414,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				26E419A11A047FDF00D79C05 /* AppIconBlack.xcassets in Resources */,
-				26424DA91A3B37300061AC8E /* dive_dod.db in Resources */,
+				2601559B1A3FCDF600D3B4ED /* dive_dod.db in Resources */,
 				26E419A31A0480C800D79C05 /* Images.xcassets in Resources */,
 				263AC5D51A030FD700846CB0 /* LaunchScreen.xib in Resources */,
 				26C07FCF1A05921700DF35B4 /* Main.storyboard in Resources */,
