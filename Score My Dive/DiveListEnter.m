@@ -23,6 +23,7 @@
 @property (nonatomic, strong) UIPickerView *groupPicker;
 @property (nonatomic, strong) UIPickerView *divePicker;
 @property (nonatomic, strong) NSNumber *onDiveNumber;
+@property (nonatomic) int maxDiveNumber;
 @property (nonatomic, strong) NSNumber *boardSize;
 @property (nonatomic, strong) NSNumber *multiplier;
 @property (nonatomic, strong) NSString *straight;
@@ -51,6 +52,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // lets hide some controls
+    [self hideInitialControls];
     
     [self fillText];
     
@@ -112,10 +116,6 @@
         [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributesiPad forState:UIControlStateSelected];
         
     }
-    
-    // lets hide some controls
-    [self hideInitialControls];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -282,6 +282,9 @@
         
         [self UpdateJudgeScores];
         
+        [self viewWillDisappear:NO];
+        [self viewWillAppear:NO];
+        
         // get a segue name here
         //[self performSegueWithIdentifier:@"" sender:self];
         
@@ -374,8 +377,11 @@
     diveNameForDB = [diveNameForDB stringByAppendingString:@" - "];
     diveNameForDB = [diveNameForDB stringByAppendingString:diveName];
     
+    // use this dive number for the first entry
+    NSNumber *firstDiveNumber = [NSNumber numberWithInt:self.maxDiveNumber];
+    
     // create a new dive number, just increment the old number
-    NSNumber *newDiveNumber = @([self.onDiveNumber integerValue] + [@1 integerValue]);
+    NSNumber *newDiveNumber = [NSNumber numberWithInt:self.maxDiveNumber + 1];
     
     // then get the multiplier
     NSNumberFormatter *formatString = [[NSNumberFormatter alloc] init];
@@ -389,11 +395,11 @@
         
         // if this is the first dive we are just updating the first record we wrote
         [scores UpdateJudgeScoreTypes:self.meetRecordID diverid:self.diverRecordID divecat:diveCategory divetype:diveNameForDB divepos:divePosition  multiplier:multiplier
-            oldDiveNumber:self.onDiveNumber divenumber:newDiveNumber];
+            oldDiveNumber:firstDiveNumber divenumber:self.onDiveNumber];
         
     } else {
         // create a new record
-        [scores CreateJudgeScores:self.meetRecordID diverid:self.diverRecordID boardsize:boardSizeDouble divenumber:newDiveNumber divecategory:diveCategory divetype:diveNameForDB diveposition:divePosition failed:@"''" multiplier:multiplier totalscore:@0 score1:@0 score2:@0 score3:@0 score4:@0 score5:@0 score6:@0 score7:@0];
+        [scores CreateJudgeScores:self.meetRecordID diverid:self.diverRecordID boardsize:boardSizeDouble divenumber:newDiveNumber divecategory:diveCategory divetype:diveNameForDB diveposition:divePosition failed:@0 multiplier:multiplier totalscore:@0 score1:@0 score2:@0 score3:@0 score4:@0 score5:@0 score6:@0 score7:@0];
     }
     
 }
@@ -457,15 +463,18 @@
 
 -(void)fillDiveNumber {
     
+    // need to redo this. Need to get all the dive numbers from the JudgeScore table
+    // record for this meet and diver, then get the max number from that array, max number will be old, and incremented will be new
+    
+    JudgeScores *scores = [[JudgeScores alloc] init];
+    self.maxDiveNumber = [scores GetMaxDiveNumber:self.meetRecordID diverid:self.diverRecordID];
+    
     NSString *diveNum = @"Dive ";
     
-    DiveNumber *number = [[DiveNumber alloc] init];
-    number = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:3];
     // here we will set the value for the whole class to use
-    self.onDiveNumber = number.number;
-    int diveNumInt = [number.number integerValue];
-    diveNumInt += 1;
-    diveNum = [diveNum stringByAppendingString:[NSString stringWithFormat:@"%d", diveNumInt]];
+    self.onDiveNumber = [NSNumber numberWithInt:self.maxDiveNumber + 1];
+    
+    diveNum = [diveNum stringByAppendingString:[NSString stringWithFormat:@"%@", self.onDiveNumber]];
     self.lblDiveNumber.text = diveNum;
 }
 
@@ -532,81 +541,81 @@
 
 -(void)fillDiveInfo {
     
-    int diveNumInt = [self.onDiveNumber integerValue];
+    //int diveNumInt = [self.onDiveNumber integerValue];
     JudgeScores *diveInfo = [[JudgeScores alloc] init];
     
-    if (diveNumInt >= 1) {
-        self.lblDive1.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:self.onDiveNumber];
+    if (self.maxDiveNumber >= 1) {
+        self.lblDive1.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:1];
         [self.lblDive1 setHidden:NO];
         [self.lblDive1text setHidden:NO];
         
     }
     
-    if (diveNumInt >= 2) {
-        self.lblDive2.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:self.onDiveNumber];
+    if (self.maxDiveNumber >= 2) {
+        self.lblDive2.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:2];
         [self.lblDive2 setHidden:NO];
         [self.lblDive2text setHidden:NO];
         
     }
     
-    if (diveNumInt >= 3) {
-        self.lblDive3.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:self.onDiveNumber];
+    if (self.maxDiveNumber >= 3) {
+        self.lblDive3.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:3];
         [self.lblDive3 setHidden:NO];
         [self.lblDive3text setHidden:NO];
         
     }
     
-    if (diveNumInt >= 4) {
-        self.lblDive4.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:self.onDiveNumber];
+    if (self.maxDiveNumber >= 4) {
+        self.lblDive4.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:4];
         [self.lblDive4 setHidden:NO];
         [self.lblDive4text setHidden:NO];
         
     }
     
-    if (diveNumInt >= 5) {
-        self.lblDive5.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:self.onDiveNumber];
+    if (self.maxDiveNumber >= 5) {
+        self.lblDive5.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:5];
         [self.lblDive5 setHidden:NO];
         [self.lblDive5text setHidden:NO];
         
     }
     
-    if (diveNumInt >= 6) {
-        self.lblDive6.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:self.onDiveNumber];
+    if (self.maxDiveNumber >= 6) {
+        self.lblDive6.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:6];
         [self.lblDive6 setHidden:NO];
         [self.lblDive6text setHidden:NO];
         
     }
     
-    if (diveNumInt >= 7) {
-        self.lblDive7.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:self.onDiveNumber];
+    if (self.maxDiveNumber >= 7) {
+        self.lblDive7.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:7];
         [self.lblDive7 setHidden:NO];
         [self.lblDive7text setHidden:NO];
         
     }
     
-    if (diveNumInt >= 8) {
-        self.lblDive8.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:self.onDiveNumber];
+    if (self.maxDiveNumber >= 8) {
+        self.lblDive8.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:8];
         [self.lblDive8 setHidden:NO];
         [self.lblDive8text setHidden:NO];
         
     }
     
-    if (diveNumInt >= 9) {
-        self.lblDive9.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:self.onDiveNumber];
+    if (self.maxDiveNumber >= 9) {
+        self.lblDive9.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:9];
         [self.lblDive9 setHidden:NO];
         [self.lblDive9text setHidden:NO];
         
     }
     
-    if (diveNumInt >= 10) {
-        self.lblDive10.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:self.onDiveNumber];
+    if (self.maxDiveNumber >= 10) {
+        self.lblDive10.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:10];
         [self.lblDive10 setHidden:NO];
         [self.lblDive10text setHidden:NO];
         
     }
     
-    if (diveNumInt >= 11) {
-        self.lblDive11.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:self.onDiveNumber];
+    if (self.maxDiveNumber >= 11) {
+        self.lblDive11.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:11];
         [self.lblDive11 setHidden:NO];
         [self.lblDive11text setHidden:NO];
         

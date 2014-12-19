@@ -396,7 +396,7 @@
     [board CreateBoardSize:self.meetRecordID DiverID:self.diverRecordID Total:self.boardSize1ID TotalBoards:1];
     
     JudgeScores *scores = [[JudgeScores alloc] init];
-    [scores CreateJudgeScores:self.meetRecordID diverid:self.diverRecordID boardsize:self.boardSize1ID divenumber:@0 divecategory:@"''" divetype:@"''" diveposition:@"''" failed:@"''" multiplier:@0 totalscore:@0 score1:@0 score2:@0 score3:@0 score4:@0 score5:@0 score6:@0 score7:@0];
+    [scores CreateJudgeScores:self.meetRecordID diverid:self.diverRecordID boardsize:self.boardSize1ID divenumber:@0 divecategory:@"" divetype:@"" diveposition:@"" failed:@0 multiplier:@0 totalscore:@0 score1:@0 score2:@0 score3:@0 score4:@0 score5:@0 score6:@0 score7:@0];
     
     Results *result = [[Results alloc] init];
     
