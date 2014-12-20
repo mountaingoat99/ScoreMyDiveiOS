@@ -346,6 +346,8 @@
 -(void)HideControls{
     
     BOOL previousInfo = false;
+    NSString *yesDives;
+    NSString *yesBoard;
     
     previousInfo = [self PreviousMeetInfo];
     
@@ -365,8 +367,11 @@
         total = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:2];
         bSize = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:4];
         
-        self.lblDiveTotal.text = [total.diveTotal stringValue];
-        self.lblBoardSize.text = [bSize.firstSize stringValue];
+        yesDives = [total.diveTotal stringValue];
+        yesBoard = [bSize.firstSize stringValue];
+        
+        self.lblDiveTotal.text = [yesDives stringByAppendingString:@" Dives"];
+        self.lblBoardSize.text = [yesBoard stringByAppendingString:@" Meter"];
         
     } else {
         

@@ -30,6 +30,7 @@
 @property (nonatomic, strong) NSString *pike;
 @property (nonatomic, strong) NSString *tuck;
 @property (nonatomic, strong) NSString *free;
+@property (nonatomic) BOOL allDivesEntered;
 
 -(void)loadGroupPicker;
 -(void)loadDivePicker;
@@ -43,6 +44,8 @@
 -(void)DisableDivePositions;
 -(void)GetDiveDOD;
 -(void)UpdateJudgeScores;
+-(void)resetValues;
+-(void)updateButtonText;
 
 @end
 
@@ -69,6 +72,8 @@
     [self makeDivePicker];
     
     [self fillDiveInfo];
+    
+    [self updateButtonText];
     
     // sets the scroll view content size
     self.scrollView.contentSize = CGSizeMake(0, self.scrollView.bounds.size.height);
@@ -276,28 +281,36 @@
 
 - (IBAction)btnEnterDive:(id)sender {
     
-    int selectedPosition = self.SCPosition.selectedSegmentIndex;
-    
-    if (self.diveGroupID != 0 && self.diveID != 0 && selectedPosition >= 0) {
+    if (self.allDivesEntered) {
         
-        [self UpdateJudgeScores];
-        
-        [self viewWillDisappear:NO];
-        [self viewWillAppear:NO];
-        
-        // get a segue name here
+        // get a segue name here for the next view controller
         //[self performSegueWithIdentifier:@"" sender:self];
         
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"Please make sure you've picked a dive and a valid position"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
-    }
     
+        int selectedPosition = self.SCPosition.selectedSegmentIndex;
+        
+        if (self.diveGroupID != 0 && self.diveID != 0 && selectedPosition >= 0) {
+            
+            [self UpdateJudgeScores];
+            
+            // once we update the score we need to re-fill the dive number
+            // refill the info and reset the fields
+            [self fillDiveNumber];
+            [self fillDiveInfo];
+            [self updateButtonText];
+            [self resetValues];
+            
+        } else {
+            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                            message:@"Please make sure you've picked a dive and a valid position"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [error show];
+            [error reloadInputViews];
+        }
+    }
 }
 
 #pragma private methods
@@ -647,6 +660,36 @@
     [self.lblDive10text setHidden:YES];
     [self.lblDive11text setHidden:YES];
     
+}
+
+-(void)resetValues {
+    
+    self.txtDiveGroup.text = @"";
+    self.txtDive.text = @"";
+    self.SCPosition.selectedSegmentIndex = -0;
+    self.lblDivedd.text = @"0.0";
+    
+    self.diveGroupID = 0;
+    self.diveID = 0;
+    
+}
+
+-(void)updateButtonText {
+    
+    if (self.maxDiveNumber < 11) {
+        
+        self.allDivesEntered = NO;
+        
+        [self.btnEnterDive setTitle:@"Enter Dive" forState:UIControlStateNormal];
+        [self.btnEnterDive setTitle:@"Enter Dive" forState:UIControlStateSelected];
+        
+    } else {
+        
+        self.allDivesEntered = YES;
+        
+        [self.btnEnterDive setTitle:@"Score Meet" forState:UIControlStateNormal];
+        [self.btnEnterDive setTitle:@"Score Meet" forState:UIControlStateSelected];
+    }
 }
 
 @end
