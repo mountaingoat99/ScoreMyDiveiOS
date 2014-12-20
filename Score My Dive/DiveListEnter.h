@@ -55,4 +55,17 @@
 - (IBAction)PositionIndexChanged:(UISegmentedControl *)sender;
 - (IBAction)btnEnterDive:(id)sender;
 
+// touch events for the dive edits
+- (IBAction)Dive1EditClick:(UILongPressGestureRecognizer *)sender;
+- (IBAction)Dive2EditClick:(UILongPressGestureRecognizer *)sender;
+- (IBAction)Dive3EditClick:(UILongPressGestureRecognizer *)sender;
+- (IBAction)Dive4EditClick:(UILongPressGestureRecognizer *)sender;
+- (IBAction)Dive5EditClick:(UILongPressGestureRecognizer *)sender;
+- (IBAction)Dive6EditClick:(UILongPressGestureRecognizer *)sender;
+- (IBAction)Dive7EditClick:(UILongPressGestureRecognizer *)sender;
+- (IBAction)Dive8EditClick:(UILongPressGestureRecognizer *)sender;
+- (IBAction)Dive9EditClick:(UILongPressGestureRecognizer *)sender;
+- (IBAction)Dive10EditClick:(UILongPressGestureRecognizer *)sender;
+- (IBAction)Dive11EditClick:(UILongPressGestureRecognizer *)sender;
+
 @end

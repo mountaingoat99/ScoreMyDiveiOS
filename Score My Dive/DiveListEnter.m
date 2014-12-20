@@ -46,6 +46,7 @@
 -(void)UpdateJudgeScores;
 -(void)resetValues;
 -(void)updateButtonText;
+-(void)EnableLabelInteractions;
 
 @end
 
@@ -692,4 +693,97 @@
     }
 }
 
+-(void)EnableLabelInteractions {
+    
+    [self.lblDive1 setUserInteractionEnabled:YES];
+    [self.lblDive2 setUserInteractionEnabled:YES];
+    [self.lblDive3 setUserInteractionEnabled:YES];
+    [self.lblDive4 setUserInteractionEnabled:YES];
+    [self.lblDive5 setUserInteractionEnabled:YES];
+    [self.lblDive6 setUserInteractionEnabled:YES];
+    [self.lblDive7 setUserInteractionEnabled:YES];
+    [self.lblDive8 setUserInteractionEnabled:YES];
+    [self.lblDive9 setUserInteractionEnabled:YES];
+    [self.lblDive10 setUserInteractionEnabled:YES];
+    [self.lblDive11 setUserInteractionEnabled:YES];
+}
+
+// Long press to edit the dives
+
+- (IBAction)Dive1EditClick:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"Dive1 edit Test");
+    }
+}
+
+- (IBAction)Dive2EditClick:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"Dive2 edit Test");
+    }
+}
+
+- (IBAction)Dive3EditClick:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"Dive3 edit Test");
+    }
+}
+
+- (IBAction)Dive4EditClick:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"Dive4 edit Test");
+    }
+}
+
+- (IBAction)Dive5EditClick:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"Dive5 edit Test");
+    }
+}
+
+- (IBAction)Dive6EditClick:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"Dive6 edit Test");
+    }
+}
+
+- (IBAction)Dive7EditClick:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"Dive7 edit Test");
+    }
+}
+
+- (IBAction)Dive8EditClick:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"Dive8 edit Test");
+    }
+}
+
+- (IBAction)Dive9EditClick:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"Dive9 edit Test");
+    }
+}
+
+- (IBAction)Dive10EditClick:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"Dive10 edit Test");
+    }
+}
+
+- (IBAction)Dive11EditClick:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"Dive11 edit Test");
+    }
+}
 @end
