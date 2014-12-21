@@ -15,6 +15,9 @@
 #import "DiveTypes.h"
 #import "DiveNumber.h"
 #import "JudgeScores.h"
+#import "DiveListEdit.h"
+#import "DiveListChoose.h"
+#import "DiveList.h"
 
 @interface DiveListEnter ()
 
@@ -24,6 +27,7 @@
 @property (nonatomic, strong) UIPickerView *divePicker;
 @property (nonatomic, strong) NSNumber *onDiveNumber;
 @property (nonatomic) int maxDiveNumber;
+@property (nonatomic, strong) NSNumber *editDiveNumber;
 @property (nonatomic, strong) NSNumber *boardSize;
 @property (nonatomic, strong) NSNumber *multiplier;
 @property (nonatomic, strong) NSString *straight;
@@ -31,6 +35,8 @@
 @property (nonatomic, strong) NSString *tuck;
 @property (nonatomic, strong) NSString *free;
 @property (nonatomic) BOOL allDivesEntered;
+@property (nonatomic, strong) NSString *oldDiveName;
+@property (nonatomic) int diveTotal;
 
 -(void)loadGroupPicker;
 -(void)loadDivePicker;
@@ -47,6 +53,8 @@
 -(void)resetValues;
 -(void)updateButtonText;
 -(void)EnableLabelInteractions;
+-(void)HideAllControls;
+-(void)updateListFilled;
 
 @end
 
@@ -60,9 +68,9 @@
     // lets hide some controls
     [self hideInitialControls];
     
-    [self fillText];
-    
     [self fillDiveNumber];
+    
+    [self fillText];
     
     [self DiverBoardSize];
     
@@ -76,8 +84,7 @@
     
     [self updateButtonText];
     
-    // sets the scroll view content size
-    self.scrollView.contentSize = CGSizeMake(0, self.scrollView.bounds.size.height);
+    //[self HideAllControls];
     
     // attributes for controls
     self.txtDiveGroup.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -122,6 +129,17 @@
         [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributesiPad forState:UIControlStateSelected];
         
     }
+    
+    // sets up the following delegate method to disable horizontal scrolling
+    // don't forget to declare the UIScrollViewDelegate in the .h file
+    self.scrollView.delegate = self;
+    
+}
+
+// stops horitontal scrolling
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -136,11 +154,27 @@
 // push id to the next view controller
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-//    if([segue.identifier isEqualToString:@"idSegueDiveList"]) {
-//        
-//        DiveListEnter *diver = [segue destinationViewController];
-//        diver.meetRecordID = self.meetRecordID;
-//        diver.diverRecordID = self.diverRecordID;
+    // send to the diveListEdit
+    if ([segue.identifier isEqualToString:@"idSegueDiveListEdit"]) {
+        // send the variables to edit a JudgesDive
+        DiveListEdit *edit = [segue destinationViewController];
+        
+        //set the delegate here
+        edit.delegate = self;
+        
+        edit.meetRecordID = self.meetRecordID;
+        edit.diverRecordID = self.diverRecordID;
+        edit.boardSize = self.boardSize;
+        edit.diveNumber = self.editDiveNumber;
+        edit.oldDiveName = self.oldDiveName;
+    }
+    
+    if([segue.identifier isEqualToString:@"idSegueDiveListChoose"]) {
+        
+        DiveListChoose *choose = [segue destinationViewController];
+        choose.meetRecordID = self.meetRecordID;
+        choose.diverRecordID = self.diverRecordID;
+    }
 }
 
 // hide the PickerView on outside touch
@@ -284,8 +318,7 @@
     
     if (self.allDivesEntered) {
         
-        // get a segue name here for the next view controller
-        //[self performSegueWithIdentifier:@"" sender:self];
+        [self performSegueWithIdentifier:@"idSegueDiveListChoose" sender:self];
         
     } else {
     
@@ -313,6 +346,128 @@
         }
     }
 }
+
+// Long press to edit the dives
+- (IBAction)Dive1EditClick:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"Dive1 edit Test");
+        //need to send the correct info to the segue here
+        self.editDiveNumber = @1;
+        self.oldDiveName = self.lblDive1.text;
+        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+    }
+}
+
+- (IBAction)Dive2EditClick:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"Dive2 edit Test");
+        self.editDiveNumber = @2;
+        self.oldDiveName = self.lblDive2.text;
+        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+    }
+}
+
+- (IBAction)Dive3EditClick:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"Dive3 edit Test");
+        self.editDiveNumber = @3;
+        self.oldDiveName = self.lblDive3.text;
+        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+    }
+}
+
+- (IBAction)Dive4EditClick:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"Dive4 edit Test");
+        self.editDiveNumber = @4;
+        self.oldDiveName = self.lblDive4.text;
+        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+    }
+}
+
+- (IBAction)Dive5EditClick:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"Dive5 edit Test");
+        self.editDiveNumber = @5;
+        self.oldDiveName = self.lblDive5.text;
+        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+    }
+}
+
+- (IBAction)Dive6EditClick:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"Dive6 edit Test");
+        self.editDiveNumber = @6;
+        self.oldDiveName = self.lblDive6.text;
+        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+    }
+}
+
+- (IBAction)Dive7EditClick:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"Dive7 edit Test");
+        self.editDiveNumber = @7;
+        self.oldDiveName = self.lblDive7.text;
+        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+    }
+}
+
+- (IBAction)Dive8EditClick:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"Dive8 edit Test");
+        self.editDiveNumber = @8;
+        self.oldDiveName = self.lblDive8.text;
+        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+    }
+}
+
+- (IBAction)Dive9EditClick:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"Dive9 edit Test");
+        self.editDiveNumber = @9;
+        self.oldDiveName = self.lblDive9.text;
+        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+    }
+}
+
+- (IBAction)Dive10EditClick:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"Dive10 edit Test");
+        self.editDiveNumber = @10;
+        self.oldDiveName = self.lblDive10.text;
+        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+    }
+}
+
+- (IBAction)Dive11EditClick:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"Dive11 edit Test");
+        self.editDiveNumber = @11;
+        self.oldDiveName = self.lblDive11.text;
+        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+    }
+}
+
+// delegate method to update the info after the dive edit is popped off
+-(void)editDiveListWasFinished {
+    
+    [self fillDiveNumber];
+    [self fillDiveInfo];
+    [self updateButtonText];
+    [self resetValues];
+}
+
 
 #pragma private methods
 
@@ -477,19 +632,27 @@
 
 -(void)fillDiveNumber {
     
-    // need to redo this. Need to get all the dive numbers from the JudgeScore table
-    // record for this meet and diver, then get the max number from that array, max number will be old, and incremented will be new
-    
     JudgeScores *scores = [[JudgeScores alloc] init];
     self.maxDiveNumber = [scores GetMaxDiveNumber:self.meetRecordID diverid:self.diverRecordID];
     
-    NSString *diveNum = @"Dive ";
+    // we need to see what the dive total is first and set it for the whole class
+    DiveTotal *total = [[DiveTotal alloc] init];
+    total = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:2];
+    self.diveTotal = [total.diveTotal intValue];
     
-    // here we will set the value for the whole class to use
-    self.onDiveNumber = [NSNumber numberWithInt:self.maxDiveNumber + 1];
+    if (self.maxDiveNumber != self.diveTotal) {
+        
+        NSString *diveNum = @"Dive ";
+        // here we will set the value for the whole class to use
+        self.onDiveNumber = [NSNumber numberWithInt:self.maxDiveNumber + 1];
+        
+        diveNum = [diveNum stringByAppendingString:[NSString stringWithFormat:@"%@", self.onDiveNumber]];
+        self.lblDiveNumber.text = diveNum;
+    } else {
+        
+        self.lblDiveNumber.text = @"Begin Scoring";
+    }
     
-    diveNum = [diveNum stringByAppendingString:[NSString stringWithFormat:@"%@", self.onDiveNumber]];
-    self.lblDiveNumber.text = diveNum;
 }
 
 -(void)DisableDivePositions {
@@ -600,39 +763,42 @@
         
     }
     
-    if (self.maxDiveNumber >= 7) {
-        self.lblDive7.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:7];
-        [self.lblDive7 setHidden:NO];
-        [self.lblDive7text setHidden:NO];
+    // we won't even bother checking these unless the diveTotal is 11
+    if (self.diveTotal == 11) {
+        if (self.maxDiveNumber >= 7) {
+            self.lblDive7.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:7];
+            [self.lblDive7 setHidden:NO];
+            [self.lblDive7text setHidden:NO];
+            
+        }
         
-    }
-    
-    if (self.maxDiveNumber >= 8) {
-        self.lblDive8.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:8];
-        [self.lblDive8 setHidden:NO];
-        [self.lblDive8text setHidden:NO];
+        if (self.maxDiveNumber >= 8) {
+            self.lblDive8.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:8];
+            [self.lblDive8 setHidden:NO];
+            [self.lblDive8text setHidden:NO];
+            
+        }
         
-    }
-    
-    if (self.maxDiveNumber >= 9) {
-        self.lblDive9.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:9];
-        [self.lblDive9 setHidden:NO];
-        [self.lblDive9text setHidden:NO];
+        if (self.maxDiveNumber >= 9) {
+            self.lblDive9.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:9];
+            [self.lblDive9 setHidden:NO];
+            [self.lblDive9text setHidden:NO];
+            
+        }
         
-    }
-    
-    if (self.maxDiveNumber >= 10) {
-        self.lblDive10.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:10];
-        [self.lblDive10 setHidden:NO];
-        [self.lblDive10text setHidden:NO];
+        if (self.maxDiveNumber >= 10) {
+            self.lblDive10.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:10];
+            [self.lblDive10 setHidden:NO];
+            [self.lblDive10text setHidden:NO];
+            
+        }
         
-    }
-    
-    if (self.maxDiveNumber >= 11) {
-        self.lblDive11.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:11];
-        [self.lblDive11 setHidden:NO];
-        [self.lblDive11text setHidden:NO];
-        
+        if (self.maxDiveNumber >= 11) {
+            self.lblDive11.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:11];
+            [self.lblDive11 setHidden:NO];
+            [self.lblDive11text setHidden:NO];
+            
+        }
     }
 }
 
@@ -677,7 +843,7 @@
 
 -(void)updateButtonText {
     
-    if (self.maxDiveNumber < 11) {
+    if (self.maxDiveNumber < self.diveTotal) {
         
         self.allDivesEntered = NO;
         
@@ -690,7 +856,28 @@
         
         [self.btnEnterDive setTitle:@"Score Meet" forState:UIControlStateNormal];
         [self.btnEnterDive setTitle:@"Score Meet" forState:UIControlStateSelected];
+        
+        [self HideAllControls];
+        
+        // lets see if the diveList is filled yet and only update it if not
+        DiveList *list = [[DiveList alloc] init];
+        list = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:1];
+        int filled = [list.listFilled intValue];
+        
+        if (filled == 0) {
+            [self updateListFilled];
+        }
     }
+}
+
+-(void)HideAllControls {
+    
+    [self.txtDiveGroup setEnabled:NO];
+    [self.txtDive setEnabled:NO];
+    [self.SCPosition setEnabled:NO];
+    [self.lblDiveddText setEnabled:NO];
+    [self.lblDivedd setEnabled:NO];
+    
 }
 
 -(void)EnableLabelInteractions {
@@ -708,82 +895,11 @@
     [self.lblDive11 setUserInteractionEnabled:YES];
 }
 
-// Long press to edit the dives
-
-- (IBAction)Dive1EditClick:(UILongPressGestureRecognizer *)sender {
+-(void)updateListFilled {
     
-    if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive1 edit Test");
-    }
+    DiveList *list = [[DiveList alloc] init];
+    [list UpdateListFilled:self.meetRecordID diverid:self.diverRecordID key:@1];
+    
 }
 
-- (IBAction)Dive2EditClick:(UILongPressGestureRecognizer *)sender {
-    
-    if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive2 edit Test");
-    }
-}
-
-- (IBAction)Dive3EditClick:(UILongPressGestureRecognizer *)sender {
-    
-    if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive3 edit Test");
-    }
-}
-
-- (IBAction)Dive4EditClick:(UILongPressGestureRecognizer *)sender {
-    
-    if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive4 edit Test");
-    }
-}
-
-- (IBAction)Dive5EditClick:(UILongPressGestureRecognizer *)sender {
-    
-    if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive5 edit Test");
-    }
-}
-
-- (IBAction)Dive6EditClick:(UILongPressGestureRecognizer *)sender {
-    
-    if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive6 edit Test");
-    }
-}
-
-- (IBAction)Dive7EditClick:(UILongPressGestureRecognizer *)sender {
-    
-    if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive7 edit Test");
-    }
-}
-
-- (IBAction)Dive8EditClick:(UILongPressGestureRecognizer *)sender {
-    
-    if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive8 edit Test");
-    }
-}
-
-- (IBAction)Dive9EditClick:(UILongPressGestureRecognizer *)sender {
-    
-    if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive9 edit Test");
-    }
-}
-
-- (IBAction)Dive10EditClick:(UILongPressGestureRecognizer *)sender {
-    
-    if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive10 edit Test");
-    }
-}
-
-- (IBAction)Dive11EditClick:(UILongPressGestureRecognizer *)sender {
-    
-    if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive11 edit Test");
-    }
-}
 @end

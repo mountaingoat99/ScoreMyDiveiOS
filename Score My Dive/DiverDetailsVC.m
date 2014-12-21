@@ -14,8 +14,6 @@
 
 @interface DiverDetailsVC ()
 
-
-
 @property (nonatomic, strong) NSArray *arrDiverInfo;
 
 -(void)loadData;

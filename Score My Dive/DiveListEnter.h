@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DiveListEdit.h"
 
-@interface DiveListEnter : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface DiveListEnter : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, DiveListEnterViewControllerDelegate, UIScrollViewDelegate >
 
 @property (nonatomic) int meetRecordID;
 @property (nonatomic) int diverRecordID;
 @property (nonatomic, strong) NSArray *meetInfo;
-
 
 @property (nonatomic) int diveGroupID;
 @property (nonatomic) int diveID;
@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtDiveGroup;
 @property (weak, nonatomic) IBOutlet UITextField *txtDive;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *SCPosition;
+@property (weak, nonatomic) IBOutlet UILabel *lblDiveddText;
 @property (weak, nonatomic) IBOutlet UILabel *lblDivedd;
 @property (weak, nonatomic) IBOutlet UIButton *btnEnterDive;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;

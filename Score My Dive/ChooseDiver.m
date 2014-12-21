@@ -23,6 +23,7 @@
 
 @property (nonatomic, strong)NSArray *diverArray;
 @property (nonatomic, strong) UIPickerView *divePicker;
+@property (nonatomic) BOOL noList;
 
 -(void)loadSpinnerData;
 -(void)getMeetName;
@@ -31,6 +32,7 @@
 -(void)writeNewDiveCollection;
 -(void)GetCollectionofMeetInfo;
 -(void)DeleteAllDiverMeetInfo;
+-(void)CheckForNoList;
 
 @end
 
@@ -40,6 +42,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // initilize no list to false first
+    self.noList = NO;
     
     self.diveTotalID = 6;
     self.boardSize1ID = 1;
@@ -104,7 +109,7 @@
     }
     
     // hide button and labels until a diver is choosen and has meet records
-    [self.btnResetDiver setHidden:YES];
+    //[self.btnResetDiver setHidden:YES];
     [self.lblDiveTotal setHidden:YES];
     [self.lblBoardSize setHidden:YES];
     
@@ -116,6 +121,15 @@
 }
 
 -(IBAction)unwindToChooseDiver:(UIStoryboardSegue *)segue{
+    
+    // reset everything and reload the spinner
+    self.txtChooseDiver.text = @"";
+    [self loadSpinnerData];
+    [self makeDiverPicker];
+    [self.SCBoardSize setHidden:NO];
+    [self.SCDiveTotals setHidden:NO];
+    [self.lblDiveTotal setHidden:YES];
+    [self.lblBoardSize setHidden:YES];
     
 }
 
@@ -168,8 +182,11 @@
     self.txtChooseDiver.text = [self.diverArray [row] objectAtIndex:1];
     self.diverRecordID = [[self.diverArray [row] objectAtIndex:0] intValue];
     
-    //call the method to check if a driver has been assigned to a meet and hid controls
+    //call the method to check if a driver has been assigned to a meet and hide controls
     [self HideControls];
+    
+    // call the method to see if the have a noList record
+    [self CheckForNoList];
     
     return [self.diverArray[row]objectAtIndex:1];
     
@@ -224,19 +241,32 @@
 //button methods
 - (IBAction)EnterListClick:(id)sender {
     
+    // first we make sure they have chosen a diver
     if (self.txtChooseDiver.text.length != 0) {
         
-        BOOL previousInfo = [self PreviousMeetInfo];
-        
-        if (!previousInfo) {
-            [self writeNewDiveCollection];
+        // then we make sure they they have not starting scoring without a list
+        // noList = 1 is set on the scoreDives screen on the first dive scored without a list
+        if (!self.noList) {
+            BOOL previousInfo = [self PreviousMeetInfo];
+            
+            if (!previousInfo) {
+                [self writeNewDiveCollection];
+            }
+            [self GetCollectionofMeetInfo];
+            
+            [self performSegueWithIdentifier:@"idSegueDiveList" sender:self];
+            
+        } else {
+            
+            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                            message:@"You have already starting scoring this diver without a list. You will need to remove the diver from the meet and start over if you want to use a list."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [error show];
+            [error reloadInputViews];
         }
-        [self GetCollectionofMeetInfo];
-        
-        [self performSegueWithIdentifier:@"idSegueDiveList" sender:self];
-        
     } else {
-        
         UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
                                                         message:@"Please Pick a Diver"
                                                        delegate:nil
@@ -275,34 +305,49 @@
 
 - (IBAction)ResetDiverClick:(id)sender {
     
-    // updated alertController for iOS 8
-    UIAlertController *alertController = [UIAlertController
-                                          alertControllerWithTitle:@"Be warned, this remove all diver info from a meet, including scores and dive lists."
-                                          message:nil
-                                          preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *cancelAction = [UIAlertAction
-                                   actionWithTitle:@"Cancel"
-                                   style:UIAlertActionStyleCancel
+    if (self.txtChooseDiver.text.length != 0) {
+        // updated alertController for iOS 8
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Be warned, this remove all diver info from a meet, including scores and dive lists."
+                                              message:nil
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction
+                                       actionWithTitle:@"Cancel"
+                                       style:UIAlertActionStyleCancel
+                                       handler:^(UIAlertAction *action)
+                                       {
+                                           NSLog(@"Cancel Action");
+                                       }];
+        
+        UIAlertAction *okAction = [UIAlertAction
+                                   actionWithTitle:@"OK"
+                                   style:UIAlertActionStyleDefault
                                    handler:^(UIAlertAction *action)
                                    {
-                                       NSLog(@"Cancel Action");
+                                       NSLog(@"OK Action");
+                                       [self DeleteAllDiverMeetInfo];
+                                       [self dismissViewControllerAnimated:YES completion:nil];
                                    }];
+        
+        [alertController addAction:cancelAction];
+        [alertController addAction:okAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+        
+    } else {
+        
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                        message:@"Please Pick a Diver"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
+        
+    }
     
-    UIAlertAction *okAction = [UIAlertAction
-                               actionWithTitle:@"OK"
-                               style:UIAlertActionStyleDefault
-                               handler:^(UIAlertAction *action)
-                               {
-                                   NSLog(@"OK Action");
-                                   [self DeleteAllDiverMeetInfo];
-                               }];
     
-    [alertController addAction:cancelAction];
-    [alertController addAction:okAction];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
-
 }
 
 #pragma private methods
@@ -378,7 +423,7 @@
         // hide button and labels until a diver is choosen and has meet records
         [self.SCBoardSize setHidden:NO];
         [self.SCDiveTotals setHidden:NO];
-        [self.btnResetDiver setHidden:YES];
+        //[self.btnResetDiver setHidden:YES];
         [self.lblDiveTotal setHidden:YES];
         [self.lblBoardSize setHidden:YES];
         
@@ -446,6 +491,14 @@
     Diver *diver = [[Diver alloc] init];
     
     [diver RemoveDiverFromMeet:self.meetRecordID diverid:self.diverRecordID];
+    
+}
+
+-(void)CheckForNoList {
+    
+    DiveList *list = [[DiveList alloc] init];
+    
+    self.noList = [list CheckForNoList:self.meetRecordID diverid:self.diverRecordID];
     
 }
 
