@@ -190,6 +190,49 @@
     
 }
 
+-(NSString*)GetName:(int)meetid diverid:(int)diverid divenumber:(int)divenumber {
+    
+    NSString *diveType;
+    NSString *divePosition;
+    NSString *multi;
+    NSString *diveName;
+    NSRange dash;
+    
+    NSArray *diveInfo;
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select dive_category, dive_type, dive_position, multiplier from judges_scores where meet_id=%d and diver_id=%d and dive_number=%d", meetid, diverid, divenumber];
+    
+    diveInfo = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    // lets throw every part into a seperate stirng
+    diveType = [[diveInfo objectAtIndex:0] objectAtIndex:1];
+    divePosition = [[diveInfo objectAtIndex:0] objectAtIndex:2];
+    multi = [[diveInfo objectAtIndex:0] objectAtIndex:3];
+    
+    //now lets parse the diveNumber out of the dive
+    dash = [diveType rangeOfString:@"-"];
+    if (dash.location != NSNotFound) {
+        diveType = [diveType substringWithRange:NSMakeRange(0, (dash.location - 1))];
+    }
+    
+    // now parse the dive Position
+    dash = [divePosition rangeOfString:@"-"];
+    if (dash.location != NSNotFound) {
+        divePosition = [divePosition substringWithRange:NSMakeRange(0, (dash.location - 1))];
+    }
+    
+    // now lets put it all together
+    diveName = diveType;
+    diveName = [diveName stringByAppendingString:divePosition];
+    diveName = [diveName stringByAppendingString:@" - DD: "];
+    diveName = [diveName stringByAppendingString:multi];
+    
+    return diveName;
+    
+}
+
 -(void)UpdateJudgeScoreTypes:(int)meetid diverid:(int)diverid divecat:(NSString*)divecat divetype:(NSString*)divetype divepos:(NSString*)divepos multiplier:(NSNumber*)multiplier oldDiveNumber:(NSNumber*)olddivenumber divenumber:(NSNumber*)divenumber {
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];

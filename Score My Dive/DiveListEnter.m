@@ -84,8 +84,6 @@
     
     [self updateButtonText];
     
-    //[self HideAllControls];
-    
     // attributes for controls
     self.txtDiveGroup.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtDiveGroup.layer.shadowOffset = CGSizeMake(.1f, .1f);

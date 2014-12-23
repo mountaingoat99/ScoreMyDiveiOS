@@ -8,11 +8,47 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DiveListChoose : UIViewController <UIScrollViewDelegate>
+@interface DiveListChoose : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UIScrollViewDelegate>
 
 @property (nonatomic) int meetRecordID;
 @property (nonatomic) int diverRecordID;
 @property (nonatomic, strong) NSArray *meetInfo;
+
+
+@property (weak, nonatomic) IBOutlet UITextField *txtDiveNumber;
+@property (weak, nonatomic) IBOutlet UIButton *btnEnterScore;
+@property (weak, nonatomic) IBOutlet UIButton *btnEnterTotalScore;
+@property (weak, nonatomic) IBOutlet UILabel *lblDiverName;
+@property (weak, nonatomic) IBOutlet UILabel *lblSchoolName;
+@property (weak, nonatomic) IBOutlet UILabel *lblTotalScore;
+@property (weak, nonatomic) IBOutlet UILabel *lblBoardType;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblDive1;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive2;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive3;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive4;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive5;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive6;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive7;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive8;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive9;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive10;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive11;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblDive1text;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive2text;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive3text;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive4text;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive5text;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive6text;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive7text;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive8text;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive9text;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive10text;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive11text;
+
+- (IBAction)btnEnterScoreClick:(id)sender;
+- (IBAction)btnEnterTotalScoreClick:(id)sender;
 
 @end
