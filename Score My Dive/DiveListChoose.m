@@ -16,6 +16,8 @@
 #import "DiveNumber.h"
 #import "Results.h"
 #import "JudgeScores.h"
+#import "DiveListScore.h"
+#import "DiveListFinalScore.h"
 
 @interface DiveListChoose ()
 
@@ -52,7 +54,6 @@
     // lets grab all the meet info first
     [self GetCollectionofMeetInfo];
     [self getTheDiveTotal];
-    
     [self loadPicker];
     [self makePicker];
     [self fillText];
@@ -110,12 +111,24 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     // send to the diveListScore
-    if([segue.identifier isEqualToString:@""]) {
+    if([segue.identifier isEqualToString:@"idSegueDiveListScore"]) {
+        
+        DiveListScore *score = [segue destinationViewController];
+        
+        score.meetRecordID = self.meetRecordID;
+        score.diverRecordID = self.meetRecordID;
+        score.diveNumber = [self.DiveNumber intValue];
         
     }
     
     // send to the diveListFinalScore
-    if([segue.identifier isEqualToString:@""]) {
+    if([segue.identifier isEqualToString:@"idSegueDiveListTotalScore"]) {
+        
+        DiveListFinalScore *score = [segue destinationViewController];
+        
+        score.meetRecordID = self.meetRecordID;
+        score.diverRecordID = self.meetRecordID;
+        score.diveNumber = [self.DiveNumber intValue];
         
     }
 }
@@ -164,10 +177,38 @@
 
 - (IBAction)btnEnterScoreClick:(id)sender {
     
+    if (self.txtDiveNumber.text.length != 0) {
+        // go to the diveListTotal
+        [self performSegueWithIdentifier:@"idSegueDiveListScore" sender:self];
+        
+    } else {
+        
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                        message:@"Please Pick a Dive to score"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
+    }
 }
 
 - (IBAction)btnEnterTotalScoreClick:(id)sender {
     
+    if (self.txtDiveNumber.text.length != 0) {
+        // go to the diveListTotal score
+        [self performSegueWithIdentifier:@"idSegueDiveListTotalScore" sender:self];
+        
+    } else {
+        
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                        message:@"Please Pick a Dive to score"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
+    }
 }
 
 #pragma private methods
