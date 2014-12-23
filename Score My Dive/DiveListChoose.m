@@ -118,6 +118,7 @@
         score.meetRecordID = self.meetRecordID;
         score.diverRecordID = self.meetRecordID;
         score.diveNumber = [self.DiveNumber intValue];
+        score.meetInfo = self.meetInfo;
         
     }
     
@@ -129,6 +130,7 @@
         score.meetRecordID = self.meetRecordID;
         score.diverRecordID = self.meetRecordID;
         score.diveNumber = [self.DiveNumber intValue];
+        score.meetInfo = self.meetInfo;
         
     }
 }

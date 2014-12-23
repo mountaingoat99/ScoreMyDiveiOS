@@ -13,6 +13,7 @@
 @property (nonatomic) int meetRecordID;
 @property (nonatomic) int diverRecordID;
 @property (nonatomic) int diveNumber;
+@property (nonatomic, strong) NSArray *meetInfo;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblDiveNumber;
 @property (weak, nonatomic) IBOutlet UILabel *lbldiveType;

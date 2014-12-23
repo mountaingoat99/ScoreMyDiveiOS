@@ -10,4 +10,6 @@
 
 @interface ValidScores : NSObject
 
+-(NSArray*)GetValidScores;
+
 @end
