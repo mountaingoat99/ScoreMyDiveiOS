@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DiveListFinalScore : UIViewController
+@interface DiveListFinalScore : UIViewController <UITextFieldDelegate>
 
 @property (nonatomic) int meetRecordID;
 @property (nonatomic) int diverRecordID;

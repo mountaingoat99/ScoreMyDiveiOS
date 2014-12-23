@@ -31,6 +31,8 @@
 		2691AE6C1A0691FB000ABD3B /* DiverDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2691AE6B1A0691FB000ABD3B /* DiverDetailsVC.m */; };
 		2691AE6F1A069898000ABD3B /* MeetDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2691AE6E1A069898000ABD3B /* MeetDetailsVC.m */; };
 		26A248F71A2299C400760F38 /* ChooseDiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A248F61A2299C400760F38 /* ChooseDiver.m */; };
+		26ADE4471A4A07D600913ABA /* HTAutocompleteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 26ADE4441A4A07D600913ABA /* HTAutocompleteManager.m */; };
+		26ADE4481A4A07D600913ABA /* HTAutocompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 26ADE4461A4A07D600913ABA /* HTAutocompleteTextField.m */; };
 		26B1D05C1A3355CC00112692 /* DiverCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B1D05B1A3355CC00112692 /* DiverCollection.m */; };
 		26B88D231A12EF9600DBE909 /* MeetEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B88D221A12EF9600DBE909 /* MeetEdit.m */; };
 		26BE234A1A10275A00E123D0 /* QuickScores.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE233D1A10275A00E123D0 /* QuickScores.m */; };
@@ -116,6 +118,10 @@
 		2691AE6E1A069898000ABD3B /* MeetDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetDetailsVC.m; sourceTree = "<group>"; };
 		26A248F51A2299C400760F38 /* ChooseDiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseDiver.h; sourceTree = "<group>"; };
 		26A248F61A2299C400760F38 /* ChooseDiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseDiver.m; sourceTree = "<group>"; };
+		26ADE4431A4A07D600913ABA /* HTAutocompleteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTAutocompleteManager.h; path = ../HTAutocompleteManager.h; sourceTree = "<group>"; };
+		26ADE4441A4A07D600913ABA /* HTAutocompleteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTAutocompleteManager.m; path = ../HTAutocompleteManager.m; sourceTree = "<group>"; };
+		26ADE4451A4A07D600913ABA /* HTAutocompleteTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTAutocompleteTextField.h; path = ../HTAutocompleteTextField.h; sourceTree = "<group>"; };
+		26ADE4461A4A07D600913ABA /* HTAutocompleteTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTAutocompleteTextField.m; path = ../HTAutocompleteTextField.m; sourceTree = "<group>"; };
 		26B1D05A1A3355CC00112692 /* DiverCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiverCollection.h; sourceTree = "<group>"; };
 		26B1D05B1A3355CC00112692 /* DiverCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiverCollection.m; sourceTree = "<group>"; };
 		26B88D211A12EF9600DBE909 /* MeetEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetEdit.h; sourceTree = "<group>"; };
@@ -215,6 +221,10 @@
 		263AC5C41A030FD600846CB0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				26ADE4431A4A07D600913ABA /* HTAutocompleteManager.h */,
+				26ADE4441A4A07D600913ABA /* HTAutocompleteManager.m */,
+				26ADE4451A4A07D600913ABA /* HTAutocompleteTextField.h */,
+				26ADE4461A4A07D600913ABA /* HTAutocompleteTextField.m */,
 				263AC5C81A030FD600846CB0 /* AppDelegate.h */,
 				263AC5C91A030FD600846CB0 /* AppDelegate.m */,
 				263AC5C51A030FD600846CB0 /* Info.plist */,
@@ -474,6 +484,7 @@
 				263AC5CA1A030FD600846CB0 /* AppDelegate.m in Sources */,
 				261E71961A490D040036ABE3 /* DiveListFinalScore.m in Sources */,
 				266ACFC41A462BFB00F89645 /* DiveListEdit.m in Sources */,
+				26ADE4471A4A07D600913ABA /* HTAutocompleteManager.m in Sources */,
 				26BE234A1A10275A00E123D0 /* QuickScores.m in Sources */,
 				267643E91A218E2C00CD2CB1 /* ChooseMeet.m in Sources */,
 				26BE237D1A1027CC00E123D0 /* JudgeScores.m in Sources */,
@@ -484,6 +495,7 @@
 				26BE234B1A10275A00E123D0 /* Scores.m in Sources */,
 				26BE237E1A1027CC00E123D0 /* DiveTotal.m in Sources */,
 				26BE237A1A1027CC00E123D0 /* DBManager.m in Sources */,
+				26ADE4481A4A07D600913ABA /* HTAutocompleteTextField.m in Sources */,
 				26BE234C1A10275A00E123D0 /* Reports.m in Sources */,
 				26BE234E1A10275A00E123D0 /* Judges.m in Sources */,
 				263AC5C71A030FD600846CB0 /* main.m in Sources */,

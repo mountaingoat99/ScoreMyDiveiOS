@@ -6004,7 +6004,7 @@
                                     <rect key="frame" x="16" y="245" width="91" height="30"/>
                                 </variation>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="0.0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yfn-hl-JNM">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="0.0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yfn-hl-JNM" customClass="HTAutocompleteTextField">
                                 <rect key="frame" x="120" y="107" width="55" height="25"/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -6043,7 +6043,7 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="0.0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zk9-d0-Bey">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="0.0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zk9-d0-Bey" customClass="HTAutocompleteTextField">
                                 <rect key="frame" x="278" y="105" width="55" height="25"/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -6082,7 +6082,7 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="0.0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RyC-Uu-lnd">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="0.0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RyC-Uu-lnd" customClass="HTAutocompleteTextField">
                                 <rect key="frame" x="278" y="146" width="55" height="25"/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -6121,7 +6121,7 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="0.0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eXC-1e-plQ">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="0.0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eXC-1e-plQ" customClass="HTAutocompleteTextField">
                                 <rect key="frame" x="278" y="188" width="55" height="25"/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -6160,7 +6160,7 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="0.0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e0W-My-vRD">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="0.0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e0W-My-vRD" customClass="HTAutocompleteTextField">
                                 <rect key="frame" x="278" y="231" width="55" height="25"/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -6199,7 +6199,7 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="0.0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4UO-05-A51">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="0.0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4UO-05-A51" customClass="HTAutocompleteTextField">
                                 <rect key="frame" x="278" y="272" width="55" height="25"/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -6238,7 +6238,7 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="0.0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uKW-HQ-NqD">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="0.0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uKW-HQ-NqD" customClass="HTAutocompleteTextField">
                                 <rect key="frame" x="120" y="188" width="55" height="25"/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -6277,7 +6277,7 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="0.0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N6H-kr-SME">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="0.0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N6H-kr-SME" customClass="HTAutocompleteTextField">
                                 <rect key="frame" x="120" y="231" width="55" height="25"/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -6316,7 +6316,7 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="0.0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GyQ-3K-Bo6">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="0.0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GyQ-3K-Bo6" customClass="HTAutocompleteTextField">
                                 <rect key="frame" x="120" y="272" width="55" height="25"/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -6355,7 +6355,7 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="0.0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bMM-qT-fjw">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="0.0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bMM-qT-fjw" customClass="HTAutocompleteTextField">
                                 <rect key="frame" x="120" y="313" width="55" height="25"/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -6394,7 +6394,7 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="0.0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="64t-jG-D9g">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="0.0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="64t-jG-D9g" customClass="HTAutocompleteTextField">
                                 <rect key="frame" x="120" y="146" width="55" height="25"/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -6712,17 +6712,17 @@
                         <outlet property="lblScore7" destination="6fe-nt-TKw" id="i9r-Pg-2ut"/>
                         <outlet property="lblScore8" destination="2d2-hQ-JrX" id="Haf-hI-X1T"/>
                         <outlet property="lblScore9" destination="WGj-Gu-euO" id="hbh-fM-gHY"/>
-                        <outlet property="txtScore1" destination="Yfn-hl-JNM" id="uAW-r4-NQu"/>
-                        <outlet property="txtScore10" destination="4UO-05-A51" id="nBt-dT-GFE"/>
-                        <outlet property="txtScore11" destination="bMM-qT-fjw" id="0ZH-hN-ApR"/>
-                        <outlet property="txtScore2" destination="Zk9-d0-Bey" id="lem-jM-VVj"/>
-                        <outlet property="txtScore3" destination="64t-jG-D9g" id="smx-Db-psg"/>
-                        <outlet property="txtScore4" destination="RyC-Uu-lnd" id="oxh-S4-ixx"/>
-                        <outlet property="txtScore5" destination="uKW-HQ-NqD" id="nqU-GA-sX8"/>
-                        <outlet property="txtScore6" destination="eXC-1e-plQ" id="hPL-af-sOB"/>
-                        <outlet property="txtScore7" destination="N6H-kr-SME" id="kTg-XN-sbF"/>
-                        <outlet property="txtScore8" destination="e0W-My-vRD" id="Ylq-Ek-0Sa"/>
-                        <outlet property="txtScore9" destination="GyQ-3K-Bo6" id="ghb-SG-r7L"/>
+                        <outlet property="txt1" destination="Yfn-hl-JNM" id="xAe-YI-wnu"/>
+                        <outlet property="txt10" destination="4UO-05-A51" id="cNi-tJ-Jhn"/>
+                        <outlet property="txt11" destination="bMM-qT-fjw" id="Ic6-9Z-Vmb"/>
+                        <outlet property="txt2" destination="Zk9-d0-Bey" id="aP4-Yf-iMa"/>
+                        <outlet property="txt3" destination="64t-jG-D9g" id="F2g-AD-8gu"/>
+                        <outlet property="txt4" destination="RyC-Uu-lnd" id="fpM-FZ-bjD"/>
+                        <outlet property="txt5" destination="uKW-HQ-NqD" id="uC7-Qo-U6H"/>
+                        <outlet property="txt6" destination="eXC-1e-plQ" id="dVq-Jc-qOV"/>
+                        <outlet property="txt7" destination="N6H-kr-SME" id="vGH-uq-0u9"/>
+                        <outlet property="txt8" destination="e0W-My-vRD" id="vgQ-yq-iaH"/>
+                        <outlet property="txt9" destination="GyQ-3K-Bo6" id="Hf1-d9-Suz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J2u-Oi-2w0" userLabel="First Responder" sceneMemberID="firstResponder"/>

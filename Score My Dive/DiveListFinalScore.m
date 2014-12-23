@@ -26,6 +26,7 @@
     self.txtTotalScore.layer.shadowOpacity = .3;
     self.txtTotalScore.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtTotalScore.keyboardType = UIKeyboardTypeDecimalPad;
+    self.txtTotalScore.delegate = self;
     
     self.btnTotal.layer.shadowColor = [UIColor blackColor].CGColor;
     self.btnTotal.layer.shadowOffset = CGSizeMake(.1f, .1f);
@@ -46,7 +47,19 @@
     [self.view endEditing:YES];
 }
 
-
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    if (!string.length)
+        return YES;
+    
+    NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSString *expression = @"^([0-9]{1,3}+)?(\\.([0-9]{1,2})?)?$";
+    NSError *error = nil;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:expression options:NSRegularExpressionCaseInsensitive error:&error];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:newString options:0 range:NSMakeRange(0, [newString length])];
+    if (numberOfMatches == 0) return NO;
+    return YES;
+}
 
 - (IBAction)btnTotalClick:(id)sender {
     

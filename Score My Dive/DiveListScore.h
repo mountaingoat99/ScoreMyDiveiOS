@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HTAutocompleteTextField.h"
 
 @interface DiveListScore : UIViewController <UITextFieldDelegate>
 
@@ -28,19 +29,21 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblScore9;
 @property (weak, nonatomic) IBOutlet UILabel *lblScore10;
 @property (weak, nonatomic) IBOutlet UILabel *lblScore11;
-@property (weak, nonatomic) IBOutlet UITextField *txtScore1;
-@property (weak, nonatomic) IBOutlet UITextField *txtScore2;
-@property (weak, nonatomic) IBOutlet UITextField *txtScore3;
-@property (weak, nonatomic) IBOutlet UITextField *txtScore4;
-@property (weak, nonatomic) IBOutlet UITextField *txtScore5;
-@property (weak, nonatomic) IBOutlet UITextField *txtScore6;
-@property (weak, nonatomic) IBOutlet UITextField *txtScore7;
-@property (weak, nonatomic) IBOutlet UITextField *txtScore8;
-@property (weak, nonatomic) IBOutlet UITextField *txtScore9;
-@property (weak, nonatomic) IBOutlet UITextField *txtScore10;
-@property (weak, nonatomic) IBOutlet UITextField *txtScore11;
 @property (weak, nonatomic) IBOutlet UIButton *btnTotal;
 @property (weak, nonatomic) IBOutlet UIButton *btnFailed;
+
+//auto complete text fields
+@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txt1;
+@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txt2;
+@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txt3;
+@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txt4;
+@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txt5;
+@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txt6;
+@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txt7;
+@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txt8;
+@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txt9;
+@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txt10;
+@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txt11;
 
 - (IBAction)btnTotalClick:(id)sender;
 - (IBAction)btnFailedClick:(id)sender;
