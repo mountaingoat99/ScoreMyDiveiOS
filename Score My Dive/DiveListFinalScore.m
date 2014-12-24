@@ -24,6 +24,7 @@
     self.txtTotalScore.layer.masksToBounds = NO;
     self.txtTotalScore.layer.shadowRadius = 4.0f;
     self.txtTotalScore.layer.shadowOpacity = .3;
+    self.txtTotalScore.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     self.txtTotalScore.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtTotalScore.keyboardType = UIKeyboardTypeDecimalPad;
     self.txtTotalScore.delegate = self;
@@ -62,6 +63,8 @@
 }
 
 - (IBAction)btnTotalClick:(id)sender {
+    
+    
     
 }
 

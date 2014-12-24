@@ -62,6 +62,7 @@
     self.txtChooseDiver.layer.shadowRadius = 4.0f;
     self.txtChooseDiver.layer.shadowOpacity = .3;
     self.txtChooseDiver.keyboardAppearance = UIKeyboardAppearanceDark;
+    self.txtChooseDiver.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     
     self.SCDiveTotals.layer.shadowColor = [UIColor blackColor].CGColor;
     self.SCDiveTotals.layer.shadowOffset = CGSizeMake(.1f, .1f);

@@ -63,12 +63,14 @@
     self.txtDiveGroup.layer.masksToBounds = NO;
     self.txtDiveGroup.layer.shadowRadius = 4.0f;
     self.txtDiveGroup.layer.shadowOpacity = .3;
+    self.txtDiveGroup.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     
     self.txtDive.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtDive.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.txtDive.layer.masksToBounds = NO;
     self.txtDive.layer.shadowRadius = 4.0f;
     self.txtDive.layer.shadowOpacity = .3;
+    self.txtDive.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     
     self.SCPosition.layer.shadowColor = [UIColor blackColor].CGColor;
     self.SCPosition.layer.shadowOffset = CGSizeMake(.1f, .1f);

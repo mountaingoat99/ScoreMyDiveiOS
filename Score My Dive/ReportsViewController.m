@@ -47,23 +47,23 @@
     self.txtxChooseDiver.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtxChooseDiver.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.txtxChooseDiver.layer.masksToBounds = NO;
-    //self.txtxChooseDiver.layer.shadowRadius = 4.0f;
     self.txtxChooseDiver.layer.shadowOpacity = .3;
     self.txtxChooseDiver.keyboardAppearance = UIKeyboardAppearanceDark;
+    self.txtxChooseDiver.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     
     self.txtChooseMeet.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtChooseMeet.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.txtChooseMeet.layer.masksToBounds = NO;
-    //self.txtChooseMeet.layer.shadowRadius = 4.0f;
     self.txtChooseMeet.layer.shadowOpacity = .3;
     self.txtChooseMeet.keyboardAppearance = UIKeyboardAppearanceDark;
+    self.txtChooseMeet.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     
     self.txtChooseReport.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtChooseReport.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.txtChooseReport.layer.masksToBounds = NO;
-    //self.txtChooseReport.layer.shadowRadius = 4.0f;
     self.txtChooseReport.layer.shadowOpacity = .3;
     self.txtChooseReport.keyboardAppearance = UIKeyboardAppearanceDark;
+    self.txtChooseReport.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
 
 }
 

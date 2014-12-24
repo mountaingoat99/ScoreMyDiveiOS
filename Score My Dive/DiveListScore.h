@@ -25,10 +25,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblScore5;
 @property (weak, nonatomic) IBOutlet UILabel *lblScore6;
 @property (weak, nonatomic) IBOutlet UILabel *lblScore7;
-@property (weak, nonatomic) IBOutlet UILabel *lblScore8;
-@property (weak, nonatomic) IBOutlet UILabel *lblScore9;
-@property (weak, nonatomic) IBOutlet UILabel *lblScore10;
-@property (weak, nonatomic) IBOutlet UILabel *lblScore11;
 @property (weak, nonatomic) IBOutlet UIButton *btnTotal;
 @property (weak, nonatomic) IBOutlet UIButton *btnFailed;
 
@@ -40,10 +36,6 @@
 @property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txt5;
 @property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txt6;
 @property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txt7;
-@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txt8;
-@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txt9;
-@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txt10;
-@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txt11;
 
 - (IBAction)btnTotalClick:(id)sender;
 - (IBAction)btnFailedClick:(id)sender;

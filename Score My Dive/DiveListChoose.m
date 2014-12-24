@@ -66,6 +66,7 @@
     self.txtDiveNumber.layer.masksToBounds = NO;
     self.txtDiveNumber.layer.shadowRadius = 4.0f;
     self.txtDiveNumber.layer.shadowOpacity = .3;
+    self.txtDiveNumber.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     
     self.btnEnterScore.layer.shadowColor = [UIColor blackColor].CGColor;
     self.btnEnterScore.layer.shadowOffset = CGSizeMake(.1f, .1f);

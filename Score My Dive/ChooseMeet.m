@@ -39,6 +39,7 @@
     self.txtChooseMeet.layer.masksToBounds = NO;
     self.txtChooseMeet.layer.shadowOpacity = .3;
     self.txtChooseMeet.keyboardAppearance = UIKeyboardAppearanceDark;
+    self.txtChooseMeet.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     
     [self.lblJudges setHidden:YES];
 }
@@ -162,7 +163,7 @@
         self.lblJudges.text = @"3 Judges";
         NSLog(@"Judges total is %@", self.judgeTotal);
     } else if ([self.judgeTotal  isEqualToNumber: @5]) {
-        self.lblJudges.text = @"4 Judges";
+        self.lblJudges.text = @"5 Judges";
         NSLog(@"Judges total is %@", self.judgeTotal);
     } else if ([self.judgeTotal  isEqualToNumber: @7]) {
         self.lblJudges.text = @"7 Judges";
