@@ -27,6 +27,7 @@
 @property (nonatomic, strong) NSNumber *scoreTotal;
 @property (nonatomic) int diveTotal;
 @property (nonatomic) int whatNumber;
+//@property (nonatomic) BOOL failedDive;
 
 -(void)GetCollectionofMeetInfo;
 -(void)getTheDiveTotal;
@@ -39,6 +40,7 @@
 -(void)fillDiveInfo;
 -(void)checkFinishedScoring;
 -(void)ShowScoreTotal:(NSNumber*)scoretotal;
+//-(BOOL)IsDiveFailed:(NSNumber*)diveNumber;
 
 @end
 
@@ -404,6 +406,10 @@
     JudgeScores *diveInfo = [[JudgeScores alloc] init];
     NSNumber *diveScore;
     
+    // for checking a failed dive
+    JudgeScores *failInfo = [[JudgeScores alloc] init];
+    NSString *failedDive;
+    
     // lets see what dive number we are on first
     DiveNumber *number = [[DiveNumber alloc] init];
     number = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:3];
@@ -415,66 +421,126 @@
     // now we check the number and show the score and divetype
     if (self.whatNumber >= 1) {
         
-        diveScore = score.dive1;
-        diveInfoText = [diveScore stringValue];
-        diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
-        diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:1]];
-        self.lblDive1.text = diveInfoText;
+        // getting the failed check out of the meet collection object
+        failInfo = [[[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:6] objectAtIndex:0];
+        failedDive = failInfo.failed;
+        if ([failedDive isEqualToString:@"1"]) {
+            
+            diveInfoText = @"Failed - ";
+            diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:1]];
+        } else {
+        
+            diveScore = score.dive1;
+            diveInfoText = [diveScore stringValue];
+            diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
+            diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:1]];
+        }
+        self.lblDive1text.text = diveInfoText;
         [self.lblDive1 setHidden:NO];
         [self.lblDive1text setHidden:NO];
     }
     
     if (self.whatNumber >= 2) {
         
-        diveScore = score.dive2;
-        diveInfoText = [diveScore stringValue];
-        diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
-        diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:2]];
-        self.lblDive2.text = diveInfoText;
+        // getting the failed check out of the meet collection object
+        failInfo = [[[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:6] objectAtIndex:1];
+        failedDive = failInfo.failed;
+        if ([failedDive isEqualToString:@"1"]) {
+            
+            diveInfoText = @"Failed - ";
+            diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:2]];
+        } else {
+            
+            diveScore = score.dive2;
+            diveInfoText = [diveScore stringValue];
+            diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
+            diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:2]];
+        }
+        self.lblDive2text.text = diveInfoText;
         [self.lblDive2 setHidden:NO];
-        [self.lblDive3text setHidden:NO];
+        [self.lblDive2text setHidden:NO];
     }
     
     if (self.whatNumber >= 3) {
         
-        diveScore = score.dive3;
-        diveInfoText = [diveScore stringValue];
-        diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
-        diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:3]];
-        self.lblDive3.text = diveInfoText;
+        // getting the failed check out of the meet collection object
+        failInfo = [[[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:6] objectAtIndex:2];
+        failedDive = failInfo.failed;
+        if ([failedDive isEqualToString:@"1"]) {
+            
+            diveInfoText = @"Failed - ";
+            diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:3]];
+        } else {
+            
+            diveScore = score.dive3;
+            diveInfoText = [diveScore stringValue];
+            diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
+            diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:3]];
+        }
+        self.lblDive3text.text = diveInfoText;
         [self.lblDive3 setHidden:NO];
         [self.lblDive3text setHidden:NO];
     }
     
     if (self.whatNumber >= 4) {
         
-        diveScore = score.dive4;
-        diveInfoText = [diveScore stringValue];
-        diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
-        diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:4]];
-        self.lblDive4.text = diveInfoText;
+        // getting the failed check out of the meet collection object
+        failInfo = [[[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:6] objectAtIndex:3];
+        failedDive = failInfo.failed;
+        if ([failedDive isEqualToString:@"1"]) {
+            
+            diveInfoText = @"Failed - ";
+            diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:4]];
+        } else {
+            
+            diveScore = score.dive4;
+            diveInfoText = [diveScore stringValue];
+            diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
+            diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:4]];
+        }
+        self.lblDive4text.text = diveInfoText;
         [self.lblDive4 setHidden:NO];
         [self.lblDive4text setHidden:NO];
     }
     
     if (self.whatNumber >= 5) {
         
-        diveScore = score.dive5;
-        diveInfoText = [diveScore stringValue];
-        diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
-        diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:5]];
-        self.lblDive5.text = diveInfoText;
+        // getting the failed check out of the meet collection object
+        failInfo = [[[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:6] objectAtIndex:4];
+        failedDive = failInfo.failed;
+        if ([failedDive isEqualToString:@"1"]) {
+            
+            diveInfoText = @"Failed - ";
+            diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:5]];
+        } else {
+            
+            diveScore = score.dive5;
+            diveInfoText = [diveScore stringValue];
+            diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
+            diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:5]];
+        }
+        self.lblDive5text.text = diveInfoText;
         [self.lblDive5 setHidden:NO];
         [self.lblDive5text setHidden:NO];
     }
     
     if (self.whatNumber >= 6) {
         
-        diveScore = score.dive6;
-        diveInfoText = [diveScore stringValue];
-        diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
-        diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:6]];
-        self.lblDive6.text = diveInfoText;
+        // getting the failed check out of the meet collection object
+        failInfo = [[[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:6] objectAtIndex:5];
+        failedDive = failInfo.failed;
+        if ([failedDive isEqualToString:@"1"]) {
+            
+            diveInfoText = @"Failed - ";
+            diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:6]];
+        } else {
+            
+            diveScore = score.dive6;
+            diveInfoText = [diveScore stringValue];
+            diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
+            diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:6]];
+        }
+        self.lblDive6text.text = diveInfoText;
         [self.lblDive6 setHidden:NO];
         [self.lblDive6text setHidden:NO];
         
@@ -486,55 +552,105 @@
         
         if (self.whatNumber >= 7) {
             
-            diveScore = score.dive7;
-            diveInfoText = [diveScore stringValue];
-            diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
-            diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:7]];
-            self.lblDive7.text = diveInfoText;
+            // getting the failed check out of the meet collection object
+            failInfo = [[[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:6] objectAtIndex:6];
+            failedDive = failInfo.failed;
+            if ([failedDive isEqualToString:@"1"]) {
+                
+                diveInfoText = @"Failed - ";
+                diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:7]];
+            } else {
+                
+                diveScore = score.dive7;
+                diveInfoText = [diveScore stringValue];
+                diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
+                diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:7]];
+            }
+            self.lblDive7text.text = diveInfoText;
             [self.lblDive7 setHidden:NO];
             [self.lblDive7text setHidden:NO];
         }
         
         if (self.whatNumber >= 8) {
             
-            diveScore = score.dive8;
-            diveInfoText = [diveScore stringValue];
-            diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
-            diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:8]];
-            self.lblDive8.text = diveInfoText;
+            // getting the failed check out of the meet collection object
+            failInfo = [[[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:6] objectAtIndex:7];
+            failedDive = failInfo.failed;
+            if ([failedDive isEqualToString:@"1"]) {
+                
+                diveInfoText = @"Failed - ";
+                diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:8]];
+            } else {
+                
+                diveScore = score.dive8;
+                diveInfoText = [diveScore stringValue];
+                diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
+                diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:8]];
+            }
+            self.lblDive8text.text = diveInfoText;
             [self.lblDive8 setHidden:NO];
             [self.lblDive8text setHidden:NO];
         }
         
         if (self.whatNumber >= 9) {
             
-            diveScore = score.dive9;
-            diveInfoText = [diveScore stringValue];
-            diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
-            diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:9]];
-            self.lblDive9.text = diveInfoText;
+            // getting the failed check out of the meet collection object
+            failInfo = [[[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:6] objectAtIndex:8];
+            failedDive = failInfo.failed;
+            if ([failedDive isEqualToString:@"1"]) {
+                
+                diveInfoText = @"Failed - ";
+                diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:9]];
+            } else {
+                
+                diveScore = score.dive9;
+                diveInfoText = [diveScore stringValue];
+                diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
+                diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:9]];
+            }
+            self.lblDive9text.text = diveInfoText;
             [self.lblDive9 setHidden:NO];
             [self.lblDive9text setHidden:NO];
         }
         
         if (self.whatNumber >= 10) {
             
-            diveScore = score.dive10;
-            diveInfoText = [diveScore stringValue];
-            diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
-            diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:10]];
-            self.lblDive10.text = diveInfoText;
+            // getting the failed check out of the meet collection object
+            failInfo = [[[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:6] objectAtIndex:9];
+            failedDive = failInfo.failed;
+            if ([failedDive isEqualToString:@"1"]) {
+                
+                diveInfoText = @"Failed - ";
+                diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:10]];
+            } else {
+                
+                diveScore = score.dive10;
+                diveInfoText = [diveScore stringValue];
+                diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
+                diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:10]];
+            }
+            self.lblDive10text.text = diveInfoText;
             [self.lblDive10 setHidden:NO];
             [self.lblDive10text setHidden:NO];
         }
         
         if (self.whatNumber >= 11) {
             
-            diveScore = score.dive11;
-            diveInfoText = [diveScore stringValue];
-            diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
-            diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:11]];
-            self.lblDive11.text = diveInfoText;
+            // getting the failed check out of the meet collection object
+            failInfo = [[[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:6] objectAtIndex:10];
+            failedDive = failInfo.failed;
+            if ([failedDive isEqualToString:@"1"]) {
+                
+                diveInfoText = @"Failed - ";
+                diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:11]];
+            } else {
+                
+                diveScore = score.dive11;
+                diveInfoText = [diveScore stringValue];
+                diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
+                diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:11]];
+            }
+            self.lblDive11text.text = diveInfoText;
             [self.lblDive11 setHidden:NO];
             [self.lblDive11text setHidden:NO];
             
@@ -550,8 +666,12 @@
     
     if (![scoretotal isEqual:@0]) {
         
+        // have to do an idiodic convert to double, round and convert back to number because
+        // of the insane apple datatypes
+        double total = [scoretotal doubleValue];
+        
         self.scoreTotal = scoretotal;
-        self.lblTotalScore.text = [self.scoreTotal stringValue];
+        self.lblTotalScore.text = [NSString stringWithFormat:@"%.2f", total];
         
     } else {
         self.lblTotalScore.text = @"0.0";
@@ -561,8 +681,10 @@
 -(void)checkFinishedScoring {
     
     if (self.diveTotal == self.whatNumber) {
-        [self.btnEnterScore setEnabled:NO];
-        [self.btnEnterTotalScore setEnabled:NO];
+        
+        // commenting these out. Right now we will still let the user edit after a meet is finished
+        //[self.btnEnterScore setEnabled:NO];
+        //[self.btnEnterTotalScore setEnabled:NO];
         
         UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Congradulations!"
                                                         message:@"Scoring is complete for this diver"
@@ -574,5 +696,10 @@
     }
 }
 
-
+//-(BOOL)IsDiveFailed:(NSNumber*)diveNumber {
+//    
+//    JudgeScores *scores = [[JudgeScores alloc] init];
+//    
+//    return [scores CheckFailed:self.meetRecordID diverid:self.diverRecordID divenumber:diveNumber];
+//}
 @end

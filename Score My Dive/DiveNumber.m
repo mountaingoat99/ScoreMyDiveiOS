@@ -60,14 +60,36 @@
     
 }
 
--(void)UpdateDiveNumber:(int)meetid diverid:(int)diverid divenumber:(NSNumber*)divenumber {
+-(BOOL)UpdateDiveNumber:(int)meetid diverid:(int)diverid divenumber:(int)divenumber {
     
-    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    // first we need to see what dive number thye are currently on
+    NSNumber *currentDive = [self WhatDiveNumber:meetid diverid:diverid];
     
-    NSString *query = [NSString stringWithFormat:@"update dive_number set number=%@ where meet_id=%d and diver_id=%d", divenumber, meetid, diverid];
+    // convert the current and paramter to ints soe we can do a proper compare
+    int currentInt = [currentDive intValue];
+    // now we will see if we even need to increment the number.
+    // if it is the same or greater than the current we don't have to increment
+    // we do this because in the diveList scoring screens the user can change the score anytime
+    if (currentInt >= divenumber) {
+        
+        return true;
+        
+    } else {
     
-    [self.dbManager loadDataFromDB:query];
-    
+        self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+        
+        NSString *query = [NSString stringWithFormat:@"update dive_number set number=%d where meet_id=%d and diver_id=%d", divenumber, meetid, diverid];
+        
+        [self.dbManager executeQuery:query];
+        
+        if(self.dbManager.affectedRows != 0) {
+            NSLog(@"query was executed successfully. Affected Rows = %d", self.dbManager.affectedRows);
+            return true;
+        } else {
+            NSLog(@"Could not execute query");
+            return  false;
+        }
+    }
 }
 
 @end

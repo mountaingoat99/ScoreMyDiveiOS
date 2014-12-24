@@ -8,6 +8,8 @@
 
 #import "JudgeScores.h"
 #import "DBManager.h"
+#import "Results.h"
+#import "DiveNumber.h"
 #import <Foundation/Foundation.h>
 
 @interface JudgeScores ()
@@ -29,13 +31,13 @@
 -(BOOL)CreateJudgeScores:(int)meetid diverid:(int)diverid boardsize:(double)boardsize divenumber:(NSNumber*)divenumber divecategory:(NSString*)divecategory divetype:(NSString*)divetype diveposition:(NSString*)diveposition failed:(NSNumber*)failed multiplier:(NSNumber*)multiplier totalscore:(NSNumber*)totalscore score1:(NSNumber*)score1 score2:(NSNumber*)score2 score3:(NSNumber*)score3 score4:(NSNumber*)score4 score5:(NSNumber*)score5 score6:(NSNumber*)score6 score7:(NSNumber*)score7 {
     
     //call the method to calc the total
-    self.total = [self calcTotal:score1 TwoJudge:score2 ThreeJudge:score3 FourJudge:score4 FiveJudge:score5 SixJudge:score6 SevenJudge:score7];
+    //self.total = [self calcTotal:score1 TwoJudge:score2 ThreeJudge:score3 FourJudge:score4 FiveJudge:score5 SixJudge:score6 SevenJudge:score7];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query;
     
-    query = [NSString stringWithFormat:@"insert into judges_scores(meet_id, diver_id, board_size, dive_number, dive_category, dive_type, dive_position, failed, multiplier, total_score, score_1, score_2, score_3, score_4, score_5, score_6, score_7) values(%d, %d, %f, %@, '%@', '%@', '%@', %@, %@, %@, %@, %@, %@, %@, %@, %@, %@)", meetid, diverid, boardsize, divenumber, divecategory, divetype, diveposition, failed, multiplier, self.totalScore, score1, score2, score3, score4, score5, score6, score7];
+    query = [NSString stringWithFormat:@"insert into judges_scores(meet_id, diver_id, board_size, dive_number, dive_category, dive_type, dive_position, failed, multiplier, total_score, score_1, score_2, score_3, score_4, score_5, score_6, score_7) values(%d, %d, %f, %@, '%@', '%@', '%@', %@, %@, %@, %@, %@, %@, %@, %@, %@, %@)", meetid, diverid, boardsize, divenumber, divecategory, divetype, diveposition, failed, multiplier, totalscore, score1, score2, score3, score4, score5, score6, score7];
     
     [self.dbManager executeQuery:query];
     
@@ -246,16 +248,21 @@
     
 }
 
--(void)UpdateJudgeAllScoresFailed:(int)meetid diverid:(int)diverid divenumber:(NSNumber*)divenumber failed:(NSNumber*)failed totalscore:(NSNumber*)totalscore score1:(NSNumber*)score1 score2:(NSNumber*)score2 score3:(NSNumber*)score3 score4:(NSNumber*)score4 score5:(NSNumber*)score5 score6:(NSNumber*)score6 score7:(NSNumber*)score7 {
-    
-    //call the calcTotal method
-    self.total = [self calcTotal:score1 TwoJudge:score2 ThreeJudge:score3 FourJudge:score4 FiveJudge:score5 SixJudge:score6 SevenJudge:score7];
+-(BOOL)UpdateJudgeAllScoresFailed:(int)meetid diverid:(int)diverid divenumber:(int)divenumber failed:(NSNumber*)failed totalscore:(NSNumber*)totalscore score1:(NSNumber*)score1 score2:(NSNumber*)score2 score3:(NSNumber*)score3 score4:(NSNumber*)score4 score5:(NSNumber*)score5 score6:(NSNumber*)score6 score7:(NSNumber*)score7 {
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
-    NSString *query = [NSString stringWithFormat:@"update judges_scores set failed=%@, total_score=%@, score_1=%@, score_2=%@, score_3=%@, score_4=%@, score_5=%@, score_6=%@, score_7=%@ where meet_id=%d and diver_id=%d and dive_number=%@", failed, self.total, score1, score2, score3, score4, score5, score6, score7, meetid, diverid, divenumber];
+    NSString *query = [NSString stringWithFormat:@"update judges_scores set failed=%@, total_score=%@, score_1=%@, score_2=%@, score_3=%@, score_4=%@, score_5=%@, score_6=%@, score_7=%@ where meet_id=%d and diver_id=%d and dive_number=%d", failed, totalscore, score1, score2, score3, score4, score5, score6, score7, meetid, diverid, divenumber];
     
     [self.dbManager executeQuery:query];
+    
+    if (self.dbManager.affectedRows != 0) {
+        NSLog(@"Results query was executed successfully. Affected Rows = %d", self.dbManager.affectedRows);
+        return true;
+    } else {
+        NSLog(@"Results could not execute query");
+        return  false;
+    }
     
 }
 
@@ -271,17 +278,21 @@
     
 }
 
--(void)UpdateJudgeAllScores:(int)meetid diverid:(int)diverid divenumber:(NSNumber*)divenumber totalscore:(NSNumber*)totalscore score1:(NSNumber*)score1 score2:(NSNumber*)score2 score3:(NSNumber*)score3 score4:(NSNumber*)score4 score5:(NSNumber*)score5 score6:(NSNumber*)score6 score7:(NSNumber*)score7 {
-    
-    //call the calcTotal method
-    self.total = [self calcTotal:score1 TwoJudge:score2 ThreeJudge:score3 FourJudge:score4 FiveJudge:score5 SixJudge:score6 SevenJudge:score7];
+-(BOOL)UpdateJudgeAllScores:(int)meetid diverid:(int)diverid divenumber:(int)divenumber totalscore:(NSNumber*)totalscore score1:(NSNumber*)score1 score2:(NSNumber*)score2 score3:(NSNumber*)score3 score4:(NSNumber*)score4 score5:(NSNumber*)score5 score6:(NSNumber*)score6 score7:(NSNumber*)score7 {
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
-    NSString *query = [NSString stringWithFormat:@"update judges_scores set total_score=%@, score_1=%@, score_2=%@, score_3=%@, score_4=%@, score_5=%@, score_6=%@, score_7=%@ where meet_id=%d and diver_id=%d and dive_number=%@", self.total, score1, score2, score3, score4, score5, score6, score7, meetid, diverid, divenumber];
+    NSString *query = [NSString stringWithFormat:@"update judges_scores set total_score=%@, score_1=%@, score_2=%@, score_3=%@, score_4=%@, score_5=%@, score_6=%@, score_7=%@ where meet_id=%d and diver_id=%d and dive_number=%d", totalscore, score1, score2, score3, score4, score5, score6, score7, meetid, diverid, divenumber];
     
     [self.dbManager executeQuery:query];
     
+    if (self.dbManager.affectedRows != 0) {
+        NSLog(@"Results query was executed successfully. Affected Rows = %d", self.dbManager.affectedRows);
+        return true;
+    } else {
+        NSLog(@"Results could not execute query");
+        return  false;
+    }
 }
 
 -(void)DeleteJudgeScore:(int)meetid diverid:(int)diverid divenumber:(NSNumber*)divenumber {
@@ -331,12 +342,17 @@
 
 -(BOOL)Calculate2JudgesScore:(int)meetid diverid:(int)diverid divenumber:(int)divenumber meetinfo:(NSArray*)meetinfo score1:(NSNumber*)score1 score2:(NSNumber*)score2 {
     
+    //lets create some bools yo!
+    BOOL validJudgeScoreInsert;
+    BOOL validResultsInsert;
+    BOOL validDiveNumberIncrement;
+    
     // lets see what the multiplier for this diver and dive is first
     NSNumber* multiplier = [self DiveNumberDD:divenumber meetInfo:meetinfo];
     
     // create some doubles
     double finalScore = 0.0;
-    double roundedFinalScore = 0.0;
+    //double roundedFinalScore = 0.0;
     double scr1 = [score1 doubleValue];
     double scr2 = [score2 doubleValue];
     double scr3 = 0.0;
@@ -345,36 +361,87 @@
     scr3 = (scr1 + scr2) / 2;
     
     finalScore = (scr1 + scr2 + scr3) * [multiplier doubleValue];
-    roundedFinalScore = [self RoundUpScore:finalScore];
-    if (roundedFinalScore < .5) {
-        return NO;
+    
+    //commenting out for now. Think we can just convert to NSNumber to round it out.
+    //roundedFinalScore = [self RoundUpScore:finalScore];
+    if (finalScore < .5) {
+        return false;
     }
     
-    return YES;
+    //update the judge_scores table
+    // first convert any doubles to NSNumber
+    NSNumber *score3 = [NSNumber numberWithDouble:scr3];
+    NSNumber *totalScore = [NSNumber numberWithDouble:finalScore];
+    validJudgeScoreInsert = [self UpdateJudgeAllScores:meetid diverid:diverid divenumber:divenumber totalscore:totalScore score1:score1 score2:score2 score3:score3 score4:@0 score5:@0 score6:@0 score7:@0];
+    
+    //update the results table 
+    Results *result = [[Results alloc] init];
+    validResultsInsert = [result UpdateOneResult:meetid DiverID:diverid DiveNumber:divenumber score:totalScore];
+    
+    // increment the dive number in the dive_number table
+    DiveNumber *number = [[DiveNumber alloc] init];
+    validDiveNumberIncrement = [number UpdateDiveNumber:meetid diverid:diverid divenumber:divenumber];
+    
+    // now make sure everything was updated correctly
+    if (validJudgeScoreInsert && validResultsInsert && validDiveNumberIncrement) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 -(BOOL)Calculate3JudgesScore:(int)meetid diverid:(int)diverid divenumber:(int)divenumber meetinfo:(NSArray*)meetinfo score1:(NSNumber*)score1 score2:(NSNumber*)score2 score3:(NSNumber*)score3 {
+    
+    //lets create some bools yo!
+    BOOL validJudgeScoreInsert;
+    BOOL validResultsInsert;
+    BOOL validDiveNumberIncrement;
     
     // lets see what the multiplier for this diver and dive is first
     NSNumber* multiplier = [self DiveNumberDD:divenumber meetInfo:meetinfo];
     
     // create some doubles
     double finalScore = 0.0;
-    double roundedFinalScore = 0.0;
+    //double roundedFinalScore = 0.0;
     double scr1 = [score1 doubleValue];
     double scr2 = [score2 doubleValue];
     double scr3 = [score3 doubleValue];
     
     finalScore = (scr1 + scr2 + scr3) * [multiplier doubleValue];
-    roundedFinalScore = [self RoundUpScore:finalScore];
-    if (roundedFinalScore < .5) {
-        return NO;
+    
+    //commenting out for now. Think we can just convert to NSNumber to round it out.
+    //roundedFinalScore = [self RoundUpScore:finalScore];
+    if (finalScore < .5) {
+        return false;
     }
     
-    return YES;
+    //update the judge_scores table
+    // first convert all the values back to NSNumber
+    NSNumber *totalScore = [NSNumber numberWithDouble:finalScore];
+    validJudgeScoreInsert =  [self UpdateJudgeAllScores:meetid diverid:diverid divenumber:divenumber totalscore:totalScore score1:score1 score2:score2 score3:score3 score4:@0 score5:@0 score6:@0 score7:@0];
+    
+    //update the results table
+    Results *result = [[Results alloc] init];
+    validResultsInsert = [result UpdateOneResult:meetid DiverID:diverid DiveNumber:divenumber score:totalScore];
+    
+    // increment the dive number in the dive_number table
+    DiveNumber *number = [[DiveNumber alloc] init];
+    validDiveNumberIncrement = [number UpdateDiveNumber:meetid diverid:diverid divenumber:divenumber];
+    
+    // now make sure everything was updated correctly
+    if (validJudgeScoreInsert && validResultsInsert && validDiveNumberIncrement) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 -(BOOL)Calculate5JudgesScore:(int)meetid diverid:(int)diverid divenumber:(int)divenumber meetinfo:(NSArray*)meetinfo score1:(NSNumber*)score1 score2:(NSNumber*)score2 score3:(NSNumber*)score3 score4:(NSNumber*)score4 score5:(NSNumber*)score5 {
+    
+    //lets create some bools yo!
+    BOOL validJudgeScoreInsert;
+    BOOL validResultsInsert;
+    BOOL validDiveNumberIncrement;
     
     // lets see what the multiplier for this diver and dive is first
     NSNumber* multiplier = [self DiveNumberDD:divenumber meetInfo:meetinfo];
@@ -387,21 +454,46 @@
     
     // now we only need to get the middle doubles and leave out the lowest and highest
     double finalScore = 0.0;
-    double roundedFinalScore = 0.0;
+    //double roundedFinalScore = 0.0;
     double scr1 = [[sortedNumbers objectAtIndex:1] doubleValue];
     double scr2 = [[sortedNumbers objectAtIndex:2] doubleValue];
     double scr3 = [[sortedNumbers objectAtIndex:3] doubleValue];
     
     finalScore = (scr1 + scr2 + scr3) * [multiplier doubleValue];
-    roundedFinalScore = [self RoundUpScore:finalScore];
-    if (roundedFinalScore < .5) {
-        return NO;
+    
+    //commenting out for now. Think we can just convert to NSNumber to round it out.
+    //roundedFinalScore = [self RoundUpScore:finalScore];
+    if (finalScore < .5) {
+        return false;
     }
     
-    return YES;
+    //update the judge_scores table
+    // first convert all the values back to NSNumber
+    NSNumber *totalScore = [NSNumber numberWithDouble:finalScore];
+    validJudgeScoreInsert = [self UpdateJudgeAllScores:meetid diverid:diverid divenumber:divenumber totalscore:totalScore score1:score1 score2:score2 score3:score3 score4:score4 score5:score5 score6:@0 score7:@0];
+    
+    //update the results table
+    Results *result = [[Results alloc] init];
+    validResultsInsert = [result UpdateOneResult:meetid DiverID:diverid DiveNumber:divenumber score:totalScore];
+    
+    // increment the dive number in the dive_number table
+    DiveNumber *number = [[DiveNumber alloc] init];
+    validDiveNumberIncrement = [number UpdateDiveNumber:meetid diverid:diverid divenumber:divenumber];
+
+    // now make sure everything was updated correctly
+    if (validJudgeScoreInsert && validResultsInsert && validDiveNumberIncrement) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 -(BOOL)Calculate7JudgesScore:(int)meetid diverid:(int)diverid divenumber:(int)divenumber meetinfo:(NSArray*)meetinfo score1:(NSNumber*)score1 score2:(NSNumber*)score2 score3:(NSNumber*)score3 score4:(NSNumber*)score4 score5:(NSNumber*)score5 score6:(NSNumber*)score6 score7:(NSNumber*)score7 {
+    
+    //lets create some bools yo!
+    BOOL validJudgeScoreInsert;
+    BOOL validResultsInsert;
+    BOOL validDiveNumberIncrement;
     
     // lets see what the multiplier for this diver and dive is first
     NSNumber* multiplier = [self DiveNumberDD:divenumber meetInfo:meetinfo];
@@ -414,18 +506,38 @@
     
     // now we only need to get the middle doubles and leave out the lowest and highest
     double finalScore = 0.0;
-    double roundedFinalScore = 0.0;
+    //double roundedFinalScore = 0.0;
     double scr1 = [[sortedNumbers objectAtIndex:2] doubleValue];
     double scr2 = [[sortedNumbers objectAtIndex:3] doubleValue];
     double scr3 = [[sortedNumbers objectAtIndex:4] doubleValue];
     
     finalScore = (scr1 + scr2 + scr3) * [multiplier doubleValue];
-    roundedFinalScore = [self RoundUpScore:finalScore];
-    if (roundedFinalScore < .5) {
-        return NO;
+    
+    //commenting out for now. Think we can just convert to NSNumber to round it out.
+    //roundedFinalScore = [self RoundUpScore:finalScore];
+    if (finalScore < .5) {
+        return false;
     }
     
-    return YES;
+    //update the judge_scores table
+    // first convert all the values back to NSNumber
+    NSNumber *totalScore = [NSNumber numberWithDouble:finalScore];
+    validJudgeScoreInsert = [self UpdateJudgeAllScores:meetid diverid:diverid divenumber:divenumber totalscore:totalScore score1:score1 score2:score2 score3:score3 score4:score4 score5:score5 score6:score6 score7:score7];
+    
+    //update the results table
+    Results *result = [[Results alloc] init];
+    validResultsInsert = [result UpdateOneResult:meetid DiverID:diverid DiveNumber:divenumber score:totalScore];
+    
+    // increment the dive number in the dive_number table
+    DiveNumber *number = [[DiveNumber alloc] init];
+    validDiveNumberIncrement = [number UpdateDiveNumber:meetid diverid:diverid divenumber:divenumber];
+
+    // now make sure everything was updated correctly
+    if (validJudgeScoreInsert && validResultsInsert && validDiveNumberIncrement) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 #pragma private methods

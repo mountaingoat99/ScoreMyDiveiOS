@@ -7,8 +7,18 @@
 //
 
 #import "DiveListFinalScore.h"
+#import "DiveListChoose.h"
+#import "JudgeScores.h"
+#import "Results.h"
+#import "DiveNumber.h"
 
 @interface DiveListFinalScore ()
+
+@property (nonatomic, strong) NSNumber *totalScore;
+
+-(void)DiveText;
+-(BOOL)CalcScores;
+-(BOOL)updateFailedDive;
 
 @end
 
@@ -34,6 +44,8 @@
     self.btnTotal.layer.masksToBounds = NO;
     self.btnTotal.layer.shadowOpacity = .7;
     
+    [self DiveText];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,6 +58,18 @@
 {
     [super touchesBegan:touches withEvent:event];
     [self.view endEditing:YES];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"idSegueFinalListToListChoose"]) {
+        
+        DiveListChoose *choose = [segue destinationViewController];
+        
+        choose.diverRecordID = self.diverRecordID;
+        choose.meetRecordID = self.diverRecordID;
+        
+    }
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
@@ -64,13 +88,150 @@
 
 - (IBAction)btnTotalClick:(id)sender {
     
+    bool good;
     
-    
+    if (self.txtTotalScore.text.length > 0) {
+        
+        if ((good = [self CalcScores])) {
+            
+            [self performSegueWithIdentifier:@"idSegueFinalListToListChoose" sender:self];
+        } else {
+            
+            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                            message:@"Score was not valid, please try again"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [error show];
+            [error reloadInputViews];
+            
+        }
+        
+    } else {
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                        message:@"You forgot to enter the score"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
+    }
 }
 
 - (IBAction)btnFailedClick:(id)sender {
     
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:@"Fail Dive!"
+                                          message:nil
+                                          preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:@"Cancel"
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       NSLog(@"Cancel Action");
+                                   }];
+    
+    UIAlertAction *okAction = [UIAlertAction
+                               actionWithTitle:@"OK"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction *action)
+                               {
+                                   NSLog(@"OK Action");
+                                   
+                                   bool good;
+                                   
+                                   if ((good = [self updateFailedDive])) {
+                                       
+                                       [self performSegueWithIdentifier:@"idSegueFinalListToListChoose" sender:self];
+                                       
+                                   } else {
+                                       
+                                       UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                                                       message:@"Dive couldn't be failed, please try again"
+                                                                                      delegate:nil
+                                                                             cancelButtonTitle:@"OK"
+                                                                             otherButtonTitles:nil];
+                                       [error show];
+                                       [error reloadInputViews];
+                                   }
+                               }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:okAction];
+    
 }
 
 #pragma private methods
+
+-(void)DiveText {
+    
+    JudgeScores *scores = [[JudgeScores alloc] init];
+    
+    self.lbldiveType.text = [scores GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:self.diveNumber];
+    
+    NSString *diveNumberString = @"Score Dive ";
+    
+    diveNumberString = [diveNumberString stringByAppendingString:[NSString stringWithFormat:@"%d", self.diveNumber]];
+    
+    self.lblDiveNumber.text = diveNumberString;
+    
+}
+
+-(BOOL)CalcScores {
+    
+    BOOL validJudgeScoreInsert;
+    BOOL validResultsInsert;
+    BOOL validDiveNumberIncrement;
+    
+    JudgeScores *scores = [[JudgeScores alloc] init];
+    
+    self.totalScore = @([self.txtTotalScore.text doubleValue]);
+    
+    validJudgeScoreInsert = [scores UpdateJudgeAllScores:self.meetRecordID diverid:self.diverRecordID divenumber:self.diveNumber totalscore:self.totalScore score1:@0 score2:@0 score3:@0 score4:@0 score5:@0 score6:@0 score7:@0];
+    
+    //update the results table
+    Results *result = [[Results alloc] init];
+    validResultsInsert = [result UpdateOneResult:self.meetRecordID DiverID:self.diverRecordID DiveNumber:self.diveNumber score:self.totalScore];
+    
+    // increment the dive number in the dive_number table
+    DiveNumber *number = [[DiveNumber alloc] init];
+    validDiveNumberIncrement = [number UpdateDiveNumber:self.meetRecordID diverid:self.diverRecordID divenumber:self.diveNumber];
+    
+    // now make sure everything was updated correctly
+    if (validJudgeScoreInsert && validResultsInsert && validDiveNumberIncrement) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+-(BOOL)updateFailedDive {
+    
+    //lets create some bools yo!
+    BOOL validJudgeScoreInsert;
+    BOOL validResultsInsert;
+    BOOL validDiveNumberIncrement;
+    
+    JudgeScores *scores = [[JudgeScores alloc] init];
+    
+    validJudgeScoreInsert = [scores UpdateJudgeAllScoresFailed:self.meetRecordID diverid:self.diverRecordID divenumber:self.diveNumber failed:@1 totalscore:@0 score1:@0 score2:@0 score3:@0 score4:@0 score5:@0 score6:@0 score7:@0];
+    
+    //update the results table
+    Results *result = [[Results alloc] init];
+    validResultsInsert = [result UpdateOneResult:self.meetRecordID DiverID:self.diverRecordID DiveNumber:self.diveNumber score:@0];
+    
+    // increment the dive number in the dive_number table
+    DiveNumber *number = [[DiveNumber alloc] init];
+    validDiveNumberIncrement = [number UpdateDiveNumber:self.meetRecordID diverid:self.diverRecordID divenumber:self.diveNumber];
+    
+    // now make sure everything was updated correctly
+    if (validJudgeScoreInsert && validResultsInsert && validDiveNumberIncrement) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 @end

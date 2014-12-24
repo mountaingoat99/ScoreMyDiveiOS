@@ -22,6 +22,6 @@
 
 -(NSArray*)GetDiveNumber:(int)meetid diverid:(int)diverid;
 
--(void)UpdateDiveNumber:(int)meetid diverid:(int)diverid divenumber:(NSNumber*)divenumber;
+-(BOOL)UpdateDiveNumber:(int)meetid diverid:(int)diverid divenumber:(int)divenumber;
 
 @end

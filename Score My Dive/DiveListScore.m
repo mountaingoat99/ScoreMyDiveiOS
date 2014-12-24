@@ -10,12 +10,13 @@
 #import "HTAutocompleteManager.h"
 #import "Judges.h"
 #import "JudgeScores.h"
+#import "Results.h"
+#import "DiveNumber.h"
+#import "DiveListChoose.h"
 
 @interface DiveListScore ()
 
 @property (nonatomic, strong) NSNumber *judgesTotal;
-@property (nonatomic, strong) NSArray *validScores;
-@property (nonatomic) bool validScore;
 @property (nonatomic, strong) NSNumber *scr1;
 @property (nonatomic, strong) NSNumber *scr2;
 @property (nonatomic, strong) NSNumber *scr3;
@@ -28,6 +29,7 @@
 -(void)HideControls;
 -(void)DiveText;
 -(BOOL)CalcScores;
+-(BOOL)updateFailedDive;
 
 @end
 
@@ -141,6 +143,18 @@
     [self.view endEditing:YES];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"idReturnToDiveListChoose"]) {
+        
+        DiveListChoose *choose = [segue destinationViewController];
+        
+        choose.diverRecordID = self.diverRecordID;
+        choose.meetRecordID = self.diverRecordID;
+        
+    }
+}
+
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
     if (!string.length)
@@ -165,7 +179,7 @@
             
             if ((good = [self CalcScores])) {
                 
-                [self dismissViewControllerAnimated:YES completion:nil];
+                [self performSegueWithIdentifier:@"idReturnToDiveListChoose" sender:self];
                 
             } else {
                 
@@ -195,7 +209,7 @@
             
             if ((good = [self CalcScores])) {
                 
-                [self dismissViewControllerAnimated:YES completion:nil];
+                [self performSegueWithIdentifier:@"idReturnToDiveListChoose" sender:self];
                 
             } else {
                 
@@ -225,7 +239,7 @@
             
             if ((good = [self CalcScores])) {
                 
-                [self dismissViewControllerAnimated:YES completion:nil];
+                [self performSegueWithIdentifier:@"idReturnToDiveListChoose" sender:self];
                 
             } else {
                 
@@ -255,7 +269,7 @@
             
             if ((good = [self CalcScores])) {
                 
-                [self dismissViewControllerAnimated:YES completion:nil];
+                [self performSegueWithIdentifier:@"idReturnToDiveListChoose" sender:self];
                 
             } else {
                 
@@ -282,6 +296,49 @@
 }
 
 - (IBAction)btnFailedClick:(id)sender {
+    
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:@"Failed Dive! Are you sure?"
+                                          message:nil
+                                          preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:@"Cancel"
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       NSLog(@"Cancel Action");
+                                   }];
+    
+    UIAlertAction *okAction = [UIAlertAction
+                               actionWithTitle:@"OK"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction *action)
+                               {
+                                   NSLog(@"OK Action");
+                                   
+                                   bool good;
+                                   
+                                   if ((good = [self updateFailedDive])) {
+                                       
+                                       [self performSegueWithIdentifier:@"idReturnToDiveListChoose" sender:self];
+                                       
+                                   } else {
+                                       
+                                       UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                                                       message:@"Dive couldn't be failed, please try again"
+                                                                                      delegate:nil
+                                                                             cancelButtonTitle:@"OK"
+                                                                             otherButtonTitles:nil];
+                                       [error show];
+                                       [error reloadInputViews];
+                                   }
+                               }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:okAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
     
 }
 
@@ -392,6 +449,33 @@
     }
     
     return false;
+}
+
+-(BOOL)updateFailedDive {
+    
+    //lets create some bools yo!
+    BOOL validJudgeScoreInsert;
+    BOOL validResultsInsert;
+    BOOL validDiveNumberIncrement;
+    
+    JudgeScores *scores = [[JudgeScores alloc] init];
+    
+    validJudgeScoreInsert = [scores UpdateJudgeAllScoresFailed:self.meetRecordID diverid:self.diverRecordID divenumber:self.diveNumber failed:@1 totalscore:@0 score1:@0 score2:@0 score3:@0 score4:@0 score5:@0 score6:@0 score7:@0];
+    
+    //update the results table
+    Results *result = [[Results alloc] init];
+    validResultsInsert = [result UpdateOneResult:self.meetRecordID DiverID:self.diverRecordID DiveNumber:self.diveNumber score:@0];
+    
+    // increment the dive number in the dive_number table
+    DiveNumber *number = [[DiveNumber alloc] init];
+    validDiveNumberIncrement = [number UpdateDiveNumber:self.meetRecordID diverid:self.diverRecordID divenumber:self.diveNumber];
+    
+    // now make sure everything was updated correctly
+    if (validJudgeScoreInsert && validResultsInsert && validDiveNumberIncrement) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 @end
