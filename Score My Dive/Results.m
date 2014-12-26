@@ -205,6 +205,23 @@
     
 }
 
+-(BOOL)ResultsExist:(int)meetid {
+    
+    NSString *result;
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select meet_id from results where meet_id=%d", meetid];
+    
+    result = [self.dbManager loadOneDataFromDB:query];
+    
+    if (result != nil) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 #pragma private methods
 
 -(NSNumber*)calcTotal:(NSNumber*)oneDive TwoDive:(NSNumber*)twoDive ThreeDive:(NSNumber*)threeDive FourDive:(NSNumber*)fourDive FiveDive:(NSNumber*)fiveDive SixDive:(NSNumber*)sixDive SevenDive:(NSNumber*)sevenDive EightDive:(NSNumber*)eightDive NineDive:(NSNumber*)nineDive TenDive:(NSNumber*)tenDive ElevenDive:(NSNumber*)elevenDive {

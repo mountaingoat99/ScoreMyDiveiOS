@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtState;
 @property (strong, nonatomic) IBOutlet UITextField *txtDate;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *SCJudges;
+@property (weak, nonatomic) IBOutlet UILabel *lblJudgeWarning;
 
 -(IBAction)saveInfo:(id)sender;
 - (IBAction)JudgesClick:(UISegmentedControl *)sender;

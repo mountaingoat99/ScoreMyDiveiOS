@@ -9,12 +9,16 @@
 #import "MeetEdit.h"
 #import "Meet.h"
 #import "Judges.h"
+#import "Results.h"
 
 @interface MeetEdit ()
+
+@property (nonatomic) BOOL previousScores;
 
 // private method to load the edited data
 -(void)loadInfoToEdit;
 -(void)updateJudgeControls;
+-(void)previousScoresCheck;
 
 @end
 
@@ -26,6 +30,7 @@
     [super viewDidLoad];
     
     self.judgeTotal = @2;
+    [self.lblJudgeWarning setHidden:YES];
     
     // drop shadow for the text boxes
     self.txtMeetName.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -71,7 +76,6 @@
     self.SCJudges.layer.shadowColor = [UIColor blackColor].CGColor;
     self.SCJudges.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.SCJudges.layer.masksToBounds = NO;
-    //self.SCJudges.layer.shadowRadius = 4.0f;
     self.SCJudges.layer.shadowOpacity = .7;
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
@@ -98,6 +102,7 @@
     if (self.recordIDToEdit != -1) {
         
         [self loadInfoToEdit];
+        
         
     }
     
@@ -227,6 +232,7 @@
     
     // update the control
     [self updateJudgeControls];
+    [self previousScoresCheck];
     
 }
 
@@ -265,6 +271,16 @@
         NSLog(@"Judges total is %@", self.judgeTotal);
         NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
         self.judgeTotal = @2;
+    }
+}
+
+-(void)previousScoresCheck  {
+    
+    Results *result = [[Results alloc] init];
+    
+    if ((self.previousScores = [result ResultsExist:self.recordIDToEdit])) {
+        [self.SCJudges setEnabled:NO];
+        [self.lblJudgeWarning setHidden:NO];
     }
     
 }

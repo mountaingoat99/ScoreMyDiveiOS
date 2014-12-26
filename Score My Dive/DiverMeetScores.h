@@ -36,6 +36,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblDive10;
 @property (weak, nonatomic) IBOutlet UILabel *lblDive11;
 
+@property (weak, nonatomic) IBOutlet UILabel *lblDive7Text;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive8Text;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive9Text;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive10Text;
+@property (weak, nonatomic) IBOutlet UILabel *lblDive11Text;
+
 @property (weak, nonatomic) IBOutlet UIButton *btnDive1;
 @property (weak, nonatomic) IBOutlet UIButton *btnDive2;
 @property (weak, nonatomic) IBOutlet UIButton *btnDive3;

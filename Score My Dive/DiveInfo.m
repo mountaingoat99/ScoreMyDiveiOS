@@ -10,15 +10,20 @@
 #import "Diver.h"
 #import "Diver.h"
 #import "Meet.h"
+#import "Judges.h"
 #import "DiverBoardSize.h"
 #import "JudgeScores.h"
 #import "DiverMeetScores.h"
 
 @interface DiveInfo ()
 
+@property (nonatomic) int judgeTotal;
+
 -(void)loadDiverInfo;
 -(void)loadMeetInfo;
 -(void)loadScores;
+-(void)findJudgeTotal;
+-(void)HideControls;
 
 @end
 
@@ -32,6 +37,7 @@
     if (self.meetInfo.count > 0) {
         [self loadDiverInfo];
         [self loadMeetInfo];
+        [self findJudgeTotal];
         [self loadScores];
     }
     
@@ -64,6 +70,38 @@
     
 }
 
+-(void)findJudgeTotal {
+    
+    Judges *judge = [[Judges alloc] init];
+    self.judgeTotal = [judge.judgeTotal intValue];
+    
+    [self HideControls];
+}
+
+-(void)HideControls {
+    
+    if (self.judgeTotal == 2 || self.judgeTotal == 3) {
+        
+        [self.lblJudge4 setHidden:YES];
+        [self.lblJudge4Text setHidden:YES];
+        [self.lblJudge5 setHidden:YES];
+        [self.lblJudge5Text setHidden:YES];
+        [self.lblJudge6 setHidden:YES];
+        [self.lblJudge6Text setHidden:YES];
+        [self.lblJudge7 setHidden:YES];
+        [self.lblJudge7Text setHidden:YES];
+        
+    }
+    
+    if (self.judgeTotal == 5) {
+        
+        [self.lblJudge6 setHidden:YES];
+        [self.lblJudge6Text setHidden:YES];
+        [self.lblJudge7 setHidden:YES];
+        [self.lblJudge7Text setHidden:YES];
+    }
+}
+
 -(void)loadScores {
     
     int location = self.diveNumber - 1;
@@ -74,7 +112,13 @@
     self.lblDivePostion.text = judge.divePosition;
     self.lblDivedd.text = [judge.multiplier stringValue];
     self.lblScoreTotal.text = [judge.totalScore stringValue];
-    self.lblFailed.text = judge.failed;
+    
+    if ([judge.failed isEqualToString:@"1"]) {
+        self.lblFailed.text = @"F";
+    } else {
+        self.lblFailed.text = @"P";
+    }
+    
     self.lblJudge1.text = [judge.score1 stringValue];
     self.lblJudge2.text = [judge.score2 stringValue];
     self.lblJudge3.text = [judge.score3 stringValue];

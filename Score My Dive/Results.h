@@ -42,4 +42,6 @@
 
 -(NSString*)CheckResults:(int)meetid DiverID:(int)diverid;
 
+-(BOOL)ResultsExist:(int)meetid;
+
 @end

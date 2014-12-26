@@ -14,17 +14,22 @@
 #import "DiveInfo.h"
 #import "MeetHistory.h"
 #import "DiverHistory.h"
+#import "DiveTotal.h"
+#import "DiveNumber.h"
+#import "JudgeScores.h"
 
 @interface DiverMeetScores ()
+
+@property (nonatomic, strong) NSNumber* diveTotal;
+@property (nonatomic) int maxDiveNumber;
 
 // private methods to load the data
 -(void)loadDiverInfo;
 -(void)loadMeetInfo;
 -(void)loadType;
 -(void)loadResults;
-
-// test
-//-(void)GetMeetCollection;
+-(void)FindDiveTotal;
+-(void)HideControls;
 
 @end
 
@@ -116,8 +121,10 @@
     if (self.meetInfo.count > 0) {
         [self loadDiverInfo];
         [self loadMeetInfo];
+        [self FindDiveTotal];
         [self loadType];
         [self loadResults];
+        
     }
 }
 
@@ -164,79 +171,189 @@
 
 - (IBAction)btnDive1Click:(id)sender {
     
-    self.diveNumber = 1;
-    
-    [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
+    if (self.maxDiveNumber >= 1) {
+        self.diveNumber = 1;
+        
+        [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
+    } else {
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                        message:@"We don't have a score for that one yet"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
+    }
 }
 
 - (IBAction)btnDive2Click:(id)sender {
     
-    self.diveNumber = 2;
-    
-    [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
+    if (self.maxDiveNumber >= 2) {
+        self.diveNumber = 2;
+        
+        [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
+    } else {
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                        message:@"We don't have a score for that one yet"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
+    }
 }
 
 - (IBAction)btnDive3Click:(id)sender {
     
-    self.diveNumber = 3;
-    
-    [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
+    if (self.maxDiveNumber >= 3) {
+        self.diveNumber = 3;
+        
+        [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
+    } else {
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                        message:@"We don't have a score for that one yet"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
+    }
 }
 
 - (IBAction)btnDive4Click:(id)sender {
     
-    self.diveNumber = 4;
-    
-    [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
+    if (self.maxDiveNumber >= 4) {
+        self.diveNumber = 4;
+        
+        [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
+    } else {
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                        message:@"We don't have a score for that one yet"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
+    }
 }
 
 - (IBAction)btnDive5Click:(id)sender {
     
-    self.diveNumber = 5;
-    
-    [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
+    if (self.maxDiveNumber >= 5) {
+        self.diveNumber = 5;
+        
+        [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
+    } else {
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                        message:@"We don't have a score for that one yet"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
+    }
 }
 
 - (IBAction)btnDive6Click:(id)sender {
     
-    self.diveNumber = 6;
-    
-    [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
+    if (self.maxDiveNumber >= 6) {
+        self.diveNumber = 6;
+        
+        [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
+    } else {
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                        message:@"We don't have a score for that one yet"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
+    }
 }
 
 - (IBAction)btnDive7Click:(id)sender {
     
-    self.diveNumber = 7;
-    
-    [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
+    if (self.maxDiveNumber >= 7) {
+        self.diveNumber = 7;
+        
+        [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
+    } else {
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                        message:@"We don't have a score for that one yet"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
+    }
 }
 
 - (IBAction)btnDive8Click:(id)sender {
     
-    self.diveNumber = 8;
-    
-    [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
+    if (self.maxDiveNumber >= 8) {
+        self.diveNumber = 8;
+        
+        [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
+    } else {
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                        message:@"We don't have a score for that one yet"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
+    }
 }
 
 - (IBAction)btnDive9Click:(id)sender {
     
-    self.diveNumber = 9;
-    
-    [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
+    if (self.maxDiveNumber >= 9) {
+        self.diveNumber = 9;
+        
+        [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
+    } else {
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                        message:@"We don't have a score for that one yet"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
+    }
 }
 
 - (IBAction)btnDive10Click:(id)sender {
     
-    self.diveNumber = 10;
-    
-    [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
+    if (self.maxDiveNumber >= 10) {
+        self.diveNumber = 10;
+        
+        [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
+    } else {
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                        message:@"We don't have a score for that one yet"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
+    }
 }
 
 - (IBAction)btnDive11Click:(id)sender {
     
-    self.diveNumber = 11;
-    
-    [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
+    if (self.maxDiveNumber == 11) {
+        self.diveNumber = 111;
+        
+        [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
+    } else {
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                        message:@"We don't have a score for that one yet"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
+    }
 }
 
 - (IBAction)btnReturnClick:(id)sender {
@@ -281,6 +398,54 @@
 
 }
 
+-(void)FindDiveTotal {
+    
+    DiveTotal *total = [[DiveTotal alloc] init];
+    total = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:2];
+    self.diveTotal = total.diveTotal;
+    
+    DiveNumber *number = [[DiveNumber alloc] init];
+    number = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:3];
+    self.maxDiveNumber = [number.number intValue];
+    
+    [self HideControls];
+    
+    // here we should also get the divenumber and disable the buttons if not at that number yet
+    // convert it to an int and check each click event
+    
+}
+
+-(void)HideControls {
+    
+    if ([self.diveTotal isEqualToNumber:@6]) {
+        
+        [self.lblDive7Text setHidden:YES];
+        [self.lblDive7 setHidden:YES];
+        [self.btnDive7 setHidden:YES];
+        [self.btnDive7 setEnabled:NO];
+        
+        [self.lblDive8Text setHidden:YES];
+        [self.lblDive8 setHidden:YES];
+        [self.btnDive8 setHidden:YES];
+        [self.btnDive8 setEnabled:NO];
+        
+        [self.lblDive9Text setHidden:YES];
+        [self.lblDive9 setHidden:YES];
+        [self.btnDive9 setHidden:YES];
+        [self.btnDive9 setEnabled:NO];
+        
+        [self.lblDive10Text setHidden:YES];
+        [self.lblDive10 setHidden:YES];
+        [self.btnDive10 setHidden:YES];
+        [self.btnDive10 setEnabled:NO];
+        
+        [self.lblDive11Text setHidden:YES];
+        [self.lblDive11 setHidden:YES];
+        [self.btnDive11 setHidden:YES];
+        [self.btnDive11 setEnabled:NO];
+    }
+}
+
 -(void)loadType {
     
     DiverBoardSize *board = [[DiverBoardSize alloc] init];
@@ -296,22 +461,135 @@
 -(void)loadResults {
     
     Results *result = [[Results alloc] init];
+    JudgeScores *scores = [[JudgeScores alloc] init];
+    NSString *failed;
     
     result = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:5];
     
-    self.lblDive1.text = [result.dive1 stringValue];
-    self.lblDive2.text = [result.dive2 stringValue];
-    self.lblDive3.text = [result.dive3 stringValue];
-    self.lblDive4.text = [result.dive4 stringValue];
-    self.lblDive5.text = [result.dive5 stringValue];
-    self.lblDive6.text = [result.dive6 stringValue];
-    self.lblDive7.text = [result.dive7 stringValue];
-    self.lblDive8.text = [result.dive8 stringValue];
-    self.lblDive9.text = [result.dive9 stringValue];
-    self.lblDive10.text = [result.dive10 stringValue];
-    self.lblDive11.text = [result.dive11 stringValue];
-    self.lblTotal.text = [result.totalScoreTotal stringValue];
+    // first we need to make sure there is a result for each dive
+    if (self.maxDiveNumber >= 1) {
     
+        // lets see if any of the dives failed
+        scores = [[[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:6] objectAtIndex:0];
+        failed = scores.failed;
+        if ([failed isEqualToString:@"1"]) {
+            self.lblDive1.text = @"F";
+        } else {
+            self.lblDive1.text = [result.dive1 stringValue];
+        }
+    }
+    
+    if (self.maxDiveNumber >= 2) {
+        
+        scores = [[[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:6] objectAtIndex:1];
+        failed = scores.failed;
+        if ([failed isEqualToString:@"1"]) {
+            self.lblDive2.text = @"F";
+        } else {
+            self.lblDive2.text = [result.dive2 stringValue];
+        }
+    }
+    
+    if (self.maxDiveNumber >= 3) {
+        
+        scores = [[[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:6] objectAtIndex:2];
+        failed = scores.failed;
+        if ([failed isEqualToString:@"1"]) {
+            self.lblDive3.text = @"F";
+        } else {
+            self.lblDive3.text = [result.dive3 stringValue];
+        }
+    }
+    
+    if (self.maxDiveNumber >= 4) {
+        
+        scores = [[[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:6] objectAtIndex:3];
+        failed = scores.failed;
+        if ([failed isEqualToString:@"1"]) {
+            self.lblDive4.text = @"F";
+        } else {
+            self.lblDive4.text = [result.dive4 stringValue];
+        }
+    }
+    
+    if (self.maxDiveNumber >= 5) {
+        
+        scores = [[[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:6] objectAtIndex:4];
+        failed = scores.failed;
+        if ([failed isEqualToString:@"1"]) {
+            self.lblDive5.text = @"F";
+        } else {
+            self.lblDive5.text = [result.dive5 stringValue];
+        }
+    }
+    
+    if (self.maxDiveNumber >= 6) {
+        
+        scores = [[[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:6] objectAtIndex:5];
+        failed = scores.failed;
+        if ([failed isEqualToString:@"1"]) {
+            self.lblDive6.text = @"F";
+        } else {
+            self.lblDive6.text = [result.dive6 stringValue];
+        }
+    }
+    
+    if (self.maxDiveNumber >= 7) {
+        
+        scores = [[[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:6] objectAtIndex:6];
+        failed = scores.failed;
+        if ([failed isEqualToString:@"1"]) {
+            self.lblDive7.text = @"F";
+        } else {
+            self.lblDive7.text = [result.dive7 stringValue];
+        }
+    }
+    
+    if (self.maxDiveNumber >= 8) {
+        
+        scores = [[[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:6] objectAtIndex:7];
+        failed = scores.failed;
+        if ([failed isEqualToString:@"1"]) {
+            self.lblDive8.text = @"F";
+        } else {
+            self.lblDive8.text = [result.dive8 stringValue];
+        }
+    }
+    
+    if (self.maxDiveNumber >= 9) {
+        
+        scores = [[[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:6] objectAtIndex:8];
+        failed = scores.failed;
+        if ([failed isEqualToString:@"1"]) {
+            self.lblDive9.text = @"F";
+        } else {
+            self.lblDive9.text = [result.dive9 stringValue];
+        }
+    }
+    
+    if (self.maxDiveNumber >= 10) {
+        
+        scores = [[[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:6] objectAtIndex:9];
+        failed = scores.failed;
+        if ([failed isEqualToString:@"1"]) {
+            self.lblDive10.text = @"F";
+        } else {
+            self.lblDive10.text = [result.dive10 stringValue];
+        }
+    }
+    
+    if (self.maxDiveNumber >= 11) {
+        
+        scores = [[[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:6] objectAtIndex:10];
+        failed = scores.failed;
+        if ([failed isEqualToString:@"1"]) {
+            self.lblDive11.text = @"F";
+        } else {
+            self.lblDive11.text = [result.dive11 stringValue];
+        }
+    }
 }
+
+
 
 @end

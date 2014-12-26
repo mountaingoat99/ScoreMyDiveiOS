@@ -30,6 +30,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblJudge5;
 @property (weak, nonatomic) IBOutlet UILabel *lblJudge6;
 @property (weak, nonatomic) IBOutlet UILabel *lblJudge7;
-
+@property (weak, nonatomic) IBOutlet UILabel *lblJudge3Text;
+@property (weak, nonatomic) IBOutlet UILabel *lblJudge4Text;
+@property (weak, nonatomic) IBOutlet UILabel *lblJudge5Text;
+@property (weak, nonatomic) IBOutlet UILabel *lblJudge6Text;
+@property (weak, nonatomic) IBOutlet UILabel *lblJudge7Text;
 
 @end
