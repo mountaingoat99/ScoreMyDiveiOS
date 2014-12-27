@@ -26,6 +26,8 @@
 
 -(void)UpdateListFilled:(int)meetid diverid:(int)diverid key:(NSNumber*)key;
 
+-(void)updateListStarted:(int)meetid diverid:(int)diverid;
+
 -(NSNumber*)IsListFinished:(int)meetid diverid:(int)diverid;
 
 @end

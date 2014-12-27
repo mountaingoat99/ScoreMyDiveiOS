@@ -15,6 +15,11 @@
 @property (nonatomic) int diverRecordID;
 @property (nonatomic) int diveNumber;
 @property (nonatomic, strong) NSArray *meetInfo;
+@property (nonatomic) int listOrNot;
+@property (nonatomic, strong) NSString *diveCategory;
+@property (nonatomic, strong) NSString *divePosition;
+@property (nonatomic, strong) NSString *diveNameForDB;
+@property (nonatomic, strong) NSNumber *multiplierToSend;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblDiveNumber;
 @property (weak, nonatomic) IBOutlet UILabel *lblDiveType;
@@ -39,5 +44,6 @@
 
 - (IBAction)btnTotalClick:(id)sender;
 - (IBAction)btnFailedClick:(id)sender;
+- (IBAction)btnReturnClick:(id)sender;
 
 @end

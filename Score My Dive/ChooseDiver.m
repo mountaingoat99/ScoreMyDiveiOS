@@ -17,13 +17,15 @@
 #import "Judges.h"
 #import "DiverBoardSize.h"
 #import "DiveListEnter.h"
+#import "DiveEnter.h"
 #import "Results.h"
 
 @interface ChooseDiver ()
 
-@property (nonatomic, strong)NSArray *diverArray;
+@property (nonatomic, strong) NSArray *diverArray;
 @property (nonatomic, strong) UIPickerView *divePicker;
 @property (nonatomic) BOOL noList;
+@property (nonatomic, strong) NSNumber *listStarted;
 
 -(void)loadSpinnerData;
 -(void)getMeetName;
@@ -33,6 +35,7 @@
 -(void)GetCollectionofMeetInfo;
 -(void)DeleteAllDiverMeetInfo;
 -(void)CheckForNoList;
+-(void)checkforListStarted;
 
 @end
 
@@ -145,6 +148,15 @@
         diver.meetRecordID = self.meetRecordID;
         diver.diverRecordID = self.diverRecordID;
     }
+    
+    if ([segue.identifier isEqualToString:@"idSegueChooseToScore"]) {
+        
+        DiveEnter *diver = [segue destinationViewController];
+        // here we will just send a collection and the diver and meetid
+        diver.meetInfo = self.meetInfo;
+        diver.meetRecordID = self.meetRecordID;
+        diver.diverRecordID = self.diverRecordID;
+    }
 }
 
 // hide the PickerView on outside touch
@@ -171,7 +183,6 @@
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     
     return self.diverArray.count;
-    
 }
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
@@ -201,8 +212,6 @@
     
     //call the method to check if a driver has been assigned to a meet and hid controls
     [self HideControls];
-    
-    
 }
 
 //segmented control methods
@@ -280,21 +289,35 @@
 
 - (IBAction)EnterScoresClick:(id)sender {
     
-    if (self.txtChooseDiver.text.length != 0) {
+    [self checkforListStarted];
+    
+    if ([self.listStarted isEqualToNumber:@0]) {
         
-        BOOL previousInfo = [self PreviousMeetInfo];
-        
-        if (!previousInfo) {
-            [self writeNewDiveCollection];
+        if (self.txtChooseDiver.text.length != 0) {
+            
+            BOOL previousInfo = [self PreviousMeetInfo];
+            
+            if (!previousInfo) {
+                [self writeNewDiveCollection];
+            }
+            [self GetCollectionofMeetInfo];
+            
+            [self performSegueWithIdentifier:@"idSegueChooseToScore" sender:self];
+            
+        } else {
+            
+            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                            message:@"Please Pick a Diver"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [error show];
+            [error reloadInputViews];
         }
-        [self GetCollectionofMeetInfo];
-        
-        [self performSegueWithIdentifier:@"" sender:self];  //TODO: put the new segue here*********************************************************************
         
     } else {
-        
         UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"Please Pick a Diver"
+                                                        message:@"You have already have a dive list started, please reset the diver if you want to enter scores without a list"
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
@@ -424,7 +447,6 @@
         // hide button and labels until a diver is choosen and has meet records
         [self.SCBoardSize setHidden:NO];
         [self.SCDiveTotals setHidden:NO];
-        //[self.btnResetDiver setHidden:YES];
         [self.lblDiveTotal setHidden:YES];
         [self.lblBoardSize setHidden:YES];
         
@@ -434,6 +456,8 @@
 
 -(void)writeNewDiveCollection {
     
+    //here we will set the listfilled to nil, when they start creating a list
+    // we will set it to 0 and then when finished set it to 1
     DiveList *list = [[DiveList alloc] init];
     [list UpdateDiveList:self.meetRecordID diverid:self.diverRecordID listfilled:@0 noList:@0];
     
@@ -501,6 +525,13 @@
     
     self.noList = [list CheckForNoList:self.meetRecordID diverid:self.diverRecordID];
     
+}
+
+-(void)checkforListStarted {
+    
+    DiveList *list = [[DiveList alloc] init];
+    
+    self.listStarted = [list IsListFinished:self.meetRecordID diverid:self.diverRecordID];
 }
 
 @end

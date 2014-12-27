@@ -11,14 +11,19 @@
 #import "JudgeScores.h"
 #import "Results.h"
 #import "DiveNumber.h"
+#import "DiverBoardSize.h"
+#import "DiveEnter.h"
+#import "DiveList.h"
 
 @interface DiveListFinalScore ()
 
 @property (nonatomic, strong) NSNumber *totalScore;
+@property (nonatomic, strong) NSNumber *boardSize;
 
 -(void)DiveText;
 -(BOOL)CalcScores;
 -(BOOL)updateFailedDive;
+-(void)DiverBoardSize;
 
 @end
 
@@ -70,6 +75,15 @@
         choose.meetRecordID = self.diverRecordID;
         
     }
+    
+    if ([segue.identifier isEqualToString:@"idListFinalScoreToDiveEnter"]) {
+        
+        DiveEnter *choose = [segue destinationViewController];
+        
+        choose.diverRecordID = self.diverRecordID;
+        choose.meetRecordID = self.diverRecordID;
+        
+    }
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
@@ -94,7 +108,14 @@
         
         if ((good = [self CalcScores])) {
             
-            [self performSegueWithIdentifier:@"idSegueFinalListToListChoose" sender:self];
+            // here we need to test the self.listOrNot and see who sent us, then return to them
+            if (self.listOrNot == 0) {
+                [self performSegueWithIdentifier:@"idSegueFinalListToListChoose" sender:self];
+            } else {
+                [self performSegueWithIdentifier:@"idListFinalScoreToDiveEnter" sender:self];
+            }
+            
+            
         } else {
             
             UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
@@ -144,7 +165,12 @@
                                    
                                    if ((good = [self updateFailedDive])) {
                                        
-                                       [self performSegueWithIdentifier:@"idSegueFinalListToListChoose" sender:self];
+                                       // here we need to test the self.listOrNot and see who sent us, then return to them
+                                       if (self.listOrNot == 0) {
+                                           [self performSegueWithIdentifier:@"idSegueFinalListToListChoose" sender:self];
+                                       } else {
+                                           [self performSegueWithIdentifier:@"idListFinalScoreToDiveEnter" sender:self];
+                                       }
                                        
                                    } else {
                                        
@@ -161,6 +187,15 @@
     [alertController addAction:cancelAction];
     [alertController addAction:okAction];
     
+}
+
+- (IBAction)btnReturnClick:(id)sender {
+    
+    if (self.listOrNot == 0) {
+        [self performSegueWithIdentifier:@"idSegueFinalListToListChoose" sender:self];
+    } else {
+        [self performSegueWithIdentifier:@"idListFinalScoreToDiveEnter" sender:self];
+    }
 }
 
 #pragma private methods
@@ -186,6 +221,32 @@
     BOOL validDiveNumberIncrement;
     
     JudgeScores *scores = [[JudgeScores alloc] init];
+    
+    // if not a dive list we need to write the dive record first then update the score
+    if (self.listOrNot == 1) {
+        
+        if (self.diveNumber == 1) {
+            
+            //convert the dive Number to nsnumber
+            NSNumber *diveNumberNumber = [NSNumber numberWithInt:self.diveNumber];
+            
+            //update record
+            [scores UpdateJudgeScoreTypes:self.meetRecordID diverid:self.diverRecordID divecat:self.diveCategory divetype:self.diveNameForDB divepos:self.divePosition  multiplier:self.multiplierToSend oldDiveNumber:diveNumberNumber divenumber:diveNumberNumber];
+            
+            DiveList *list = [[DiveList alloc] init];
+            [list MarkNoList:self.meetRecordID diverid:self.diverRecordID];
+            
+        } else {
+            
+            //convert the dive Number to nsnumber
+            NSNumber *diveNumberNumber = [NSNumber numberWithInt:self.diveNumber];
+            //convert the board size to a double
+            double boardSizeDouble = [self.boardSize doubleValue];
+            
+            //create record
+            [scores CreateJudgeScores:self.meetRecordID diverid:self.diverRecordID boardsize:boardSizeDouble divenumber:diveNumberNumber divecategory:self.diveCategory divetype:self.diveNameForDB diveposition:self.divePosition failed:@0 multiplier:self.multiplierToSend totalscore:@0 score1:@0 score2:@0 score3:@0 score4:@0 score5:@0 score6:@0 score7:@0];
+        }
+    }
     
     self.totalScore = @([self.txtTotalScore.text doubleValue]);
     
@@ -216,6 +277,32 @@
     
     JudgeScores *scores = [[JudgeScores alloc] init];
     
+    // if not a dive list we need to write the dive record first then update the score
+    if (self.listOrNot == 1) {
+        
+        if (self.diveNumber == 1) {
+            
+            //convert the dive Number to nsnumber
+            NSNumber *diveNumberNumber = [NSNumber numberWithInt:self.diveNumber];
+            
+            //update record
+            [scores UpdateJudgeScoreTypes:self.meetRecordID diverid:self.diverRecordID divecat:self.diveCategory divetype:self.diveNameForDB divepos:self.divePosition  multiplier:self.multiplierToSend oldDiveNumber:diveNumberNumber divenumber:diveNumberNumber];
+            
+            DiveList *list = [[DiveList alloc] init];
+            [list MarkNoList:self.meetRecordID diverid:self.diverRecordID];
+            
+        } else {
+            
+            //convert the dive Number to nsnumber
+            NSNumber *diveNumberNumber = [NSNumber numberWithInt:self.diveNumber];
+            //convert the board size to a double
+            double boardSizeDouble = [self.boardSize doubleValue];
+            
+            //create record
+            [scores CreateJudgeScores:self.meetRecordID diverid:self.diverRecordID boardsize:boardSizeDouble divenumber:diveNumberNumber divecategory:self.diveCategory divetype:self.diveNameForDB diveposition:self.divePosition failed:@0 multiplier:self.multiplierToSend totalscore:@0 score1:@0 score2:@0 score3:@0 score4:@0 score5:@0 score6:@0 score7:@0];
+        }
+    }
+    
     validJudgeScoreInsert = [scores UpdateJudgeAllScoresFailed:self.meetRecordID diverid:self.diverRecordID divenumber:self.diveNumber failed:@1 totalscore:@0 score1:@0 score2:@0 score3:@0 score4:@0 score5:@0 score6:@0 score7:@0];
     
     //update the results table
@@ -232,6 +319,16 @@
     } else {
         return false;
     }
+}
+
+-(void)DiverBoardSize {
+    
+    DiverBoardSize *board = [[DiverBoardSize alloc] init];
+    
+    board = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:4];
+    
+    self.boardSize = board.firstSize;
+    
 }
 
 @end

@@ -13,6 +13,7 @@
 @property (nonatomic) int meetRecordID;
 @property (nonatomic) int diverRecordID;
 @property (nonatomic, strong) NSArray *meetInfo;
+@property (nonatomic) int listOrNot;
 
 
 @property (weak, nonatomic) IBOutlet UITextField *txtDiveNumber;

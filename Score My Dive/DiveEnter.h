@@ -53,6 +53,18 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblDive10text;
 @property (weak, nonatomic) IBOutlet UILabel *lblDive11text;
 
+@property (weak, nonatomic) IBOutlet UIView *view1;
+@property (weak, nonatomic) IBOutlet UIView *view2;
+@property (weak, nonatomic) IBOutlet UIView *view3;
+@property (weak, nonatomic) IBOutlet UIView *view4;
+@property (weak, nonatomic) IBOutlet UIView *view5;
+@property (weak, nonatomic) IBOutlet UIView *view6;
+@property (weak, nonatomic) IBOutlet UIView *view7;
+@property (weak, nonatomic) IBOutlet UIView *view8;
+@property (weak, nonatomic) IBOutlet UIView *view9;
+@property (weak, nonatomic) IBOutlet UIView *view10;
+@property (weak, nonatomic) IBOutlet UIView *view11;
+
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *SCPosition;
 @property (weak, nonatomic) IBOutlet UIButton *btnEnterScore;

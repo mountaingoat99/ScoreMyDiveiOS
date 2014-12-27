@@ -27,7 +27,6 @@
 @property (nonatomic, strong) NSNumber *scoreTotal;
 @property (nonatomic) int diveTotal;
 @property (nonatomic) int whatNumber;
-//@property (nonatomic) BOOL failedDive;
 
 -(void)GetCollectionofMeetInfo;
 -(void)getTheDiveTotal;
@@ -40,7 +39,6 @@
 -(void)fillDiveInfo;
 -(void)checkFinishedScoring;
 -(void)ShowScoreTotal:(NSNumber*)scoretotal;
-//-(BOOL)IsDiveFailed:(NSNumber*)diveNumber;
 
 @end
 
@@ -118,6 +116,8 @@
         
         DiveListScore *score = [segue destinationViewController];
         
+        self.listOrNot = 0;
+        score.listOrNot = self.listOrNot;
         score.meetRecordID = self.meetRecordID;
         score.diverRecordID = self.meetRecordID;
         score.diveNumber = [self.DiveNumber intValue];
@@ -130,6 +130,8 @@
         
         DiveListFinalScore *score = [segue destinationViewController];
         
+        self.listOrNot = 0;
+        score.listOrNot = self.listOrNot;
         score.meetRecordID = self.meetRecordID;
         score.diverRecordID = self.meetRecordID;
         score.diveNumber = [self.DiveNumber intValue];
@@ -398,7 +400,7 @@
 
 -(void)fillDiveInfo {
     
-    // text for the lable
+    // text for the label
     NSString *diveInfoText;
     
     //result object for the label
@@ -682,10 +684,6 @@
     
     if (self.diveTotal == self.whatNumber) {
         
-        // commenting these out. Right now we will still let the user edit after a meet is finished
-        //[self.btnEnterScore setEnabled:NO];
-        //[self.btnEnterTotalScore setEnabled:NO];
-        
         UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Congradulations!"
                                                         message:@"Scoring is complete for this diver"
                                                        delegate:nil
@@ -696,10 +694,4 @@
     }
 }
 
-//-(BOOL)IsDiveFailed:(NSNumber*)diveNumber {
-//    
-//    JudgeScores *scores = [[JudgeScores alloc] init];
-//    
-//    return [scores CheckFailed:self.meetRecordID diverid:self.diverRecordID divenumber:diveNumber];
-//}
 @end

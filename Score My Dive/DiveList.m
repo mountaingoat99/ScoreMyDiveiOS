@@ -73,7 +73,7 @@
     
     NSString *query = [NSString stringWithFormat:@"update dive_list set no_list=1 where meet_id=%d and diver_id=%d", meetid, diverid];
     
-    [self.dbManager loadDataFromDB:query];
+    [self.dbManager executeQuery:query];
     
 }
 
@@ -83,8 +83,18 @@
     
     NSString *query = [NSString stringWithFormat:@"update dive_list set list_filled=%@ where meet_id=%d and diver_id=%d", key, meetid, diverid];
     
-    [self.dbManager loadDataFromDB:query];
+    [self.dbManager executeQuery:query];
 
+}
+
+-(void)updateListStarted:(int)meetid diverid:(int)diverid {
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"update dive_list set list_filled=%@ where meet_id=%d and diver_id=%d",@"1", meetid, diverid];
+    
+    [self.dbManager executeQuery:query];
+    
 }
 
 -(NSNumber*)IsListFinished:(int)meetid diverid:(int)diverid {

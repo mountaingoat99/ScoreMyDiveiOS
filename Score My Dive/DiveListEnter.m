@@ -52,9 +52,9 @@
 -(void)UpdateJudgeScores;
 -(void)resetValues;
 -(void)updateButtonText;
--(void)EnableLabelInteractions;
 -(void)HideAllControls;
 -(void)updateListFilled;
+-(void)updateListStarted;
 
 @end
 
@@ -334,6 +334,12 @@
             [self fillDiveInfo];
             [self updateButtonText];
             [self resetValues];
+            
+            // start the list
+            if ([self.onDiveNumber isEqualToNumber:@1]) {
+                
+                [self updateListStarted];
+            }
             
         } else {
             UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
@@ -725,42 +731,42 @@
         self.lblDive1.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:1];
         [self.lblDive1 setHidden:NO];
         [self.lblDive1text setHidden:NO];
-        
+        [self.view1 setUserInteractionEnabled:YES];
     }
     
     if (self.maxDiveNumber >= 2) {
         self.lblDive2.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:2];
         [self.lblDive2 setHidden:NO];
         [self.lblDive2text setHidden:NO];
-        
+        [self.view2 setUserInteractionEnabled:YES];
     }
     
     if (self.maxDiveNumber >= 3) {
         self.lblDive3.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:3];
         [self.lblDive3 setHidden:NO];
         [self.lblDive3text setHidden:NO];
-        
+        [self.view3 setUserInteractionEnabled:YES];
     }
     
     if (self.maxDiveNumber >= 4) {
         self.lblDive4.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:4];
         [self.lblDive4 setHidden:NO];
         [self.lblDive4text setHidden:NO];
-        
+        [self.view4 setUserInteractionEnabled:YES];
     }
     
     if (self.maxDiveNumber >= 5) {
         self.lblDive5.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:5];
         [self.lblDive5 setHidden:NO];
         [self.lblDive5text setHidden:NO];
-        
+        [self.view5 setUserInteractionEnabled:YES];
     }
     
     if (self.maxDiveNumber >= 6) {
         self.lblDive6.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:6];
         [self.lblDive6 setHidden:NO];
         [self.lblDive6text setHidden:NO];
-        
+        [self.view6 setUserInteractionEnabled:YES];
     }
     
     // we won't even bother checking these unless the diveTotal is 11
@@ -769,35 +775,35 @@
             self.lblDive7.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:7];
             [self.lblDive7 setHidden:NO];
             [self.lblDive7text setHidden:NO];
-            
+            [self.view7 setUserInteractionEnabled:YES];
         }
         
         if (self.maxDiveNumber >= 8) {
             self.lblDive8.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:8];
             [self.lblDive8 setHidden:NO];
             [self.lblDive8text setHidden:NO];
-            
+            [self.view8 setUserInteractionEnabled:YES];
         }
         
         if (self.maxDiveNumber >= 9) {
             self.lblDive9.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:9];
             [self.lblDive9 setHidden:NO];
             [self.lblDive9text setHidden:NO];
-            
+            [self.view9 setUserInteractionEnabled:YES];
         }
         
         if (self.maxDiveNumber >= 10) {
             self.lblDive10.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:10];
             [self.lblDive10 setHidden:NO];
             [self.lblDive10text setHidden:NO];
-            
+            [self.view10 setUserInteractionEnabled:YES];
         }
         
         if (self.maxDiveNumber >= 11) {
             self.lblDive11.text = [diveInfo GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:11];
             [self.lblDive11 setHidden:NO];
             [self.lblDive11text setHidden:NO];
-            
+            [self.view11 setUserInteractionEnabled:YES];
         }
     }
 }
@@ -826,7 +832,17 @@
     [self.lblDive9text setHidden:YES];
     [self.lblDive10text setHidden:YES];
     [self.lblDive11text setHidden:YES];
-    
+    [self.view1 setUserInteractionEnabled:NO];
+    [self.view2 setUserInteractionEnabled:NO];
+    [self.view3 setUserInteractionEnabled:NO];
+    [self.view4 setUserInteractionEnabled:NO];
+    [self.view5 setUserInteractionEnabled:NO];
+    [self.view6 setUserInteractionEnabled:NO];
+    [self.view7 setUserInteractionEnabled:NO];
+    [self.view8 setUserInteractionEnabled:NO];
+    [self.view9 setUserInteractionEnabled:NO];
+    [self.view10 setUserInteractionEnabled:NO];
+    [self.view11 setUserInteractionEnabled:NO];
 }
 
 -(void)resetValues {
@@ -864,7 +880,7 @@
         list = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:1];
         int filled = [list.listFilled intValue];
         
-        if (filled == 0) {
+        if (filled == 1) {
             [self updateListFilled];
         }
     }
@@ -880,26 +896,17 @@
     
 }
 
--(void)EnableLabelInteractions {
-    
-    [self.lblDive1 setUserInteractionEnabled:YES];
-    [self.lblDive2 setUserInteractionEnabled:YES];
-    [self.lblDive3 setUserInteractionEnabled:YES];
-    [self.lblDive4 setUserInteractionEnabled:YES];
-    [self.lblDive5 setUserInteractionEnabled:YES];
-    [self.lblDive6 setUserInteractionEnabled:YES];
-    [self.lblDive7 setUserInteractionEnabled:YES];
-    [self.lblDive8 setUserInteractionEnabled:YES];
-    [self.lblDive9 setUserInteractionEnabled:YES];
-    [self.lblDive10 setUserInteractionEnabled:YES];
-    [self.lblDive11 setUserInteractionEnabled:YES];
-}
-
 -(void)updateListFilled {
     
     DiveList *list = [[DiveList alloc] init];
-    [list UpdateListFilled:self.meetRecordID diverid:self.diverRecordID key:@1];
+    [list UpdateListFilled:self.meetRecordID diverid:self.diverRecordID key:@2];
+}
+
+-(void)updateListStarted {
     
+    DiveList *list = [[DiveList alloc] init];
+    
+    [list updateListStarted:self.meetRecordID diverid:self.diverRecordID];
 }
 
 @end
