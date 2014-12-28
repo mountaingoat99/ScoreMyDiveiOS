@@ -59,6 +59,7 @@
     [self fillText];
     [self fillType];
     [self fillDiveInfo];
+    [self checkFinishedScoring];
     
     // attributes for controls
     self.txtDiveNumber.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -406,7 +407,6 @@
     //result object for the label
     Results *score = [[Results alloc] init];
     JudgeScores *diveInfo = [[JudgeScores alloc] init];
-    NSNumber *diveScore;
     
     // for checking a failed dive
     JudgeScores *failInfo = [[JudgeScores alloc] init];
@@ -432,8 +432,9 @@
             diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:1]];
         } else {
         
-            diveScore = score.dive1;
-            diveInfoText = [diveScore stringValue];
+            // ObjectiveC data types suck, here we convert it to a double, then back to a NSNumber
+            double scoreDouble = [score.dive1 doubleValue];
+            diveInfoText = [NSString stringWithFormat:@"%.2f", scoreDouble];
             diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
             diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:1]];
         }
@@ -453,8 +454,9 @@
             diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:2]];
         } else {
             
-            diveScore = score.dive2;
-            diveInfoText = [diveScore stringValue];
+            // ObjectiveC data types suck, here we convert it to a double, then back to a NSNumber
+            double scoreDouble = [score.dive2 doubleValue];
+            diveInfoText = [NSString stringWithFormat:@"%.2f", scoreDouble];
             diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
             diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:2]];
         }
@@ -474,8 +476,9 @@
             diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:3]];
         } else {
             
-            diveScore = score.dive3;
-            diveInfoText = [diveScore stringValue];
+            // ObjectiveC data types suck, here we convert it to a double, then back to a NSNumber
+            double scoreDouble = [score.dive3 doubleValue];
+            diveInfoText = [NSString stringWithFormat:@"%.2f", scoreDouble];
             diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
             diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:3]];
         }
@@ -495,8 +498,9 @@
             diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:4]];
         } else {
             
-            diveScore = score.dive4;
-            diveInfoText = [diveScore stringValue];
+            // ObjectiveC data types suck, here we convert it to a double, then back to a NSNumber
+            double scoreDouble = [score.dive4 doubleValue];
+            diveInfoText = [NSString stringWithFormat:@"%.2f", scoreDouble];
             diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
             diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:4]];
         }
@@ -516,8 +520,9 @@
             diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:5]];
         } else {
             
-            diveScore = score.dive5;
-            diveInfoText = [diveScore stringValue];
+            // ObjectiveC data types suck, here we convert it to a double, then back to a NSNumber
+            double scoreDouble = [score.dive5 doubleValue];
+            diveInfoText = [NSString stringWithFormat:@"%.2f", scoreDouble];
             diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
             diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:5]];
         }
@@ -537,16 +542,15 @@
             diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:6]];
         } else {
             
-            diveScore = score.dive6;
-            diveInfoText = [diveScore stringValue];
+            // ObjectiveC data types suck, here we convert it to a double, then back to a NSNumber
+            double scoreDouble = [score.dive6 doubleValue];
+            diveInfoText = [NSString stringWithFormat:@"%.2f", scoreDouble];
             diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
             diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:6]];
         }
         self.lblDive6text.text = diveInfoText;
         [self.lblDive6 setHidden:NO];
         [self.lblDive6text setHidden:NO];
-        
-        [self checkFinishedScoring];
     }
     
     // we won't bother checking these unless the diveTotal is 11
@@ -563,8 +567,9 @@
                 diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:7]];
             } else {
                 
-                diveScore = score.dive7;
-                diveInfoText = [diveScore stringValue];
+                // ObjectiveC data types suck, here we convert it to a double, then back to a NSNumber
+                double scoreDouble = [score.dive7 doubleValue];
+                diveInfoText = [NSString stringWithFormat:@"%.2f", scoreDouble];
                 diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
                 diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:7]];
             }
@@ -584,8 +589,9 @@
                 diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:8]];
             } else {
                 
-                diveScore = score.dive8;
-                diveInfoText = [diveScore stringValue];
+                // ObjectiveC data types suck, here we convert it to a double, then back to a NSNumber
+                double scoreDouble = [score.dive8 doubleValue];
+                diveInfoText = [NSString stringWithFormat:@"%.2f", scoreDouble];
                 diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
                 diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:8]];
             }
@@ -605,8 +611,9 @@
                 diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:9]];
             } else {
                 
-                diveScore = score.dive9;
-                diveInfoText = [diveScore stringValue];
+                // ObjectiveC data types suck, here we convert it to a double, then back to a NSNumber
+                double scoreDouble = [score.dive9 doubleValue];
+                diveInfoText = [NSString stringWithFormat:@"%.2f", scoreDouble];
                 diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
                 diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:9]];
             }
@@ -626,8 +633,9 @@
                 diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:10]];
             } else {
                 
-                diveScore = score.dive10;
-                diveInfoText = [diveScore stringValue];
+                // ObjectiveC data types suck, here we convert it to a double, then back to a NSNumber
+                double scoreDouble = [score.dive10 doubleValue];
+                diveInfoText = [NSString stringWithFormat:@"%.2f", scoreDouble];
                 diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
                 diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:10]];
             }
@@ -647,16 +655,15 @@
                 diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:11]];
             } else {
                 
-                diveScore = score.dive11;
-                diveInfoText = [diveScore stringValue];
+                // ObjectiveC data types suck, here we convert it to a double, then back to a NSNumber
+                double scoreDouble = [score.dive11 doubleValue];
+                diveInfoText = [NSString stringWithFormat:@"%.2f", scoreDouble];
                 diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
                 diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:11]];
             }
             self.lblDive11text.text = diveInfoText;
             [self.lblDive11 setHidden:NO];
             [self.lblDive11text setHidden:NO];
-            
-            [self checkFinishedScoring];
         }
     }
     

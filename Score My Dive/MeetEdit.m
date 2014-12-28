@@ -38,6 +38,7 @@
     self.txtMeetName.layer.masksToBounds = NO;
     self.txtMeetName.layer.shadowOpacity = .3;
     self.txtMeetName.keyboardAppearance = UIKeyboardAppearanceDark;
+    self.txtMeetName.autocapitalizationType = UITextAutocapitalizationTypeWords;
     self.txtMeetName.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     
     self.txtSchool.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -45,6 +46,7 @@
     self.txtSchool.layer.masksToBounds = NO;
     self.txtSchool.layer.shadowOpacity = .3;
     self.txtSchool.keyboardAppearance = UIKeyboardAppearanceDark;
+    self.txtSchool.autocapitalizationType = UITextAutocapitalizationTypeWords;
     self.txtSchool.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     
     self.txtCity.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -52,6 +54,7 @@
     self.txtCity.layer.masksToBounds = NO;
     self.txtCity.layer.shadowOpacity = .3;
     self.txtCity.keyboardAppearance = UIKeyboardAppearanceDark;
+    self.txtCity.autocapitalizationType = UITextAutocapitalizationTypeWords;
     self.txtCity.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     
     self.txtState.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -59,6 +62,7 @@
     self.txtState.layer.masksToBounds = NO;
     self.txtState.layer.shadowOpacity = .3;
     self.txtState.keyboardAppearance = UIKeyboardAppearanceDark;
+    self.txtState.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     self.txtState.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     
     self.txtDate.layer.shadowColor = [UIColor blackColor].CGColor;

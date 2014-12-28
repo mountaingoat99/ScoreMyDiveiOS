@@ -155,15 +155,16 @@
         
         DiveListChoose *choose = [segue destinationViewController];
         choose.diverRecordID = self.diverRecordID;
-        choose.meetRecordID = self.diverRecordID;
+        choose.meetRecordID = self.meetRecordID;
         
     }
     
     if ([segue.identifier isEqualToString:@"idSegueListScoreToDiveEnter"]) {
         
         DiveEnter *choose = [segue destinationViewController];
+        choose.meetInfo = self.meetInfo;
         choose.diverRecordID = self.diverRecordID;
-        choose.meetRecordID = self.diverRecordID;
+        choose.meetRecordID = self.meetRecordID;
         
     }
 }

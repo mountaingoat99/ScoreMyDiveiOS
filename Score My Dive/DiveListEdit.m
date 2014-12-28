@@ -37,6 +37,7 @@
 -(void)DisableDivePositions;
 -(void)GetDiveDOD;
 -(void)UpdateJudgeScores;
+-(void)showFirstWarning;
 
 @end
 
@@ -48,14 +49,11 @@
     [super viewDidLoad];
     
     [self fillText];
-    
     [self fillDiveNumber];
-    
     [self loadGroupPicker];
-    
     [self makeGroupPicker];
-    
     [self makeDivePicker];
+    [self showFirstWarning];
     
     // attributes for controls
     self.txtDiveGroup.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -268,6 +266,20 @@
         [error show];
         [error reloadInputViews];
     }
+}
+
+#pragma private methods
+
+-(void)showFirstWarning {
+    
+    UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Heads up!"
+                                                    message:@"If you edit a dive that already has a score, you will want to update the dive score in the \"Score Meet\" Screen."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [error show];
+    [error reloadInputViews];
+    
 }
 
 -(void)UpdateJudgeScores {

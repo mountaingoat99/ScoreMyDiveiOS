@@ -86,5 +86,6 @@
 - (IBAction)PositionIndexChanged:(UISegmentedControl *)sender;
 - (IBAction)btnEnterScoreClick:(id)sender;
 - (IBAction)btnEnterTotalScoreClick:(id)sender;
+- (IBAction)lblOptionsClick:(id)sender;
 
 @end

@@ -132,6 +132,7 @@
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     NSString *query = [NSString stringWithFormat:@"select dive_number from judges_scores where meet_id=%d and diver_id=%d", meetid, diverid];
+    NSLog(@"MaxDiveNumber Query is: %@", query);
     
     numbers = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     

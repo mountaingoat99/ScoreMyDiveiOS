@@ -153,7 +153,7 @@
         
         DiveEnter *diver = [segue destinationViewController];
         // here we will just send a collection and the diver and meetid
-        diver.meetInfo = self.meetInfo;
+        //diver.meetInfo = self.meetInfo;
         diver.meetRecordID = self.meetRecordID;
         diver.diverRecordID = self.diverRecordID;
     }

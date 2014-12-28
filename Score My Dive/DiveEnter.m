@@ -17,6 +17,7 @@
 #import "DiveListScore.h"
 #import "DiveListFinalScore.h"
 #import "Results.h"
+#import "MeetCollection.h"
 
 @interface DiveEnter ()
 
@@ -34,7 +35,6 @@
 @property (nonatomic, strong) NSString *tuck;
 @property (nonatomic, strong) NSString *free;
 @property (nonatomic) BOOL allDivesEntered;
-@property (nonatomic, strong) NSString *oldDiveName;
 @property (nonatomic) int diveTotal;
 @property (nonatomic, strong) NSNumber *scoreTotal;
 
@@ -45,6 +45,8 @@
 @property (nonatomic, strong) NSNumber *multiplierToSend;
 @property (nonatomic) int listOrNot;
 
+-(void)LoadMeetCollection;
+-(void)getTheDiveTotal;
 -(void)loadGroupPicker;
 -(void)loadDivePicker;
 -(void)fillText;
@@ -58,6 +60,7 @@
 -(void)GetDiveDOD;
 -(void)UpdateDiveInfoToSend;
 -(void)resetValues;
+-(void)checkFinishedScoring;
 -(void)ShowScoreTotal:(NSNumber*)scoretotal;
 
 @end
@@ -69,22 +72,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // lets hide some controls
+    [self LoadMeetCollection];
+    [self getTheDiveTotal];
     [self hideInitialControls];
-    
     [self fillDiveNumber];
-    
     [self fillText];
-    
     [self DiverBoardSize];
-    
     [self loadGroupPicker];
-    
     [self makeGroupPicker];
-    
     [self makeDivePicker];
-    
     [self fillDiveInfo];
+    [self checkFinishedScoring];
     
     // attributes for controls
     self.txtDiveGroup.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -155,6 +153,7 @@
 
 -(IBAction)unwindToEnterDive:(UIStoryboardSegue*)sender {
     
+    [self LoadMeetCollection];
     [self hideInitialControls];
     [self fillDiveNumber];
     [self fillText];
@@ -262,9 +261,20 @@
         self.diveGroupID = [[self.diveGroupArray [row] objectAtIndex:0] intValue];
         
         [self loadDivePicker];
-        // when changing a cat show the correct dives in the type picker
-        self.txtDive.text = [[self.diveArray objectAtIndex:0] objectAtIndex:3];
-        self.diveID = [[[self.diveArray objectAtIndex:0] objectAtIndex:0] intValue];
+        
+        if ([self.boardSize  isEqual: @1.0] || [self.boardSize  isEqual: @3.0]) {
+            
+            // when changing a cat show the correct dives in the type picker
+            self.txtDive.text = [[self.diveArray objectAtIndex:0] objectAtIndex:3];
+            self.diveID = [[[self.diveArray objectAtIndex:0] objectAtIndex:0] intValue];
+            
+        } else {
+            
+            // when changing a cat show the correct dives in the type picker
+            self.txtDive.text = [[self.diveArray objectAtIndex:0] objectAtIndex:4];
+            self.diveID = [[[self.diveArray objectAtIndex:0] objectAtIndex:0] intValue];
+            
+        }
         
         // this will disable dive position choices based on cat, board, and dive type
         [self DisableDivePositions];
@@ -276,17 +286,35 @@
         
     } else {
         
-        // assign the first item in array to text box right away, so user doesn't have to
-        self.txtDive.text = [self.diveArray [row] objectAtIndex:3];
-        self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
+        if ([self.boardSize  isEqual: @1.0] || [self.boardSize  isEqual: @3.0]) {
         
-        // this will disable dive position choices based on cat, board, and dive type
-        [self DisableDivePositions];
-        
-        // then this will set the divedod label to the correct dod
-        [self GetDiveDOD];
-        
-        return [self.diveArray[row]objectAtIndex:3];
+            // assign the first item in array to text box right away, so user doesn't have to
+            self.txtDive.text = [self.diveArray [row] objectAtIndex:3];
+            self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
+            
+            // this will disable dive position choices based on cat, board, and dive type
+            [self DisableDivePositions];
+            
+            // then this will set the divedod label to the correct dod
+            [self GetDiveDOD];
+            
+            return [self.diveArray[row]objectAtIndex:3];
+            
+        } else {
+            
+            // assign the first item in array to text box right away, so user doesn't have to
+            self.txtDive.text = [self.diveArray [row] objectAtIndex:4];
+            self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
+            
+            // this will disable dive position choices based on cat, board, and dive type
+            [self DisableDivePositions];
+            
+            // then this will set the divedod label to the correct dod
+            [self GetDiveDOD];
+            
+            return [self.diveArray[row]objectAtIndex:4];
+            
+        }
     }
 }
 
@@ -301,16 +329,35 @@
         // reload the type picker after a category has been changed
         [self loadDivePicker];
         
-        // when changing a cat show the correct dives in the type picker
-        self.txtDive.text = [[self.diveArray objectAtIndex:0] objectAtIndex:3];
-        self.diveID = [[[self.diveArray objectAtIndex:0] objectAtIndex:0] intValue];
+        if ([self.boardSize  isEqual: @1.0] || [self.boardSize  isEqual: @3.0]) {
+        
+            // when changing a cat show the correct dives in the type picker
+            self.txtDive.text = [[self.diveArray objectAtIndex:0] objectAtIndex:3];
+            self.diveID = [[[self.diveArray objectAtIndex:0] objectAtIndex:0] intValue];
+            
+        } else {
+            
+            // when changing a cat show the correct dives in the type picker
+            self.txtDive.text = [[self.diveArray objectAtIndex:0] objectAtIndex:4];
+            self.diveID = [[[self.diveArray objectAtIndex:0] objectAtIndex:0] intValue];
+            
+        }
         
     } else {
         
-        self.txtDive.text = [self.diveArray [row] objectAtIndex:3];
-        [self.txtDive resignFirstResponder];
-        self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
+        if ([self.boardSize  isEqual: @1.0] || [self.boardSize  isEqual: @3.0]) {
         
+            self.txtDive.text = [self.diveArray [row] objectAtIndex:3];
+            [self.txtDive resignFirstResponder];
+            self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
+            
+        } else {
+            
+            self.txtDive.text = [self.diveArray [row] objectAtIndex:4];
+            [self.txtDive resignFirstResponder];
+            self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
+            
+        }
     }
     
     // this will disable dive position choices based on cat, board, and dive type
@@ -386,114 +433,145 @@
     
 }
 
+
+- (IBAction)lblOptionsClick:(id)sender {
+    
+    UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Edit a Score"
+                                                    message:@"To edit a score just long-press the score for the dive you want to edit."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [error show];
+    [error reloadInputViews];
+}
+
 - (IBAction)Dive1EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive1 edit Test");
+        
+        // updated alertController for iOS 8
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Edit Scores"
+                                              message:nil
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction
+                                       actionWithTitle:@"Cancel"
+                                       style:UIAlertActionStyleCancel
+                                       handler:^(UIAlertAction *action)
+                                       {
+                                           NSLog(@"Cancel Action");
+                                       }];
+        
+        UIAlertAction *JudgeScoreAction = [UIAlertAction
+                                   actionWithTitle:@"Edit Judge Scores"
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       NSLog(@"Judges Action");
+                                       // send to the DiveListScore
+                                      
+                                   }];
+        
+        UIAlertAction *finalScoreAction = [UIAlertAction
+                                           actionWithTitle:@"Edit Final Score"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action) {
+                                               
+                                               NSLog(@"FinalScore Action");
+                                               // send to the DiveFinalListScore
+                                               
+                                           }];
+        
+        [alertController addAction:cancelAction];
+        [alertController addAction:JudgeScoreAction];
+        [alertController addAction:finalScoreAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+        
         //need to send the correct info to the segue here
         self.editDiveNumber = @1;
-        self.oldDiveName = self.lblDive1.text;
-        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+        //[self performSegueWithIdentifier:@"" sender:self];
     }
 }
 
 - (IBAction)Dive2EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive2 edit Test");
         self.editDiveNumber = @2;
-        self.oldDiveName = self.lblDive2.text;
-        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+        [self performSegueWithIdentifier:@"" sender:self];
     }
 }
 
 - (IBAction)Dive3EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive3 edit Test");
         self.editDiveNumber = @3;
-        self.oldDiveName = self.lblDive3.text;
-        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+        [self performSegueWithIdentifier:@"" sender:self];
     }
 }
 
 - (IBAction)Dive4EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive4 edit Test");
         self.editDiveNumber = @4;
-        self.oldDiveName = self.lblDive4.text;
-        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+        [self performSegueWithIdentifier:@"" sender:self];
     }
 }
 
 - (IBAction)Dive5EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive5 edit Test");
         self.editDiveNumber = @5;
-        self.oldDiveName = self.lblDive5.text;
-        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+        [self performSegueWithIdentifier:@"" sender:self];
     }
 }
 
 - (IBAction)Dive6EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive6 edit Test");
         self.editDiveNumber = @6;
-        self.oldDiveName = self.lblDive6.text;
-        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+        [self performSegueWithIdentifier:@"" sender:self];
     }
 }
 
 - (IBAction)Dive7EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive7 edit Test");
         self.editDiveNumber = @7;
-        self.oldDiveName = self.lblDive7.text;
-        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+        [self performSegueWithIdentifier:@"" sender:self];
     }
 }
 
 - (IBAction)Dive8EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive8 edit Test");
         self.editDiveNumber = @8;
-        self.oldDiveName = self.lblDive8.text;
-        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+        [self performSegueWithIdentifier:@"" sender:self];
     }
 }
 
 - (IBAction)Dive9EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive9 edit Test");
         self.editDiveNumber = @9;
-        self.oldDiveName = self.lblDive9.text;
-        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+        [self performSegueWithIdentifier:@"" sender:self];
     }
 }
 
 - (IBAction)Dive10EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive10 edit Test");
         self.editDiveNumber = @10;
-        self.oldDiveName = self.lblDive10.text;
-        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+        [self performSegueWithIdentifier:@"" sender:self];
     }
 }
 
 - (IBAction)Dive11EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive11 edit Test");
         self.editDiveNumber = @11;
-        self.oldDiveName = self.lblDive11.text;
-        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+        [self performSegueWithIdentifier:@"" sender:self];
     }
 }
 
@@ -506,6 +584,22 @@
 }
 
 #pragma private methods
+
+-(void)LoadMeetCollection {
+    
+    MeetCollection *meets = [[MeetCollection alloc] init];
+    self.meetInfo = [meets GetMeetAndDiverInfo:self.meetRecordID diverid:self.diverRecordID];
+}
+
+-(void)getTheDiveTotal {
+    
+    DiveTotal *total = [[DiveTotal alloc] init];
+    
+    total = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:2];
+    
+    self.diveTotal = [total.diveTotal intValue];
+    
+}
 
 -(void)UpdateDiveInfoToSend {
     
@@ -733,7 +827,6 @@
     //result object for the label
     Results *score = [[Results alloc] init];
     JudgeScores *diveInfo = [[JudgeScores alloc] init];
-    NSNumber *diveScore;
     
     // for checking a failed dive
     JudgeScores *failInfo = [[JudgeScores alloc] init];
@@ -751,8 +844,9 @@
             diveInfoText = @"Failed - ";
             diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:1]];
         } else {
-            diveScore = score.dive1;
-            diveInfoText = [diveScore stringValue];
+            // ObjectiveC data types suck, here we convert it to a double, then back to a NSNumber
+            double scoreDouble = [score.dive1 doubleValue];
+            diveInfoText = [NSString stringWithFormat:@"%.2f", scoreDouble];
             diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
             diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:1]];
         }
@@ -773,8 +867,9 @@
             diveInfoText = @"Failed - ";
             diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:2]];
         } else {
-            diveScore = score.dive2;
-            diveInfoText = [diveScore stringValue];
+            // ObjectiveC data types suck, here we convert it to a double, then back to a NSNumber
+            double scoreDouble = [score.dive2 doubleValue];
+            diveInfoText = [NSString stringWithFormat:@"%.2f", scoreDouble];
             diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
             diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:2]];
         }
@@ -795,8 +890,9 @@
             diveInfoText = @"Failed - ";
             diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:3]];
         } else {
-            diveScore = score.dive3;
-            diveInfoText = [diveScore stringValue];
+            // ObjectiveC data types suck, here we convert it to a double, then back to a NSNumber
+            double scoreDouble = [score.dive3 doubleValue];
+            diveInfoText = [NSString stringWithFormat:@"%.2f", scoreDouble];
             diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
             diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:3]];
         }
@@ -817,8 +913,9 @@
             diveInfoText = @"Failed - ";
             diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:4]];
         } else {
-            diveScore = score.dive4;
-            diveInfoText = [diveScore stringValue];
+            // ObjectiveC data types suck, here we convert it to a double, then back to a NSNumber
+            double scoreDouble = [score.dive4 doubleValue];
+            diveInfoText = [NSString stringWithFormat:@"%.2f", scoreDouble];
             diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
             diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:4]];
         }
@@ -839,8 +936,9 @@
             diveInfoText = @"Failed - ";
             diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:5]];
         } else {
-            diveScore = score.dive5;
-            diveInfoText = [diveScore stringValue];
+            // ObjectiveC data types suck, here we convert it to a double, then back to a NSNumber
+            double scoreDouble = [score.dive5 doubleValue];
+            diveInfoText = [NSString stringWithFormat:@"%.2f", scoreDouble];
             diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
             diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:5]];
         }
@@ -861,8 +959,9 @@
             diveInfoText = @"Failed - ";
             diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:6]];
         } else {
-            diveScore = score.dive6;
-            diveInfoText = [diveScore stringValue];
+            // ObjectiveC data types suck, here we convert it to a double, then back to a NSNumber
+            double scoreDouble = [score.dive6 doubleValue];
+            diveInfoText = [NSString stringWithFormat:@"%.2f", scoreDouble];
             diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
             diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:6]];
         }
@@ -871,7 +970,6 @@
         [self.lblDive6 setHidden:NO];
         [self.lblDive6text setHidden:NO];
         [self.view6 setUserInteractionEnabled:YES];
-        
     }
     
     // we won't even bother checking these unless the diveTotal is 11
@@ -885,8 +983,9 @@
                 diveInfoText = @"Failed - ";
                 diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:7]];
             } else {
-                diveScore = score.dive7;
-                diveInfoText = [diveScore stringValue];
+                // ObjectiveC data types suck, here we convert it to a double, then back to a NSNumber
+                double scoreDouble = [score.dive7 doubleValue];
+                diveInfoText = [NSString stringWithFormat:@"%.2f", scoreDouble];
                 diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
                 diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:7]];
             }
@@ -907,8 +1006,9 @@
                 diveInfoText = @"Failed - ";
                 diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:8]];
             } else {
-                diveScore = score.dive8;
-                diveInfoText = [diveScore stringValue];
+                // ObjectiveC data types suck, here we convert it to a double, then back to a NSNumber
+                double scoreDouble = [score.dive8 doubleValue];
+                diveInfoText = [NSString stringWithFormat:@"%.2f", scoreDouble];
                 diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
                 diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:8]];
             }
@@ -929,8 +1029,9 @@
                 diveInfoText = @"Failed - ";
                 diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:9]];
             } else {
-                diveScore = score.dive9;
-                diveInfoText = [diveScore stringValue];
+                // ObjectiveC data types suck, here we convert it to a double, then back to a NSNumber
+                double scoreDouble = [score.dive9 doubleValue];
+                diveInfoText = [NSString stringWithFormat:@"%.2f", scoreDouble];
                 diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
                 diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:9]];
             }
@@ -951,8 +1052,9 @@
                 diveInfoText = @"Failed - ";
                 diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:10]];
             } else {
-                diveScore = score.dive10;
-                diveInfoText = [diveScore stringValue];
+                // ObjectiveC data types suck, here we convert it to a double, then back to a NSNumber
+                double scoreDouble = [score.dive10 doubleValue];
+                diveInfoText = [NSString stringWithFormat:@"%.2f", scoreDouble];
                 diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
                 diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:10]];
             }
@@ -972,8 +1074,9 @@
                 diveInfoText = @"Failed - ";
                 diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:11]];
             } else {
-                diveScore = score.dive11;
-                diveInfoText = [diveScore stringValue];
+                // ObjectiveC data types suck, here we convert it to a double, then back to a NSNumber
+                double scoreDouble = [score.dive11 doubleValue];
+                diveInfoText = [NSString stringWithFormat:@"%.2f", scoreDouble];
                 diveInfoText = [diveInfoText stringByAppendingString:@" Points - "];
                 diveInfoText = [diveInfoText stringByAppendingString:[diveInfo GetName:self.meetRecordID diverid:self.diverRecordID divenumber:11]];
             }
@@ -982,7 +1085,6 @@
             [self.lblDive11 setHidden:NO];
             [self.lblDive11text setHidden:NO];
             [self.view11 setUserInteractionEnabled:YES];
-            
         }
     }
     
@@ -1003,6 +1105,28 @@
         
     } else {
         self.lblTotalScore.text = @"0.0";
+    }
+}
+
+-(void)checkFinishedScoring {
+    
+    if (self.diveTotal == self.maxDiveNumber) {
+        
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Congradulations!"
+                                                        message:@"Scoring is complete for this diver"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
+        
+        [self.txtDiveGroup setEnabled:NO];
+        [self.txtDive setEnabled:NO];
+        [self.btnEnterScore setEnabled:NO];
+        [self.btnEnterTotalScore setEnabled:NO];
+        [self.SCPosition setEnabled:NO];
+        self.lblDivedd.text = @"";
+        self.lblDiveNumber.text = @"Finished";
     }
 }
 

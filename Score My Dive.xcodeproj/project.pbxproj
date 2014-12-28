@@ -211,7 +211,6 @@
 		263AC5C31A030FD600846CB0 /* Score My Dive */ = {
 			isa = PBXGroup;
 			children = (
-				26BE23511A10276300E123D0 /* DataModel */,
 				26A07ECF1A09CFDC00997E5C /* Model */,
 				26A07E8A1A09991200997E5C /* StoryBoard */,
 				26A07E891A0998C600997E5C /* Assets */,
@@ -321,27 +320,6 @@
 		26A07ECF1A09CFDC00997E5C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				26BE233C1A10275A00E123D0 /* QuickScores.h */,
-				26BE233D1A10275A00E123D0 /* QuickScores.m */,
-				26BE233E1A10275A00E123D0 /* Scores.h */,
-				26BE233F1A10275A00E123D0 /* Scores.m */,
-				26BE23401A10275A00E123D0 /* Reports.m */,
-				26BE23411A10275A00E123D0 /* DiveList.h */,
-				26BE23421A10275A00E123D0 /* DiveList.m */,
-				26BE23431A10275A00E123D0 /* Reports.h */,
-				26BE23441A10275A00E123D0 /* Judges.h */,
-				26BE23451A10275A00E123D0 /* Judges.m */,
-				26BE23461A10275A00E123D0 /* Meet.h */,
-				26BE23471A10275A00E123D0 /* Meet.m */,
-				26BE23481A10275A00E123D0 /* Diver.h */,
-				26BE23491A10275A00E123D0 /* Diver.m */,
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
-		26BE23511A10276300E123D0 /* DataModel */ = {
-			isa = PBXGroup;
-			children = (
 				26BE23521A1027CC00E123D0 /* DBManager.m */,
 				26BE23531A1027CC00E123D0 /* DBManager.h */,
 				26BE23541A1027CC00E123D0 /* DiverBoardSize.m */,
@@ -364,8 +342,22 @@
 				2642AB691A32A2CD002E8DFA /* MeetCollection.m */,
 				26B1D05A1A3355CC00112692 /* DiverCollection.h */,
 				26B1D05B1A3355CC00112692 /* DiverCollection.m */,
+				26BE233C1A10275A00E123D0 /* QuickScores.h */,
+				26BE233D1A10275A00E123D0 /* QuickScores.m */,
+				26BE233E1A10275A00E123D0 /* Scores.h */,
+				26BE233F1A10275A00E123D0 /* Scores.m */,
+				26BE23401A10275A00E123D0 /* Reports.m */,
+				26BE23411A10275A00E123D0 /* DiveList.h */,
+				26BE23421A10275A00E123D0 /* DiveList.m */,
+				26BE23431A10275A00E123D0 /* Reports.h */,
+				26BE23441A10275A00E123D0 /* Judges.h */,
+				26BE23451A10275A00E123D0 /* Judges.m */,
+				26BE23461A10275A00E123D0 /* Meet.h */,
+				26BE23471A10275A00E123D0 /* Meet.m */,
+				26BE23481A10275A00E123D0 /* Diver.h */,
+				26BE23491A10275A00E123D0 /* Diver.m */,
 			);
-			name = DataModel;
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

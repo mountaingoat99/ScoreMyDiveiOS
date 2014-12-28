@@ -111,7 +111,9 @@
     self.lblDiveType.text = judge.diveType;
     self.lblDivePostion.text = judge.divePosition;
     self.lblDivedd.text = [judge.multiplier stringValue];
-    self.lblScoreTotal.text = [judge.totalScore stringValue];
+    double totalScore = [judge.totalScore doubleValue];
+    NSString *score = [NSString stringWithFormat:@"%.2f", totalScore];
+    self.lblScoreTotal.text = score;
     
     if ([judge.failed isEqualToString:@"1"]) {
         self.lblFailed.text = @"F";

@@ -72,7 +72,7 @@
         DiveListChoose *choose = [segue destinationViewController];
         
         choose.diverRecordID = self.diverRecordID;
-        choose.meetRecordID = self.diverRecordID;
+        choose.meetRecordID = self.meetRecordID;
         
     }
     
@@ -81,7 +81,7 @@
         DiveEnter *choose = [segue destinationViewController];
         
         choose.diverRecordID = self.diverRecordID;
-        choose.meetRecordID = self.diverRecordID;
+        choose.meetRecordID = self.meetRecordID;
         
     }
 }

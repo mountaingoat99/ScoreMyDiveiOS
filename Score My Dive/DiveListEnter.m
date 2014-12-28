@@ -234,9 +234,20 @@
         self.diveGroupID = [[self.diveGroupArray [row] objectAtIndex:0] intValue];
         
         [self loadDivePicker];
-        // when changing a cat show the correct dives in the type picker
-        self.txtDive.text = [[self.diveArray objectAtIndex:0] objectAtIndex:3];
-        self.diveID = [[[self.diveArray objectAtIndex:0] objectAtIndex:0] intValue];
+        
+        if ([self.boardSize  isEqual: @1.0] || [self.boardSize  isEqual: @3.0]) {
+            
+            // when changing a cat show the correct dives in the type picker
+            self.txtDive.text = [[self.diveArray objectAtIndex:0] objectAtIndex:3];
+            self.diveID = [[[self.diveArray objectAtIndex:0] objectAtIndex:0] intValue];
+            
+        } else {
+            
+            // when changing a cat show the correct dives in the type picker
+            self.txtDive.text = [[self.diveArray objectAtIndex:0] objectAtIndex:4];
+            self.diveID = [[[self.diveArray objectAtIndex:0] objectAtIndex:0] intValue];
+            
+        }
         
         // this will disable dive position choices based on cat, board, and dive type
         [self DisableDivePositions];
@@ -248,17 +259,35 @@
         
     } else {
         
-        // assign the first item in array to text box right away, so user doesn't have to
-        self.txtDive.text = [self.diveArray [row] objectAtIndex:3];
-        self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
+        if ([self.boardSize  isEqual: @1.0] || [self.boardSize  isEqual: @3.0]) {
         
-        // this will disable dive position choices based on cat, board, and dive type
-        [self DisableDivePositions];
-        
-        // then this will set the divedod label to the correct dod
-        [self GetDiveDOD];
-        
-        return [self.diveArray[row]objectAtIndex:3];
+            // assign the first item in array to text box right away, so user doesn't have to
+            self.txtDive.text = [self.diveArray [row] objectAtIndex:3];
+            self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
+            
+            // this will disable dive position choices based on cat, board, and dive type
+            [self DisableDivePositions];
+            
+            // then this will set the divedod label to the correct dod
+            [self GetDiveDOD];
+            
+            return [self.diveArray[row]objectAtIndex:3];
+            
+        } else {
+            
+            // assign the first item in array to text box right away, so user doesn't have to
+            self.txtDive.text = [self.diveArray [row] objectAtIndex:4];
+            self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
+            
+            // this will disable dive position choices based on cat, board, and dive type
+            [self DisableDivePositions];
+            
+            // then this will set the divedod label to the correct dod
+            [self GetDiveDOD];
+            
+            return [self.diveArray[row]objectAtIndex:4];
+            
+        }
     }
 }
 
@@ -273,16 +302,35 @@
         // reload the type picker after a category has been changed
         [self loadDivePicker];
         
-        // when changing a cat show the correct dives in the type picker
-        self.txtDive.text = [[self.diveArray objectAtIndex:0] objectAtIndex:3];
-        self.diveID = [[[self.diveArray objectAtIndex:0] objectAtIndex:0] intValue];
+        if ([self.boardSize  isEqual: @1.0] || [self.boardSize  isEqual: @3.0]) {
+        
+            // when changing a cat show the correct dives in the type picker
+            self.txtDive.text = [[self.diveArray objectAtIndex:0] objectAtIndex:3];
+            self.diveID = [[[self.diveArray objectAtIndex:0] objectAtIndex:0] intValue];
+            
+        } else {
+            
+            // when changing a cat show the correct dives in the type picker
+            self.txtDive.text = [[self.diveArray objectAtIndex:0] objectAtIndex:4];
+            self.diveID = [[[self.diveArray objectAtIndex:0] objectAtIndex:0] intValue];
+            
+        }
         
     } else {
         
-        self.txtDive.text = [self.diveArray [row] objectAtIndex:3];
-        [self.txtDive resignFirstResponder];
-        self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
+        if ([self.boardSize  isEqual: @1.0] || [self.boardSize  isEqual: @3.0]) {
         
+            self.txtDive.text = [self.diveArray [row] objectAtIndex:3];
+            [self.txtDive resignFirstResponder];
+            self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
+            
+        } else {
+            
+            self.txtDive.text = [self.diveArray [row] objectAtIndex:4];
+            [self.txtDive resignFirstResponder];
+            self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
+            
+        }
     }
     
     // this will disable dive position choices based on cat, board, and dive type

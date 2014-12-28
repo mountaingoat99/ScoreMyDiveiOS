@@ -466,6 +466,11 @@
     
     result = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:5];
     
+    //results total
+    double totalDouble = [result.totalScoreTotal doubleValue];
+    NSString *total = [NSString stringWithFormat:@"%.2f", totalDouble];
+    self.lblTotal.text = total;
+    
     // first we need to make sure there is a result for each dive
     if (self.maxDiveNumber >= 1) {
     
@@ -475,7 +480,9 @@
         if ([failed isEqualToString:@"1"]) {
             self.lblDive1.text = @"F";
         } else {
-            self.lblDive1.text = [result.dive1 stringValue];
+            double scoreDouble = [result.dive1 doubleValue];
+            NSString *score = [NSString stringWithFormat:@"%.2f", scoreDouble];
+            self.lblDive1.text = score;
         }
     }
     
@@ -486,7 +493,9 @@
         if ([failed isEqualToString:@"1"]) {
             self.lblDive2.text = @"F";
         } else {
-            self.lblDive2.text = [result.dive2 stringValue];
+            double scoreDouble = [result.dive2 doubleValue];
+            NSString *score = [NSString stringWithFormat:@"%.2f", scoreDouble];
+            self.lblDive2.text = score;
         }
     }
     
@@ -497,7 +506,9 @@
         if ([failed isEqualToString:@"1"]) {
             self.lblDive3.text = @"F";
         } else {
-            self.lblDive3.text = [result.dive3 stringValue];
+            double scoreDouble = [result.dive3 doubleValue];
+            NSString *score = [NSString stringWithFormat:@"%.2f", scoreDouble];
+            self.lblDive3.text = score;
         }
     }
     
@@ -508,7 +519,9 @@
         if ([failed isEqualToString:@"1"]) {
             self.lblDive4.text = @"F";
         } else {
-            self.lblDive4.text = [result.dive4 stringValue];
+            double scoreDouble = [result.dive4 doubleValue];
+            NSString *score = [NSString stringWithFormat:@"%.2f", scoreDouble];
+            self.lblDive4.text = score;
         }
     }
     
@@ -519,7 +532,9 @@
         if ([failed isEqualToString:@"1"]) {
             self.lblDive5.text = @"F";
         } else {
-            self.lblDive5.text = [result.dive5 stringValue];
+            double scoreDouble = [result.dive5 doubleValue];
+            NSString *score = [NSString stringWithFormat:@"%.2f", scoreDouble];
+            self.lblDive5.text = score;
         }
     }
     
@@ -530,7 +545,9 @@
         if ([failed isEqualToString:@"1"]) {
             self.lblDive6.text = @"F";
         } else {
-            self.lblDive6.text = [result.dive6 stringValue];
+            double scoreDouble = [result.dive6 doubleValue];
+            NSString *score = [NSString stringWithFormat:@"%.2f", scoreDouble];
+            self.lblDive6.text = score;
         }
     }
     
@@ -541,7 +558,9 @@
         if ([failed isEqualToString:@"1"]) {
             self.lblDive7.text = @"F";
         } else {
-            self.lblDive7.text = [result.dive7 stringValue];
+            double scoreDouble = [result.dive7 doubleValue];
+            NSString *score = [NSString stringWithFormat:@"%.2f", scoreDouble];
+            self.lblDive7.text = score;
         }
     }
     
@@ -552,7 +571,9 @@
         if ([failed isEqualToString:@"1"]) {
             self.lblDive8.text = @"F";
         } else {
-            self.lblDive8.text = [result.dive8 stringValue];
+            double scoreDouble = [result.dive8 doubleValue];
+            NSString *score = [NSString stringWithFormat:@"%.2f", scoreDouble];
+            self.lblDive8.text = score;
         }
     }
     
@@ -563,7 +584,9 @@
         if ([failed isEqualToString:@"1"]) {
             self.lblDive9.text = @"F";
         } else {
-            self.lblDive9.text = [result.dive9 stringValue];
+            double scoreDouble = [result.dive9 doubleValue];
+            NSString *score = [NSString stringWithFormat:@"%.2f", scoreDouble];
+            self.lblDive9.text = score;
         }
     }
     
@@ -574,7 +597,9 @@
         if ([failed isEqualToString:@"1"]) {
             self.lblDive10.text = @"F";
         } else {
-            self.lblDive10.text = [result.dive10 stringValue];
+            double scoreDouble = [result.dive10 doubleValue];
+            NSString *score = [NSString stringWithFormat:@"%.2f", scoreDouble];
+            self.lblDive10.text = score;
         }
     }
     
@@ -585,7 +610,9 @@
         if ([failed isEqualToString:@"1"]) {
             self.lblDive11.text = @"F";
         } else {
-            self.lblDive11.text = [result.dive11 stringValue];
+            double scoreDouble = [result.dive11 doubleValue];
+            NSString *score = [NSString stringWithFormat:@"%.2f", scoreDouble];
+            self.lblDive11.text = score;
         }
     }
 }
