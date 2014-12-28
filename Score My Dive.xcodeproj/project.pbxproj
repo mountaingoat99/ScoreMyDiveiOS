@@ -52,6 +52,8 @@
 		26BE238D1A1027CC00E123D0 /* ValidScores.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23791A1027CC00E123D0 /* ValidScores.m */; };
 		26BE23911A1028B200E123D0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 26BE23901A1028B200E123D0 /* libsqlite3.dylib */; };
 		26C07FCF1A05921700DF35B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 263AC5CE1A030FD700846CB0 /* Main.storyboard */; };
+		26D4A40F1A507D8900FCEC6F /* RankingsMeet.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D4A40E1A507D8900FCEC6F /* RankingsMeet.m */; };
+		26D4A4121A50942700FCEC6F /* RankingsDiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D4A4111A50942700FCEC6F /* RankingsDiver.m */; };
 		26DF8AF71A043DAD00C273A6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26DF8AF61A043DAC00C273A6 /* QuartzCore.framework */; };
 		26E419A11A047FDF00D79C05 /* AppIconBlack.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26E419A01A047FDF00D79C05 /* AppIconBlack.xcassets */; };
 		26E419A31A0480C800D79C05 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26E419A21A0480C800D79C05 /* Images.xcassets */; };
@@ -158,6 +160,10 @@
 		26BE23781A1027CC00E123D0 /* ValidScores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidScores.h; sourceTree = "<group>"; };
 		26BE23791A1027CC00E123D0 /* ValidScores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidScores.m; sourceTree = "<group>"; };
 		26BE23901A1028B200E123D0 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		26D4A40D1A507D8900FCEC6F /* RankingsMeet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankingsMeet.h; sourceTree = "<group>"; };
+		26D4A40E1A507D8900FCEC6F /* RankingsMeet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankingsMeet.m; sourceTree = "<group>"; };
+		26D4A4101A50942700FCEC6F /* RankingsDiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankingsDiver.h; sourceTree = "<group>"; };
+		26D4A4111A50942700FCEC6F /* RankingsDiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankingsDiver.m; sourceTree = "<group>"; };
 		26DF8AF61A043DAC00C273A6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		26E419A01A047FDF00D79C05 /* AppIconBlack.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = AppIconBlack.xcassets; path = ../../../../../Documents/AppIconBlack.xcassets; sourceTree = "<group>"; };
 		26E419A21A0480C800D79C05 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -211,6 +217,7 @@
 		263AC5C31A030FD600846CB0 /* Score My Dive */ = {
 			isa = PBXGroup;
 			children = (
+				26D4A4131A50B52C00FCEC6F /* Excel */,
 				26A07ECF1A09CFDC00997E5C /* Model */,
 				26A07E8A1A09991200997E5C /* StoryBoard */,
 				26A07E891A0998C600997E5C /* Assets */,
@@ -295,6 +302,10 @@
 				261E71921A490C9F0036ABE3 /* DiveListScore.m */,
 				261E71941A490D040036ABE3 /* DiveListFinalScore.h */,
 				261E71951A490D040036ABE3 /* DiveListFinalScore.m */,
+				26D4A40D1A507D8900FCEC6F /* RankingsMeet.h */,
+				26D4A40E1A507D8900FCEC6F /* RankingsMeet.m */,
+				26D4A4101A50942700FCEC6F /* RankingsDiver.h */,
+				26D4A4111A50942700FCEC6F /* RankingsDiver.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -358,6 +369,13 @@
 				26BE23491A10275A00E123D0 /* Diver.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		26D4A4131A50B52C00FCEC6F /* Excel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Excel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -491,6 +509,7 @@
 				26BE237B1A1027CC00E123D0 /* DiverBoardSize.m in Sources */,
 				267A3FCB1A280E370068FA9E /* DiverHistory.m in Sources */,
 				26BE234B1A10275A00E123D0 /* Scores.m in Sources */,
+				26D4A4121A50942700FCEC6F /* RankingsDiver.m in Sources */,
 				26BE237E1A1027CC00E123D0 /* DiveTotal.m in Sources */,
 				26BE237A1A1027CC00E123D0 /* DBManager.m in Sources */,
 				26ADE4481A4A07D600913ABA /* HTAutocompleteTextField.m in Sources */,
@@ -498,6 +517,7 @@
 				26BE234E1A10275A00E123D0 /* Judges.m in Sources */,
 				263AC5C71A030FD600846CB0 /* main.m in Sources */,
 				268857671A291981000AEFF2 /* DiveInfo.m in Sources */,
+				26D4A40F1A507D8900FCEC6F /* RankingsMeet.m in Sources */,
 				268857611A28EBCE000AEFF2 /* DiverMeetScores.m in Sources */,
 				2688576A1A29693B000AEFF2 /* DiveListEnter.m in Sources */,
 				26B1D05C1A3355CC00112692 /* DiverCollection.m in Sources */,
@@ -627,7 +647,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Mobile",
+					"Documents/com~apple~CloudDocs/libxl-ios-3.6.1.1",
+				);
 				INFOPLIST_FILE = "Score My Dive/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -637,7 +663,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Mobile",
+					"Documents/com~apple~CloudDocs/libxl-ios-3.6.1.1",
+				);
 				INFOPLIST_FILE = "Score My Dive/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

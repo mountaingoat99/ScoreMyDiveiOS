@@ -120,9 +120,36 @@
     
 }
 
+-(NSArray*)RankingsByDiverAtMeet:(int)meetid boardSize:(NSNumber*)boardsize {
+    
+    NSArray *divers = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select DISTINCT d.id, d.name, r.total_score, n.number from diver d inner join results r on r.diver_id = d.id inner join dive_number n on n.meet_id =%d and n.diver_id = d.id inner join diver_board_size t on t.diver_id = r.diver_id where r.meet_id =%d and t.first_board =%@ and n.board_size =%@ order by r.total_score desc, n.number desc", meetid, meetid, boardsize, boardsize];
+    
+    divers = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return divers;
+    
+}
 
-
-
+-(BOOL)CheckDiverForRankings:(int)meetid boardsize:(NSNumber*)boardsize {
+    
+    NSArray *divers = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select d.name from diver d inner join dive_number dn on dn.diver_id = d.id where dn.meet_id =%d and dn.number > 0 and dn.board_size =%@", meetid, boardsize];
+    
+    divers = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    if (divers.count > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 
 

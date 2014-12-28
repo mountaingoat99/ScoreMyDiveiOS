@@ -28,4 +28,8 @@
 
 -(void)RemoveDiverFromMeet:(int)meetid diverid:(int)diverid;
 
+-(NSArray*)RankingsByDiverAtMeet:(int)meetid boardSize:(NSNumber*)boardsize;
+
+-(BOOL)CheckDiverForRankings:(int)meetid boardsize:(NSNumber*)boardsize;
+
 @end

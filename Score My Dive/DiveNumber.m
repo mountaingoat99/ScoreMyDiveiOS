@@ -92,4 +92,21 @@
     }
 }
 
+-(BOOL)DiveNumberForRankings:(int)meetid diverid:(int)diverid {
+    
+    NSNumber *num;
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select number from dive_number where meet_id=%d and diver_id=%d", meetid, diverid];
+    
+    num = [self.dbManager loadNumberFromDB:query];
+    
+    if ([num isEqualToNumber:@0]) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
 @end

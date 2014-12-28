@@ -31,4 +31,6 @@
 
 -(NSArray*)GetMeetHistory:(int)diverid;
 
+-(NSArray*)GetNameForMeetRank;
+
 @end

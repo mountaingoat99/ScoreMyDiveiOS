@@ -96,6 +96,7 @@
 
 - (IBAction)btnRankClick:(id)sender {
     
+    [self performSegueWithIdentifier:@"idSegueToRankings" sender:self];
 }
 
 -(void)makeMeetPicker{

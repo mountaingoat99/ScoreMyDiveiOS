@@ -17,6 +17,7 @@
 #import "DiveTotal.h"
 #import "DiveNumber.h"
 #import "JudgeScores.h"
+#import "RankingsDiver.h"
 
 @interface DiverMeetScores ()
 
@@ -166,6 +167,13 @@
         history.recordIdToEdit = self.diverIdToView;
         history.meetId = self.meetIdToView;
         history.callingIdToReturnTo = self.callingIDToReturnTo;
+    }
+    
+    if ([segue.identifier isEqualToString:@"idMeetScoresToRank"]) {
+        RankingsDiver *rank = [segue destinationViewController];
+        
+        rank.meetId = self.meetIdToView;
+        rank.boardSize = self.boardSize;
     }
 }
 
@@ -342,7 +350,7 @@
 - (IBAction)btnDive11Click:(id)sender {
     
     if (self.maxDiveNumber == 11) {
-        self.diveNumber = 111;
+        self.diveNumber = 11;
         
         [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
     } else {
@@ -361,8 +369,14 @@
     if (self.callingIDToReturnTo == 1) {
         
         [self performSegueWithIdentifier:@"idSegueScoresToMeetHistory" sender:self];
-    } else {
+        
+    } else if (self.callingIDToReturnTo == 2) {
+        
         [self performSegueWithIdentifier:@"idSegueScoresToDiverHistory" sender:self];
+        
+    } else {
+        
+        [self performSegueWithIdentifier:@"idMeetScoresToRank" sender:self];
     }
 }
 

@@ -16,6 +16,7 @@
 @property (nonatomic) int diverIdToView;
 @property (nonatomic) int callingIDToReturnTo;
 @property (nonatomic) int diveNumber;
+@property (nonatomic, strong) NSNumber *boardSize;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
 @property (weak, nonatomic) IBOutlet UILabel *lblSchool;

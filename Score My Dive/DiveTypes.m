@@ -555,21 +555,6 @@
     return diveTypes;
 }
 
-// gets the id from the dive by dive name
--(NSNumber*)GetDiveID:(NSString*)diveName DivePosition:(NSNumber*)diveposition BoardType:(NSNumber*)boardtype {
-    
-    //TODO: here we will decide how we can get a dive id froma dive and return it
-    
-    NSNumber* diveid;
-    
-    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
-    
-    NSString *query = [NSString stringWithFormat:@"select id from"];
-    
-    
-    return diveid;
-}
-
 // gets the dive dod
 -(NSArray*)GetAllDiveDODs:(int)divecat DiveTypeId:(int)divetypeid BoardType:(NSNumber*)boardsize {
     

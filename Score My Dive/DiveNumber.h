@@ -24,4 +24,6 @@
 
 -(BOOL)UpdateDiveNumber:(int)meetid diverid:(int)diverid divenumber:(int)divenumber;
 
+-(BOOL)DiveNumberForRankings:(int)meetid diverid:(int)diverid;
+
 @end

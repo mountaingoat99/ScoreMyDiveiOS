@@ -120,4 +120,17 @@
     return divers;
 }
 
+-(NSArray*)GetNameForMeetRank {
+    
+    NSArray *meets = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"select distinct m.id, m.name, d.first_board from meet m inner join diver_board_size d on d.meet_id = m.id where d.first_board > 0 order by m.id asc, d.first_board asc"];
+    
+    meets = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return meets;
+}
+
 @end

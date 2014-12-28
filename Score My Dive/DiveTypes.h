@@ -45,9 +45,6 @@
 // gets the dive array based on category and boardsize
 -(NSArray*)LoadDivePicker:(int)divecat BoardSize:(NSNumber*)boardsize;
 
-// gets the id from the dive by dive name
--(NSNumber*)GetDiveID:(NSString*)diveName DivePosition:(NSNumber*)diveposition BoardType:(NSNumber*)boardtype;
-
 // gets the all the dive dods
 -(NSArray*)GetAllDiveDODs:(int)divecat DiveTypeId:(int)divetypeid BoardType:(NSNumber*)boardsize;
 
