@@ -14,7 +14,9 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *txtChooseMeet;
 @property (weak, nonatomic) IBOutlet UILabel *lblJudges;
+@property (weak, nonatomic) IBOutlet UIButton *btnNext;
 
 - (IBAction)nextClick:(id)sender;
+- (IBAction)btnRankClick:(id)sender;
 
 @end

@@ -171,14 +171,13 @@
     // send to the diveListScore
     if ([segue.identifier isEqualToString:@"idSegueDiveEnterToScore"]) {
         
-        // send the diveCategory, divePosition, diveNameForDB, multiplier to send, meetid, diverid, meetInfo object
         DiveListScore *score = [segue destinationViewController];
         
         self.listOrNot = 1;
         score.listOrNot = self.listOrNot;
         score.meetRecordID = self.meetRecordID;
         score.diverRecordID = self.diverRecordID;
-        score.diveNumber = [self.onDiveNumber intValue];  //TODO: we need to make sure this is correct?
+        score.diveNumber = [self.onDiveNumber intValue];
         score.diveCategory = self.diveCategory;
         score.divePosition = self.divePosition;
         score.diveNameForDB = self.diveNameForDB;
@@ -189,18 +188,43 @@
     // send to the diveListFinalScore
     if ([segue.identifier isEqualToString:@"idSegueDiveEnterToFinalScore"]) {
         
-        // send the diveCategory, divePosition, diveNameForDB, multiplier to send, meetid, diverid, meetInfo object
         DiveListFinalScore *score = [segue destinationViewController];
         
         self.listOrNot = 1;
         score.listOrNot = self.listOrNot;
         score.meetRecordID = self.meetRecordID;
         score.diverRecordID = self.diverRecordID;
-        score.diveNumber = [self.onDiveNumber intValue];  //TODO: we need to make sure this is correct?
+        score.diveNumber = [self.onDiveNumber intValue];
         score.diveCategory = self.diveCategory;
         score.divePosition = self.divePosition;
         score.diveNameForDB = self.diveNameForDB;
         score.multiplierToSend = self.multiplierToSend;
+        score.meetInfo = self.meetInfo;
+    }
+    
+    // send to the diveListScore for Edit
+    if ([segue.identifier isEqualToString:@"idEnterDivetoEditJudgeScores"]) {
+        
+        DiveListScore *score = [segue destinationViewController];
+        
+        self.listOrNot = 2;
+        score.listOrNot = self.listOrNot;
+        score.meetRecordID = self.meetRecordID;
+        score.diverRecordID = self.diverRecordID;
+        score.diveNumber = [self.onDiveNumber intValue];
+        score.meetInfo = self.meetInfo;
+    }
+    
+    // send to the diveListFinalScore for Edit
+    if ([segue.identifier isEqualToString:@"idEnterDiveToEditFinalScore"]) {
+        
+        DiveListFinalScore *score = [segue destinationViewController];
+        
+        self.listOrNot = 2;
+        score.listOrNot = self.listOrNot;
+        score.meetRecordID = self.meetRecordID;
+        score.diverRecordID = self.diverRecordID;
+        score.diveNumber = [self.onDiveNumber intValue];  //TODO: we need to make sure this is correct?
         score.meetInfo = self.meetInfo;
     }
 }
@@ -470,6 +494,8 @@
                                    {
                                        NSLog(@"Judges Action");
                                        // send to the DiveListScore
+                                       self.onDiveNumber = @1;
+                                       [self performSegueWithIdentifier:@"idEnterDivetoEditJudgeScores" sender:self];
                                       
                                    }];
         
@@ -480,6 +506,8 @@
                                                
                                                NSLog(@"FinalScore Action");
                                                // send to the DiveFinalListScore
+                                               self.onDiveNumber = @1;
+                                               [self performSegueWithIdentifier:@"idEnterDiveToEditFinalScore" sender:self];
                                                
                                            }];
         
@@ -488,99 +516,507 @@
         [alertController addAction:finalScoreAction];
         
         [self presentViewController:alertController animated:YES completion:nil];
-        
-        //need to send the correct info to the segue here
-        self.editDiveNumber = @1;
-        //[self performSegueWithIdentifier:@"" sender:self];
     }
 }
 
 - (IBAction)Dive2EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        self.editDiveNumber = @2;
-        [self performSegueWithIdentifier:@"" sender:self];
+        
+        // updated alertController for iOS 8
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Edit Scores"
+                                              message:nil
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction
+                                       actionWithTitle:@"Cancel"
+                                       style:UIAlertActionStyleCancel
+                                       handler:^(UIAlertAction *action)
+                                       {
+                                           NSLog(@"Cancel Action");
+                                       }];
+        
+        UIAlertAction *JudgeScoreAction = [UIAlertAction
+                                           actionWithTitle:@"Edit Judge Scores"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action)
+                                           {
+                                               NSLog(@"Judges Action");
+                                               // send to the DiveListScore
+                                               self.onDiveNumber = @2;
+                                               [self performSegueWithIdentifier:@"idEnterDivetoEditJudgeScores" sender:self];
+                                               
+                                           }];
+        
+        UIAlertAction *finalScoreAction = [UIAlertAction
+                                           actionWithTitle:@"Edit Final Score"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action) {
+                                               
+                                               NSLog(@"FinalScore Action");
+                                               // send to the DiveFinalListScore
+                                               self.onDiveNumber = @2;
+                                               [self performSegueWithIdentifier:@"idEnterDiveToEditFinalScore" sender:self];
+                                               
+                                           }];
+        
+        [alertController addAction:cancelAction];
+        [alertController addAction:JudgeScoreAction];
+        [alertController addAction:finalScoreAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
     }
 }
 
 - (IBAction)Dive3EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        self.editDiveNumber = @3;
-        [self performSegueWithIdentifier:@"" sender:self];
+        
+        // updated alertController for iOS 8
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Edit Scores"
+                                              message:nil
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction
+                                       actionWithTitle:@"Cancel"
+                                       style:UIAlertActionStyleCancel
+                                       handler:^(UIAlertAction *action)
+                                       {
+                                           NSLog(@"Cancel Action");
+                                       }];
+        
+        UIAlertAction *JudgeScoreAction = [UIAlertAction
+                                           actionWithTitle:@"Edit Judge Scores"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action)
+                                           {
+                                               NSLog(@"Judges Action");
+                                               // send to the DiveListScore
+                                               self.onDiveNumber = @3;
+                                               [self performSegueWithIdentifier:@"idEnterDivetoEditJudgeScores" sender:self];
+                                               
+                                           }];
+        
+        UIAlertAction *finalScoreAction = [UIAlertAction
+                                           actionWithTitle:@"Edit Final Score"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action) {
+                                               
+                                               NSLog(@"FinalScore Action");
+                                               // send to the DiveFinalListScore
+                                               self.onDiveNumber = @3;
+                                               [self performSegueWithIdentifier:@"idEnterDiveToEditFinalScore" sender:self];
+                                               
+                                           }];
+        
+        [alertController addAction:cancelAction];
+        [alertController addAction:JudgeScoreAction];
+        [alertController addAction:finalScoreAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
     }
 }
 
 - (IBAction)Dive4EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        self.editDiveNumber = @4;
-        [self performSegueWithIdentifier:@"" sender:self];
+        
+        // updated alertController for iOS 8
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Edit Scores"
+                                              message:nil
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction
+                                       actionWithTitle:@"Cancel"
+                                       style:UIAlertActionStyleCancel
+                                       handler:^(UIAlertAction *action)
+                                       {
+                                           NSLog(@"Cancel Action");
+                                       }];
+        
+        UIAlertAction *JudgeScoreAction = [UIAlertAction
+                                           actionWithTitle:@"Edit Judge Scores"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action)
+                                           {
+                                               NSLog(@"Judges Action");
+                                               // send to the DiveListScore
+                                               self.onDiveNumber = @4;
+                                               [self performSegueWithIdentifier:@"idEnterDivetoEditJudgeScores" sender:self];
+                                               
+                                           }];
+        
+        UIAlertAction *finalScoreAction = [UIAlertAction
+                                           actionWithTitle:@"Edit Final Score"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action) {
+                                               
+                                               NSLog(@"FinalScore Action");
+                                               // send to the DiveFinalListScore
+                                               self.onDiveNumber = @4;
+                                               [self performSegueWithIdentifier:@"idEnterDiveToEditFinalScore" sender:self];
+                                               
+                                           }];
+        
+        [alertController addAction:cancelAction];
+        [alertController addAction:JudgeScoreAction];
+        [alertController addAction:finalScoreAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
     }
 }
 
 - (IBAction)Dive5EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        self.editDiveNumber = @5;
-        [self performSegueWithIdentifier:@"" sender:self];
+        
+        // updated alertController for iOS 8
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Edit Scores"
+                                              message:nil
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction
+                                       actionWithTitle:@"Cancel"
+                                       style:UIAlertActionStyleCancel
+                                       handler:^(UIAlertAction *action)
+                                       {
+                                           NSLog(@"Cancel Action");
+                                       }];
+        
+        UIAlertAction *JudgeScoreAction = [UIAlertAction
+                                           actionWithTitle:@"Edit Judge Scores"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action)
+                                           {
+                                               NSLog(@"Judges Action");
+                                               // send to the DiveListScore
+                                               self.onDiveNumber = @5;
+                                               [self performSegueWithIdentifier:@"idEnterDivetoEditJudgeScores" sender:self];
+                                               
+                                           }];
+        
+        UIAlertAction *finalScoreAction = [UIAlertAction
+                                           actionWithTitle:@"Edit Final Score"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action) {
+                                               
+                                               NSLog(@"FinalScore Action");
+                                               // send to the DiveFinalListScore
+                                               self.onDiveNumber = @5;
+                                               [self performSegueWithIdentifier:@"idEnterDiveToEditFinalScore" sender:self];
+                                               
+                                           }];
+        
+        [alertController addAction:cancelAction];
+        [alertController addAction:JudgeScoreAction];
+        [alertController addAction:finalScoreAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
     }
 }
 
 - (IBAction)Dive6EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        self.editDiveNumber = @6;
-        [self performSegueWithIdentifier:@"" sender:self];
+        
+        // updated alertController for iOS 8
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Edit Scores"
+                                              message:nil
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction
+                                       actionWithTitle:@"Cancel"
+                                       style:UIAlertActionStyleCancel
+                                       handler:^(UIAlertAction *action)
+                                       {
+                                           NSLog(@"Cancel Action");
+                                       }];
+        
+        UIAlertAction *JudgeScoreAction = [UIAlertAction
+                                           actionWithTitle:@"Edit Judge Scores"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action)
+                                           {
+                                               NSLog(@"Judges Action");
+                                               // send to the DiveListScore
+                                               self.onDiveNumber = @6;
+                                               [self performSegueWithIdentifier:@"idEnterDivetoEditJudgeScores" sender:self];
+                                               
+                                           }];
+        
+        UIAlertAction *finalScoreAction = [UIAlertAction
+                                           actionWithTitle:@"Edit Final Score"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action) {
+                                               
+                                               NSLog(@"FinalScore Action");
+                                               // send to the DiveFinalListScore
+                                               self.onDiveNumber = @6;
+                                               [self performSegueWithIdentifier:@"idEnterDiveToEditFinalScore" sender:self];
+                                               
+                                           }];
+        
+        [alertController addAction:cancelAction];
+        [alertController addAction:JudgeScoreAction];
+        [alertController addAction:finalScoreAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
     }
 }
 
 - (IBAction)Dive7EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        self.editDiveNumber = @7;
-        [self performSegueWithIdentifier:@"" sender:self];
+        
+        // updated alertController for iOS 8
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Edit Scores"
+                                              message:nil
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction
+                                       actionWithTitle:@"Cancel"
+                                       style:UIAlertActionStyleCancel
+                                       handler:^(UIAlertAction *action)
+                                       {
+                                           NSLog(@"Cancel Action");
+                                       }];
+        
+        UIAlertAction *JudgeScoreAction = [UIAlertAction
+                                           actionWithTitle:@"Edit Judge Scores"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action)
+                                           {
+                                               NSLog(@"Judges Action");
+                                               // send to the DiveListScore
+                                               self.onDiveNumber = @7;
+                                               [self performSegueWithIdentifier:@"idEnterDivetoEditJudgeScores" sender:self];
+                                               
+                                           }];
+        
+        UIAlertAction *finalScoreAction = [UIAlertAction
+                                           actionWithTitle:@"Edit Final Score"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action) {
+                                               
+                                               NSLog(@"FinalScore Action");
+                                               // send to the DiveFinalListScore
+                                               self.onDiveNumber = @7;
+                                               [self performSegueWithIdentifier:@"idEnterDiveToEditFinalScore" sender:self];
+                                               
+                                           }];
+        
+        [alertController addAction:cancelAction];
+        [alertController addAction:JudgeScoreAction];
+        [alertController addAction:finalScoreAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
     }
 }
 
 - (IBAction)Dive8EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        self.editDiveNumber = @8;
-        [self performSegueWithIdentifier:@"" sender:self];
+        
+        // updated alertController for iOS 8
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Edit Scores"
+                                              message:nil
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction
+                                       actionWithTitle:@"Cancel"
+                                       style:UIAlertActionStyleCancel
+                                       handler:^(UIAlertAction *action)
+                                       {
+                                           NSLog(@"Cancel Action");
+                                       }];
+        
+        UIAlertAction *JudgeScoreAction = [UIAlertAction
+                                           actionWithTitle:@"Edit Judge Scores"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action)
+                                           {
+                                               NSLog(@"Judges Action");
+                                               // send to the DiveListScore
+                                               self.onDiveNumber = @8;
+                                               [self performSegueWithIdentifier:@"idEnterDivetoEditJudgeScores" sender:self];
+                                               
+                                           }];
+        
+        UIAlertAction *finalScoreAction = [UIAlertAction
+                                           actionWithTitle:@"Edit Final Score"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action) {
+                                               
+                                               NSLog(@"FinalScore Action");
+                                               // send to the DiveFinalListScore
+                                               self.onDiveNumber = @8;
+                                               [self performSegueWithIdentifier:@"idEnterDiveToEditFinalScore" sender:self];
+                                               
+                                           }];
+        
+        [alertController addAction:cancelAction];
+        [alertController addAction:JudgeScoreAction];
+        [alertController addAction:finalScoreAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
     }
 }
 
 - (IBAction)Dive9EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        self.editDiveNumber = @9;
-        [self performSegueWithIdentifier:@"" sender:self];
+        
+        // updated alertController for iOS 8
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Edit Scores"
+                                              message:nil
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction
+                                       actionWithTitle:@"Cancel"
+                                       style:UIAlertActionStyleCancel
+                                       handler:^(UIAlertAction *action)
+                                       {
+                                           NSLog(@"Cancel Action");
+                                       }];
+        
+        UIAlertAction *JudgeScoreAction = [UIAlertAction
+                                           actionWithTitle:@"Edit Judge Scores"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action)
+                                           {
+                                               NSLog(@"Judges Action");
+                                               // send to the DiveListScore
+                                               self.onDiveNumber = @9;
+                                               [self performSegueWithIdentifier:@"idEnterDivetoEditJudgeScores" sender:self];
+                                               
+                                           }];
+        
+        UIAlertAction *finalScoreAction = [UIAlertAction
+                                           actionWithTitle:@"Edit Final Score"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action) {
+                                               
+                                               NSLog(@"FinalScore Action");
+                                               // send to the DiveFinalListScore
+                                               self.onDiveNumber = @9;
+                                               [self performSegueWithIdentifier:@"idEnterDiveToEditFinalScore" sender:self];
+                                               
+                                           }];
+        
+        [alertController addAction:cancelAction];
+        [alertController addAction:JudgeScoreAction];
+        [alertController addAction:finalScoreAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
     }
 }
 
 - (IBAction)Dive10EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        self.editDiveNumber = @10;
-        [self performSegueWithIdentifier:@"" sender:self];
+        
+        // updated alertController for iOS 8
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Edit Scores"
+                                              message:nil
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction
+                                       actionWithTitle:@"Cancel"
+                                       style:UIAlertActionStyleCancel
+                                       handler:^(UIAlertAction *action)
+                                       {
+                                           NSLog(@"Cancel Action");
+                                       }];
+        
+        UIAlertAction *JudgeScoreAction = [UIAlertAction
+                                           actionWithTitle:@"Edit Judge Scores"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action)
+                                           {
+                                               NSLog(@"Judges Action");
+                                               // send to the DiveListScore
+                                               self.onDiveNumber = @10;
+                                               [self performSegueWithIdentifier:@"idEnterDivetoEditJudgeScores" sender:self];
+                                               
+                                           }];
+        
+        UIAlertAction *finalScoreAction = [UIAlertAction
+                                           actionWithTitle:@"Edit Final Score"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action) {
+                                               
+                                               NSLog(@"FinalScore Action");
+                                               // send to the DiveFinalListScore
+                                               self.onDiveNumber = @10;
+                                               [self performSegueWithIdentifier:@"idEnterDiveToEditFinalScore" sender:self];
+                                               
+                                           }];
+        
+        [alertController addAction:cancelAction];
+        [alertController addAction:JudgeScoreAction];
+        [alertController addAction:finalScoreAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
     }
 }
 
 - (IBAction)Dive11EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        self.editDiveNumber = @11;
-        [self performSegueWithIdentifier:@"" sender:self];
+        
+        // updated alertController for iOS 8
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Edit Scores"
+                                              message:nil
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction
+                                       actionWithTitle:@"Cancel"
+                                       style:UIAlertActionStyleCancel
+                                       handler:^(UIAlertAction *action)
+                                       {
+                                           NSLog(@"Cancel Action");
+                                       }];
+        
+        UIAlertAction *JudgeScoreAction = [UIAlertAction
+                                           actionWithTitle:@"Edit Judge Scores"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action)
+                                           {
+                                               NSLog(@"Judges Action");
+                                               // send to the DiveListScore
+                                               self.onDiveNumber = @11;
+                                               [self performSegueWithIdentifier:@"idEnterDivetoEditJudgeScores" sender:self];
+                                               
+                                           }];
+        
+        UIAlertAction *finalScoreAction = [UIAlertAction
+                                           actionWithTitle:@"Edit Final Score"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action) {
+                                               
+                                               NSLog(@"FinalScore Action");
+                                               // send to the DiveFinalListScore
+                                               self.onDiveNumber = @11;
+                                               [self performSegueWithIdentifier:@"idEnterDiveToEditFinalScore" sender:self];
+                                               
+                                           }];
+        
+        [alertController addAction:cancelAction];
+        [alertController addAction:JudgeScoreAction];
+        [alertController addAction:finalScoreAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
     }
-}
-
-// delegate method to update the info after the dive edit is popped off
--(void)editDiveListWasFinished {
-    
-    [self fillDiveNumber];
-    [self fillDiveInfo];
-    [self resetValues];
 }
 
 #pragma private methods

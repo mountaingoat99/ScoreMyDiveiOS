@@ -41,7 +41,13 @@
     self.txtChooseMeet.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtChooseMeet.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     
+    self.btnNext.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.btnNext.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.btnNext.layer.masksToBounds = NO;
+    self.btnNext.layer.shadowOpacity = .7;
+    
     [self.lblJudges setHidden:YES];
+    [self.btnNext setHidden:YES];
 }
 
 // push id to next view controller
@@ -88,6 +94,10 @@
     }
 }
 
+- (IBAction)btnRankClick:(id)sender {
+    
+}
+
 -(void)makeMeetPicker{
     self.meetPicker = [[UIPickerView alloc] init];
     [self.meetPicker setBackgroundColor:[UIColor grayColor]];
@@ -117,6 +127,7 @@
     
     // set the visiblity of the judge controls once a row is shown
     [self.lblJudges setHidden:NO];
+    [self.btnNext setHidden:NO];
     
     // update the control
     [self ShowJudgeTotal];
