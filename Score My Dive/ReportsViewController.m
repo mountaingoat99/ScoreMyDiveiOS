@@ -10,6 +10,7 @@
 #import "Diver.h"
 #import "Meet.h"
 #import "Reports.h"
+#import "JudgeScores.h"
 
 @interface ReportsViewController ()
 
@@ -26,6 +27,9 @@
 @property (nonatomic, strong) UIPickerView *reportPicker;
 
 -(void) loadData;
+-(void)CreateMeetResult;
+-(void)CreateDiverScoreTotalByMeet;
+-(void)CreateDiverJudgeScoreByMeet;
 
 @end
 
@@ -80,7 +84,48 @@
 }
 
 - (IBAction)sendClick:(id)sender {
-    //TODO add the logic here to send the reports
+    
+    if (self.reportRecordID == 0) {
+        
+        if (self.txtChooseMeet.text.length > 0) {
+            [self CreateMeetResult];
+        } else {
+            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                            message:@"You need to pick a meet first"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [error show];
+            [error reloadInputViews];
+        }
+        
+    } else if (self.reportRecordID == 1) {
+        
+        if (self.txtxChooseDiver.text.length > 0 && self.txtChooseMeet.text.length > 0) {
+            [self CreateDiverScoreTotalByMeet];
+        } else {
+            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                            message:@"You need to pick a diver and a meet first"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [error show];
+            [error reloadInputViews];
+        }
+        
+    } else {
+        if (self.txtxChooseDiver.text.length > 0 && self.txtChooseMeet.text.length > 0) {
+            [self CreateDiverJudgeScoreByMeet];
+        } else {
+            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                            message:@"You need to pick a diver and a meet first"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [error show];
+            [error reloadInputViews];
+        }
+    }
 }
 
 -(void)makeDiverPicker{
@@ -202,8 +247,79 @@
     self.reportArray = [[NSMutableArray alloc] initWithCapacity:3];
     
     [self.reportArray insertObject:[NSMutableArray arrayWithObjects:@"0", @"Meet Results", nil] atIndex:0];
-    [self.reportArray insertObject:[NSMutableArray arrayWithObjects:@"0", @"Diver Score Total By Meet", nil] atIndex:1];
-    [self.reportArray insertObject:[NSMutableArray arrayWithObjects:@"0", @"Diver Judge Scores By Meet", nil] atIndex:2];
+    [self.reportArray insertObject:[NSMutableArray arrayWithObjects:@"1", @"Diver Score Total By Meet", nil] atIndex:1];
+    [self.reportArray insertObject:[NSMutableArray arrayWithObjects:@"2", @"Diver Judge Scores By Meet", nil] atIndex:2];
+    
+}
+
+-(void)CreateMeetResult {
+    
+    NSArray *meetinfo;
+    
+    NSMutableString *csv = [NSMutableString stringWithString:@"Diver, School, MeetName, Date, Judges, DiveCount, DiveType, TotalScore, Dive1, Dive2, Dive3, Dive4, Dive5, Dive6, Dive7, Dive8, Dive9, Dive10, Dive11, DiveNumber, DiveStyle, DivePosition, DD, Failed, Score1, Score2, Score3, Score4, Score5, Score6, Score7"];
+    
+    JudgeScores *scores = [[JudgeScores alloc] init];
+    meetinfo = [scores FetchMeetResults:self.meetRecordID];
+    
+    NSUInteger count = [meetinfo count];
+    
+    for (NSUInteger i = 0; i < count; i++) {
+        [csv appendFormat:@"\n,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@",
+            [[meetinfo objectAtIndex:i] objectAtIndex:1],
+            [[meetinfo objectAtIndex:i] objectAtIndex:2],
+            [[meetinfo objectAtIndex:i] objectAtIndex:3],
+            [[meetinfo objectAtIndex:i] objectAtIndex:4],
+            [[meetinfo objectAtIndex:i] objectAtIndex:5],
+            [[meetinfo objectAtIndex:i] objectAtIndex:6],
+            [[meetinfo objectAtIndex:i] objectAtIndex:7],
+            [[meetinfo objectAtIndex:i] objectAtIndex:8],
+            [[meetinfo objectAtIndex:i] objectAtIndex:9],
+            [[meetinfo objectAtIndex:i] objectAtIndex:10],
+            [[meetinfo objectAtIndex:i] objectAtIndex:11],
+            [[meetinfo objectAtIndex:i] objectAtIndex:12],
+            [[meetinfo objectAtIndex:i] objectAtIndex:13],
+            [[meetinfo objectAtIndex:i] objectAtIndex:14],
+            [[meetinfo objectAtIndex:i] objectAtIndex:15],
+            [[meetinfo objectAtIndex:i] objectAtIndex:16],
+            [[meetinfo objectAtIndex:i] objectAtIndex:17],
+            [[meetinfo objectAtIndex:i] objectAtIndex:18],
+            [[meetinfo objectAtIndex:i] objectAtIndex:19],
+            [[meetinfo objectAtIndex:i] objectAtIndex:20],
+            [[meetinfo objectAtIndex:i] objectAtIndex:21],
+            [[meetinfo objectAtIndex:i] objectAtIndex:22],
+            [[meetinfo objectAtIndex:i] objectAtIndex:23],
+            [[meetinfo objectAtIndex:i] objectAtIndex:24],
+            [[meetinfo objectAtIndex:i] objectAtIndex:25],
+            [[meetinfo objectAtIndex:i] objectAtIndex:26],
+            [[meetinfo objectAtIndex:i] objectAtIndex:27],
+            [[meetinfo objectAtIndex:i] objectAtIndex:28],
+            [[meetinfo objectAtIndex:i] objectAtIndex:29],
+            [[meetinfo objectAtIndex:i] objectAtIndex:30],
+            [[meetinfo objectAtIndex:i] objectAtIndex:31]];
+    }
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDirectory = [paths objectAtIndex:0];
+    
+    NSString *outputFileName = [docDirectory stringByAppendingPathComponent:@"MeetResults.csv"];
+    
+    NSError *csvError = nil;
+    
+    BOOL written = [csv writeToFile:outputFileName atomically:YES encoding:NSUTF8StringEncoding error:&csvError];
+    
+    if (!written) {
+        NSLog(@"MeetResults write failed, error=%@", csvError);
+    } else {
+        NSLog(@"MeetResults saved! File Path =%@", outputFileName);
+    }
+
+}
+
+-(void)CreateDiverScoreTotalByMeet {
+    
+}
+
+-(void)CreateDiverJudgeScoreByMeet {
     
 }
 

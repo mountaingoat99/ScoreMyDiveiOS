@@ -599,4 +599,17 @@
     return newScore = [numberString doubleValue];
 }
 
+-(NSArray*)FetchMeetResults:(int)meetid {
+    
+    NSArray *info = [[NSArray alloc] init];
+    
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
+    
+    NSString *query = [NSString stringWithFormat:@"SELECT DISTINCT d.id, d.name, d.school, m.name, m.date, j.judge_total, dt.dive_count, db.first_board, r.total_score, r.dive_1, r.dive_2, r.dive_3, r.dive_4, r.dive_5, r.dive_6, r.dive_7, r.dive_8, r.dive_9, r.dive_10, r.dive_11, js.dive_number, js.dive_type, js.dive_position, js.multiplier, js.failed, js.score_1, js.score_2, js.score_3, js.score_4, js.score_5, js.score_6, js.score_7 FROM diver d INNER JOIN results r on r.diver_id = d.id INNER JOIN meet m on m.id = r.meet_id INNER JOIN judges j on j.meet_id = m.id INNER JOIN dive_total dt on dt.diver_id = d.id AND dt.meet_id=%d INNER JOIN diver_board_size db on db.diver_id = d.id AND db.meet_id=%d INNER JOIN judges_scores js on js.diver_id = d.id AND js.meet_id=%d WHERE m.id=%d ORDER BY d.id asc, db.first_board asc, js.dive_number asc", meetid, meetid, meetid, meetid];
+    
+    info = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    return info;
+}
+
 @end

@@ -67,4 +67,6 @@
 
 -(BOOL)Calculate7JudgesScore:(int)meetid diverid:(int)diverid divenumber:(int)divenumber meetinfo:(NSArray*)meetinfo score1:(NSNumber*)score1 score2:(NSNumber*)score2 score3:(NSNumber*)score3 score4:(NSNumber*)score4 score5:(NSNumber*)score5 score6:(NSNumber*)score6 score7:(NSNumber*)score7;
 
+-(NSArray*)FetchMeetResults:(int)meetid;
+
 @end
