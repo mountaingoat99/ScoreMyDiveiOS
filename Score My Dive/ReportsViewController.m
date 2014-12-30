@@ -30,6 +30,11 @@
 -(void)CreateMeetResult;
 -(void)CreateDiverScoreTotalByMeet;
 -(void)CreateDiverJudgeScoreByMeet;
+-(void)sendEmail:(NSString*)file fileName:(NSString*)filename;
+-(void)canceledEmail;
+-(void)savedEmail;
+-(void)SentEmail;
+-(void)FailedEmail;
 
 @end
 
@@ -255,20 +260,25 @@
 -(void)CreateMeetResult {
     
     NSArray *meetinfo;
+    NSString *newDate;
     
     NSMutableString *csv = [NSMutableString stringWithString:@"Diver, School, MeetName, Date, Judges, DiveCount, DiveType, TotalScore, Dive1, Dive2, Dive3, Dive4, Dive5, Dive6, Dive7, Dive8, Dive9, Dive10, Dive11, DiveNumber, DiveStyle, DivePosition, DD, Failed, Score1, Score2, Score3, Score4, Score5, Score6, Score7"];
     
     JudgeScores *scores = [[JudgeScores alloc] init];
     meetinfo = [scores FetchMeetResults:self.meetRecordID];
     
+    // here we want to get the meet name for the file name
+    NSString *meetName = [[meetinfo objectAtIndex:0] objectAtIndex:3];
+    meetName = [meetName stringByAppendingString:@" MeetResults.csv"];
+    
     NSUInteger count = [meetinfo count];
     
     for (NSUInteger i = 0; i < count; i++) {
-        [csv appendFormat:@"\n,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@",
+        [csv appendFormat:@"\n%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@",
             [[meetinfo objectAtIndex:i] objectAtIndex:1],
             [[meetinfo objectAtIndex:i] objectAtIndex:2],
             [[meetinfo objectAtIndex:i] objectAtIndex:3],
-            [[meetinfo objectAtIndex:i] objectAtIndex:4],
+            newDate = [[[meetinfo objectAtIndex:i] objectAtIndex:4] stringByReplacingOccurrencesOfString:@"," withString:@""],   // date in DB has a comma, we need to remove it for the csv format
             [[meetinfo objectAtIndex:i] objectAtIndex:5],
             [[meetinfo objectAtIndex:i] objectAtIndex:6],
             [[meetinfo objectAtIndex:i] objectAtIndex:7],
@@ -298,10 +308,12 @@
             [[meetinfo objectAtIndex:i] objectAtIndex:31]];
     }
     
+    // lets get the document path
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docDirectory = [paths objectAtIndex:0];
     
-    NSString *outputFileName = [docDirectory stringByAppendingPathComponent:@"MeetResults.csv"];
+    // then the full path and file name
+    NSString *outputFileName = [docDirectory stringByAppendingPathComponent:meetName];
     
     NSError *csvError = nil;
     
@@ -311,17 +323,233 @@
         NSLog(@"MeetResults write failed, error=%@", csvError);
     } else {
         NSLog(@"MeetResults saved! File Path =%@", outputFileName);
+        [self sendEmail:outputFileName fileName:meetName];
     }
 
 }
 
 -(void)CreateDiverScoreTotalByMeet {
     
+    NSArray *meetinfo;
+    NSString *newDate;
+    
+    NSMutableString *csv = [NSMutableString stringWithString:@"Diver, School, MeetName, Date, TotalScore, Dive1, Dive2, Dive3, Dive4, Dive5, Dive6, Dive7, Dive8, Dive9, Dive10, Dive11"];
+    
+    JudgeScores *scores = [[JudgeScores alloc] init];
+    meetinfo = [scores FetchMeetScores:self.meetRecordID diverid:self.diverRecordID];
+    
+    // here we want to get the meet name for the file name
+    NSString *meetName = [[meetinfo objectAtIndex:0] objectAtIndex:3];
+    meetName = [meetName stringByAppendingString:@" DiverScores.csv"];
+    
+    NSUInteger count = [meetinfo count];
+    
+    for (NSUInteger i = 0; i < count; i++) {
+        [csv appendFormat:@"\n%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@",
+         [[meetinfo objectAtIndex:i] objectAtIndex:1],
+         [[meetinfo objectAtIndex:i] objectAtIndex:2],
+         [[meetinfo objectAtIndex:i] objectAtIndex:3],
+         newDate = [[[meetinfo objectAtIndex:i] objectAtIndex:4] stringByReplacingOccurrencesOfString:@"," withString:@""],   // date in DB has a comma, we need to remove it for the csv format
+         [[meetinfo objectAtIndex:i] objectAtIndex:5],
+         [[meetinfo objectAtIndex:i] objectAtIndex:6],
+         [[meetinfo objectAtIndex:i] objectAtIndex:7],
+         [[meetinfo objectAtIndex:i] objectAtIndex:8],
+         [[meetinfo objectAtIndex:i] objectAtIndex:9],
+         [[meetinfo objectAtIndex:i] objectAtIndex:10],
+         [[meetinfo objectAtIndex:i] objectAtIndex:11],
+         [[meetinfo objectAtIndex:i] objectAtIndex:12],
+         [[meetinfo objectAtIndex:i] objectAtIndex:13],
+         [[meetinfo objectAtIndex:i] objectAtIndex:14],
+         [[meetinfo objectAtIndex:i] objectAtIndex:15],
+         [[meetinfo objectAtIndex:i] objectAtIndex:16]];
+    }
+    
+    // lets get the document path
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDirectory = [paths objectAtIndex:0];
+    
+    // then the full path and file name
+    NSString *outputFileName = [docDirectory stringByAppendingPathComponent:meetName];
+    
+    NSError *csvError = nil;
+    
+    BOOL written = [csv writeToFile:outputFileName atomically:YES encoding:NSUTF8StringEncoding error:&csvError];
+    
+    if (!written) {
+        NSLog(@"DiverScoreTotalByMeet write failed, error=%@", csvError);
+    } else {
+        NSLog(@"DiverScoreTotalByMeet saved! File Path =%@", outputFileName);
+        [self sendEmail:outputFileName fileName:meetName];
+    }
+    
 }
 
 -(void)CreateDiverJudgeScoreByMeet {
     
+    NSArray *meetinfo;
+    
+    NSMutableString *csv = [NSMutableString stringWithString:@"Diver, Meet Name, Dive Number, Dive Name, Position, Total, Judges, Pass/Failed, Score 1, Score 2, Score 3, Score 4, Score 5, Score 6, Score 7"];
+    
+    JudgeScores *scores = [[JudgeScores alloc] init];
+    meetinfo = [scores FetchJudgeMeetScores:self.meetRecordID diverid:self.diverRecordID]; 
+    
+    // here we want to get the meet name for the file name
+    NSString *meetName = [[meetinfo objectAtIndex:0] objectAtIndex:2];
+    meetName = [meetName stringByAppendingString:@" Judge Scores.csv"];
+    
+    NSUInteger count = [meetinfo count];
+    
+    for (NSUInteger i = 0; i < count; i++) {
+        [csv appendFormat:@"\n%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@",
+         [[meetinfo objectAtIndex:i] objectAtIndex:1],
+         [[meetinfo objectAtIndex:i] objectAtIndex:2],
+         [[meetinfo objectAtIndex:i] objectAtIndex:3],
+         [[meetinfo objectAtIndex:i] objectAtIndex:4],
+         [[meetinfo objectAtIndex:i] objectAtIndex:5],
+         [[meetinfo objectAtIndex:i] objectAtIndex:6],
+         [[meetinfo objectAtIndex:i] objectAtIndex:7],
+         [[meetinfo objectAtIndex:i] objectAtIndex:8],
+         [[meetinfo objectAtIndex:i] objectAtIndex:9],
+         [[meetinfo objectAtIndex:i] objectAtIndex:10],
+         [[meetinfo objectAtIndex:i] objectAtIndex:11],
+         [[meetinfo objectAtIndex:i] objectAtIndex:12],
+         [[meetinfo objectAtIndex:i] objectAtIndex:13],
+         [[meetinfo objectAtIndex:i] objectAtIndex:14],
+         [[meetinfo objectAtIndex:i] objectAtIndex:15]];
+    }
+    
+    // lets get the document path
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDirectory = [paths objectAtIndex:0];
+    
+    // then the full path and file name
+    NSString *outputFileName = [docDirectory stringByAppendingPathComponent:meetName];
+    
+    NSError *csvError = nil;
+    
+    BOOL written = [csv writeToFile:outputFileName atomically:YES encoding:NSUTF8StringEncoding error:&csvError];
+    
+    if (!written) {
+        NSLog(@"JudgeScoresByMeet write failed, error=%@", csvError);
+    } else {
+        NSLog(@"JudgeScoresByMeet saved! File Path =%@", outputFileName);
+        [self sendEmail:outputFileName fileName:meetName];
+    }
+    
 }
+
+-(void)sendEmail:(NSString*)file fileName:(NSString*)filename {
+    
+    NSString *subject = filename;
+    NSString *body = filename;
+    //NSString *recipients = @"mailto:&subject=";
+    
+    MFMailComposeViewController *composer = [[MFMailComposeViewController alloc] init];
+    composer.mailComposeDelegate = self;
+    [composer setSubject:subject];
+    [composer setMessageBody:body isHTML:NO];
+    // here we will see if it leaves recipts blank for the user to enter in the email client
+    //[composer setToRecipients:<#(NSArray *)#>];
+    
+    // get the file path from resources
+    NSString *filePath = file;
+    
+    // read the file
+    NSData *fileData = [NSData dataWithContentsOfFile:filePath];
+    
+    // set the MIME type
+    NSString *mimetype = @"text/csv";
+    
+    //add attachment
+    [composer addAttachmentData:fileData mimeType:mimetype fileName:filePath];
+    
+    // present it on the screen
+    [self presentViewController:composer animated:YES completion:nil];
+    
+}
+
+// delegate method
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            [self canceledEmail];
+            break;
+        case MFMailComposeResultSaved:
+            [self savedEmail];
+            break;
+        case MFMailComposeResultSent:
+            [self SentEmail];
+            break;
+        case MFMailComposeResultFailed:
+            [self FailedEmail];
+            break;
+        default:
+            break;
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+// delegate method
+-(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+    
+    // no social messages yet
+    
+}
+
+-(void)canceledEmail {
+    
+    UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Email Cancelled"
+                                                    message:@""
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [error show];
+    [error reloadInputViews];
+    
+}
+
+-(void)savedEmail {
+    
+    UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Email Saved"
+                                                    message:@""
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [error show];
+    [error reloadInputViews];
+    
+}
+
+-(void)SentEmail {
+    
+    UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Email Sent"
+                                                    message:@""
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [error show];
+    [error reloadInputViews];
+    
+}
+
+-(void)FailedEmail {
+    
+    UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Email Failed"
+                                                    message:@""
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [error show];
+    [error reloadInputViews];
+    
+}
+
+
+
+
 
 
 

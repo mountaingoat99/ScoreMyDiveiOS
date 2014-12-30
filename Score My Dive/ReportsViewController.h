@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Social/Social.h>
+#import <MessageUI/MessageUI.h>
 
-@interface ReportsViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface ReportsViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate>
 
 // send reports
 - (IBAction)sendClick:(id)sender;

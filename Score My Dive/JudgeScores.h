@@ -69,4 +69,10 @@
 
 -(NSArray*)FetchMeetResults:(int)meetid;
 
+-(NSArray*)FetchMeetScores:(int)meetid diverid:(int)diverid;
+
+-(NSArray*)FetchJudgeMeetScores:(int)meetid diverid:(int)diverid;
+
+
+
 @end

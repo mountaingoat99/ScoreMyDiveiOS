@@ -3608,15 +3608,15 @@
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="djW-O8-N1D"/>
                                         <exclude reference="2iX-PY-N34"/>
                                         <exclude reference="R6N-rX-FVZ"/>
+                                        <exclude reference="djW-O8-N1D"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
                                     <mask key="constraints">
-                                        <exclude reference="djW-O8-N1D"/>
                                         <exclude reference="2iX-PY-N34"/>
+                                        <exclude reference="djW-O8-N1D"/>
                                     </mask>
                                 </variation>
                                 <connections>
@@ -3624,7 +3624,7 @@
                                     <segue destination="Fr4-vj-AiG" kind="unwind" unwindAction="unwindToRankingsMeet:" id="CjH-lj-opG"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hIL-rg-w8t">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hIL-rg-w8t">
                                 <rect key="frame" x="0.0" y="66" width="600" height="534"/>
                                 <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
