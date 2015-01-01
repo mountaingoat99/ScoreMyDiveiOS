@@ -170,7 +170,7 @@
         
         Meet *meet = [[Meet alloc] init];
         
-        lastInsertRecord = [meet UpdateMeet:self.recordIDToEdit Name:self.txtMeetName.text School:self.txtSchool.text City:self.txtCity.text State:self.txtSchool.text Date:self.txtDate.text];
+        lastInsertRecord = [meet UpdateMeet:self.recordIDToEdit Name:self.txtMeetName.text School:self.txtSchool.text City:self.txtCity.text State:self.txtState.text Date:self.txtDate.text];
         
         if (lastInsertRecord > 0) {
             

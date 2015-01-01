@@ -136,7 +136,7 @@
     
     numbers = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     
-    int count = numbers.count;
+    int count = (int)numbers.count;
     
     for (int i = 0; i < count; i++) {
         xmin = [[[numbers objectAtIndex:i] objectAtIndex:0] intValue];
@@ -314,7 +314,7 @@
     
     if (check.count > 0) {
         
-        int count = check.count;
+        int count = (int)check.count;
         
         for (int index = 0; index < count; index++) {
             
@@ -329,7 +329,7 @@
             } else {
                 
                 return false;
-                
+
             }
         }
         

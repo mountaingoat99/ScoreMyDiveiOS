@@ -91,7 +91,7 @@
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
-    NSString *query = [NSString stringWithFormat:@"update dive_list set list_filled=%@ where meet_id=%d and diver_id=%d",@"1", meetid, diverid];
+    NSString *query = [NSString stringWithFormat:@"update dive_list set list_filled=%@ where meet_id=%d and diver_id=%d",@1, meetid, diverid];
     
     [self.dbManager executeQuery:query];
     

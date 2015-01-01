@@ -370,24 +370,24 @@
         
     } else {
     
-        int selectedPosition = self.SCPosition.selectedSegmentIndex;
+        int selectedPosition = (int)self.SCPosition.selectedSegmentIndex;
         
         if (self.diveGroupID != 0 && self.diveID != 0 && selectedPosition >= 0) {
             
             [self UpdateJudgeScores];
-            
-            // once we update the score we need to re-fill the dive number
-            // refill the info and reset the fields
-            [self fillDiveNumber];
-            [self fillDiveInfo];
-            [self updateButtonText];
-            [self resetValues];
             
             // start the list
             if ([self.onDiveNumber isEqualToNumber:@1]) {
                 
                 [self updateListStarted];
             }
+
+            // once we update the score we need to re-fill the dive number
+            // refill the info and reset the fields
+            [self fillDiveNumber];
+            [self fillDiveInfo];
+            [self updateButtonText];
+            [self resetValues];
             
         } else {
             UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
@@ -532,7 +532,7 @@
     NSString *diveName;
     NSString *diveNameForDB;
     NSNumber *multiplier;
-    int selectedPosition = self.SCPosition.selectedSegmentIndex;
+    int selectedPosition = (int)self.SCPosition.selectedSegmentIndex;
     
     JudgeScores *scores = [[JudgeScores alloc] init];
     

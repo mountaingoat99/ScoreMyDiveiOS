@@ -247,7 +247,7 @@
 
 - (IBAction)btnEnterDive:(id)sender {
         
-    int selectedPosition = self.SCPosition.selectedSegmentIndex;
+    int selectedPosition = (int)self.SCPosition.selectedSegmentIndex;
     
     if (self.diveGroupID != 0 && self.diveID != 0 && selectedPosition >= 0) {
         
@@ -289,7 +289,7 @@
     NSString *diveName;
     NSString *diveNameForDB;
     NSNumber *multiplier;
-    int selectedPosition = self.SCPosition.selectedSegmentIndex;
+    int selectedPosition = (int)self.SCPosition.selectedSegmentIndex;
     
     JudgeScores *scores = [[JudgeScores alloc] init];
     

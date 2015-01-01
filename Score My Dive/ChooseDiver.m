@@ -332,7 +332,7 @@
     if (self.txtChooseDiver.text.length != 0) {
         // updated alertController for iOS 8
         UIAlertController *alertController = [UIAlertController
-                                              alertControllerWithTitle:@"Be warned, this remove all diver info from a meet, including scores and dive lists."
+                                              alertControllerWithTitle:@"Be warned, this removes all diver info from a meet, including scores and dive lists."
                                               message:nil
                                               preferredStyle:UIAlertControllerStyleAlert];
         

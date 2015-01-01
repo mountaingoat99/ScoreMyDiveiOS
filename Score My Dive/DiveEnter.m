@@ -415,7 +415,7 @@
 
 - (IBAction)btnEnterScoreClick:(id)sender {
     
-    int selectedPosition = self.SCPosition.selectedSegmentIndex;
+    int selectedPosition = (int)self.SCPosition.selectedSegmentIndex;
     
     if (self.diveGroupID != 0 && self.diveID != 0 && selectedPosition >= 0) {
         
@@ -437,7 +437,7 @@
 
 - (IBAction)btnEnterTotalScoreClick:(id)sender {
     
-    int selectedPosition = self.SCPosition.selectedSegmentIndex;
+    int selectedPosition = (int)self.SCPosition.selectedSegmentIndex;
     
     if (self.diveGroupID != 0 && self.diveID != 0 && selectedPosition >= 0) {
         
@@ -1040,7 +1040,7 @@
 -(void)UpdateDiveInfoToSend {
     
     NSString *diveName;
-    int selectedPosition = self.SCPosition.selectedSegmentIndex;
+    int selectedPosition = (int)self.SCPosition.selectedSegmentIndex;
     
     // first lets see if these are Springboard or platform dives
     if ([self.boardSize isEqualToNumber:@1.0] || [self.boardSize isEqualToNumber:@3.0]) {
