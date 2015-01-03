@@ -73,6 +73,7 @@
 -(void)findJudgeTotal {
     
     Judges *judge = [[Judges alloc] init];
+    judge = [self.meetInfo objectAtIndex:1];
     self.judgeTotal = [judge.judgeTotal intValue];
     
     [self HideControls];

@@ -59,6 +59,7 @@
     self.txtxChooseDiver.layer.shadowOpacity = .3;
     self.txtxChooseDiver.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtxChooseDiver.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+    self.txtxChooseDiver.delegate = self;
     
     self.txtChooseMeet.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtChooseMeet.layer.shadowOffset = CGSizeMake(.1f, .1f);
@@ -66,6 +67,7 @@
     self.txtChooseMeet.layer.shadowOpacity = .3;
     self.txtChooseMeet.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtChooseMeet.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+    self.txtChooseMeet.delegate = self;
     
     self.txtChooseReport.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtChooseReport.layer.shadowOffset = CGSizeMake(.1f, .1f);
@@ -73,6 +75,7 @@
     self.txtChooseReport.layer.shadowOpacity = .3;
     self.txtChooseReport.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtChooseReport.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+    self.txtChooseReport.delegate = self;
 
 }
 
@@ -131,6 +134,13 @@
             [error reloadInputViews];
         }
     }
+}
+
+//keps the user from entering text in the txtfield
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    return NO;
+    
 }
 
 -(void)makeDiverPicker{

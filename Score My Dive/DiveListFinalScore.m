@@ -39,7 +39,7 @@
     self.txtTotalScore.layer.masksToBounds = NO;
     self.txtTotalScore.layer.shadowRadius = 4.0f;
     self.txtTotalScore.layer.shadowOpacity = .3;
-    self.txtTotalScore.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+    self.txtTotalScore.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0);
     self.txtTotalScore.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtTotalScore.keyboardType = UIKeyboardTypeDecimalPad;
     self.txtTotalScore.delegate = self;
@@ -202,9 +202,36 @@
 
 -(void)DiveText {
     
-    JudgeScores *scores = [[JudgeScores alloc] init];
+    if (self.listOrNot == 1) {
+        
+        NSRange dash;
+        NSString *diveName;
+        NSString *divePos;
+        
+        //now lets parse the diveNumber out of the dive
+        dash = [self.diveNameForDB rangeOfString:@"-"];
+        if (dash.location != NSNotFound) {
+            diveName = [self.diveNameForDB substringWithRange:NSMakeRange(0, (dash.location - 1))];
+        }
+        // now parse the dive Position
+        dash = [self.divePosition rangeOfString:@"-"];
+        if (dash.location != NSNotFound) {
+            divePos = [self.divePosition substringWithRange:NSMakeRange(0, (dash.location - 1))];
+        }
+        
+        NSString *divetype = self.diveCategory;
+        divetype = [divetype stringByAppendingString:@" - "];
+        divetype = [divetype stringByAppendingString:diveName];
+        divetype = [divetype stringByAppendingString:divePos];
+        divetype = [divetype stringByAppendingString:@" - DD: "];
+        divetype = [divetype stringByAppendingString:[self.multiplierToSend stringValue]];
+        self.lbldiveType.text = divetype;
+        
+    } else {
     
-    self.lbldiveType.text = [scores GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:self.diveNumber];
+        JudgeScores *scores = [[JudgeScores alloc] init];
+        self.lbldiveType.text = [scores GetCatAndName:self.meetRecordID diverid:self.diverRecordID divenumber:self.diveNumber];
+    }
     
     NSString *diveNumberString = @"Score Dive ";
     
@@ -217,8 +244,8 @@
 -(BOOL)CalcScores {
     
     BOOL validJudgeScoreInsert;
-    BOOL validResultsInsert;
-    BOOL validDiveNumberIncrement;
+    BOOL validResultsInsert = false;
+    BOOL validDiveNumberIncrement = false;
     
     JudgeScores *scores = [[JudgeScores alloc] init];
     
@@ -231,7 +258,7 @@
             NSNumber *diveNumberNumber = [NSNumber numberWithInt:self.diveNumber];
             
             //update record
-            [scores UpdateJudgeScoreTypes:self.meetRecordID diverid:self.diverRecordID divecat:self.diveCategory divetype:self.diveNameForDB divepos:self.divePosition  multiplier:self.multiplierToSend oldDiveNumber:diveNumberNumber divenumber:diveNumberNumber];
+            [scores UpdateJudgeScoreTypes:self.meetRecordID diverid:self.diverRecordID divecat:self.diveCategory divetype:self.diveNameForDB divepos:self.divePosition  multiplier:self.multiplierToSend oldDiveNumber:@0 divenumber:diveNumberNumber];
             
             DiveList *list = [[DiveList alloc] init];
             [list MarkNoList:self.meetRecordID diverid:self.diverRecordID];
@@ -252,13 +279,17 @@
     
     validJudgeScoreInsert = [scores UpdateJudgeAllScores:self.meetRecordID diverid:self.diverRecordID divenumber:self.diveNumber totalscore:self.totalScore score1:@0 score2:@0 score3:@0 score4:@0 score5:@0 score6:@0 score7:@0];
     
-    //update the results table
-    Results *result = [[Results alloc] init];
-    validResultsInsert = [result UpdateOneResult:self.meetRecordID DiverID:self.diverRecordID DiveNumber:self.diveNumber score:self.totalScore];
+    if (validJudgeScoreInsert) {
+        //update the results table
+        Results *result = [[Results alloc] init];
+        validResultsInsert = [result UpdateOneResult:self.meetRecordID DiverID:self.diverRecordID DiveNumber:self.diveNumber score:self.totalScore];
+    }
     
-    // increment the dive number in the dive_number table
-    DiveNumber *number = [[DiveNumber alloc] init];
-    validDiveNumberIncrement = [number UpdateDiveNumber:self.meetRecordID diverid:self.diverRecordID divenumber:self.diveNumber];
+    if (validJudgeScoreInsert && validResultsInsert) {
+        // increment the dive number in the dive_number table
+        DiveNumber *number = [[DiveNumber alloc] init];
+        validDiveNumberIncrement = [number UpdateDiveNumber:self.meetRecordID diverid:self.diverRecordID divenumber:self.diveNumber];
+    }
     
     // now make sure everything was updated correctly
     if (validJudgeScoreInsert && validResultsInsert && validDiveNumberIncrement) {

@@ -149,6 +149,13 @@
     [self.view endEditing:YES];
 }
 
+//keps the user from entering text in the txtfield
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    return NO;
+    
+}
+
 // database insert
 -(IBAction)saveInfo:(id)sender{
     

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DiveListChoose : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UIScrollViewDelegate>
+@interface DiveListChoose : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UIScrollViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic) int meetRecordID;
 @property (nonatomic) int diverRecordID;

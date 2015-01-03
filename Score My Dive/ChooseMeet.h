@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChooseMeet : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface ChooseMeet : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
 
 @property (nonatomic) int meetRecordID;
 

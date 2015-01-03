@@ -40,6 +40,7 @@
     self.txtChooseMeet.layer.shadowOpacity = .3;
     self.txtChooseMeet.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtChooseMeet.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+    self.txtChooseMeet.delegate = self;
     
     self.btnNext.layer.shadowColor = [UIColor blackColor].CGColor;
     self.btnNext.layer.shadowOffset = CGSizeMake(.1f, .1f);
@@ -97,6 +98,13 @@
 - (IBAction)btnRankClick:(id)sender {
     
     [self performSegueWithIdentifier:@"idSegueToRankings" sender:self];
+}
+
+//keps the user from entering text in the txtfield
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    return NO;
+    
 }
 
 -(void)makeMeetPicker{

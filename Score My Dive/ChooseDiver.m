@@ -66,6 +66,7 @@
     self.txtChooseDiver.layer.shadowOpacity = .3;
     self.txtChooseDiver.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtChooseDiver.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+    self.txtChooseDiver.delegate = self;
     
     self.SCDiveTotals.layer.shadowColor = [UIColor blackColor].CGColor;
     self.SCDiveTotals.layer.shadowOffset = CGSizeMake(.1f, .1f);
@@ -164,6 +165,13 @@
 {
     [super touchesBegan:touches withEvent:event];
     [self.view endEditing:YES];
+}
+
+//keps the user from entering text in the txtfield
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    return NO;
+    
 }
 
 // pickerview methods

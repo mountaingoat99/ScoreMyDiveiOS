@@ -68,6 +68,7 @@
     self.txtDiveNumber.layer.shadowRadius = 4.0f;
     self.txtDiveNumber.layer.shadowOpacity = .3;
     self.txtDiveNumber.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+    self.txtDiveNumber.delegate = self;
     
     self.btnEnterScore.layer.shadowColor = [UIColor blackColor].CGColor;
     self.btnEnterScore.layer.shadowOffset = CGSizeMake(.1f, .1f);
@@ -120,7 +121,7 @@
         self.listOrNot = 0;
         score.listOrNot = self.listOrNot;
         score.meetRecordID = self.meetRecordID;
-        score.diverRecordID = self.meetRecordID;
+        score.diverRecordID = self.diverRecordID;
         score.diveNumber = [self.DiveNumber intValue];
         score.meetInfo = self.meetInfo;
         
@@ -134,11 +135,27 @@
         self.listOrNot = 0;
         score.listOrNot = self.listOrNot;
         score.meetRecordID = self.meetRecordID;
-        score.diverRecordID = self.meetRecordID;
+        score.diverRecordID = self.diverRecordID;
         score.diveNumber = [self.DiveNumber intValue];
         score.meetInfo = self.meetInfo;
         
     }
+}
+
+//keeps the user from entering text in the txtfield
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    return NO;
+    
+}
+
+// shows the next dive number as soon as the user presses the txt
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    
+    if (self.txtDiveNumber.text.length == 0) {
+        self.txtDiveNumber.text = self.diveNumberArray [self.whatNumber];
+    }
+    return YES;
 }
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
@@ -157,7 +174,7 @@
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     
     // assign the first item in array to text box right away, so user doesn't have to
-    self.txtDiveNumber.text = self.diveNumberArray [row];
+    //self.txtDiveNumber.text = self.diveNumberArray [row];
     
     // here we need to see what dive number is chosen and add that number to the self.diveNumber variable
     [self diveNumberFromPicker];
@@ -181,6 +198,13 @@
 {
     [super touchesBegan:touches withEvent:event];
     [self.view endEditing:YES];
+}
+
+// show the next dive number when a user picks the txtbox
+-(void)viewDidAppear:(BOOL)animated {
+    
+    [self.diveNumberPicker selectRow:self.whatNumber inComponent:0 animated:YES];
+    
 }
 
 - (IBAction)btnEnterScoreClick:(id)sender {

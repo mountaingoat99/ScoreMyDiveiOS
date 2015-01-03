@@ -91,6 +91,7 @@
     self.txtDiveGroup.layer.shadowRadius = 4.0f;
     self.txtDiveGroup.layer.shadowOpacity = .3;
     self.txtDiveGroup.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+    self.txtDiveGroup.delegate = self;
     
     self.txtDive.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtDive.layer.shadowOffset = CGSizeMake(.1f, .1f);
@@ -98,6 +99,7 @@
     self.txtDive.layer.shadowRadius = 4.0f;
     self.txtDive.layer.shadowOpacity = .3;
     self.txtDive.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+    self.txtDive.delegate = self;
     
     self.SCPosition.layer.shadowColor = [UIColor blackColor].CGColor;
     self.SCPosition.layer.shadowOffset = CGSizeMake(.1f, .1f);
@@ -236,6 +238,13 @@
     [self.view endEditing:YES];
 }
 
+//keps the user from entering text in the txtfield
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    return NO;
+    
+}
+
 -(void)makeGroupPicker {
     
     self.groupPicker = [[UIPickerView alloc] init];
@@ -350,7 +359,9 @@
         [self.txtDiveGroup resignFirstResponder];
         self.diveGroupID = [[self.diveGroupArray [row] objectAtIndex:0] intValue];
         
-        // reload the type picker after a category has been changed
+        // empty and reload the type picker after a category has been changed
+        self.diveArray= nil;
+        [self.divePicker reloadAllComponents];
         [self loadDivePicker];
         
         if ([self.boardSize  isEqual: @1.0] || [self.boardSize  isEqual: @3.0]) {

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DiveListEdit.h"
 
-@interface DiveListEnter : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, DiveListEnterViewControllerDelegate, UIScrollViewDelegate >
+@interface DiveListEnter : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, DiveListEnterViewControllerDelegate, UIScrollViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic) int meetRecordID;
 @property (nonatomic) int diverRecordID;
@@ -67,6 +67,7 @@
 
 - (IBAction)PositionIndexChanged:(UISegmentedControl *)sender;
 - (IBAction)btnEnterDive:(id)sender;
+- (IBAction)lblOptionsClick:(id)sender;
 
 // touch events for the dive edits
 - (IBAction)Dive1EditClick:(UILongPressGestureRecognizer *)sender;
