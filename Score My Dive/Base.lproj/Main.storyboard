@@ -616,6 +616,9 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="B49-F0-imY">
                                 <rect key="frame" x="163" y="217" width="420" height="29"/>
                                 <color key="backgroundColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="T0b-P2-SYk"/>
+                                </constraints>
                                 <segments>
                                     <segment title="2"/>
                                     <segment title="3"/>
@@ -623,6 +626,16 @@
                                     <segment title="7"/>
                                 </segments>
                                 <color key="tintColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="T0b-P2-SYk"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="T0b-P2-SYk"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="DiveTotalIndexChanged:" destination="O1M-Zl-WrP" eventType="valueChanged" id="DQd-PB-6GQ"/>
                                     <action selector="JudgesClick:" destination="1E5-M3-RA9" eventType="valueChanged" id="xlz-hH-h5g"/>
@@ -4086,7 +4099,7 @@
                                 <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Wsp-NZ-g6F">
-                                        <variation key="heightClass=regular-widthClass=regular" constant="30"/>
+                                        <variation key="heightClass=regular-widthClass=regular" constant="36"/>
                                     </constraint>
                                 </constraints>
                                 <state key="normal" title="Next">
@@ -4378,7 +4391,9 @@
                                 <rect key="frame" x="16" y="218" width="568" height="30"/>
                                 <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Vkf-SP-SV0"/>
+                                    <constraint firstAttribute="height" constant="30" id="Vkf-SP-SV0">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="36"/>
+                                    </constraint>
                                 </constraints>
                                 <state key="normal" title="Edit Dive">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -4673,6 +4688,9 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gCl-1g-Cww">
                                 <rect key="frame" x="16" y="182" width="568" height="29"/>
                                 <color key="backgroundColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="tzY-6c-H1o"/>
+                                </constraints>
                                 <segments>
                                     <segment title="A - Straight"/>
                                     <segment title="B - Pike"/>
@@ -4680,6 +4698,16 @@
                                     <segment title="D - Free"/>
                                 </segments>
                                 <color key="tintColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="tzY-6c-H1o"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="tzY-6c-H1o"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="BoardSizeIndexChanged:" destination="O1M-Zl-WrP" eventType="valueChanged" id="ntz-SO-MAQ"/>
                                     <action selector="PositionIndexChanged:" destination="ptW-d7-ktO" eventType="valueChanged" id="B1F-pa-Yw7"/>
@@ -4689,7 +4717,9 @@
                                 <rect key="frame" x="16" y="247" width="568" height="30"/>
                                 <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="0Yb-HM-ElM"/>
+                                    <constraint firstAttribute="height" constant="30" id="0Yb-HM-ElM">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="36"/>
+                                    </constraint>
                                 </constraints>
                                 <state key="normal" title="Enter Dive">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -6909,7 +6939,9 @@
                                 <rect key="frame" x="16" y="346" width="568" height="30"/>
                                 <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="yfC-X1-2FW"/>
+                                    <constraint firstAttribute="height" constant="30" id="yfC-X1-2FW">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="36"/>
+                                    </constraint>
                                 </constraints>
                                 <state key="normal" title="Total">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -7576,7 +7608,9 @@
                                 <rect key="frame" x="16" y="141" width="568" height="30"/>
                                 <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="ixl-8M-o0A"/>
+                                    <constraint firstAttribute="height" constant="30" id="ixl-8M-o0A">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="36"/>
+                                    </constraint>
                                 </constraints>
                                 <state key="normal" title="Total">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -7891,7 +7925,9 @@
                                 <rect key="frame" x="305" y="96" width="280" height="32"/>
                                 <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="gyQ-aU-vxN"/>
+                                    <constraint firstAttribute="height" constant="30" id="gyQ-aU-vxN">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="36"/>
+                                    </constraint>
                                 </constraints>
                                 <state key="normal" title="Enter Total Score">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -8748,7 +8784,9 @@
                                 <rect key="frame" x="17" y="96" width="280" height="32"/>
                                 <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Awf-fl-fmC"/>
+                                    <constraint firstAttribute="height" constant="30" id="Awf-fl-fmC">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="36"/>
+                                    </constraint>
                                 </constraints>
                                 <state key="normal" title="Enter Score">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -9266,6 +9304,9 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="DgL-ZQ-iav">
                                 <rect key="frame" x="113" y="195" width="472" height="29"/>
                                 <color key="backgroundColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="vhG-Co-iPx"/>
+                                </constraints>
                                 <segments>
                                     <segment title="1M"/>
                                     <segment title="3M"/>
@@ -9274,6 +9315,16 @@
                                     <segment title="10M"/>
                                 </segments>
                                 <color key="tintColor" red="0.60000002384185791" green="0.60000002384185791" blue="0.60000002384185791" alpha="1" colorSpace="calibratedRGB"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="vhG-Co-iPx"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="vhG-Co-iPx"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="BoardSizeIndexChanged:" destination="O1M-Zl-WrP" eventType="valueChanged" id="e6k-zd-baC"/>
                                 </connections>
@@ -9281,11 +9332,24 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4s0-He-YWu">
                                 <rect key="frame" x="164" y="150" width="420" height="29"/>
                                 <color key="backgroundColor" red="0.49803921580314636" green="0.49803921580314636" blue="0.49803921580314636" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="NEs-tN-QCV"/>
+                                </constraints>
                                 <segments>
                                     <segment title="6 Dives"/>
                                     <segment title="11 Dives"/>
                                 </segments>
                                 <color key="tintColor" red="0.60000002384185791" green="0.60000002384185791" blue="0.60000002384185791" alpha="1" colorSpace="calibratedRGB"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="NEs-tN-QCV"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="NEs-tN-QCV"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="DiveTotalIndexChanged:" destination="O1M-Zl-WrP" eventType="valueChanged" id="O3h-Rt-1gl"/>
                                 </connections>
@@ -9295,7 +9359,7 @@
                                 <color key="backgroundColor" red="0.60000002384185791" green="0.60000002384185791" blue="0.60000002384185791" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="QmC-Mc-gI8">
-                                        <variation key="heightClass=regular-widthClass=regular" constant="30"/>
+                                        <variation key="heightClass=regular-widthClass=regular" constant="36"/>
                                     </constraint>
                                 </constraints>
                                 <state key="normal" title="Enter List">
@@ -9321,7 +9385,7 @@
                                 <color key="backgroundColor" red="0.60000002384185791" green="0.60000002384185791" blue="0.60000002384185791" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="LXJ-IC-xKj">
-                                        <variation key="heightClass=regular-widthClass=regular" constant="30"/>
+                                        <variation key="heightClass=regular-widthClass=regular" constant="36"/>
                                     </constraint>
                                 </constraints>
                                 <state key="normal" title="Enter Scores">
@@ -9839,6 +9903,7 @@
                                 <color key="backgroundColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="QbW-0V-nml"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="VrY-Bs-dL0"/>
                                 </constraints>
                                 <segments>
                                     <segment title="A - Straight"/>
@@ -9850,11 +9915,13 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="QbW-0V-nml"/>
+                                        <exclude reference="VrY-Bs-dL0"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <mask key="constraints">
-                                        <include reference="QbW-0V-nml"/>
+                                        <exclude reference="QbW-0V-nml"/>
+                                        <include reference="VrY-Bs-dL0"/>
                                     </mask>
                                 </variation>
                                 <connections>
@@ -10907,12 +10974,23 @@
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ge2-Eu-4Y2">
                                 <rect key="frame" x="16" y="251" width="280" height="32"/>
                                 <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="yPl-Sn-vAz"/>
+                                </constraints>
                                 <state key="normal" title="Enter Score">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="yPl-Sn-vAz"/>
+                                    </mask>
+                                </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <mask key="constraints">
+                                        <include reference="yPl-Sn-vAz"/>
+                                    </mask>
                                 </variation>
                                 <connections>
                                     <action selector="EnterListClick:" destination="O1M-Zl-WrP" eventType="touchUpInside" id="N86-cC-sMy"/>
@@ -10923,12 +11001,23 @@
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SNj-6f-ULG">
                                 <rect key="frame" x="304" y="251" width="280" height="32"/>
                                 <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="PHj-wu-FJd"/>
+                                </constraints>
                                 <state key="normal" title="Enter Total Score">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="PHj-wu-FJd"/>
+                                    </mask>
+                                </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <mask key="constraints">
+                                        <include reference="PHj-wu-FJd"/>
+                                    </mask>
                                 </variation>
                                 <connections>
                                     <action selector="EnterScoresClick:" destination="O1M-Zl-WrP" eventType="touchUpInside" id="LBo-ni-pTS"/>
@@ -14446,9 +14535,9 @@
         <segue reference="geP-ok-uHu"/>
         <segue reference="7UA-br-TXQ"/>
         <segue reference="Egm-yZ-Z6w"/>
-        <segue reference="fUy-vt-kRQ"/>
-        <segue reference="isg-fR-ZIK"/>
-        <segue reference="42m-8i-l64"/>
+        <segue reference="T15-Av-W7R"/>
         <segue reference="1Ka-8Q-j2w"/>
+        <segue reference="IFI-ff-ylb"/>
+        <segue reference="42m-8i-l64"/>
     </inferredMetricsTieBreakers>
 </document>

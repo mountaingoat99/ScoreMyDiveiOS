@@ -631,7 +631,7 @@
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
-    NSString *query = [NSString stringWithFormat:@"SELECT d.id, d.name, m.name, js.dive_number, js.dive_type, js.dive_position, js.multiplier, js.total_score, js.failed, j.judge_total, js.score_1, js.score_2, js.score_3, js.score_4, js.score_5, js.score_6, js.score_7 from results r INNER JOIN diver d ON d.id = r.diver_id INNER JOIN meet m ON m.id = r.meet_id INNER JOIN judges j ON j.meet_id = m.id INNER JOIN judges_scores js ON js.diver_id = r.diver_id AND js.meet_id = r.meet_id WHERE js.meet_id=%d AND js.diver_id=%d", meetid, diverid];
+    NSString *query = [NSString stringWithFormat:@"SELECT d.id, d.name, m.name, js.dive_number, js.dive_type, js.dive_position, js.multiplier, js.total_score, j.judge_total, js.failed, js.score_1, js.score_2, js.score_3, js.score_4, js.score_5, js.score_6, js.score_7 from results r INNER JOIN diver d ON d.id = r.diver_id INNER JOIN meet m ON m.id = r.meet_id INNER JOIN judges j ON j.meet_id = m.id INNER JOIN judges_scores js ON js.diver_id = r.diver_id AND js.meet_id = r.meet_id WHERE js.meet_id=%d AND js.diver_id=%d", meetid, diverid];
     
     info = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     

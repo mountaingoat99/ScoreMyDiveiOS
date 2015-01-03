@@ -152,8 +152,16 @@
 // shows the next dive number as soon as the user presses the txt
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     
-    if (self.txtDiveNumber.text.length == 0) {
-        self.txtDiveNumber.text = self.diveNumberArray [self.whatNumber];
+    // here we need to see if the dives are all scores, if so we will just set the text back to dive 1
+    if (self.whatNumber == self.diveTotal) {
+        if (self.txtDiveNumber.text.length == 0) {
+            self.txtDiveNumber.text = self.diveNumberArray [0];
+        }
+    } else {
+    
+        if (self.txtDiveNumber.text.length == 0) {
+            self.txtDiveNumber.text = self.diveNumberArray [self.whatNumber];
+        }
     }
     return YES;
 }

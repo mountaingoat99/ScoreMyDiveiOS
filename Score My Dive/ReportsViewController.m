@@ -398,7 +398,7 @@
     
     NSArray *meetinfo;
     
-    NSMutableString *csv = [NSMutableString stringWithString:@"Diver, Meet Name, Dive Number, Dive Name, Position, Total, Judges, Pass/Failed, Score 1, Score 2, Score 3, Score 4, Score 5, Score 6, Score 7"];
+    NSMutableString *csv = [NSMutableString stringWithString:@"Diver, Meet Name, Dive Number, Dive Name, Position, DD, Total, Judges, Pass/Failed, Score 1, Score 2, Score 3, Score 4, Score 5, Score 6, Score 7"];
     
     JudgeScores *scores = [[JudgeScores alloc] init];
     meetinfo = [scores FetchJudgeMeetScores:self.meetRecordID diverid:self.diverRecordID]; 
@@ -410,7 +410,7 @@
     NSUInteger count = [meetinfo count];
     
     for (NSUInteger i = 0; i < count; i++) {
-        [csv appendFormat:@"\n%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@",
+        [csv appendFormat:@"\n%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@",
          [[meetinfo objectAtIndex:i] objectAtIndex:1],
          [[meetinfo objectAtIndex:i] objectAtIndex:2],
          [[meetinfo objectAtIndex:i] objectAtIndex:3],
@@ -425,7 +425,8 @@
          [[meetinfo objectAtIndex:i] objectAtIndex:12],
          [[meetinfo objectAtIndex:i] objectAtIndex:13],
          [[meetinfo objectAtIndex:i] objectAtIndex:14],
-         [[meetinfo objectAtIndex:i] objectAtIndex:15]];
+         [[meetinfo objectAtIndex:i] objectAtIndex:15],
+         [[meetinfo objectAtIndex:i] objectAtIndex:16]];
     }
     
     // lets get the document path
