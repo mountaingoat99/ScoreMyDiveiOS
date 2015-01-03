@@ -494,28 +494,28 @@
     self.meetInfo = [meetCollection GetMeetAndDiverInfo:self.meetRecordID diverid:self.diverRecordID];
     
     // doing this to test and log that we get the correct data
-    Meet *testMeet = [[Meet alloc] init];
-    Judges *testJudges = [[Judges alloc] init];
+    //Meet *testMeet = [[Meet alloc] init];
+    //Judges *testJudges = [[Judges alloc] init];
     
-    testMeet = [self.meetInfo objectAtIndex:0];
-    testJudges = [self.meetInfo objectAtIndex:1];
-    
-    // here we just want to let the log know we have the correct meet chosen
-    NSString *test = testMeet.meetID;
-    NSString *testName = testMeet.meetName;
-    NSString *testSchool = testMeet.schoolName;
-    NSString *testCity = testMeet.city;
-    NSString *testState = testMeet.state;
-    NSString *testDate = testMeet.date;
-    NSNumber *testJudgeTotal = testJudges.judgeTotal;
-    
-    NSLog(@"the meetid is %@", test);
-    NSLog(@"the meetname is %@", testName);
-    NSLog(@"the meetschool is %@", testSchool);
-    NSLog(@"the meetcity is %@", testCity);
-    NSLog(@"the meetstate is %@", testState);
-    NSLog(@"the meetdate is %@", testDate);
-    NSLog(@"the judgetotal is %@", testJudgeTotal);
+//    testMeet = [self.meetInfo objectAtIndex:0];
+//    testJudges = [self.meetInfo objectAtIndex:1];
+//    
+//    // here we just want to let the log know we have the correct meet chosen
+//    NSString *test = testMeet.meetID;
+//    NSString *testName = testMeet.meetName;
+//    NSString *testSchool = testMeet.schoolName;
+//    NSString *testCity = testMeet.city;
+//    NSString *testState = testMeet.state;
+//    NSString *testDate = testMeet.date;
+//    NSNumber *testJudgeTotal = testJudges.judgeTotal;
+//    
+//    NSLog(@"the meetid is %@", test);
+//    NSLog(@"the meetname is %@", testName);
+//    NSLog(@"the meetschool is %@", testSchool);
+//    NSLog(@"the meetcity is %@", testCity);
+//    NSLog(@"the meetstate is %@", testState);
+//    NSLog(@"the meetdate is %@", testDate);
+//    NSLog(@"the judgetotal is %@", testJudgeTotal);
     
 }
 

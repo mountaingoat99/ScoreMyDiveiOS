@@ -152,7 +152,11 @@
 //keps the user from entering text in the txtfield
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
-    return NO;
+    if (self.txtDate == textField) {
+        return NO;
+    }
+    
+    return YES;
     
 }
 

@@ -146,7 +146,7 @@
     //set the text size
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         
-        cell.textLabel.font = [UIFont systemFontOfSize:15.0];
+        cell.textLabel.font = [UIFont systemFontOfSize:13.0];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
         cell.textLabel.numberOfLines = 2;
         cell.contentView.backgroundColor = [UIColor colorWithRed:.40 green:.40 blue:.40 alpha:1];

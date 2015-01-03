@@ -54,7 +54,7 @@
     self.txt1.layer.masksToBounds = NO;
     self.txt1.layer.shadowRadius = 4.0f;
     self.txt1.layer.shadowOpacity = .3;
-    self.txt1.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0);
+    self.txt1.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
     self.txt1.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txt1.keyboardType = UIKeyboardTypeDecimalPad;
     self.txt1.autocompleteType = HTAutoCompleteTypeNumbers;
@@ -65,7 +65,7 @@
     self.txt2.layer.masksToBounds = NO;
     self.txt2.layer.shadowRadius = 4.0f;
     self.txt2.layer.shadowOpacity = .3;
-    self.txt2.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0);
+    self.txt2.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
     self.txt2.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txt2.keyboardType = UIKeyboardTypeDecimalPad;
     self.txt2.autocompleteType = HTAutoCompleteTypeNumbers;
@@ -76,7 +76,7 @@
     self.txt3.layer.masksToBounds = NO;
     self.txt3.layer.shadowRadius = 4.0f;
     self.txt3.layer.shadowOpacity = .3;
-    self.txt3.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0);
+    self.txt3.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
     self.txt3.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txt3.keyboardType = UIKeyboardTypeDecimalPad;
     self.txt3.autocompleteType = HTAutoCompleteTypeNumbers;
@@ -87,7 +87,7 @@
     self.txt4.layer.masksToBounds = NO;
     self.txt4.layer.shadowRadius = 4.0f;
     self.txt4.layer.shadowOpacity = .3;
-    self.txt4.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0);
+    self.txt4.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
     self.txt4.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txt4.keyboardType = UIKeyboardTypeDecimalPad;
     self.txt4.autocompleteType = HTAutoCompleteTypeNumbers;
@@ -98,7 +98,7 @@
     self.txt5.layer.masksToBounds = NO;
     self.txt5.layer.shadowRadius = 4.0f;
     self.txt5.layer.shadowOpacity = .3;
-    self.txt5.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0);
+    self.txt5.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
     self.txt5.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txt5.keyboardType = UIKeyboardTypeDecimalPad;
     self.txt5.autocompleteType = HTAutoCompleteTypeNumbers;
@@ -109,7 +109,7 @@
     self.txt6.layer.masksToBounds = NO;
     self.txt6.layer.shadowRadius = 4.0f;
     self.txt6.layer.shadowOpacity = .3;
-    self.txt6.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0);
+    self.txt6.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
     self.txt6.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txt6.keyboardType = UIKeyboardTypeDecimalPad;
     self.txt6.autocompleteType = HTAutoCompleteTypeNumbers;
@@ -120,7 +120,7 @@
     self.txt7.layer.masksToBounds = NO;
     self.txt7.layer.shadowRadius = 4.0f;
     self.txt7.layer.shadowOpacity = .3;
-    self.txt7.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0);
+    self.txt7.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
     self.txt7.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txt7.keyboardType = UIKeyboardTypeDecimalPad;
     self.txt7.autocompleteType = HTAutoCompleteTypeNumbers;
