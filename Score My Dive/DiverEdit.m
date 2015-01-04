@@ -21,8 +21,8 @@
 
 #pragma View Controller Events
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     // drop shadow for the text boxes
     self.txtName.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -65,6 +65,45 @@
     if (self.recordIDToEdit != -1) {
         [self loadInfoToEdit];
     }
+}
+
+// saving state
+-(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+    [super encodeRestorableStateWithCoder:coder];
+    
+    NSNumber *recordId = [NSNumber numberWithInt:self.recordIDToEdit];
+    
+    [coder encodeObject:self.delegate forKey:@"Delegate"];
+    [coder encodeObject:recordId forKey:@"RecordId"];
+    
+    // lets see if there is any text in the fields and save that as well
+    if (self.txtName.text.length > 0) {
+        [coder encodeObject:self.txtName.text forKey:@"Name"];
+    }
+    if (self.txtAge.text.length > 0) {
+        [coder encodeObject:self.txtAge.text forKey:@"Age"];
+    }
+    if (self.txtGrade.text.length > 0) {
+        [coder encodeObject:self.txtGrade.text forKey:@"Grade"];
+    }
+    if (self.txtSchool.text.length > 0) {
+        [coder encodeObject:self.txtSchool.text forKey:@"School"];
+    }
+    
+}
+
+-(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+    [super decodeRestorableStateWithCoder:coder];
+    
+    self.delegate = [coder decodeObjectForKey:@"Delegate"];
+    self.recordIDToEdit = [[coder decodeObjectForKey:@"RecordId"] intValue];
+    self.txtName.text = [coder decodeObjectForKey:@"Name"];
+    self.txtAge.text = [coder decodeObjectForKey:@"Age"];
+    self.txtGrade.text = [coder decodeObjectForKey:@"Grade"];
+    self.txtSchool.text = [coder decodeObjectForKey:@"School"];
+    
 }
 
 - (void)didReceiveMemoryWarning {

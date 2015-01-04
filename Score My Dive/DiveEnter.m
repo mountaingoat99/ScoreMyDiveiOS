@@ -488,7 +488,7 @@
         UIAlertController *alertController = [UIAlertController
                                               alertControllerWithTitle:@"Edit Scores"
                                               message:nil
-                                              preferredStyle:UIAlertControllerStyleAlert];
+                                              preferredStyle:UIAlertControllerStyleActionSheet];
         
         UIAlertAction *cancelAction = [UIAlertAction
                                        actionWithTitle:@"Cancel"

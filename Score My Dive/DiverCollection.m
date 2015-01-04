@@ -322,7 +322,7 @@
   
         jScores = [[NSMutableArray alloc] init];
         
-        int count1 = judgeScores.count;
+        int count1 = (int)judgeScores.count;
         
         for (int index = 0; index < count1; index++) {
                 

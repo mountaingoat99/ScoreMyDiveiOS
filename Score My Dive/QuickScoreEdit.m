@@ -345,6 +345,7 @@
          textField.placeholder = @"Enter Sheet Title";
          textField.keyboardAppearance = UIKeyboardAppearanceDark;
          textField.keyboardType = UIKeyboardTypeDefault;
+         textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
      }];
     
     UIAlertAction *cancelAction = [UIAlertAction

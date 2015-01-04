@@ -127,6 +127,16 @@
     [self.txtDate setInputView:datePicker];
 }
 
+// restore state
+-(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+    
+}
+
+-(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+}
+
 // handles the return button
 -(IBAction)unwindAddMeet:(UIStoryboardSegue *)segue{
     

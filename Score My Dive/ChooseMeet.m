@@ -49,6 +49,17 @@
     
     [self.lblJudges setHidden:YES];
     [self.btnNext setHidden:YES];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        
+        [self.btnRank setTitle:@"Rank" forState:UIControlStateNormal];
+        [self.btnRank setTitle:@"Rank" forState:UIControlStateSelected];
+        
+    } else {
+        
+        [self.btnRank setTitle:@"Rankings" forState:UIControlStateNormal];
+        [self.btnRank setTitle:@"Rankings" forState:UIControlStateSelected];
+    }
 }
 
 // push id to next view controller
