@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2601559B1A3FCDF600D3B4ED /* dive_dod.db in Resources */ = {isa = PBXBuildFile; fileRef = 2601559A1A3FCDF600D3B4ED /* dive_dod.db */; };
+		2618B90A1A58BC3C007F75DE /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2618B9091A58BC3C007F75DE /* Media.xcassets */; };
 		2618CD261A521DEF0049E113 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2618CD251A521DEF0049E113 /* MessageUI.framework */; };
 		2618CD281A5221B60049E113 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2618CD271A5221B60049E113 /* Social.framework */; };
 		261E71931A490C9F0036ABE3 /* DiveListScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 261E71921A490C9F0036ABE3 /* DiveListScore.m */; };
@@ -75,6 +76,7 @@
 
 /* Begin PBXFileReference section */
 		2601559A1A3FCDF600D3B4ED /* dive_dod.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dive_dod.db; sourceTree = "<group>"; };
+		2618B9091A58BC3C007F75DE /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = ../../LaunchImage/Media.xcassets; sourceTree = "<group>"; };
 		2618CD251A521DEF0049E113 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		2618CD271A5221B60049E113 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		261E71911A490C9F0036ABE3 /* DiveListScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveListScore.h; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 		26A07E891A0998C600997E5C /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				2618B9091A58BC3C007F75DE /* Media.xcassets */,
 				26E419A01A047FDF00D79C05 /* AppIconBlack.xcassets */,
 				26E419A21A0480C800D79C05 /* Images.xcassets */,
 			);
@@ -471,6 +474,7 @@
 				2601559B1A3FCDF600D3B4ED /* dive_dod.db in Resources */,
 				26E419A31A0480C800D79C05 /* Images.xcassets in Resources */,
 				263AC5D51A030FD700846CB0 /* LaunchScreen.xib in Resources */,
+				2618B90A1A58BC3C007F75DE /* Media.xcassets in Resources */,
 				26C07FCF1A05921700DF35B4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -655,7 +659,8 @@
 		263AC5E51A030FD700846CB0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -674,7 +679,8 @@
 		263AC5E61A030FD700846CB0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (

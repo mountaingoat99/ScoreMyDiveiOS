@@ -279,7 +279,7 @@
     
     // here we want to get the meet name for the file name
     NSString *meetName = [[meetinfo objectAtIndex:0] objectAtIndex:3];
-    meetName = [meetName stringByAppendingString:@" MeetResults.csv"];
+    meetName = [meetName stringByAppendingString:@" Meet Results.csv"];
     
     NSUInteger count = [meetinfo count];
     
@@ -349,8 +349,9 @@
     meetinfo = [scores FetchMeetScores:self.meetRecordID diverid:self.diverRecordID];
     
     // here we want to get the meet name for the file name
-    NSString *meetName = [[meetinfo objectAtIndex:0] objectAtIndex:3];
-    meetName = [meetName stringByAppendingString:@" DiverScores.csv"];
+    NSString *meetName = [[meetinfo objectAtIndex:0] objectAtIndex:1];
+    meetName = [meetName stringByAppendingString:[[meetinfo objectAtIndex:0] objectAtIndex:3]];
+    meetName = [meetName stringByAppendingString:@" Diver Scores.csv"];
     
     NSUInteger count = [meetinfo count];
     
@@ -404,7 +405,8 @@
     meetinfo = [scores FetchJudgeMeetScores:self.meetRecordID diverid:self.diverRecordID]; 
     
     // here we want to get the meet name for the file name
-    NSString *meetName = [[meetinfo objectAtIndex:0] objectAtIndex:2];
+    NSString *meetName = [[meetinfo objectAtIndex:0] objectAtIndex:1];
+    meetName = [meetName stringByAppendingString:[[meetinfo objectAtIndex:0] objectAtIndex:2]];
     meetName = [meetName stringByAppendingString:@" Judge Scores.csv"];
     
     NSUInteger count = [meetinfo count];
@@ -453,15 +455,12 @@
     
     NSString *subject = filename;
     NSString *body = filename;
-    //NSString *recipients = @"mailto:&subject=";
     
     MFMailComposeViewController *composer = [[MFMailComposeViewController alloc] init];
     composer.mailComposeDelegate = self;
     [composer setSubject:subject];
     [composer setMessageBody:body isHTML:NO];
-    // here we will see if it leaves recipts blank for the user to enter in the email client
-    //[composer setToRecipients:<#(NSArray *)#>];
-    
+ 
     // get the file path from resources
     NSString *filePath = file;
     
@@ -472,7 +471,7 @@
     NSString *mimetype = @"text/csv";
     
     //add attachment
-    [composer addAttachmentData:fileData mimeType:mimetype fileName:filePath];
+    [composer addAttachmentData:fileData mimeType:mimetype fileName:filename];
     
     // present it on the screen
     [self presentViewController:composer animated:YES completion:nil];

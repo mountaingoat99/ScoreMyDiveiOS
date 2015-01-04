@@ -7090,7 +7090,9 @@
                             <constraint firstItem="ngS-Sc-wPO" firstAttribute="centerY" secondItem="oXA-hx-oEY" secondAttribute="centerY" id="5vZ-Z3-09V"/>
                             <constraint firstItem="3TU-Cm-YtF" firstAttribute="leading" secondItem="pLe-dL-aIn" secondAttribute="leadingMargin" constant="-11" id="6D6-0D-nQY"/>
                             <constraint firstItem="oXA-hx-oEY" firstAttribute="top" secondItem="Mmd-dF-S4q" secondAttribute="bottom" constant="8" id="6OB-wr-XzV"/>
-                            <constraint firstItem="cUp-xU-uJE" firstAttribute="top" secondItem="6fe-nt-TKw" secondAttribute="bottom" constant="14" id="6dQ-Fo-yQr"/>
+                            <constraint firstItem="cUp-xU-uJE" firstAttribute="top" secondItem="6fe-nt-TKw" secondAttribute="bottom" constant="14" id="6dQ-Fo-yQr">
+                                <variation key="heightClass=regular-widthClass=regular" constant="18"/>
+                            </constraint>
                             <constraint firstItem="64t-jG-D9g" firstAttribute="leading" secondItem="Yfn-hl-JNM" secondAttribute="leading" id="968-ip-P4g"/>
                             <constraint firstItem="AXS-5W-gCd" firstAttribute="centerY" secondItem="TXv-2v-qZS" secondAttribute="centerY" id="AJK-wO-hYj"/>
                             <constraint firstItem="Zk9-d0-Bey" firstAttribute="leading" secondItem="TXv-2v-qZS" secondAttribute="trailing" constant="12" id="Bcq-Jg-ELQ"/>
@@ -9505,7 +9507,9 @@
                             <constraint firstItem="PKJ-ve-j4K" firstAttribute="leading" secondItem="HS5-gd-58E" secondAttribute="leadingMargin" constant="-11" id="R7U-vJ-ifP"/>
                             <constraint firstItem="mua-fE-Rtc" firstAttribute="width" secondItem="Dyn-XZ-qo0" secondAttribute="width" id="RBQ-bn-vXj"/>
                             <constraint firstItem="DgL-ZQ-iav" firstAttribute="trailing" secondItem="HS5-gd-58E" secondAttribute="trailingMargin" id="RSs-cx-riy"/>
-                            <constraint firstItem="ncL-Xb-t24" firstAttribute="top" secondItem="Tdu-it-OGx" secondAttribute="bottom" constant="14" id="RjU-QU-ybo"/>
+                            <constraint firstItem="ncL-Xb-t24" firstAttribute="top" secondItem="Tdu-it-OGx" secondAttribute="bottom" constant="14" id="RjU-QU-ybo">
+                                <variation key="heightClass=regular-widthClass=regular" constant="18"/>
+                            </constraint>
                             <constraint firstItem="DgL-ZQ-iav" firstAttribute="trailing" secondItem="4s0-He-YWu" secondAttribute="trailing" id="Rpj-Yc-8E8"/>
                             <constraint firstItem="ncL-Xb-t24" firstAttribute="centerY" secondItem="inS-tw-1xk" secondAttribute="centerY" id="SHc-LY-3tb"/>
                             <constraint firstItem="inS-tw-1xk" firstAttribute="baseline" secondItem="ncL-Xb-t24" secondAttribute="baseline" id="SQl-wu-8ud"/>
@@ -9548,7 +9552,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="I0i-tt-Zsr" secondAttribute="trailing" constant="-1" id="lvZ-Aw-5XK"/>
                             <constraint firstItem="ncL-Xb-t24" firstAttribute="leading" secondItem="I0i-tt-Zsr" secondAttribute="leading" id="n2U-Nj-mU8"/>
                             <constraint firstItem="DgL-ZQ-iav" firstAttribute="leading" secondItem="inS-tw-1xk" secondAttribute="leading" id="nWc-Vq-nt5"/>
-                            <constraint firstItem="Tdu-it-OGx" firstAttribute="top" secondItem="I0i-tt-Zsr" secondAttribute="bottom" constant="14" id="nmX-is-5rx"/>
+                            <constraint firstItem="Tdu-it-OGx" firstAttribute="top" secondItem="I0i-tt-Zsr" secondAttribute="bottom" constant="14" id="nmX-is-5rx">
+                                <variation key="heightClass=regular-widthClass=regular" constant="18"/>
+                            </constraint>
                             <constraint firstItem="DgL-ZQ-iav" firstAttribute="height" secondItem="4s0-He-YWu" secondAttribute="height" id="noa-8e-2MT"/>
                             <constraint firstItem="VAZ-Z5-1q7" firstAttribute="top" secondItem="VcJ-f9-nML" secondAttribute="bottom" constant="14" id="pNG-gq-0ql">
                                 <variation key="widthClass=compact" constant="8"/>
@@ -9564,7 +9570,9 @@
                             <constraint firstItem="DgL-ZQ-iav" firstAttribute="leading" secondItem="ncL-Xb-t24" secondAttribute="trailing" constant="8" id="wWg-UM-iNR"/>
                             <constraint firstItem="ncL-Xb-t24" firstAttribute="centerY" secondItem="inS-tw-1xk" secondAttribute="centerY" id="xQi-g7-ZCK"/>
                             <constraint firstItem="Dyn-XZ-qo0" firstAttribute="top" secondItem="DgL-ZQ-iav" secondAttribute="bottom" constant="14" id="xcy-gx-Fz3"/>
-                            <constraint firstItem="mua-fE-Rtc" firstAttribute="top" secondItem="ncL-Xb-t24" secondAttribute="bottom" constant="14" id="yOc-Vg-tml"/>
+                            <constraint firstItem="mua-fE-Rtc" firstAttribute="top" secondItem="ncL-Xb-t24" secondAttribute="bottom" constant="14" id="yOc-Vg-tml">
+                                <variation key="heightClass=regular-widthClass=regular" constant="18"/>
+                            </constraint>
                             <constraint firstItem="4s0-He-YWu" firstAttribute="top" secondItem="I0i-tt-Zsr" secondAttribute="bottom" constant="11" id="z2L-nE-xA5"/>
                             <constraint firstItem="I0i-tt-Zsr" firstAttribute="top" secondItem="VAZ-Z5-1q7" secondAttribute="bottom" constant="12" id="zXG-qv-ACv"/>
                         </constraints>
@@ -14535,9 +14543,9 @@
         <segue reference="geP-ok-uHu"/>
         <segue reference="7UA-br-TXQ"/>
         <segue reference="Egm-yZ-Z6w"/>
-        <segue reference="T15-Av-W7R"/>
-        <segue reference="1Ka-8Q-j2w"/>
-        <segue reference="IFI-ff-ylb"/>
+        <segue reference="oqe-hM-JgU"/>
         <segue reference="42m-8i-l64"/>
+        <segue reference="plK-rZ-TmM"/>
+        <segue reference="1Ka-8Q-j2w"/>
     </inferredMetricsTieBreakers>
 </document>
