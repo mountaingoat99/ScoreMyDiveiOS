@@ -36,8 +36,8 @@
 
 #pragma View Controller Events
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
     // sets a border around the label to make it look like a text box
     [[self.btnName layer] setBorderColor:[[UIColor blackColor] CGColor]];
@@ -132,6 +132,78 @@
     [self updateTotal];
 }
 
+// restore state
+-(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+    [super encodeRestorableStateWithCoder:coder];
+    
+    [coder encodeObject:self.delegate forKey:@"Delegate"];
+    [coder encodeInt:self.recordIDToEdit forKey:@"RecordId"];
+    self.savedData = YES;
+    [coder encodeBool:self.savedData forKey:@"savedData"];
+    
+    // get everything out of the txt fields
+    if (self.lblnameTxt.text.length > 0) {
+        [coder encodeObject:self.lblnameTxt.text forKey:@"name"];
+    }
+    if (self.lbldive1Txt.text.length > 0) {
+        [coder encodeObject:self.lbldive1Txt.text forKey:@"dive1"];
+    }
+    if (self.lbldive2Txt.text.length > 0) {
+        [coder encodeObject:self.lbldive2Txt.text forKey:@"dive2"];
+    }
+    if (self.lbldive3Txt.text.length > 0) {
+        [coder encodeObject:self.lbldive3Txt.text forKey:@"dive3"];
+    }
+    if (self.dive4Txt.text.length > 0) {
+        [coder encodeObject:self.dive4Txt.text forKey:@"dive4"];
+    }
+    if (self.dive5Txt.text.length > 0) {
+        [coder encodeObject:self.dive5Txt.text forKey:@"dive5"];
+    }
+    if (self.dive6Txt.text.length > 0) {
+        [coder encodeObject:self.dive6Txt.text forKey:@"dive6"];
+    }
+    if (self.dive7Txt.text.length > 0) {
+        [coder encodeObject:self.dive7Txt.text forKey:@"dive7"];
+    }
+    if (self.dive8Txt.text.length > 0) {
+        [coder encodeObject:self.dive8Txt.text forKey:@"dive8"];
+    }
+    if (self.dive9Txt.text.length > 0) {
+        [coder encodeObject:self.dive9Txt.text forKey:@"dive9"];
+    }
+    if (self.dive10Txt.text.length > 0) {
+        [coder encodeObject:self.dive10Txt.text forKey:@"dive10"];
+    }
+    if (self.dive11Txt.text.length > 0) {
+        [coder encodeObject:self.dive11Txt.text forKey:@"dive11"];
+    }
+}
+
+-(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+    [super decodeRestorableStateWithCoder:coder];
+    
+    self.delegate = [coder decodeObjectForKey:@"Delegate"];
+    self.recordIDToEdit = [coder decodeIntForKey:@"RecordId"];
+    self.savedData = [coder decodeBoolForKey:@"savedData"];
+    
+    self.lblnameTxt.text = [coder decodeObjectForKey:@"name"];
+    self.lbldive1Txt.text = [coder decodeObjectForKey:@"dive1"];
+    self.lbldive2Txt.text = [coder decodeObjectForKey:@"dive2"];
+    self.lbldive3Txt.text = [coder decodeObjectForKey:@"dive3"];
+    self.dive4Txt.text = [coder decodeObjectForKey:@"dive4"];
+    self.dive5Txt.text = [coder decodeObjectForKey:@"dive5"];
+    self.dive6Txt.text = [coder decodeObjectForKey:@"dive6"];
+    self.dive7Txt.text = [coder decodeObjectForKey:@"dive7"];
+    self.dive8Txt.text = [coder decodeObjectForKey:@"dive8"];
+    self.dive9Txt.text = [coder decodeObjectForKey:@"dive9"];
+    self.dive10Txt.text = [coder decodeObjectForKey:@"dive10"];
+    self.dive11Txt.text = [coder decodeObjectForKey:@"dive11"];
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -160,7 +232,7 @@
     
     _textBoxAlert = 1;
     
-    [self DiveAlert:_textBoxAlert TextField:self.dive1Txt];
+    [self DiveAlert:_textBoxAlert TextField:self.lbldive1Txt];
     
 }
 
@@ -168,7 +240,7 @@
     
     _textBoxAlert = 2;
     
-    [self DiveAlert:_textBoxAlert TextField:self.dive2Txt];
+    [self DiveAlert:_textBoxAlert TextField:self.lbldive2Txt];
     
 }
 
@@ -176,7 +248,7 @@
     
     _textBoxAlert = 3;
     
-    [self DiveAlert:_textBoxAlert TextField:self.dive3Txt];
+    [self DiveAlert:_textBoxAlert TextField:self.lbldive3Txt];
     
 }
 
@@ -249,9 +321,9 @@
 - (void)updateTotal {
     // alloc an array and add the labels to it
     NSMutableArray *array = [[NSMutableArray alloc] init];
-    [array insertObject:self.dive1Txt.text atIndex:0];
-    [array insertObject:self.dive2Txt.text atIndex:1];
-    [array insertObject:self.dive3Txt.text atIndex:2];
+    [array insertObject:self.lbldive1Txt.text atIndex:0];
+    [array insertObject:self.lbldive2Txt.text atIndex:1];
+    [array insertObject:self.lbldive3Txt.text atIndex:2];
     [array insertObject:self.dive4Txt.text atIndex:3];
     [array insertObject:self.dive5Txt.text atIndex:4];
     [array insertObject:self.dive6Txt.text atIndex:5];
@@ -262,9 +334,9 @@
     [array insertObject:self.dive11Txt.text atIndex:10];
     
     // add the labels to the properties, we will use these to add to the DB
-    _dive1 = self.dive1Txt.text;
-    _dive2 = self.dive2Txt.text;
-    _dive3 = self.dive3Txt.text;
+    _dive1 = self.lbldive1Txt.text;
+    _dive2 = self.lbldive2Txt.text;
+    _dive3 = self.lbldive3Txt.text;
     _dive4 = self.dive4Txt.text;
     _dive5 = self.dive5Txt.text;
     _dive6 = self.dive6Txt.text;
@@ -274,7 +346,7 @@
     _dive10 = self.dive10Txt.text;
     _dive11 = self.dive11Txt.text;
     
-    _nameText = self.nameTxt.text;
+    _nameText = self.lblnameTxt.text;
     
     // calls the class method to add up all the scores
     // and then we format the double to a readable type and
@@ -298,21 +370,22 @@
     QuickScores *quick  = [[QuickScores alloc] init];
     NSArray *results = [quick loadInfo:self.recordIDToEdit];
     
-    // set the data to the correct labels
-    self.nameTxt.text = [[results objectAtIndex:0] objectAtIndex:1];
-    self.dive1Txt.text = [[results objectAtIndex:0] objectAtIndex:2];
-    self.dive2Txt.text = [[results objectAtIndex:0] objectAtIndex:3];
-    self.dive3Txt.text = [[results objectAtIndex:0] objectAtIndex:4];
-    self.dive4Txt.text = [[results objectAtIndex:0] objectAtIndex:5];
-    self.dive5Txt.text = [[results objectAtIndex:0] objectAtIndex:6];
-    self.dive6Txt.text = [[results objectAtIndex:0] objectAtIndex:7];
-    self.dive7Txt.text = [[results objectAtIndex:0] objectAtIndex:8];
-    self.dive8Txt.text = [[results objectAtIndex:0] objectAtIndex:9];
-    self.dive9Txt.text = [[results objectAtIndex:0] objectAtIndex:10];
-    self.dive10Txt.text = [[results objectAtIndex:0] objectAtIndex:11];
-    self.dive11Txt.text = [[results objectAtIndex:0] objectAtIndex:12];
-    self.totalTxt.text = [[results objectAtIndex:0] objectAtIndex:13];
-    
+    if (!self.savedData) {
+        // set the data to the correct labels
+        self.lblnameTxt.text = [[results objectAtIndex:0] objectAtIndex:1];
+        self.lbldive1Txt.text = [[results objectAtIndex:0] objectAtIndex:2];
+        self.lbldive2Txt.text = [[results objectAtIndex:0] objectAtIndex:3];
+        self.lbldive3Txt.text = [[results objectAtIndex:0] objectAtIndex:4];
+        self.dive4Txt.text = [[results objectAtIndex:0] objectAtIndex:5];
+        self.dive5Txt.text = [[results objectAtIndex:0] objectAtIndex:6];
+        self.dive6Txt.text = [[results objectAtIndex:0] objectAtIndex:7];
+        self.dive7Txt.text = [[results objectAtIndex:0] objectAtIndex:8];
+        self.dive8Txt.text = [[results objectAtIndex:0] objectAtIndex:9];
+        self.dive9Txt.text = [[results objectAtIndex:0] objectAtIndex:10];
+        self.dive10Txt.text = [[results objectAtIndex:0] objectAtIndex:11];
+        self.dive11Txt.text = [[results objectAtIndex:0] objectAtIndex:12];
+        self.totalTxt.text = [[results objectAtIndex:0] objectAtIndex:13];
+    }
 }
 
 // only allow numbers and two decimal places in the dive score text fields
@@ -363,7 +436,7 @@
                                {
                                    NSLog(@"OK Action");
                                    UITextField *name = alertController.textFields.firstObject;
-                                   self.nameTxt.text = name.text;
+                                   self.lblnameTxt.text = name.text;
                                }];
     
     [alertController addAction:cancelAction];

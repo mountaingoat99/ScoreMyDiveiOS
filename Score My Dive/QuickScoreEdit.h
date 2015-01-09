@@ -40,10 +40,10 @@
 @property (nonatomic) int recordIDToEdit;
 
 // button properties to change the text
-@property (strong, nonatomic) IBOutlet UILabel *nameTxt;
-@property (strong, nonatomic) IBOutlet UILabel *dive1Txt;
-@property (strong, nonatomic) IBOutlet UILabel *dive2Txt;
-@property (strong, nonatomic) IBOutlet UILabel *dive3Txt;
+@property (strong, nonatomic) IBOutlet UILabel *lblnameTxt;
+@property (strong, nonatomic) IBOutlet UILabel *lbldive1Txt;
+@property (strong, nonatomic) IBOutlet UILabel *lbldive2Txt;
+@property (strong, nonatomic) IBOutlet UILabel *lbldive3Txt;
 @property (strong, nonatomic) IBOutlet UILabel *dive4Txt;
 @property (strong, nonatomic) IBOutlet UILabel *dive5Txt;
 @property (strong, nonatomic) IBOutlet UILabel *dive6Txt;
@@ -53,6 +53,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *dive10Txt;
 @property (strong, nonatomic) IBOutlet UILabel *dive11Txt;
 @property (strong, nonatomic) IBOutlet UILabel *totalTxt;
+@property (nonatomic) BOOL savedData;
 
 
 // button long presses to edit the data
