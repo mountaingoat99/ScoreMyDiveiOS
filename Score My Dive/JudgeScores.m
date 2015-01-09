@@ -26,6 +26,51 @@
 
 @implementation JudgeScores
 
+-(id)initWithCoder:(NSCoder *)aDecoder  {
+    if ((self = [super init])) {
+        self.judgeScoreID = [aDecoder decodeObjectForKey:@"jsId"];
+        self.meetid = [aDecoder decodeObjectForKey:@"meetId"];
+        self.diverid = [aDecoder decodeObjectForKey:@"diverId"];
+        self.boardSize = [aDecoder decodeObjectForKey:@"boardSize"];
+        self.diveNumber = [aDecoder decodeObjectForKey:@"diveNumber"];
+        self.diveCategory = [aDecoder decodeObjectForKey:@"diveCat"];
+        self.diveType = [aDecoder decodeObjectForKey:@"diveType"];
+        self.divePosition = [aDecoder decodeObjectForKey:@"divePos"];
+        self.failed = [aDecoder decodeObjectForKey:@"failed"];
+        self.multiplier = [aDecoder decodeObjectForKey:@"multiplier"];
+        self.totalScore = [aDecoder decodeObjectForKey:@"total"];
+        self.score1 = [aDecoder decodeObjectForKey:@"score1"];
+        self.score2 = [aDecoder decodeObjectForKey:@"score2"];
+        self.score3 = [aDecoder decodeObjectForKey:@"score3"];
+        self.score4 = [aDecoder decodeObjectForKey:@"score4"];
+        self.score5 = [aDecoder decodeObjectForKey:@"score5"];
+        self.score6 = [aDecoder decodeObjectForKey:@"score6"];
+        self.score7 = [aDecoder decodeObjectForKey:@"score7"];
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.judgeScoreID forKey:@"jsId"];
+    [aCoder encodeObject:self.meetid forKey:@"meetId"];
+    [aCoder encodeObject:self.diverid forKey:@"diverId"];
+    [aCoder encodeObject:self.boardSize forKey:@"boardSize"];
+    [aCoder encodeObject:self.diveNumber forKey:@"diveNumber"];
+    [aCoder encodeObject:self.diveCategory forKey:@"diveCat"];
+    [aCoder encodeObject:self.diveType forKey:@"diveType"];
+    [aCoder encodeObject:self.divePosition forKey:@"divePos"];
+    [aCoder encodeObject:self.failed forKey:@"failed"];
+    [aCoder encodeObject:self.multiplier forKey:@"multiplier"];
+    [aCoder encodeObject:self.totalScore forKey:@"total"];
+    [aCoder encodeObject:self.score1 forKey:@"score1"];
+    [aCoder encodeObject:self.score2 forKey:@"score2"];
+    [aCoder encodeObject:self.score3 forKey:@"score3"];
+    [aCoder encodeObject:self.score4 forKey:@"score4"];
+    [aCoder encodeObject:self.score5 forKey:@"score5"];
+    [aCoder encodeObject:self.score6 forKey:@"score6"];
+    [aCoder encodeObject:self.score7 forKey:@"score7"];
+}
+
 #pragma public methods
 
 -(BOOL)CreateJudgeScores:(int)meetid diverid:(int)diverid boardsize:(double)boardsize divenumber:(NSNumber*)divenumber divecategory:(NSString*)divecategory divetype:(NSString*)divetype diveposition:(NSString*)diveposition failed:(NSNumber*)failed multiplier:(NSNumber*)multiplier totalscore:(NSNumber*)totalscore score1:(NSNumber*)score1 score2:(NSNumber*)score2 score3:(NSNumber*)score3 score4:(NSNumber*)score4 score5:(NSNumber*)score5 score6:(NSNumber*)score6 score7:(NSNumber*)score7 {

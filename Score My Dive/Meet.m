@@ -17,6 +17,27 @@
 
 @implementation Meet
 
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    if ((self = [super init])) {
+        self.meetID = [aDecoder decodeObjectForKey:@"meetId"];
+        self.meetName = [aDecoder decodeObjectForKey:@"meetName"];
+        self.schoolName = [aDecoder decodeObjectForKey:@"schoolName"];
+        self.city = [aDecoder decodeObjectForKey:@"city"];
+        self.state = [aDecoder decodeObjectForKey:@"state"];
+        self.date = [aDecoder decodeObjectForKey:@"date"];
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.meetID forKey:@"meetId"];
+    [aCoder encodeObject:self.meetName forKey:@"meetName"];
+    [aCoder encodeObject:self.schoolName forKey:@"schoolName"];
+    [aCoder encodeObject:self.city forKey:@"city"];
+    [aCoder encodeObject:self.state forKey:@"state"];
+    [aCoder encodeObject:self.date forKey:@"date"];
+}
+
 -(int)UpdateMeet:(int)mMeetid Name:(NSString*)mName School:(NSString*)mSchool City:(NSString*)mCity State:(NSString*)mState Date:(NSString*)mDate {
     
     int lastInsertRecord;

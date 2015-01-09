@@ -24,6 +24,7 @@
 // edit record property
 @property (nonatomic) int recordIDToEdit;
 @property (nonatomic) NSNumber *judgeTotal;
+@property (nonatomic) BOOL previousDate;
 
 @property (weak, nonatomic) IBOutlet UITextField *txtMeetName;
 @property (weak, nonatomic) IBOutlet UITextField *txtSchool;

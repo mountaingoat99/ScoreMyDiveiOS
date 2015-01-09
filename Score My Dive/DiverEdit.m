@@ -72,10 +72,8 @@
     
     [super encodeRestorableStateWithCoder:coder];
     
-    NSNumber *recordId = [NSNumber numberWithInt:self.recordIDToEdit];
-    
     [coder encodeObject:self.delegate forKey:@"Delegate"];
-    [coder encodeObject:recordId forKey:@"RecordId"];
+    [coder encodeInt:self.recordIDToEdit forKey:@"RecordId"];
     
     // lets see if there is any text in the fields and save that as well
     if (self.txtName.text.length > 0) {
@@ -98,7 +96,7 @@
     [super decodeRestorableStateWithCoder:coder];
     
     self.delegate = [coder decodeObjectForKey:@"Delegate"];
-    self.recordIDToEdit = [[coder decodeObjectForKey:@"RecordId"] intValue];
+    self.recordIDToEdit = [coder decodeIntForKey:@"RecordId"];
     self.txtName.text = [coder decodeObjectForKey:@"Name"];
     self.txtAge.text = [coder decodeObjectForKey:@"Age"];
     self.txtGrade.text = [coder decodeObjectForKey:@"Grade"];

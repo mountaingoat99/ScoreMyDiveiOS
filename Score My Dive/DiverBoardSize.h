@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DiverBoardSize : NSObject
+@interface DiverBoardSize : NSObject <NSCoding>
 
 @property (nonatomic, copy) NSString *boardId;
 @property (nonatomic, copy) NSString *meetId;

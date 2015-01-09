@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DiveList : NSObject
+@interface DiveList : NSObject <NSCoding>
 
 @property (nonatomic, copy) NSString *listId;
 @property (nonatomic, copy) NSString *meetId;

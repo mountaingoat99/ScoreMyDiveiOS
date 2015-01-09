@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Diver : NSObject
+@interface Diver : NSObject <NSCoding>
 
 @property (nonatomic, copy) NSString *diverID;
 @property (nonatomic, copy) NSString *Name;

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface JudgeScores : NSObject
+@interface JudgeScores : NSObject <NSCoding>
 
 @property (nonatomic, copy) NSString *judgeScoreID;
 @property (nonatomic, copy) NSString *meetid;

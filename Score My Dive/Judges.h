@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Judges : NSObject
+@interface Judges : NSObject <NSCoding>
 
 @property (nonatomic, copy) NSNumber *judgeTotal;
 

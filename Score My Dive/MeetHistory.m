@@ -30,8 +30,8 @@
 
 #pragma View Controller Events
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
     self.tblHistory.delegate = self;
     self.tblHistory.dataSource = self;
@@ -46,6 +46,27 @@
     if (self.recordIDToEdit != -1) {
         [self loadData];
     }
+}
+
+// restore state
+-(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+    [super encodeRestorableStateWithCoder:coder];
+    
+    [coder encodeInt:self.recordIDToEdit forKey:@"RecordId"];
+    [coder encodeInt:self.diverid forKey:@"DiverId"];
+    [coder encodeInt:self.callingIdToReturnTo forKey:@"CallingId"];
+    [coder encodeObject:self.meetInfo forKey:@"Info"];
+}
+
+-(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+    [super decodeRestorableStateWithCoder:coder];
+    
+    self.recordIDToEdit = [coder decodeIntForKey:@"RecordId"];
+    self.diverid = [coder decodeIntForKey:@"DiverId"];
+    self.callingIdToReturnTo = [coder decodeIntForKey:@"CallingId"];
+    self.meetInfo = [coder decodeObjectForKey:@"Info"];
 }
 
 // we will need to call a method to get the correct diver child for the meet

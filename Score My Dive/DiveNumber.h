@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DiveNumber : NSObject
+@interface DiveNumber : NSObject <NSCoding>
 
 @property (nonatomic, copy) NSString *numberId;
 @property (nonatomic, copy) NSString *meetId;

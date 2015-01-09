@@ -9,7 +9,6 @@
 #import "ReportsViewController.h"
 #import "Diver.h"
 #import "Meet.h"
-#import "Reports.h"
 #import "JudgeScores.h"
 
 @interface ReportsViewController ()

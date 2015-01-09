@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Results : NSObject
+@interface Results : NSObject <NSCoding>
 
 @property (nonatomic, copy) NSString *resultId;
 @property (nonatomic, copy) NSString *meetId;

@@ -26,8 +26,8 @@
 
 #pragma View Controller Events
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     self.judgeTotal = @2;
     [self.lblJudgeWarning setHidden:YES];
@@ -111,9 +111,13 @@
     }
     
     // initilize the date to today
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateStyle = NSDateFormatterLongStyle;
-    self.txtDate.text = [formatter stringFromDate:[NSDate date]];
+    if (!self.previousDate) {
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateStyle = NSDateFormatterLongStyle;
+        self.txtDate.text = [formatter stringFromDate:[NSDate date]];
+        
+    }
     
     //replace keyboard with a date picker
     UIDatePicker *datePicker = [[UIDatePicker alloc] init];
@@ -130,10 +134,47 @@
 // restore state
 -(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
     
+    [super encodeRestorableStateWithCoder:coder];
     
+    NSNumber *segment = [NSNumber numberWithInt:self.SCJudges.selectedSegmentIndex];
+    
+    [coder encodeObject:self.delegate forKey:@"Delegate"];
+    [coder encodeInt:self.recordIDToEdit forKey:@"RecordId"];
+    [coder encodeObject:segment forKey:@"Segment"];
+    
+    // lets see if there is any text in the fields and save those as well
+    if (self.txtMeetName.text.length > 0) {
+        [coder encodeObject:self.txtMeetName.text forKey:@"Name"];
+    }
+    if (self.txtSchool.text.length > 0) {
+        [coder encodeObject:self.txtSchool.text forKey:@"School"];
+    }
+    if (self.txtCity.text.length > 0) {
+        [coder encodeObject:self.txtCity.text forKey:@"City"];
+    }
+    if (self.txtState.text.length > 0) {
+        [coder encodeObject:self.txtState.text forKey:@"State"];
+    }
+    if (self.txtDate.text.length > 0) {
+        [coder encodeObject:self.txtDate.text forKey:@"Date"];
+        self.previousDate = YES;
+        [coder encodeBool:self.previousDate forKey:@"PreviousDate"];
+    }
 }
 
 -(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+    [super decodeRestorableStateWithCoder:coder];
+    
+    self.delegate = [coder decodeObjectForKey:@"Delegate"];
+    self.recordIDToEdit = [coder decodeIntForKey:@"RecordId"];
+    self.SCJudges.selectedSegmentIndex = [[coder decodeObjectForKey:@"Segment"] intValue];
+    self.txtMeetName.text = [coder decodeObjectForKey:@"Name"];
+    self.txtSchool.text = [coder decodeObjectForKey:@"School"];
+    self.txtCity.text = [coder decodeObjectForKey:@"City"];
+    self.txtState.text = [coder decodeObjectForKey:@"State"];
+    self.txtDate.text = [coder decodeObjectForKey:@"Date"];
+    self.previousDate = [coder decodeBoolForKey:@"PreviousDate"];
     
 }
 

@@ -31,8 +31,8 @@
 
 #pragma ViewController events
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     if (self.meetInfo.count > 0) {
         [self loadDiverInfo];
@@ -42,6 +42,30 @@
     }
     
 }
+
+// restore state
+-(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+    [super encodeRestorableStateWithCoder:coder];
+    
+    [coder encodeObject:self.meetInfo forKey:@"meetInfo"];
+    [coder encodeInt:self.meetIdToView forKey:@"meetId"];
+    [coder encodeInt:self.diverIdToView forKey:@"diverId"];
+    [coder encodeInt:self.callingIDToReturnTo forKey:@"CallingId"];
+    [coder encodeInt:self.diveNumber forKey:@"diveNumber"];
+}
+
+-(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+    [super decodeRestorableStateWithCoder:coder];
+    
+    self.meetInfo = [coder decodeObjectForKey:@"meetInfo"];
+    self.meetIdToView = [coder decodeIntForKey:@"meetId"];
+    self.diverIdToView = [coder decodeIntForKey:@"diverId"];
+    self.callingIDToReturnTo = [coder decodeIntForKey:@"CallingId"];
+    self.diveNumber = [coder decodeIntForKey:@"diveNumber"];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -17,6 +17,23 @@
 
 @implementation DiveTotal
 
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    if((self = [super init])) {
+        self.totalId = [aDecoder decodeObjectForKey:@"totalId"];
+        self.meetId = [aDecoder decodeObjectForKey:@"meetId"];
+        self.diverId = [aDecoder decodeObjectForKey:@"diverId"];
+        self.diveTotal = [aDecoder decodeObjectForKey:@"diveTotal"];
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.totalId forKey:@"totalId"];
+    [aCoder encodeObject:self.meetId forKey:@"meetId"];
+    [aCoder encodeObject:self.diverId forKey:@"diverId"];
+    [aCoder encodeObject:self.diveTotal forKey:@"diveTotal"];
+}
+
 -(BOOL)CreateDiveTotal:(int)meetid DiverID:(int)diverid Total:(int)total {
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     

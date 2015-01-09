@@ -17,6 +17,27 @@
 
 @implementation DiverBoardSize
 
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    if((self = [super init])) {
+        self.boardId = [aDecoder decodeObjectForKey:@"BoardId"];
+        self.meetId = [aDecoder decodeObjectForKey:@"MeetId"];
+        self.diverId = [aDecoder decodeObjectForKey:@"DiverId"];
+        self.firstSize = [aDecoder decodeObjectForKey:@"First"];
+        self.secondSize = [aDecoder decodeObjectForKey:@"Second"];
+        self.thirdSize = [aDecoder decodeObjectForKey:@"Third"];
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.boardId forKey:@"BoardId"];
+    [aCoder encodeObject:self.meetId forKey:@"MeetId"];
+    [aCoder encodeObject:self.diverId forKey:@"DiverId"];
+    [aCoder encodeObject:self.firstSize forKey:@"First"];
+    [aCoder encodeObject:self.secondSize forKey:@"Second"];
+    [aCoder encodeObject:self.thirdSize forKey:@"Third"];
+}
+
 -(BOOL)CreateBoardSize:(int)meetid DiverID:(int)diverid Total:(double)size TotalBoards:(int)totalboards{
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];

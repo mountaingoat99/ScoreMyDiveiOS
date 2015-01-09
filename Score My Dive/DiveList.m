@@ -17,6 +17,25 @@
 
 @implementation DiveList
 
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    if ((self = [super init])) {
+        self.listId = [aDecoder decodeObjectForKey:@"listId"];
+        self.meetId = [aDecoder decodeObjectForKey:@"meetId"];
+        self.diverId = [aDecoder decodeObjectForKey:@"diverId"];
+        self.listFilled = [aDecoder decodeObjectForKey:@"listFilled"];
+        self.noList = [aDecoder decodeObjectForKey:@"noList"];
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.listId forKey:@"listId"];
+    [aCoder encodeObject:self.meetId forKey:@"meetId"];
+    [aCoder encodeObject:self.diverId forKey:@"diverId"];
+    [aCoder encodeObject:self.listFilled forKey:@"listFilled"];
+    [aCoder encodeObject:self.noList forKey:@"noList"];
+}
+
 -(BOOL)UpdateDiveList:(int)meetid diverid:(int)diverid listfilled:(NSNumber*)listfilled noList:(NSNumber*)nolist {
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];

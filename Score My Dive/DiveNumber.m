@@ -17,6 +17,25 @@
 
 @implementation DiveNumber
 
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    if ((self = [super init])) {
+        self.numberId = [aDecoder decodeObjectForKey:@"numberId"];
+        self.meetId = [aDecoder decodeObjectForKey:@"meetId"];
+        self.diverId = [aDecoder decodeObjectForKey:@"diverId"];
+        self.number = [aDecoder decodeObjectForKey:@"number"];
+        self.boardSize = [aDecoder decodeObjectForKey:@"boardSize"];
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.numberId forKey:@"numberId"];
+    [aCoder encodeObject:self.meetId forKey:@"meetId"];
+    [aCoder encodeObject:self.diverId forKey:@"diverId"];
+    [aCoder encodeObject:self.number forKey:@"number"];
+    [aCoder encodeObject:self.boardSize forKey:@"boardSize"];
+}
+
 -(BOOL)CreateDiveNumber:(int)meetid diverid:(int)diverid number:(NSNumber*)number boardsize:(double)boardsize {
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];

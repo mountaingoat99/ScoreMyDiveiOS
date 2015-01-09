@@ -17,6 +17,17 @@
 
 @implementation Judges
 
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    if ((self = [super init])) {
+        self.judgeTotal = [aDecoder decodeObjectForKey:@"judgeTotal"];
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.judgeTotal forKey:@"judgeTotal"];
+}
+
 -(BOOL)UpdateJudges:(int)meetid Total:(NSNumber*)total {
     
     NSNumber *testNumber = @0;

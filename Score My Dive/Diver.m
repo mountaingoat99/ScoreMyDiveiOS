@@ -17,6 +17,25 @@
 
 @implementation Diver
 
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    if ((self = [super init])) {
+        self.diverID = [aDecoder decodeObjectForKey:@"diverId"];
+        self.Name = [aDecoder decodeObjectForKey:@"name"];
+        self.Age = [aDecoder decodeObjectForKey:@"age"];
+        self.Grade = [aDecoder decodeObjectForKey:@"grade"];
+        self.School = [aDecoder decodeObjectForKey:@"school"];
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.diverID forKey:@"diverId"];
+    [aCoder encodeObject:self.Name forKey:@"name"];
+    [aCoder encodeObject:self.Age forKey:@"age"];
+    [aCoder encodeObject:self.Grade forKey:@"grade"];
+    [aCoder encodeObject:self.School forKey:@"school"];
+}
+
 -(BOOL)UpdateDiver:(int)diverid Name:(NSString*)name Age:(NSString*)age Grade:(NSString*)grade School:(NSString*)school {
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];

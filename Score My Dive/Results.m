@@ -21,6 +21,45 @@
 
 @implementation Results
 
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    if ((self = [super init])) {
+        self.resultId = [aDecoder decodeObjectForKey:@"resultsId"];
+        self.meetId = [aDecoder decodeObjectForKey:@"meetId"];
+        self.diverId = [aDecoder decodeObjectForKey:@"diverId"];
+        self.dive1 = [aDecoder decodeObjectForKey:@"dive1"];
+        self.dive2 = [aDecoder decodeObjectForKey:@"dive2"];
+        self.dive3 = [aDecoder decodeObjectForKey:@"dive3"];
+        self.dive4 = [aDecoder decodeObjectForKey:@"dive4"];
+        self.dive5 = [aDecoder decodeObjectForKey:@"dive5"];
+        self.dive6 = [aDecoder decodeObjectForKey:@"dive6"];
+        self.dive7 = [aDecoder decodeObjectForKey:@"dive7"];
+        self.dive8 = [aDecoder decodeObjectForKey:@"dive8"];
+        self.dive9 = [aDecoder decodeObjectForKey:@"dive9"];
+        self.dive10 = [aDecoder decodeObjectForKey:@"dive10"];
+        self.dive11 = [aDecoder decodeObjectForKey:@"dive11"];
+        self.totalScoreTotal = [aDecoder decodeObjectForKey:@"total"];
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.resultId forKey:@"resultId"];
+    [aCoder encodeObject:self.meetId forKey:@"meetId"];
+    [aCoder encodeObject:self.diverId forKey:@"diverId"];
+    [aCoder encodeObject:self.dive1 forKey:@"dive1"];
+    [aCoder encodeObject:self.dive2 forKey:@"dive2"];
+    [aCoder encodeObject:self.dive3 forKey:@"dive3"];
+    [aCoder encodeObject:self.dive4 forKey:@"dive4"];
+    [aCoder encodeObject:self.dive5 forKey:@"dive5"];
+    [aCoder encodeObject:self.dive6 forKey:@"dive6"];
+    [aCoder encodeObject:self.dive7 forKey:@"dive7"];
+    [aCoder encodeObject:self.dive8 forKey:@"dive8"];
+    [aCoder encodeObject:self.dive9 forKey:@"dive9"];
+    [aCoder encodeObject:self.dive10 forKey:@"dive10"];
+    [aCoder encodeObject:self.dive11 forKey:@"dive11"];
+    [aCoder encodeObject:self.totalScoreTotal forKey:@"total"];
+}
+
 #pragma Public methods
 
 -(BOOL)CreateResult:(int)meetid DiverID:(int)diverid Dive1:(NSNumber*)dive1 Dive2:(NSNumber*)dive2 Dive3:(NSNumber*)dive3 Dive4:(NSNumber*)dive4 Dive5:(NSNumber*)dive5 Dive6:(NSNumber*)dive6 Dive7:(NSNumber*)dive7 Dive8:(NSNumber*)dive8 Dive9:(NSNumber*)dive9 Dive10:(NSNumber*)dive10 Dive11:(NSNumber*)dive11 DiveScoreTotal:(NSNumber*)divescoretotal {

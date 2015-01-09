@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DiveTotal : NSObject
+@interface DiveTotal : NSObject <NSCoding>
 
 @property (nonatomic, copy) NSString *totalId;
 @property (nonatomic, copy) NSString *meetId;

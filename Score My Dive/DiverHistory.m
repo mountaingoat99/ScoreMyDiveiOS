@@ -27,8 +27,8 @@
 
 #pragma ViewController events
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     self.tblHistory.delegate = self;
     self.tblHistory.dataSource = self;
@@ -43,6 +43,27 @@
     if (self.recordIdToEdit != -1) {
         [self loadData];
     }
+}
+
+// restore state
+-(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+    [super encodeRestorableStateWithCoder:coder];
+    
+    [coder encodeInt:self.recordIdToEdit forKey:@"RecordId"];
+    [coder encodeInt:self.meetId forKey:@"MeetId"];
+    [coder encodeInt:self.callingIdToReturnTo forKey:@"CallingId"];
+    [coder encodeObject:self.diverInfo forKey:@"Info"];
+}
+
+-(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+    [super decodeRestorableStateWithCoder:coder];
+    
+    self.recordIdToEdit = [coder decodeIntForKey:@"RecordId"];
+    self.meetId = [coder decodeIntForKey:@"MeetId"];
+    self.callingIdToReturnTo = [coder decodeIntForKey:@"CallingId"];
+    self.diverInfo = [coder decodeObjectForKey:@"Info"];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
