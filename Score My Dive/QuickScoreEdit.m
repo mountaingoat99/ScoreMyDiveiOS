@@ -36,8 +36,8 @@
 
 #pragma View Controller Events
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+-(void)viewDidLoad {
+    [super viewDidLoad];
     
     // sets a border around the label to make it look like a text box
     [[self.btnName layer] setBorderColor:[[UIColor blackColor] CGColor]];
@@ -123,6 +123,10 @@
     [[self.btnDive11 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
     [[self.btnDive11 layer] setMasksToBounds:NO];
     [[self.btnDive11 layer] setShadowOpacity:.3];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
     // check if we load a specific record to edit
     if(self.recordIDToEdit != -1){

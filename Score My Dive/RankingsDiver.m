@@ -30,8 +30,8 @@
 
 @implementation RankingsDiver
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
     self.tblDiverRankings.delegate = self;
     self.tblDiverRankings.dataSource = self;
@@ -44,6 +44,23 @@
     self.tblDiverRankings.layer.shadowOpacity = 1.0;
     
     [self loadData];
+}
+
+// restore state
+-(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+    [super encodeRestorableStateWithCoder:coder];
+    
+    [coder encodeInt:self.meetId forKey:@"meetId"];
+    [coder encodeObject:self.boardSize forKey:@"boardSize"];
+}
+
+-(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+    [super decodeRestorableStateWithCoder:coder];
+    
+    self.meetId = [coder decodeIntForKey:@"meetId"];
+    self.boardSize = [coder decodeObjectForKey:@"boardSize"];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

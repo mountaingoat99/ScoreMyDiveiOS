@@ -27,12 +27,8 @@
 
 #pragma ViewController Methods
 
-- (void)viewDidLoad {
+-(void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self loadData];
-    
-    [self makeMeetPicker];
     
     self.txtChooseMeet.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtChooseMeet.layer.shadowOffset = CGSizeMake(.1f, .1f);
@@ -47,9 +43,6 @@
     self.btnNext.layer.masksToBounds = NO;
     self.btnNext.layer.shadowOpacity = .7;
     
-    [self.lblJudges setHidden:YES];
-    [self.btnNext setHidden:YES];
-    
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         
         [self.btnRank setTitle:@"Rank" forState:UIControlStateNormal];
@@ -60,6 +53,44 @@
         [self.btnRank setTitle:@"Rankings" forState:UIControlStateNormal];
         [self.btnRank setTitle:@"Rankings" forState:UIControlStateSelected];
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self loadData];
+    
+    [self makeMeetPicker];
+    
+    if (self.txtChooseMeet.text.length > 0) {
+        [self ShowJudgeTotal];
+        [self.lblJudges setHidden:NO];
+        [self.btnNext setHidden:NO];
+    } else {
+        [self.lblJudges setHidden:YES];
+        [self.btnNext setHidden:YES];
+    }
+    
+   
+}
+
+// restore state
+-(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+    [super encodeRestorableStateWithCoder:coder];
+    
+    if (self.txtChooseMeet.text.length > 0) {
+        [coder encodeObject:self.txtChooseMeet.text forKey:@"meetText"];
+        [coder encodeInt:self.meetRecordID forKey:@"meetid"];
+    }
+}
+
+-(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+    [super decodeRestorableStateWithCoder:coder];
+    
+    self.meetRecordID = [coder decodeIntForKey:@"meetid"];
+    self.txtChooseMeet.text = [coder decodeObjectForKey:@"meetText"];
 }
 
 // push id to next view controller
@@ -86,6 +117,8 @@
 }
 
 -(IBAction)unwindToChooseMeet:(UIStoryboardSegue *)segue{
+    
+    //self.txtChooseMeet.text = @"";
     
 }
 
@@ -204,7 +237,6 @@
         NSLog(@"Judges total is %@", self.judgeTotal);
         self.judgeTotal = @2;
     }
-    
 }
 
 @end

@@ -62,27 +62,8 @@
 
 #pragma ViewController Events
 
-- (void)viewDidLoad {
+-(void)viewDidLoad {
     [super viewDidLoad];
-    
-    // lets hide some controls
-    [self hideInitialControls];
-    
-    [self fillDiveNumber];
-    
-    [self fillText];
-    
-    [self DiverBoardSize];
-    
-    [self loadGroupPicker];
-    
-    [self makeGroupPicker];
-    
-    [self makeDivePicker];
-    
-    [self fillDiveInfo];
-    
-    [self updateButtonText];
     
     // attributes for controls
     self.txtDiveGroup.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -110,7 +91,7 @@
     self.btnEnterDive.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.btnEnterDive.layer.masksToBounds = NO;
     self.btnEnterDive.layer.shadowOpacity = .7;
-  
+    
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         
         // color attributes for the segmented controls in iphone
@@ -119,7 +100,7 @@
         [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributes forState:UIControlStateNormal];
         [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributes forState:UIControlStateHighlighted];
         [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributes forState:UIControlStateSelected];
-    
+        
         
     } else {
         
@@ -135,6 +116,69 @@
     // sets up the following delegate method to disable horizontal scrolling
     // don't forget to declare the UIScrollViewDelegate in the .h file
     self.scrollView.delegate = self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    // lets hide some controls
+    [self hideInitialControls];
+    
+    [self fillDiveNumber];
+    
+    [self fillText];
+    
+    [self DiverBoardSize];
+    
+    [self loadGroupPicker];
+    
+    [self makeGroupPicker];
+    
+    [self makeDivePicker];
+    
+    [self fillDiveInfo];
+    
+    [self updateButtonText];
+    
+}
+
+// restore state because Apple doesn't know how to write a modern OS
+-(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+    [super encodeRestorableStateWithCoder:coder];
+    
+    NSNumber *segment = [NSNumber numberWithInt:self.SCPosition.selectedSegmentIndex];
+    
+    [coder encodeObject:segment forKey:@"segment"];
+    [coder encodeInt:self.meetRecordID forKey:@"meetId"];
+    [coder encodeInt:self.diverRecordID forKey:@"diverId"];
+    [coder encodeObject:self.meetInfo forKey:@"meetInfo"];
+    [coder encodeInt:self.divePositionID forKey:@"divePos"];
+    
+    if (self.txtDiveGroup.text.length > 0) {
+        [coder encodeObject:self.txtDiveGroup.text forKey:@"diveGroupText"];
+        [coder encodeInt:self.diveGroupID forKey:@"diveGroupId"];
+    }
+    if (self.txtDive.text.length > 0) {
+        [coder encodeObject:self.txtDive.text forKey:@"diveText"];
+        [coder encodeInt:self.diveID forKey:@"diveId"];
+    }
+    
+}
+
+-(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+    [super decodeRestorableStateWithCoder:coder];
+    
+    self.SCPosition.selectedSegmentIndex = [[coder decodeObjectForKey:@"segment"] intValue];
+    self.meetRecordID = [coder decodeIntForKey:@"meetId"];
+    self.diverRecordID = [coder decodeIntForKey:@"diverId"];
+    self.meetInfo = [coder decodeObjectForKey:@"meetInfo"];
+    self.divePositionID = [coder decodeIntForKey:@"divePos"];
+    self.txtDiveGroup.text = [coder decodeObjectForKey:@"diveGroupText"];
+    self.diveGroupID = [coder decodeIntForKey:@"diveGroupId"];
+    self.txtDive.text = [coder decodeObjectForKey:@"diveText"];
+    self.diveID = [coder decodeIntForKey:@"diveId"];
     
 }
 

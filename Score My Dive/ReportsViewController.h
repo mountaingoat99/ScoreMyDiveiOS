@@ -12,6 +12,8 @@
 
 @interface ReportsViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate, UITextFieldDelegate>
 
+@property (nonatomic) BOOL fillText;
+
 // send reports
 - (IBAction)sendClick:(id)sender;
 

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DiverMeetScores.h"
 
 @interface DiverHistory : UIViewController <UITableViewDelegate, UITableViewDataSource>
 

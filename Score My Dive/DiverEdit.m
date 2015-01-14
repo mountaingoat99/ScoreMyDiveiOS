@@ -21,8 +21,8 @@
 
 #pragma View Controller Events
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+-(void)viewDidLoad {
+    [super viewDidLoad];
     
     // drop shadow for the text boxes
     self.txtName.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -61,6 +61,10 @@
     self.txtSchool.delegate = self;
     self.txtAge.delegate = self;
     self.txtGrade.delegate = self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     if (self.recordIDToEdit != -1) {
         [self loadInfoToEdit];

@@ -17,6 +17,7 @@
 @property (nonatomic) double boardSize2ID;
 @property (nonatomic) double boardSize3ID;
 @property (nonatomic, strong) NSArray *meetInfo;
+@property (nonatomic) BOOL savedState;
 
 @property (weak, nonatomic) IBOutlet UITextField *txtChooseDiver;
 @property (weak, nonatomic) IBOutlet UILabel *lblMeetName;

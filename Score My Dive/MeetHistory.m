@@ -30,8 +30,8 @@
 
 #pragma View Controller Events
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+-(void)viewDidLoad {
+    [super viewDidLoad];
     
     self.tblHistory.delegate = self;
     self.tblHistory.dataSource = self;
@@ -42,7 +42,11 @@
     self.tblHistory.layer.masksToBounds = NO;
     self.tblHistory.layer.shadowRadius = 4.0f;
     self.tblHistory.layer.shadowOpacity = 1.0;
-    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
     if (self.recordIDToEdit != -1) {
         [self loadData];
     }
@@ -74,7 +78,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     // Send the id's to the Diver Meet Scores
-    if ([segue.identifier isEqualToString:@"idSegueMeetHistToScores"]) {
+    if ([segue.identifier isEqualToString:@"idMeetHistoryToScores"]) {
         DiverMeetScores *scores = [segue destinationViewController];
         
         // assign 1 to the DiverMeetScore Segue knows who to return to
@@ -110,8 +114,12 @@
     // load the meet collection array
     [self CollectionOfMeets];
     
+    
+    [self performSegueWithIdentifier:@"idMeetHistoryToScores" sender:self];
+    
+    //old
     // this actually send the chosen cell to the next screen
-    [self performSegueWithIdentifier:@"idSegueMeetHistToScores" sender:self];
+    //[self performSegueWithIdentifier:@"idSegueMeetHistToScores" sender:self];
     
 }
 

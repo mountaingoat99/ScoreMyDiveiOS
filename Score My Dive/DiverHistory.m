@@ -27,8 +27,8 @@
 
 #pragma ViewController events
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+-(void)viewDidLoad {
+    [super viewDidLoad];
     
     self.tblHistory.delegate = self;
     self.tblHistory.dataSource = self;
@@ -39,10 +39,23 @@
     self.tblHistory.layer.masksToBounds = NO;
     self.tblHistory.layer.shadowRadius = 4.0f;
     self.tblHistory.layer.shadowOpacity = 1.0;
+    NSLog(@"DiverHistory ViewDidLoad");
     
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
     if (self.recordIdToEdit != -1) {
         [self loadData];
     }
+    NSLog(@"DiverHistory viewWillAppear");
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    NSLog(@"DiverHistory ViewDidAppear");
 }
 
 // restore state
@@ -54,6 +67,8 @@
     [coder encodeInt:self.meetId forKey:@"MeetId"];
     [coder encodeInt:self.callingIdToReturnTo forKey:@"CallingId"];
     [coder encodeObject:self.diverInfo forKey:@"Info"];
+    
+    NSLog(@"DiverHistory encode");
 }
 
 -(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
@@ -64,6 +79,12 @@
     self.meetId = [coder decodeIntForKey:@"MeetId"];
     self.callingIdToReturnTo = [coder decodeIntForKey:@"CallingId"];
     self.diverInfo = [coder decodeObjectForKey:@"Info"];
+    
+    NSLog(@"DiverHistory Decode");
+}
+
+-(void)viewMeetScoreWasFinished {
+    [self loadData];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

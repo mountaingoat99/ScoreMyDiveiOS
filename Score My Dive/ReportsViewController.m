@@ -41,8 +41,8 @@
 
 #pragma ViewController Methods
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
     // load the diver and meet arrays before creating the pickerviews
     [self loadData];
@@ -76,6 +76,45 @@
     self.txtChooseReport.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     self.txtChooseReport.delegate = self;
 
+}
+
+// restore state
+-(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+    [super encodeRestorableStateWithCoder:coder];
+    
+    self.fillText = NO;
+    
+    if (self.txtxChooseDiver.text.length > 0) {
+        [coder encodeObject:self.txtxChooseDiver.text forKey:@"diver"];
+        [coder encodeInt:self.diverRecordID forKey:@"diverId"];
+        self.fillText = YES;
+    }
+    if (self.txtChooseMeet.text.length > 0) {
+        [coder encodeObject:self.txtChooseMeet.text forKey:@"meet"];
+        [coder encodeInt:self.meetRecordID forKey:@"meetId"];
+        self.fillText = YES;
+    }
+    if (self.txtChooseReport.text.length > 0) {
+        [coder encodeObject:self.txtChooseReport.text forKey:@"report"];
+        [coder encodeInt:self.reportRecordID forKey:@"reportId"];
+        self.fillText = YES;
+    }
+    
+    [coder encodeBool:self.fillText forKey:@"textField"];
+}
+
+-(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+    [super decodeRestorableStateWithCoder:coder];
+    
+    self.fillText = [coder decodeBoolForKey:@"textField"];
+    self.txtxChooseDiver.text = [coder decodeObjectForKey:@"diver"];
+    self.diverRecordID = [coder decodeIntForKey:@"diverId"];
+    self.txtChooseMeet.text = [coder decodeObjectForKey:@"meet"];
+    self.meetRecordID = [coder decodeIntForKey:@"meetId"];
+    self.txtChooseReport.text = [coder decodeObjectForKey:@"report"];
+    self.reportRecordID = [coder decodeIntForKey:@"reportId"];
 }
 
 - (void)didReceiveMemoryWarning {

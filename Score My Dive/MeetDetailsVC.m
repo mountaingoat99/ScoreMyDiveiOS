@@ -43,9 +43,12 @@
     self.tblMeets.layer.shadowOpacity = 1.0;
     
     [self TabBarSelection];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
     [self loadData];
-    
 }
 
 // push the meetId to the next controller

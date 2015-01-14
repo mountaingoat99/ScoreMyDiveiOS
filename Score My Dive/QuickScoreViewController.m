@@ -36,9 +36,11 @@
     self.tblQuickScores.layer.masksToBounds = NO;
     self.tblQuickScores.layer.shadowRadius = 4.0f;
     self.tblQuickScores.layer.shadowOpacity = 1.0;
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
-    
-    // call the load method
     [self loadData];
 }
 

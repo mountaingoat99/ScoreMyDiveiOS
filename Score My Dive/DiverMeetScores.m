@@ -38,8 +38,8 @@
 
 #pragma ViewController Events
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+-(void)viewDidLoad {
+    [super viewDidLoad];
     
     //sets the border for the label/buttons
     [[self.btnDive1 layer] setBorderColor:[[UIColor blackColor] CGColor]];
@@ -119,14 +119,26 @@
     [[self.btnDive11 layer] setMasksToBounds:NO];
     [[self.btnDive11 layer] setShadowOpacity:.3];
     
+    NSLog(@"DiverMeetScores ViewDidLoad");
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
     if (self.meetInfo.count > 0) {
         [self loadDiverInfo];
         [self loadMeetInfo];
         [self FindDiveTotal];
         [self loadType];
         [self loadResults];
-        
     }
+    
+    NSLog(@"DiverMeetScores viewWillAppear");
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    
+    NSLog(@"DiverMeetScores viewDidAppear");
 }
 
 // restore state
@@ -140,6 +152,8 @@
     [coder encodeInt:self.callingIDToReturnTo forKey:@"CallingId"];
     [coder encodeInt:self.diveNumber forKey:@"diveNumber"];
     [coder encodeObject:self.boardSize forKey:@"boardSize"];
+    
+    NSLog(@"DiverMeetScores encode");
 }
 
 -(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
@@ -152,6 +166,8 @@
     self.callingIDToReturnTo = [coder decodeIntForKey:@"CallingId"];
     self.diveNumber = [coder decodeIntForKey:@"diveNumber"];
     self.boardSize = [coder decodeObjectForKey:@"boardSize"];
+    
+    NSLog(@"DiverMeetScores Decode");
 }
 
 - (void)didReceiveMemoryWarning {

@@ -26,8 +26,8 @@
 
 #pragma View Controller Events
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+-(void)viewDidLoad {
+    [super viewDidLoad];
     
     self.judgeTotal = @2;
     [self.lblJudgeWarning setHidden:YES];
@@ -103,13 +103,6 @@
         
     }
     
-    if (self.recordIDToEdit != -1) {
-        
-        [self loadInfoToEdit];
-        
-        
-    }
-    
     // initilize the date to today
     if (!self.previousDate) {
         
@@ -129,6 +122,15 @@
     datePicker.layer.shadowOpacity = .5;
     [datePicker addTarget:self action:@selector(updateTextField:) forControlEvents:UIControlEventValueChanged];
     [self.txtDate setInputView:datePicker];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if (self.recordIDToEdit != -1) {
+        [self loadInfoToEdit];
+    }
 }
 
 // restore state

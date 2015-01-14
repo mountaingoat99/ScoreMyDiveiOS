@@ -26,6 +26,7 @@
 @property (nonatomic, strong) UIPickerView *divePicker;
 @property (nonatomic) BOOL noList;
 @property (nonatomic, strong) NSNumber *listStarted;
+@property (nonatomic) BOOL previousInfo;
 
 -(void)loadSpinnerData;
 -(void)getMeetName;
@@ -43,20 +44,8 @@
 
 #pragma ViewController Methods
 
-- (void)viewDidLoad {
+-(void)viewDidLoad {
     [super viewDidLoad];
-    
-    // initilize no list to false first
-    self.noList = NO;
-    
-    self.diveTotalID = 6;
-    self.boardSize1ID = 1;
-    
-    [self getMeetName];
-    
-    [self loadSpinnerData];
-    
-    [self makeDiverPicker];
     
     // attributes for controls
     self.txtChooseDiver.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -78,9 +67,6 @@
     self.SCBoardSize.layer.masksToBounds = NO;
     self.SCBoardSize.layer.shadowOpacity = .7;
     
-    
-    //[[self.btnEnterScores layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    //[[self.btnEnterScores layer] setBorderWidth:1.0];
     self.btnEnterList.layer.shadowColor = [UIColor blackColor].CGColor;
     self.btnEnterList.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.btnEnterList.layer.masksToBounds = NO;
@@ -112,12 +98,69 @@
         [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributesiPad forState:UIControlStateSelected];
         
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
-    // hide button and labels until a diver is choosen and has meet records
-    //[self.btnResetDiver setHidden:YES];
-    [self.lblDiveTotal setHidden:YES];
-    [self.lblBoardSize setHidden:YES];
+    if (!self.savedState) {
+        // initilize no list to false first
+        self.noList = NO;
+        self.diveTotalID = 6;
+        self.boardSize1ID = 1;
+    }
     
+    [self getMeetName];
+    
+    [self loadSpinnerData];
+    
+    [self makeDiverPicker];
+    
+    [self HideControls];
+}
+
+// restore state
+-(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+    [super encodeRestorableStateWithCoder:coder];
+    
+    NSNumber *diveSegments = [NSNumber numberWithInt:self.SCDiveTotals.selectedSegmentIndex];
+    NSNumber *boardSegments = [NSNumber numberWithInt:self.SCBoardSize.selectedSegmentIndex];
+    
+    [coder encodeInt:self.meetRecordID forKey:@"meetid"];
+    [coder encodeObject:diveSegments forKey:@"diveSegments"];
+    [coder encodeObject:boardSegments forKey:@"boardSegments"];
+    
+    
+    if (self.txtChooseDiver.text.length > 0) {
+        [coder encodeObject:self.txtChooseDiver.text forKey:@"diverText"];
+        [coder encodeInt:self.diverRecordID forKey:@"diverId"];
+        [coder encodeInt:self.diveTotalID forKey:@"diveTotalId"];
+        [coder encodeDouble:self.boardSize1ID forKey:@"boardSize"];
+        [coder encodeObject:self.meetInfo forKey:@"meetInfo"];
+        self.savedState = YES;
+        [coder encodeBool:self.savedState forKey:@"savedState"];
+        [coder encodeBool:self.noList forKey:@"noList"];
+        [coder encodeObject:self.listStarted forKey:@"listStarted"];
+    }
+}
+
+-(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+    [super decodeRestorableStateWithCoder:coder];
+    
+    self.meetRecordID = [coder decodeIntForKey:@"meetid"];
+    self.SCDiveTotals.selectedSegmentIndex = [[coder decodeObjectForKey:@"diveSegments"] intValue];
+    self.SCBoardSize.selectedSegmentIndex = [[coder decodeObjectForKey:@"boardSegments"] intValue];
+    self.meetInfo = [coder decodeObjectForKey:@"meetInfo"];
+    self.diverRecordID = [coder decodeIntForKey:@"diverId"];
+    self.diveTotalID = [coder decodeIntForKey:@"diveTotalId"];
+    self.boardSize1ID = [coder decodeDoubleForKey:@"boardSize"];
+    self.meetInfo = [coder decodeObjectForKey:@"meetInfo"];
+    self.savedState = [coder decodeBoolForKey:@"savedState"];
+    self.noList = [coder decodeBoolForKey:@"noList"];
+    self.listStarted = [coder decodeObjectForKey:@"listStarted"];
+    self.txtChooseDiver.text = [coder decodeObjectForKey:@"diverText"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -128,13 +171,13 @@
 -(IBAction)unwindToChooseDiver:(UIStoryboardSegue *)segue{
     
     // reset everything and reload the spinner
-    self.txtChooseDiver.text = @"";
-    [self loadSpinnerData];
-    [self makeDiverPicker];
-    [self.SCBoardSize setHidden:NO];
-    [self.SCDiveTotals setHidden:NO];
-    [self.lblDiveTotal setHidden:YES];
-    [self.lblBoardSize setHidden:YES];
+//    self.txtChooseDiver.text = @"";
+//    [self loadSpinnerData];
+//    [self makeDiverPicker];
+//    [self.SCBoardSize setHidden:NO];
+//    [self.SCDiveTotals setHidden:NO];
+//    [self.lblDiveTotal setHidden:YES];
+//    [self.lblBoardSize setHidden:YES];
     
 }
 
@@ -422,13 +465,12 @@
 
 -(void)HideControls{
     
-    BOOL previousInfo = false;
     NSString *yesDives;
     NSString *yesBoard;
     
-    previousInfo = [self PreviousMeetInfo];
+    self.previousInfo = [self PreviousMeetInfo];
     
-    if (previousInfo) {
+    if (self.previousInfo) {
         
         [self GetCollectionofMeetInfo];
         
@@ -492,30 +534,6 @@
     MeetCollection *meetCollection = [[MeetCollection alloc] init];
     
     self.meetInfo = [meetCollection GetMeetAndDiverInfo:self.meetRecordID diverid:self.diverRecordID];
-    
-    // doing this to test and log that we get the correct data
-    //Meet *testMeet = [[Meet alloc] init];
-    //Judges *testJudges = [[Judges alloc] init];
-    
-//    testMeet = [self.meetInfo objectAtIndex:0];
-//    testJudges = [self.meetInfo objectAtIndex:1];
-//    
-//    // here we just want to let the log know we have the correct meet chosen
-//    NSString *test = testMeet.meetID;
-//    NSString *testName = testMeet.meetName;
-//    NSString *testSchool = testMeet.schoolName;
-//    NSString *testCity = testMeet.city;
-//    NSString *testState = testMeet.state;
-//    NSString *testDate = testMeet.date;
-//    NSNumber *testJudgeTotal = testJudges.judgeTotal;
-//    
-//    NSLog(@"the meetid is %@", test);
-//    NSLog(@"the meetname is %@", testName);
-//    NSLog(@"the meetschool is %@", testSchool);
-//    NSLog(@"the meetcity is %@", testCity);
-//    NSLog(@"the meetstate is %@", testState);
-//    NSLog(@"the meetdate is %@", testDate);
-//    NSLog(@"the judgetotal is %@", testJudgeTotal);
     
 }
 
