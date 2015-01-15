@@ -40,7 +40,6 @@
     self.tblHistory.layer.shadowRadius = 4.0f;
     self.tblHistory.layer.shadowOpacity = 1.0;
     NSLog(@"DiverHistory ViewDidLoad");
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -126,7 +125,6 @@
     
     // this actually sends the chosen cell to the next screen
     [self performSegueWithIdentifier:@"idSegueDiverHistToScores" sender:self];
-    
 }
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath  {
@@ -219,28 +217,28 @@
     self.diverInfo = [collection GetMeetAndDiverInfo:self.meetId diverid:self.recordIdToEdit];
     
     // doing this to test and log that we get the correct data
-    Meet *testMeet = [[Meet alloc] init];
-    Judges *testJudges = [[Judges alloc] init];
+    //Meet *testMeet = [[Meet alloc] init];
+    //Judges *testJudges = [[Judges alloc] init];
     
-    testMeet = [self.diverInfo objectAtIndex:0];
-    testJudges = [self.diverInfo objectAtIndex:1];
+    //testMeet = [self.diverInfo objectAtIndex:0];
+    //testJudges = [self.diverInfo objectAtIndex:1];
     
     // here we just want to let the log know we have the correct meet chosen
-    NSString *test = testMeet.meetID;
-    NSString *testName = testMeet.meetName;
-    NSString *testSchool = testMeet.schoolName;
-    NSString *testCity = testMeet.city;
-    NSString *testState = testMeet.state;
-    NSString *testDate = testMeet.date;
-    NSNumber *testJudgeTotal = testJudges.judgeTotal;
-    
-    NSLog(@"the meetid is %@", test);
-    NSLog(@"the meetname is %@", testName);
-    NSLog(@"the meetschool is %@", testSchool);
-    NSLog(@"the meetcity is %@", testCity);
-    NSLog(@"the meetstate is %@", testState);
-    NSLog(@"the meetdate is %@", testDate);
-    NSLog(@"the judgetotal is %@", testJudgeTotal);
+//    NSString *test = testMeet.meetID;
+//    NSString *testName = testMeet.meetName;
+//    NSString *testSchool = testMeet.schoolName;
+//    NSString *testCity = testMeet.city;
+//    NSString *testState = testMeet.state;
+//    NSString *testDate = testMeet.date;
+//    NSNumber *testJudgeTotal = testJudges.judgeTotal;
+//    
+//    NSLog(@"the meetid is %@", test);
+//    NSLog(@"the meetname is %@", testName);
+//    NSLog(@"the meetschool is %@", testSchool);
+//    NSLog(@"the meetcity is %@", testCity);
+//    NSLog(@"the meetstate is %@", testState);
+//    NSLog(@"the meetdate is %@", testDate);
+//    NSLog(@"the judgetotal is %@", testJudgeTotal);
     
 }
 

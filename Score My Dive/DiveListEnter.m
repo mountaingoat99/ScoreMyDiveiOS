@@ -116,6 +116,8 @@
     // sets up the following delegate method to disable horizontal scrolling
     // don't forget to declare the UIScrollViewDelegate in the .h file
     self.scrollView.delegate = self;
+    
+    NSLog(@"DiveListEnter ViewDidLoad");
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -140,6 +142,7 @@
     
     [self updateButtonText];
     
+    NSLog(@"DiveListEnter ViewDidAppear");
 }
 
 // restore state because Apple doesn't know how to write a modern OS
@@ -179,6 +182,8 @@
     self.diveGroupID = [coder decodeIntForKey:@"diveGroupId"];
     self.txtDive.text = [coder decodeObjectForKey:@"diveText"];
     self.diveID = [coder decodeIntForKey:@"diveId"];
+    
+    NSLog(@"DiveListEnter decode");
     
 }
 

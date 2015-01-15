@@ -17,6 +17,8 @@
 
 - (IBAction)btnReportClick:(id)sender;
 - (IBAction)btnDetailedScoringClick:(id)sender;
+- (IBAction)btnMeetDiverClick:(id)sender;
+- (IBAction)btnQuickScoreClick:(id)sender;
 
 @end
 

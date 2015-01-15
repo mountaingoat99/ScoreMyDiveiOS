@@ -98,6 +98,8 @@
         [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributesiPad forState:UIControlStateSelected];
         
     }
+    
+    NSLog(@"ChooseDiver VeiwDidLoad");
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -117,6 +119,8 @@
     [self makeDiverPicker];
     
     [self HideControls];
+    
+    NSLog(@"ChooseDiver ViewWillAppear");
 }
 
 // restore state
@@ -161,6 +165,8 @@
     self.noList = [coder decodeBoolForKey:@"noList"];
     self.listStarted = [coder decodeObjectForKey:@"listStarted"];
     self.txtChooseDiver.text = [coder decodeObjectForKey:@"diverText"];
+    
+    NSLog(@"ChooseDiver decode");
 }
 
 - (void)didReceiveMemoryWarning {

@@ -57,7 +57,7 @@
                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="Rjl-wi-ZvV" kind="show" id="JYP-CT-y1L"/>
+                                    <action selector="btnQuickScoreClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yp8-wt-QEq"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Quick Scores" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.30000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="GWU-oU-w7a">
@@ -90,7 +90,7 @@
                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="79K-nl-rUV" kind="show" id="5o5-4e-FIF"/>
+                                    <action selector="btnMeetDiverClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2am-N8-GV1"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Meets and Divers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="6ty-QI-mgt">
@@ -231,6 +231,8 @@
                         <outlet property="btnReports" destination="8lc-EQ-hPd" id="hRe-yy-fMX"/>
                         <segue destination="gyi-Um-8hX" kind="show" identifier="idSegueHomeToChooseMeet" id="ODQ-1S-U5a"/>
                         <segue destination="w5B-nA-pM5" kind="show" identifier="idSegueHomeToReports" id="w4U-Wl-UcP"/>
+                        <segue destination="Rjl-wi-ZvV" kind="show" identifier="idSegueHomeToQuickScore" id="2fN-uI-qei"/>
+                        <segue destination="79K-nl-rUV" kind="show" identifier="idSegueToMeetDivers" id="Q9B-Pi-oeZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -381,13 +383,13 @@
                     <connections>
                         <outlet property="tbItem" destination="DG9-4Z-EDB" id="Tsf-7W-xzH"/>
                         <outlet property="tblMeets" destination="Fdb-RA-U6t" id="jXh-K8-Eur"/>
-                        <segue destination="ql9-Zz-keF" kind="show" identifier="idSegueMeetHistory" id="QLA-Pd-hj2"/>
+                        <segue destination="ql9-Zz-keF" kind="show" identifier="idSegueMeetHistory" id="8rm-TB-ck0"/>
                     </connections>
                 </viewController>
                 <exit id="RBo-rh-fcK" userLabel="Exit" sceneMemberID="exit"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xp1-5C-5xd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2593.5" y="-678"/>
+            <point key="canvasLocation" x="2692.5" y="-678"/>
         </scene>
         <!--Edit Meet-->
         <scene sceneID="pO1-Er-yVt">
@@ -14590,13 +14592,13 @@
         <image name="tabBarMeet" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QLA-Pd-hj2"/>
-        <segue reference="ov5-QM-sxE"/>
-        <segue reference="7UA-br-TXQ"/>
-        <segue reference="geP-ok-uHu"/>
         <segue reference="fUy-vt-kRQ"/>
         <segue reference="isg-fR-ZIK"/>
-        <segue reference="1Ka-8Q-j2w"/>
         <segue reference="42m-8i-l64"/>
+        <segue reference="1Ka-8Q-j2w"/>
+        <segue reference="ov5-QM-sxE"/>
+        <segue reference="Egm-yZ-Z6w"/>
+        <segue reference="geP-ok-uHu"/>
+        <segue reference="7UA-br-TXQ"/>
     </inferredMetricsTieBreakers>
 </document>

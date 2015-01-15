@@ -103,4 +103,14 @@
         
     }
 }
+
+- (IBAction)btnMeetDiverClick:(id)sender {
+    
+    [self performSegueWithIdentifier:@"idSegueToMeetDivers" sender:self];
+}
+
+- (IBAction)btnQuickScoreClick:(id)sender {
+    
+    [self performSegueWithIdentifier:@"idSegueHomeToQuickScore" sender:self];
+}
 @end

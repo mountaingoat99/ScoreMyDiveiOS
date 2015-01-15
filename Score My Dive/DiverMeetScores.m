@@ -136,11 +136,6 @@
     NSLog(@"DiverMeetScores viewWillAppear");
 }
 
--(void)viewDidAppear:(BOOL)animated {
-    
-    NSLog(@"DiverMeetScores viewDidAppear");
-}
-
 // restore state
 -(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
     

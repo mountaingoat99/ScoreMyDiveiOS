@@ -53,6 +53,8 @@
         [self.btnRank setTitle:@"Rankings" forState:UIControlStateNormal];
         [self.btnRank setTitle:@"Rankings" forState:UIControlStateSelected];
     }
+    
+    NSLog(@"ChooseMeet VeiwDidLoad");
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -71,6 +73,7 @@
         [self.btnNext setHidden:YES];
     }
     
+    NSLog(@"ChooseMeet ViewWillAppear");
    
 }
 
@@ -91,6 +94,8 @@
     
     self.meetRecordID = [coder decodeIntForKey:@"meetid"];
     self.txtChooseMeet.text = [coder decodeObjectForKey:@"meetText"];
+    
+    NSLog(@"ChooseMeet decode");
 }
 
 // push id to next view controller
@@ -222,19 +227,19 @@
     
     if ([self.judgeTotal  isEqualToNumber: @2]) {
         self.lblJudges.text = @"2 Judges";
-        NSLog(@"Judges total is %@", self.judgeTotal);
+        //NSLog(@"Judges total is %@", self.judgeTotal);
     } else if ([self.judgeTotal isEqualToNumber:@3]) {
         self.lblJudges.text = @"3 Judges";
-        NSLog(@"Judges total is %@", self.judgeTotal);
+        //NSLog(@"Judges total is %@", self.judgeTotal);
     } else if ([self.judgeTotal  isEqualToNumber: @5]) {
         self.lblJudges.text = @"5 Judges";
-        NSLog(@"Judges total is %@", self.judgeTotal);
+        //NSLog(@"Judges total is %@", self.judgeTotal);
     } else if ([self.judgeTotal  isEqualToNumber: @7]) {
         self.lblJudges.text = @"7 Judges";
-        NSLog(@"Judges total is %@", self.judgeTotal);
+        //NSLog(@"Judges total is %@", self.judgeTotal);
     } else {
         self.lblJudges.text = @"2 Judges";
-        NSLog(@"Judges total is %@", self.judgeTotal);
+        //NSLog(@"Judges total is %@", self.judgeTotal);
         self.judgeTotal = @2;
     }
 }

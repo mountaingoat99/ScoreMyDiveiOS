@@ -78,7 +78,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     // Send the id's to the Diver Meet Scores
-    if ([segue.identifier isEqualToString:@"idMeetHistoryToScores"]) {
+    if ([segue.identifier isEqualToString:@"idSegueMeetHistToScores"]) {
         DiverMeetScores *scores = [segue destinationViewController];
         
         // assign 1 to the DiverMeetScore Segue knows who to return to
@@ -115,7 +115,7 @@
     [self CollectionOfMeets];
     
     
-    [self performSegueWithIdentifier:@"idMeetHistoryToScores" sender:self];
+    [self performSegueWithIdentifier:@"idSegueMeetHistToScores" sender:self];
     
     //old
     // this actually send the chosen cell to the next screen
@@ -212,29 +212,29 @@
     
     self.meetInfo = [collection GetMeetAndDiverInfo:recordIDToEdit diverid:self.diverid];
     
-    // doing this to test and log that we get the correct data
-    Meet *testMeet = [[Meet alloc] init];
-    Judges *testJudges = [[Judges alloc] init];
-    
-    testMeet = [self.meetInfo objectAtIndex:0];
-    testJudges = [self.meetInfo objectAtIndex:1];
-    
-    // here we just want to let the log know we have the correct meet chosen
-    NSString *test = testMeet.meetID;
-    NSString *testName = testMeet.meetName;
-    NSString *testSchool = testMeet.schoolName;
-    NSString *testCity = testMeet.city;
-    NSString *testState = testMeet.state;
-    NSString *testDate = testMeet.date;
-    NSNumber *testJudgeTotal = testJudges.judgeTotal;
-    
-    NSLog(@"the meetid is %@", test);
-    NSLog(@"the meetname is %@", testName);
-    NSLog(@"the meetschool is %@", testSchool);
-    NSLog(@"the meetcity is %@", testCity);
-    NSLog(@"the meetstate is %@", testState);
-    NSLog(@"the meetdate is %@", testDate);
-    NSLog(@"the judgetotal is %@", testJudgeTotal);
+//    // doing this to test and log that we get the correct data
+//    Meet *testMeet = [[Meet alloc] init];
+//    Judges *testJudges = [[Judges alloc] init];
+//    
+//    testMeet = [self.meetInfo objectAtIndex:0];
+//    testJudges = [self.meetInfo objectAtIndex:1];
+//    
+//    // here we just want to let the log know we have the correct meet chosen
+//    NSString *test = testMeet.meetID;
+//    NSString *testName = testMeet.meetName;
+//    NSString *testSchool = testMeet.schoolName;
+//    NSString *testCity = testMeet.city;
+//    NSString *testState = testMeet.state;
+//    NSString *testDate = testMeet.date;
+//    NSNumber *testJudgeTotal = testJudges.judgeTotal;
+//    
+//    NSLog(@"the meetid is %@", test);
+//    NSLog(@"the meetname is %@", testName);
+//    NSLog(@"the meetschool is %@", testSchool);
+//    NSLog(@"the meetcity is %@", testCity);
+//    NSLog(@"the meetstate is %@", testState);
+//    NSLog(@"the meetdate is %@", testDate);
+//    NSLog(@"the judgetotal is %@", testJudgeTotal);
 }
 
 @end
