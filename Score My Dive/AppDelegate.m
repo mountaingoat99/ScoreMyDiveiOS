@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "MeetHistory.h"
+#import "DiverHistory.h"
+#import "DiverMeetScores.h"
 
 @interface AppDelegate ()
 
@@ -14,17 +17,17 @@
 
 @implementation AppDelegate
 
-//-(BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+-(BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // we need this to make each view gets fully instantiated before encoding
+    [self.window makeKeyAndVisible];
     
-    //return YES;
-//}
+    return YES;
+}
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    //[self.window makeKeyAndVisible];
     return YES;
 }
 
@@ -49,6 +52,46 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+//-(MeetHistory *)meetHistoryViewController {
+//    MeetHistory *vcontroller = (MeetHistory *)self.window.rootViewController;
+//    return vcontroller;
+//}
+//
+//-(DiverHistory *)diverHistoryViewController {
+//    DiverHistory *vcontroller = (DiverHistory *)self.window.rootViewController;
+//    return vcontroller;
+//}
+
+//-(UIViewController *)application:(UIApplication *)application viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder {
+//    
+//    NSLog(@"viewControllerWithRestorationIdentifierPath %@",
+//          identifierComponents);
+//    
+//    UIViewController *viewController = nil;
+//    NSString *identifier = [identifierComponents lastObject];
+//    
+//    // MeetHistory
+//    if ([identifier isEqualToString:@"MeetHistory"]) {
+//        UIStoryboard *storyboard = [coder decodeObjectForKey:UIStateRestorationViewControllerStoryboardKey];
+//        
+//        if (storyboard != nil) {
+//            viewController = [storyboard instantiateViewControllerWithIdentifier:identifier];
+//        }
+//    }
+//    
+//    // DiverHistory
+//    if ([identifier isEqualToString:@"DiverHistory"]) {
+//        UIStoryboard *storyboard = [coder decodeObjectForKey:UIStateRestorationViewControllerStoryboardKey];
+//        
+//        if (storyboard != nil) {
+//            viewController = [storyboard instantiateViewControllerWithIdentifier:identifier];
+//        }
+//    }
+//    
+//    return viewController;
+//}
+
 
 // save state
 -(BOOL)application:(UIApplication *)application shouldSaveApplicationState:(NSCoder *)coder {
