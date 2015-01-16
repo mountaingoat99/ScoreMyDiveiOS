@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2601559B1A3FCDF600D3B4ED /* dive_dod.db in Resources */ = {isa = PBXBuildFile; fileRef = 2601559A1A3FCDF600D3B4ED /* dive_dod.db */; };
+		260140E21A688CDC00DA9EB6 /* dive_dod.db in Resources */ = {isa = PBXBuildFile; fileRef = 260140E11A688CDC00DA9EB6 /* dive_dod.db */; };
 		2618B90A1A58BC3C007F75DE /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2618B9091A58BC3C007F75DE /* Media.xcassets */; };
 		2618CD261A521DEF0049E113 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2618CD251A521DEF0049E113 /* MessageUI.framework */; };
 		2618CD281A5221B60049E113 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2618CD271A5221B60049E113 /* Social.framework */; };
@@ -73,7 +73,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2601559A1A3FCDF600D3B4ED /* dive_dod.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dive_dod.db; sourceTree = "<group>"; };
+		260140E11A688CDC00DA9EB6 /* dive_dod.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dive_dod.db; sourceTree = "<group>"; };
 		2618B9091A58BC3C007F75DE /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = ../../LaunchImage/Media.xcassets; sourceTree = "<group>"; };
 		2618CD251A521DEF0049E113 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		2618CD271A5221B60049E113 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -200,8 +200,8 @@
 			children = (
 				2618CD271A5221B60049E113 /* Social.framework */,
 				2618CD251A521DEF0049E113 /* MessageUI.framework */,
-				2601559A1A3FCDF600D3B4ED /* dive_dod.db */,
 				26BE23901A1028B200E123D0 /* libsqlite3.dylib */,
+				260140E11A688CDC00DA9EB6 /* dive_dod.db */,
 				26DF8AF61A043DAC00C273A6 /* QuartzCore.framework */,
 				263AC5C31A030FD600846CB0 /* Score My Dive */,
 				263AC5DD1A030FD700846CB0 /* Score My DiveTests */,
@@ -453,11 +453,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				26E419A11A047FDF00D79C05 /* AppIconBlack.xcassets in Resources */,
-				2601559B1A3FCDF600D3B4ED /* dive_dod.db in Resources */,
 				26E419A31A0480C800D79C05 /* Images.xcassets in Resources */,
 				263AC5D51A030FD700846CB0 /* LaunchScreen.xib in Resources */,
 				2618B90A1A58BC3C007F75DE /* Media.xcassets in Resources */,
 				26C07FCF1A05921700DF35B4 /* Main.storyboard in Resources */,
+				260140E21A688CDC00DA9EB6 /* dive_dod.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
