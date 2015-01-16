@@ -125,22 +125,15 @@
     
     // lets hide some controls
     [self hideInitialControls];
-    
     [self fillDiveNumber];
-    
     [self fillText];
-    
     [self DiverBoardSize];
-    
     [self loadGroupPicker];
-    
     [self makeGroupPicker];
-    
     [self makeDivePicker];
-    
     [self fillDiveInfo];
-    
     [self updateButtonText];
+    [self DisableDivePositions];
     
     NSLog(@"DiveListEnter ViewDidAppear");
 }
@@ -151,21 +144,30 @@
     [super encodeRestorableStateWithCoder:coder];
     
     NSNumber *segment = [NSNumber numberWithInt:self.SCPosition.selectedSegmentIndex];
-    
     [coder encodeObject:segment forKey:@"segment"];
     [coder encodeInt:self.meetRecordID forKey:@"meetId"];
     [coder encodeInt:self.diverRecordID forKey:@"diverId"];
     [coder encodeObject:self.meetInfo forKey:@"meetInfo"];
+    [coder encodeObject:self.txtDiveGroup.text forKey:@"diveGroupText"];
+    [coder encodeInt:self.diveGroupID forKey:@"diveGroupId"];
+    [coder encodeObject:self.txtDive.text forKey:@"diveText"];
+    [coder encodeInt:self.diveID forKey:@"diveId"];
     [coder encodeInt:self.divePositionID forKey:@"divePos"];
-    
-    if (self.txtDiveGroup.text.length > 0) {
-        [coder encodeObject:self.txtDiveGroup.text forKey:@"diveGroupText"];
-        [coder encodeInt:self.diveGroupID forKey:@"diveGroupId"];
-    }
-    if (self.txtDive.text.length > 0) {
-        [coder encodeObject:self.txtDive.text forKey:@"diveText"];
-        [coder encodeInt:self.diveID forKey:@"diveId"];
-    }
+    [coder encodeObject:self.diveGroupArray forKey:@"diveGroupArray"];
+    [coder encodeObject:self.diveArray forKey:@"diveArray"];
+    [coder encodeObject:self.onDiveNumber forKey:@"onDiveNumber"];
+    [coder encodeInt:self.maxDiveNumber forKey:@"maxDiveNumber"];
+    [coder encodeObject:self.editDiveNumber forKey:@"editDiveNumber"];
+    [coder encodeObject:self.boardSize forKey:@"boardSize"];
+    [coder encodeObject:self.multiplier forKey:@"multiplier"];
+    [coder encodeObject:self.straight forKey:@"straight"];
+    [coder encodeObject:self.pike forKey:@"pike"];
+    [coder encodeObject:self.tuck forKey:@"tuck"];
+    [coder encodeObject:self.free forKey:@"free"];
+    [coder encodeBool:self.allDivesEntered forKey:@"allDivesEntered"];
+    [coder encodeObject:self.oldDiveName forKey:@"oldDiveName"];
+    [coder encodeInt:self.diveTotal forKey:@"diveTotal"];
+    [coder encodeObject:self.lblDivedd.text forKey:@"dd"];
     
 }
 
@@ -174,14 +176,63 @@
     [super decodeRestorableStateWithCoder:coder];
     
     self.SCPosition.selectedSegmentIndex = [[coder decodeObjectForKey:@"segment"] intValue];
+    NSLog(@"SC Position: %d", self.SCPosition.selectedSegmentIndex);
     self.meetRecordID = [coder decodeIntForKey:@"meetId"];
+    NSLog(@"meetRecordId: %d", self.meetRecordID);
     self.diverRecordID = [coder decodeIntForKey:@"diverId"];
+    NSLog(@"diverRecordId: %d", self.diverRecordID);
     self.meetInfo = [coder decodeObjectForKey:@"meetInfo"];
-    self.divePositionID = [coder decodeIntForKey:@"divePos"];
+    NSLog(@"meetInfo: %d", self.meetInfo.count);
     self.txtDiveGroup.text = [coder decodeObjectForKey:@"diveGroupText"];
+    NSLog(@"txtDiveGroup: %@", self.txtDiveGroup.text);
+    if (self.txtDiveGroup.text.length == 0) {
+        self.txtDiveGroup.text = @"";
+        NSLog(@"txtDiveGroup: %@", self.txtDiveGroup.text);
+    }
     self.diveGroupID = [coder decodeIntForKey:@"diveGroupId"];
+    NSLog(@"diveGroupId: %d", self.diveGroupID);
     self.txtDive.text = [coder decodeObjectForKey:@"diveText"];
+    NSLog(@"txtDive: %@", self.txtDive.text);
+    if (self.txtDive.text.length == 0) {
+        self.txtDive.text = @"";
+        NSLog(@"txtDive: %@", self.txtDive.text);
+    }
     self.diveID = [coder decodeIntForKey:@"diveId"];
+    NSLog(@"diveGroupId: %d", self.diveGroupID);
+    self.divePositionID = [coder decodeIntForKey:@"divePos"];
+    NSLog(@"divePosition: %d", self.divePositionID);
+    self.diveGroupArray = [coder decodeObjectForKey:@"diveGroupArray"];
+    NSLog(@"diveGroupArray %d", self.diveGroupArray.count);
+    self.diveArray = [coder decodeObjectForKey:@"diveArray"];
+    NSLog(@"diveArray %d", self.diveArray.count);
+    self.onDiveNumber = [coder decodeObjectForKey:@"onDiveNumber"];
+    NSLog(@"onDiveNumber %@", self.onDiveNumber);
+    self.maxDiveNumber = [coder decodeIntForKey:@"maxDiveNumber"];
+    NSLog(@"maxDiveNumber: %d", self.maxDiveNumber);
+    self.editDiveNumber = [coder decodeObjectForKey:@"editDiveNumber"];
+    NSLog(@"editDiveNumber %@", self.editDiveNumber);
+    self.boardSize = [coder decodeObjectForKey:@"boardSize"];
+    NSLog(@"boardSize: %@", self.boardSize);
+    self.multiplier = [coder decodeObjectForKey:@"multiplier"];
+    NSLog(@"multiplier: %@", self.multiplier);
+    self.straight = [coder decodeObjectForKey:@"straight"];
+    NSLog(@"straight: %@", self.straight);
+    self.pike = [coder decodeObjectForKey:@"pike"];
+    NSLog(@"pike: %@", self.pike);
+    self.tuck = [coder decodeObjectForKey:@"tuck"];
+    NSLog(@"tuck: %@", self.tuck);
+    self.free = [coder decodeObjectForKey:@"free"];
+    NSLog(@"free: %@", self.free);
+    self.allDivesEntered = [coder decodeBoolForKey:@"allDivesEntered"];
+    NSLog(@"allDivesEntered: %hhd", self.allDivesEntered);
+    self.oldDiveName = [coder decodeObjectForKey:@"oldDiveName"];
+    NSLog(@"oldDiveName: %@", self.oldDiveName);
+    self.diveTotal = [coder decodeIntForKey:@"diveTotal"];
+    NSLog(@"diveTotal: %d", self.diveTotal);
+    self.lblDivedd.text = [coder decodeObjectForKey:@"dd"];
+    NSLog(@"diveddText: %@", self.lblDivedd.text);
+    
+    [self loadDivePicker];
     
     NSLog(@"DiveListEnter decode");
     
@@ -296,13 +347,19 @@
         if ([self.boardSize  isEqual: @1.0] || [self.boardSize  isEqual: @3.0]) {
             
             // when changing a cat show the correct dives in the type picker
-            self.txtDive.text = [[self.diveArray objectAtIndex:0] objectAtIndex:3];
+            NSString *diveText = [[self.diveArray objectAtIndex:0] objectAtIndex:0];
+            diveText = [diveText stringByAppendingString:@" - "];
+            diveText = [diveText stringByAppendingString:[[self.diveArray objectAtIndex:0] objectAtIndex:3]];
+            self.txtDive.text = diveText;
             self.diveID = [[[self.diveArray objectAtIndex:0] objectAtIndex:0] intValue];
             
         } else {
             
             // when changing a cat show the correct dives in the type picker
-            self.txtDive.text = [[self.diveArray objectAtIndex:0] objectAtIndex:4];
+            NSString *diveText = [[self.diveArray objectAtIndex:0] objectAtIndex:0];
+            diveText = [diveText stringByAppendingString:@" - "];
+            diveText = [diveText stringByAppendingString:[[self.diveArray objectAtIndex:0] objectAtIndex:4]];
+            self.txtDive.text = diveText;
             self.diveID = [[[self.diveArray objectAtIndex:0] objectAtIndex:0] intValue];
             
         }
@@ -320,7 +377,10 @@
         if ([self.boardSize  isEqual: @1.0] || [self.boardSize  isEqual: @3.0]) {
         
             // assign the first item in array to text box right away, so user doesn't have to
-            self.txtDive.text = [self.diveArray [row] objectAtIndex:3];
+            NSString *diveText = [self.diveArray [row] objectAtIndex:0];
+            diveText = [diveText stringByAppendingString:@" - "];
+            diveText = [diveText stringByAppendingString:[self.diveArray [row] objectAtIndex:3]];
+            self.txtDive.text = diveText;
             self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
             
             // this will disable dive position choices based on cat, board, and dive type
@@ -329,12 +389,16 @@
             // then this will set the divedod label to the correct dod
             [self GetDiveDOD];
             
-            return [self.diveArray[row]objectAtIndex:3];
+            //return [self.diveArray[row]objectAtIndex:3];
+            return diveText;
             
         } else {
             
             // assign the first item in array to text box right away, so user doesn't have to
-            self.txtDive.text = [self.diveArray [row] objectAtIndex:4];
+            NSString *diveText = [self.diveArray [row] objectAtIndex:0];
+            diveText = [diveText stringByAppendingString:@" - "];
+            diveText = [diveText stringByAppendingString:[self.diveArray [row] objectAtIndex:4]];
+            self.txtDive.text = diveText;
             self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
             
             // this will disable dive position choices based on cat, board, and dive type
@@ -343,7 +407,8 @@
             // then this will set the divedod label to the correct dod
             [self GetDiveDOD];
             
-            return [self.diveArray[row]objectAtIndex:4];
+            //return [self.diveArray[row]objectAtIndex:4];
+            return diveText;
             
         }
     }
@@ -366,13 +431,19 @@
         if ([self.boardSize  isEqual: @1.0] || [self.boardSize  isEqual: @3.0]) {
         
             // when changing a cat show the correct dives in the type picker
-            self.txtDive.text = [[self.diveArray objectAtIndex:0] objectAtIndex:3];
+            NSString *diveText = [self.diveArray [row] objectAtIndex:0];
+            diveText = [diveText stringByAppendingString:@" - "];
+            diveText = [diveText stringByAppendingString:[self.diveArray [row] objectAtIndex:3]];
+            self.txtDive.text = diveText;
             self.diveID = [[[self.diveArray objectAtIndex:0] objectAtIndex:0] intValue];
             
         } else {
             
             // when changing a cat show the correct dives in the type picker
-            self.txtDive.text = [[self.diveArray objectAtIndex:0] objectAtIndex:4];
+            NSString *diveText = [self.diveArray [row] objectAtIndex:0];
+            diveText = [diveText stringByAppendingString:@" - "];
+            diveText = [diveText stringByAppendingString:[self.diveArray [row] objectAtIndex:4]];
+            self.txtDive.text = diveText;
             self.diveID = [[[self.diveArray objectAtIndex:0] objectAtIndex:0] intValue];
             
         }
@@ -381,13 +452,21 @@
         
         if ([self.boardSize  isEqual: @1.0] || [self.boardSize  isEqual: @3.0]) {
         
-            self.txtDive.text = [self.diveArray [row] objectAtIndex:3];
+            // lets add the dive number to the dive name
+            NSString *diveText = [self.diveArray [row] objectAtIndex:0];
+            diveText = [diveText stringByAppendingString:@" - "];
+            diveText = [diveText stringByAppendingString:[self.diveArray [row] objectAtIndex:3]];
+            self.txtDive.text = diveText;
             [self.txtDive resignFirstResponder];
             self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
             
         } else {
             
-            self.txtDive.text = [self.diveArray [row] objectAtIndex:4];
+            // lets add the dive number to the dive name
+            NSString *diveText = [self.diveArray [row] objectAtIndex:0];
+            diveText = [diveText stringByAppendingString:@" - "];
+            diveText = [diveText stringByAppendingString:[self.diveArray [row] objectAtIndex:4]];
+            self.txtDive.text = diveText;
             [self.txtDive resignFirstResponder];
             self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
             
@@ -471,6 +550,11 @@
                                           otherButtonTitles:nil];
     [error show];
     [error reloadInputViews];
+}
+
+- (IBAction)btnBackClick:(id)sender {
+    
+    [self performSegueWithIdentifier:@"idSegueListToChooseDiver" sender:self];
 }
 
 // Long press to edit the dives
@@ -785,38 +869,55 @@
     
     NSArray *dods = [[NSArray alloc] init];
     
-    // lets get the valid dods based on group, type and board size
-    DiveTypes *types = [[DiveTypes alloc] init];
-    dods = [types GetAllDiveDODs:self.diveGroupID DiveTypeId:self.diveID BoardType:self.boardSize];
-    
-    // now put those into a NSNumber variable
-    self.straight = [[dods objectAtIndex:0] objectAtIndex:0];
-    self.pike = [[dods objectAtIndex:0] objectAtIndex:1];
-    self.tuck = [[dods objectAtIndex:0] objectAtIndex:2];
-    self.free = [[dods objectAtIndex:0] objectAtIndex:3];
-    
-    if ([self.straight isEqualToString:@"0.0"]) {
-        [self.SCPosition setEnabled:NO forSegmentAtIndex:0];
+    if (self.txtDive.text.length > 0) {
+        
+        // set the segmented control back to enabled
+        [self.SCPosition setEnabled:YES];
+        
+        // lets get the valid dods based on group, type and board size
+        DiveTypes *types = [[DiveTypes alloc] init];
+        dods = [types GetAllDiveDODs:self.diveGroupID DiveTypeId:self.diveID BoardType:self.boardSize];
+        
+        if (dods.count > 0) {
+        
+            // now put those into a NSNumber variable
+            self.straight = [[dods objectAtIndex:0] objectAtIndex:0];
+            self.pike = [[dods objectAtIndex:0] objectAtIndex:1];
+            self.tuck = [[dods objectAtIndex:0] objectAtIndex:2];
+            self.free = [[dods objectAtIndex:0] objectAtIndex:3];
+            
+            if ([self.straight isEqualToString:@"0.0"]) {
+                [self.SCPosition setEnabled:NO forSegmentAtIndex:0];
+            } else {
+                [self.SCPosition setEnabled:YES forSegmentAtIndex:0];
+            }
+            
+            if ([self.pike isEqualToString:@"0.0"]) {
+                [self.SCPosition setEnabled:NO forSegmentAtIndex:1];
+            } else {
+                [self.SCPosition setEnabled:YES forSegmentAtIndex:1];
+            }
+            
+            if ([self.tuck isEqualToString:@"0.0"]) {
+                [self.SCPosition setEnabled:NO forSegmentAtIndex:2];
+            } else {
+                [self.SCPosition setEnabled:YES forSegmentAtIndex:2];
+            }
+            
+            if ([self.free isEqualToString:@"0.0"]) {
+                [self.SCPosition setEnabled:NO forSegmentAtIndex:3];
+            } else {
+                [self.SCPosition setEnabled:YES forSegmentAtIndex:3];
+            }
+            
+        } else {
+            // disable the segmented control until a dive has been chosen
+            [self.SCPosition setEnabled:NO];
+        }
     } else {
-        [self.SCPosition setEnabled:YES forSegmentAtIndex:0];
-    }
-    
-    if ([self.pike isEqualToString:@"0.0"]) {
-        [self.SCPosition setEnabled:NO forSegmentAtIndex:1];
-    } else {
-        [self.SCPosition setEnabled:YES forSegmentAtIndex:1];
-    }
-    
-    if ([self.tuck isEqualToString:@"0.0"]) {
-        [self.SCPosition setEnabled:NO forSegmentAtIndex:2];
-    } else {
-        [self.SCPosition setEnabled:YES forSegmentAtIndex:2];
-    }
-    
-    if ([self.free isEqualToString:@"0.0"]) {
-        [self.SCPosition setEnabled:NO forSegmentAtIndex:3];
-    } else {
-        [self.SCPosition setEnabled:YES forSegmentAtIndex:3];
+        
+        // disable the segmented control until a dive has been chosen
+        [self.SCPosition setEnabled:NO];
     }
 }
 

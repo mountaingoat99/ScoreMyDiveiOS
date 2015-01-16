@@ -160,7 +160,6 @@
     self.diverRecordID = [coder decodeIntForKey:@"diverId"];
     self.diveTotalID = [coder decodeIntForKey:@"diveTotalId"];
     self.boardSize1ID = [coder decodeDoubleForKey:@"boardSize"];
-    self.meetInfo = [coder decodeObjectForKey:@"meetInfo"];
     self.savedState = [coder decodeBoolForKey:@"savedState"];
     self.noList = [coder decodeBoolForKey:@"noList"];
     self.listStarted = [coder decodeObjectForKey:@"listStarted"];

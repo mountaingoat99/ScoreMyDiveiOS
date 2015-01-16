@@ -68,6 +68,7 @@
 - (IBAction)PositionIndexChanged:(UISegmentedControl *)sender;
 - (IBAction)btnEnterDive:(id)sender;
 - (IBAction)lblOptionsClick:(id)sender;
+- (IBAction)btnBackClick:(id)sender;
 
 // touch events for the dive edits
 - (IBAction)Dive1EditClick:(UILongPressGestureRecognizer *)sender;

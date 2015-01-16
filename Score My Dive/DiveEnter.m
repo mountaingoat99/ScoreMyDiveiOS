@@ -298,13 +298,19 @@
         if ([self.boardSize  isEqual: @1.0] || [self.boardSize  isEqual: @3.0]) {
             
             // when changing a cat show the correct dives in the type picker
-            self.txtDive.text = [[self.diveArray objectAtIndex:0] objectAtIndex:3];
+            NSString *diveText = [[self.diveArray objectAtIndex:0] objectAtIndex:0];
+            diveText = [diveText stringByAppendingString:@" - "];
+            diveText = [diveText stringByAppendingString:[[self.diveArray objectAtIndex:0] objectAtIndex:3]];
+            self.txtDive.text = diveText;
             self.diveID = [[[self.diveArray objectAtIndex:0] objectAtIndex:0] intValue];
             
         } else {
             
             // when changing a cat show the correct dives in the type picker
-            self.txtDive.text = [[self.diveArray objectAtIndex:0] objectAtIndex:4];
+            NSString *diveText = [[self.diveArray objectAtIndex:0] objectAtIndex:0];
+            diveText = [diveText stringByAppendingString:@" - "];
+            diveText = [diveText stringByAppendingString:[[self.diveArray objectAtIndex:0] objectAtIndex:4]];
+            self.txtDive.text = diveText;
             self.diveID = [[[self.diveArray objectAtIndex:0] objectAtIndex:0] intValue];
             
         }
@@ -322,7 +328,10 @@
         if ([self.boardSize  isEqual: @1.0] || [self.boardSize  isEqual: @3.0]) {
         
             // assign the first item in array to text box right away, so user doesn't have to
-            self.txtDive.text = [self.diveArray [row] objectAtIndex:3];
+            NSString *diveText = [self.diveArray [row] objectAtIndex:0];
+            diveText = [diveText stringByAppendingString:@" - "];
+            diveText = [diveText stringByAppendingString:[self.diveArray [row] objectAtIndex:3]];
+            self.txtDive.text = diveText;
             self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
             
             // this will disable dive position choices based on cat, board, and dive type
@@ -331,12 +340,16 @@
             // then this will set the divedod label to the correct dod
             [self GetDiveDOD];
             
-            return [self.diveArray[row]objectAtIndex:3];
+            //return [self.diveArray[row]objectAtIndex:3];
+            return diveText;
             
         } else {
             
             // assign the first item in array to text box right away, so user doesn't have to
-            self.txtDive.text = [self.diveArray [row] objectAtIndex:4];
+            NSString *diveText = [self.diveArray [row] objectAtIndex:0];
+            diveText = [diveText stringByAppendingString:@" - "];
+            diveText = [diveText stringByAppendingString:[self.diveArray [row] objectAtIndex:4]];
+            self.txtDive.text = diveText;
             self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
             
             // this will disable dive position choices based on cat, board, and dive type
@@ -345,7 +358,8 @@
             // then this will set the divedod label to the correct dod
             [self GetDiveDOD];
             
-            return [self.diveArray[row]objectAtIndex:4];
+            //return [self.diveArray[row]objectAtIndex:4];
+            return diveText;
             
         }
     }
@@ -367,13 +381,19 @@
         if ([self.boardSize  isEqual: @1.0] || [self.boardSize  isEqual: @3.0]) {
         
             // when changing a cat show the correct dives in the type picker
-            self.txtDive.text = [[self.diveArray objectAtIndex:0] objectAtIndex:3];
+            NSString *diveText = [self.diveArray [row] objectAtIndex:0];
+            diveText = [diveText stringByAppendingString:@" - "];
+            diveText = [diveText stringByAppendingString:[self.diveArray [row] objectAtIndex:3]];
+            self.txtDive.text = diveText;
             self.diveID = [[[self.diveArray objectAtIndex:0] objectAtIndex:0] intValue];
             
         } else {
             
             // when changing a cat show the correct dives in the type picker
-            self.txtDive.text = [[self.diveArray objectAtIndex:0] objectAtIndex:4];
+            NSString *diveText = [self.diveArray [row] objectAtIndex:0];
+            diveText = [diveText stringByAppendingString:@" - "];
+            diveText = [diveText stringByAppendingString:[self.diveArray [row] objectAtIndex:4]];
+            self.txtDive.text = diveText;
             self.diveID = [[[self.diveArray objectAtIndex:0] objectAtIndex:0] intValue];
             
         }
@@ -382,13 +402,19 @@
         
         if ([self.boardSize  isEqual: @1.0] || [self.boardSize  isEqual: @3.0]) {
         
-            self.txtDive.text = [self.diveArray [row] objectAtIndex:3];
+            NSString *diveText = [self.diveArray [row] objectAtIndex:0];
+            diveText = [diveText stringByAppendingString:@" - "];
+            diveText = [diveText stringByAppendingString:[self.diveArray [row] objectAtIndex:3]];
+            self.txtDive.text = diveText;
             [self.txtDive resignFirstResponder];
             self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
             
         } else {
             
-            self.txtDive.text = [self.diveArray [row] objectAtIndex:4];
+            NSString *diveText = [self.diveArray [row] objectAtIndex:0];
+            diveText = [diveText stringByAppendingString:@" - "];
+            diveText = [diveText stringByAppendingString:[self.diveArray [row] objectAtIndex:4]];
+            self.txtDive.text = diveText;
             [self.txtDive resignFirstResponder];
             self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
             
