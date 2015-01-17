@@ -36,5 +36,6 @@
 
 -(IBAction)saveInfo:(id)sender;
 - (IBAction)JudgesClick:(UISegmentedControl *)sender;
+- (IBAction)btnReturnClick:(id)sender;
 
 @end

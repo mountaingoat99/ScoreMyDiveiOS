@@ -118,7 +118,6 @@
     // don't forget to declare the UIScrollViewDelegate in the .h file
     self.scrollView.delegate = self;
     
-    NSLog(@"DiveListEnter ViewDidLoad");
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -136,7 +135,6 @@
     [self updateButtonText];
     [self DisableDivePositions];
     
-    NSLog(@"DiveListEnter ViewDidAppear");
 }
 
 // restore state because Apple doesn't know how to write a modern OS
@@ -165,42 +163,26 @@
     [super decodeRestorableStateWithCoder:coder];
     
     self.SCPosition.selectedSegmentIndex = [[coder decodeObjectForKey:@"segment"] intValue];
-    NSLog(@"SC Position: %d", self.SCPosition.selectedSegmentIndex);
     self.meetRecordID = [coder decodeIntForKey:@"meetId"];
-    NSLog(@"meetRecordId: %d", self.meetRecordID);
     self.diverRecordID = [coder decodeIntForKey:@"diverId"];
-    NSLog(@"diverRecordId: %d", self.diverRecordID);
     self.meetInfo = [coder decodeObjectForKey:@"meetInfo"];
-    NSLog(@"meetInfo: %d", self.meetInfo.count);
     self.txtDiveGroup.text = [coder decodeObjectForKey:@"diveGroupText"];
-    NSLog(@"txtDiveGroup: %@", self.txtDiveGroup.text);
     if (self.txtDiveGroup.text.length == 0) {
         self.txtDiveGroup.text = @"";
-        NSLog(@"txtDiveGroup: %@", self.txtDiveGroup.text);
     }
     self.diveGroupID = [coder decodeIntForKey:@"diveGroupId"];
-    NSLog(@"diveGroupId: %d", self.diveGroupID);
     self.txtDive.text = [coder decodeObjectForKey:@"diveText"];
-    NSLog(@"txtDive: %@", self.txtDive.text);
     if (self.txtDive.text.length == 0) {
         self.txtDive.text = @"";
-        NSLog(@"txtDive: %@", self.txtDive.text);
     }
     self.diveID = [coder decodeIntForKey:@"diveId"];
-    NSLog(@"diveGroupId: %d", self.diveGroupID);
     self.divePositionID = [coder decodeIntForKey:@"divePos"];
-    NSLog(@"divePosition: %d", self.divePositionID);
     self.diveGroupArray = [coder decodeObjectForKey:@"diveGroupArray"];
-    NSLog(@"diveGroupArray %d", self.diveGroupArray.count);
     self.diveArray = [coder decodeObjectForKey:@"diveArray"];
-    NSLog(@"diveArray %d", self.diveArray.count);
     self.lblDivedd.text = [coder decodeObjectForKey:@"dd"];
-    NSLog(@"diveddText: %@", self.lblDivedd.text);
     
     [self loadDivePicker];
-    
-    NSLog(@"DiveListEnter decode");
-    
+    [self DisableDivePositions];
 }
 
 // stops horitontal scrolling
@@ -229,6 +211,7 @@
         //set the delegate here
         edit.delegate = self;
         
+        edit.meetInfo = self.meetInfo;
         edit.meetRecordID = self.meetRecordID;
         edit.diverRecordID = self.diverRecordID;
         edit.boardSize = self.boardSize;
@@ -397,7 +380,6 @@
         // empty and reload the type picker after a category has been changed
         self.diveArray= nil;
         [self.divePicker reloadAllComponents];
-        NSLog(@"Picker has been erased");
         [self loadDivePicker];
         
         if ([self.boardSize  isEqual: @1.0] || [self.boardSize  isEqual: @3.0]) {

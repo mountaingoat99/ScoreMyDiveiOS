@@ -258,7 +258,8 @@
             [self.delegate editInfoWasFinished];
             
             // pop the view controller
-            [self dismissViewControllerAnimated:YES completion:nil];
+            //[self dismissViewControllerAnimated:YES completion:nil];
+            [self performSegueWithIdentifier:@"idSegueAddMeetToDetails" sender:self];
             
         }
     }
@@ -282,26 +283,35 @@
     }
 }
 
+- (IBAction)btnReturnClick:(id)sender {
+    
+    [self performSegueWithIdentifier:@"idSegueAddMeetToDetails" sender:self];
+}
+
 #pragma private methods
 
 // loads a current record into the text fields
 -(void)loadInfoToEdit {
     
-    // send the id to the class method to get the results array for the text boxes
-    Meet *meet = [[Meet alloc] init];
-    NSArray *meetArray = [meet LoadMeet:self.recordIDToEdit];
-    
-    // set the data to the correct text boxes to edit
-    self.txtMeetName.text = [[meetArray objectAtIndex:0] objectAtIndex:1];
-    self.txtSchool.text = [[meetArray objectAtIndex:0] objectAtIndex:2];
-    self.txtCity.text = [[meetArray objectAtIndex:0] objectAtIndex:3];
-    self.txtState.text = [[meetArray objectAtIndex:0] objectAtIndex:4];
-    self.txtDate.text = [[meetArray objectAtIndex:0] objectAtIndex:5];
-    
-    // update the control
-    [self updateJudgeControls];
-    [self previousScoresCheck];
-    
+    if (self.recordIDToEdit > 0) {
+        
+        // send the id to the class method to get the results array for the text boxes
+        Meet *meet = [[Meet alloc] init];
+        NSArray *meetArray = [meet LoadMeet:self.recordIDToEdit];
+        
+        if (meetArray.count > 0) {
+            // set the data to the correct text boxes to edit
+            self.txtMeetName.text = [[meetArray objectAtIndex:0] objectAtIndex:1];
+            self.txtSchool.text = [[meetArray objectAtIndex:0] objectAtIndex:2];
+            self.txtCity.text = [[meetArray objectAtIndex:0] objectAtIndex:3];
+            self.txtState.text = [[meetArray objectAtIndex:0] objectAtIndex:4];
+            self.txtDate.text = [[meetArray objectAtIndex:0] objectAtIndex:5];
+            
+            // update the control
+            [self updateJudgeControls];
+            [self previousScoresCheck];
+        }
+    }
 }
 
 //updates the dateText field with values from the date picker

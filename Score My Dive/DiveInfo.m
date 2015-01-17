@@ -57,6 +57,7 @@
     [coder encodeInt:self.diverIdToView forKey:@"diverId"];
     [coder encodeInt:self.callingIDToReturnTo forKey:@"CallingId"];
     [coder encodeInt:self.diveNumber forKey:@"diveNumber"];
+    [coder encodeObject:self.boardSize forKey:@"boardSize"];
 }
 
 -(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
@@ -68,12 +69,33 @@
     self.diverIdToView = [coder decodeIntForKey:@"diverId"];
     self.callingIDToReturnTo = [coder decodeIntForKey:@"CallingId"];
     self.diveNumber = [coder decodeIntForKey:@"diveNumber"];
+    self.boardSize = [coder decodeObjectForKey:@"boardSize"];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"idSegueInfoToScores"]) {
+        
+        DiverMeetScores *scores = [segue destinationViewController];
+        
+        scores.callingIDToReturnTo = self.callingIDToReturnTo;
+        scores.meetIdToView = self.meetIdToView;
+        scores.diverIdToView = self.diverIdToView;
+        scores.meetInfo = self.meetInfo;
+        scores.boardSize = self.boardSize;
+    }
 }
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (IBAction)btnReturnClick:(id)sender {
+    
+    [self performSegueWithIdentifier:@"idSegueInfoToScores" sender:self];
 }
 
 #pragma private methods

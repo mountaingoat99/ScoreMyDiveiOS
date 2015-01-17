@@ -174,6 +174,11 @@
     }
 }
 
+- (IBAction)btnReturnClick:(id)sender {
+    
+    [self performSegueWithIdentifier:@"idSegueReportToHome" sender:self];
+}
+
 //keps the user from entering text in the txtfield
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     

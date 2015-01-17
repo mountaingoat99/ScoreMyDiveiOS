@@ -15,6 +15,7 @@
 @property (nonatomic) int diverIdToView;
 @property (nonatomic) int callingIDToReturnTo;
 @property (nonatomic) int diveNumber;
+@property (nonatomic, strong) NSNumber *boardSize;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblDiverName;
 @property (weak, nonatomic) IBOutlet UILabel *lblDiverSchool;
@@ -35,5 +36,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblJudge5Text;
 @property (weak, nonatomic) IBOutlet UILabel *lblJudge6Text;
 @property (weak, nonatomic) IBOutlet UILabel *lblJudge7Text;
+
+- (IBAction)btnReturnClick:(id)sender;
 
 @end

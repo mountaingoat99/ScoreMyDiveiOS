@@ -152,7 +152,8 @@
             
             // pop the view controller
             //[self.navigationController popViewControllerAnimated:YES];
-            [self dismissViewControllerAnimated:YES completion:nil];
+            //[self dismissViewControllerAnimated:YES completion:nil];
+            [self performSegueWithIdentifier:@"idSegueDiveEnterToDetail" sender:self];
             
          } else {
             //TODO: figure out something to do
@@ -160,21 +161,30 @@
     }
 }
 
+- (IBAction)btnReturnClick:(id)sender {
+    
+    [self performSegueWithIdentifier:@"idSegueDiveEnterToDetail" sender:self];
+}
+
 #pragma private methods
 
 // loads a current record into the text fields
 -(void)loadInfoToEdit {
     
-    // send the id to the class method to get the results array for the text boxes
-    Diver *diver = [[Diver alloc] init];
-    NSArray *diverArray = [diver LoadDiver:self.recordIDToEdit];
-    
-    // set the data to the correct text boxes to edit
-    self.txtName.text = [[diverArray objectAtIndex:0] objectAtIndex:1];
-    self.txtAge.text = [[diverArray objectAtIndex:0] objectAtIndex:2];
-    self.txtGrade.text = [[diverArray objectAtIndex:0] objectAtIndex:3];
-    self.txtSchool.text = [[diverArray objectAtIndex:0] objectAtIndex:4];
-    
+    if (self.recordIDToEdit > 0) {
+        
+        // send the id to the class method to get the results array for the text boxes
+        Diver *diver = [[Diver alloc] init];
+        NSArray *diverArray = [diver LoadDiver:self.recordIDToEdit];
+        
+        if (diverArray.count > 0) {
+            // set the data to the correct text boxes to edit
+            self.txtName.text = [[diverArray objectAtIndex:0] objectAtIndex:1];
+            self.txtAge.text = [[diverArray objectAtIndex:0] objectAtIndex:2];
+            self.txtGrade.text = [[diverArray objectAtIndex:0] objectAtIndex:3];
+            self.txtSchool.text = [[diverArray objectAtIndex:0] objectAtIndex:4];
+        }
+    }
 }
 
 @end

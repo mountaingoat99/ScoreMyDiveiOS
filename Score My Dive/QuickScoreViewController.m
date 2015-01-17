@@ -54,7 +54,8 @@
 }
 
 -(IBAction)returnClick:(id)sender{
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self performSegueWithIdentifier:@"idSegueQuickToHome" sender:self];
 }
 
 
@@ -122,11 +123,15 @@
 
 // now make this veiwcontroller class the delegate of the QuickScoreEdit ViewController
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    QuickScoreEdit *quickScoreEdit = [segue destinationViewController];
-    quickScoreEdit.delegate = self;
     
-    // sends the id to the QuickScoreEdit View Controller
-    quickScoreEdit.recordIDToEdit = self.recordIDToEdit;
+    if ([segue.identifier isEqualToString:@"idSegueEditInfo"]) {
+        
+        QuickScoreEdit *quickScoreEdit = [segue destinationViewController];
+        quickScoreEdit.delegate = self;
+        
+        // sends the id to the QuickScoreEdit View Controller
+        quickScoreEdit.recordIDToEdit = self.recordIDToEdit;
+    }
 }
 
 // delegate method to update info after the edit info is popped off

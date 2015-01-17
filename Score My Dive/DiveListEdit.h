@@ -24,6 +24,7 @@
 @property (nonatomic, strong) NSNumber *boardSize;
 @property (nonatomic, strong) NSNumber *diveNumber;
 @property (nonatomic, strong) NSString *oldDiveName;
+@property (nonatomic, strong) NSArray *meetInfo;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblDiveNumber;
 @property (weak, nonatomic) IBOutlet UITextField *txtDiveGroup;
@@ -35,5 +36,6 @@
 
 - (IBAction)PositionIndexChanged:(UISegmentedControl *)sender;
 - (IBAction)btnEnterDive:(id)sender;
+- (IBAction)btnReturnClick:(id)sender;
 
 @end

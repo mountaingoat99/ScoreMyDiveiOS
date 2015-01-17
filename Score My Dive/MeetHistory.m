@@ -188,6 +188,13 @@
     return cell;
 }
 
+
+- (IBAction)btnReturnClick:(id)sender {
+
+    [self performSegueWithIdentifier:@"idSegueMeetHistoryToDetail" sender:self];
+    
+}
+
 #pragma  private methods
 
 -(void)loadData{

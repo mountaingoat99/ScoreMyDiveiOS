@@ -226,10 +226,17 @@
         
         // pop the view controller
         //[self.navigationController popViewControllerAnimated:YES];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        //[self dismissViewControllerAnimated:YES completion:nil];
+        [self performSegueWithIdentifier:@"idSegueEditToQuick" sender:self];
+        
     } else {
         //TODO: not sure if I should do some error handling here
     }
+}
+
+- (IBAction)btnReturnClick:(id)sender {
+    
+    [self performSegueWithIdentifier:@"idSegueEditToQuick" sender:self];
 }
 
 - (IBAction)diveOneClick:(id)sender {

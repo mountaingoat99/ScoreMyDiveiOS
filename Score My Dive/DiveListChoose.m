@@ -18,6 +18,7 @@
 #import "JudgeScores.h"
 #import "DiveListScore.h"
 #import "DiveListFinalScore.h"
+#import "DiveListEnter.h"
 
 @interface DiveListChoose ()
 
@@ -49,18 +50,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self hideInitialControls];
-    
-    // lets grab all the meet info first
-    [self GetCollectionofMeetInfo];
-    [self getTheDiveTotal];
-    [self loadPicker];
-    [self makePicker];
-    [self fillText];
-    [self fillType];
-    [self fillDiveInfo];
-    [self checkFinishedScoring];
-    
     // attributes for controls
     self.txtDiveNumber.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtDiveNumber.layer.shadowOffset = CGSizeMake(.1f, .1f);
@@ -84,6 +73,38 @@
     // don't forget to declare the UIScrollViewDelegate in the .h file
     self.scrollView.delegate = self;
     
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self hideInitialControls];
+    [self GetCollectionofMeetInfo];
+    [self getTheDiveTotal];
+    [self loadPicker];
+    [self makePicker];
+    [self fillText];
+    [self fillType];
+    [self fillDiveInfo];
+    [self checkFinishedScoring];
+}
+
+-(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
+    [super encodeRestorableStateWithCoder:coder];
+    
+    [coder encodeInt:self.meetRecordID forKey:@"meetId"];
+    [coder encodeInt:self.diverRecordID forKey:@"diverId"];
+    [coder encodeObject:self.meetInfo forKey:@"meetInfo"];
+    [coder encodeBool:self.listOrNot forKey:@"listOrNot"];
+}
+
+-(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    [super decodeRestorableStateWithCoder:coder];
+    
+    self.meetRecordID = [coder decodeIntForKey:@"meetId"];
+    self.diverRecordID = [coder decodeIntForKey:@"diverId"];
+    self.meetInfo = [coder decodeObjectForKey:@"meetInfo"];
+    self.listOrNot = [coder decodeBoolForKey:@"listOrNot"];
 }
 
 // stops horitontal scrolling
@@ -139,6 +160,16 @@
         score.diveNumber = [self.DiveNumber intValue];
         score.meetInfo = self.meetInfo;
         
+    }
+    
+    // return back to the Choose Dive List
+    if ([segue.identifier isEqualToString:@"idSegueChooseToList"]) {
+        
+        DiveListEnter *enter = [segue destinationViewController];
+        
+        enter.meetInfo = self.meetInfo;
+        enter.meetRecordID = self.meetRecordID;
+        enter.diverRecordID = self.diverRecordID;
     }
 }
 
@@ -249,6 +280,11 @@
         [error show];
         [error reloadInputViews];
     }
+}
+
+- (IBAction)btnReturnClick:(id)sender {
+    
+    [self performSegueWithIdentifier:@"idSegueChooseToList" sender:self];
 }
 
 #pragma private methods

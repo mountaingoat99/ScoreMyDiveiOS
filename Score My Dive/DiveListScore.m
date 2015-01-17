@@ -131,10 +131,73 @@
     self.btnTotal.layer.masksToBounds = NO;
     self.btnTotal.layer.shadowOpacity = .7;
     
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
     [self whatJudgeTotal];
     [self HideControls];
     [self DiveText];
     
+}
+
+// restore state because Apple doesn't know how to write a modern OS
+-(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
+    [super encodeRestorableStateWithCoder:coder];
+    
+    [coder encodeInt:self.meetRecordID forKey:@"meetId"];
+    [coder encodeInt:self.diverRecordID forKey:@"diverId"];
+    [coder encodeInt:self.diveNumber forKey:@"diveNumber"];
+    [coder encodeObject:self.meetInfo forKey:@"meetInfo"];
+    [coder encodeBool:self.listOrNot forKey:@"listOrNot"];
+    [coder encodeObject:self.diveCategory forKey:@"diveCat"];
+    [coder encodeObject:self.divePosition forKey:@"divePos"];
+    [coder encodeObject:self.diveNameForDB forKey:@"diveNameDB"];
+    [coder encodeObject:self.multiplierToSend forKey:@"multiplier"];
+    
+    if (self.txt1.text.length > 0) {
+        [coder encodeObject:self.txt1.text forKey:@"text1"];
+    }
+    if (self.txt2.text.length > 0) {
+        [coder encodeObject:self.txt2.text forKey:@"text2"];
+    }
+    if (self.txt3.text.length > 0) {
+        [coder encodeObject:self.txt3.text forKey:@"text3"];
+    }
+    if (self.txt4.text.length > 0) {
+        [coder encodeObject:self.txt4.text forKey:@"text4"];
+    }
+    if (self.txt5.text.length > 0) {
+        [coder encodeObject:self.txt5.text forKey:@"text5"];
+    }
+    if (self.txt6.text.length > 0) {
+        [coder encodeObject:self.txt6.text forKey:@"text6"];
+    }
+    if (self.txt7.text.length > 0) {
+        [coder encodeObject:self.txt7.text forKey:@"text7"];
+    }
+}
+
+-(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    [super decodeRestorableStateWithCoder:coder];
+    
+    self.meetRecordID = [coder decodeIntForKey:@"meetId"];
+    self.diverRecordID = [coder decodeIntForKey:@"diverId"];
+    self.diveNumber = [coder decodeIntForKey:@"diveNumber"];
+    self.meetInfo = [coder decodeObjectForKey:@"meetInfo"];
+    self.listOrNot = [coder decodeBoolForKey:@"listOrNot"];
+    self.diveCategory = [coder decodeObjectForKey:@"diveCat"];
+    self.divePosition = [coder decodeObjectForKey:@"divePos"];
+    self.diveNameForDB = [coder decodeObjectForKey:@"diveNameDB"];
+    self.multiplierToSend = [coder decodeObjectForKey:@"multiplier"];
+    self.txt1.text = [coder decodeObjectForKey:@"text1"];
+    self.txt2.text = [coder decodeObjectForKey:@"text2"];
+    self.txt3.text = [coder decodeObjectForKey:@"text3"];
+    self.txt4.text = [coder decodeObjectForKey:@"text4"];
+    self.txt5.text = [coder decodeObjectForKey:@"text5"];
+    self.txt6.text = [coder decodeObjectForKey:@"text6"];
+    self.txt7.text = [coder decodeObjectForKey:@"text7"];
 }
 
 - (void)didReceiveMemoryWarning {

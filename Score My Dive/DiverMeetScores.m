@@ -184,6 +184,7 @@
         info.diverIdToView = self.diverIdToView;
         info.diveNumber = self.diveNumber;
         info.meetInfo = self.meetInfo;
+        info.boardSize = self.boardSize;
     }
     
     if ([segue.identifier isEqualToString:@"idSegueScoresToMeetHistory"]) {

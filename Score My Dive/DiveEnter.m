@@ -18,6 +18,7 @@
 #import "DiveListFinalScore.h"
 #import "Results.h"
 #import "MeetCollection.h"
+#import "ChooseDiver.h"
 
 @interface DiveEnter ()
 
@@ -71,18 +72,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self LoadMeetCollection];
-    [self getTheDiveTotal];
-    [self hideInitialControls];
-    [self fillDiveNumber];
-    [self fillText];
-    [self DiverBoardSize];
-    [self loadGroupPicker];
-    [self makeGroupPicker];
-    [self makeDivePicker];
-    [self fillDiveInfo];
-    [self checkFinishedScoring];
     
     // attributes for controls
     self.txtDiveGroup.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -140,6 +129,67 @@
     // sets up the following delegate method to disable horizontal scrolling
     // don't forget to declare the UIScrollViewDelegate in the .h file
     self.scrollView.delegate = self;
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self LoadMeetCollection];
+    [self getTheDiveTotal];
+    [self hideInitialControls];
+    [self fillDiveNumber];
+    [self fillText];
+    [self DiverBoardSize];
+    [self loadGroupPicker];
+    [self makeGroupPicker];
+    [self makeDivePicker];
+    [self fillDiveInfo];
+    [self checkFinishedScoring];
+}
+
+// restore state because Apple doesn't know how to write a modern OS
+-(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
+    [super encodeRestorableStateWithCoder:coder];
+    
+    NSNumber *segment = [NSNumber numberWithInt:self.SCPosition.selectedSegmentIndex];
+    [coder encodeObject:segment forKey:@"segment"];
+    [coder encodeInt:self.meetRecordID forKey:@"meetId"];
+    [coder encodeInt:self.diverRecordID forKey:@"diverId"];
+    [coder encodeObject:self.meetInfo forKey:@"meetInfo"];
+    [coder encodeObject:self.txtDiveGroup.text forKey:@"diveGroupText"];
+    [coder encodeInt:self.diveGroupID forKey:@"diveGroupId"];
+    [coder encodeObject:self.txtDive.text forKey:@"diveText"];
+    [coder encodeInt:self.diveID forKey:@"diveId"];
+    [coder encodeInt:self.divePositionID forKey:@"divePos"];
+    [coder encodeObject:self.diveGroupArray forKey:@"diveGroupArray"];
+    [coder encodeObject:self.diveArray forKey:@"diveArray"];
+    [coder encodeObject:self.lblDivedd.text forKey:@"dd"];
+}
+
+-(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    [super decodeRestorableStateWithCoder:coder];
+    
+    self.SCPosition.selectedSegmentIndex = [[coder decodeObjectForKey:@"segment"] intValue];
+    self.meetRecordID = [coder decodeIntForKey:@"meetId"];
+    self.diverRecordID = [coder decodeIntForKey:@"diverId"];
+    self.meetInfo = [coder decodeObjectForKey:@"meetInfo"];
+    self.txtDiveGroup.text = [coder decodeObjectForKey:@"diveGroupText"];
+    if (self.txtDiveGroup.text.length == 0) {
+        self.txtDiveGroup.text = @"";
+    }
+    self.diveGroupID = [coder decodeIntForKey:@"diveGroupId"];
+    self.txtDive.text = [coder decodeObjectForKey:@"diveText"];
+    if (self.txtDive.text.length == 0) {
+        self.txtDive.text = @"";
+    }
+    self.diveID = [coder decodeIntForKey:@"diveId"];
+    self.divePositionID = [coder decodeIntForKey:@"divePos"];
+    self.diveGroupArray = [coder decodeObjectForKey:@"diveGroupArray"];
+    self.diveArray = [coder decodeObjectForKey:@"diveArray"];
+    self.lblDivedd.text = [coder decodeObjectForKey:@"dd"];
+    
+    [self loadDivePicker];
+    [self DisableDivePositions];
 }
 
 // stops horitontal scrolling
@@ -228,6 +278,12 @@
         score.diverRecordID = self.diverRecordID;
         score.diveNumber = [self.onDiveNumber intValue];  //TODO: we need to make sure this is correct?
         score.meetInfo = self.meetInfo;
+    }
+    
+    if([segue.identifier isEqualToString:@"idSegueEnterToChooseDiver"]) {
+        
+        ChooseDiver *choose = [segue destinationViewController];
+        choose.meetRecordID = self.meetRecordID;
     }
 }
 
@@ -504,6 +560,11 @@
                                           otherButtonTitles:nil];
     [error show];
     [error reloadInputViews];
+}
+
+- (IBAction)btnReturnClick:(id)sender {
+    
+    [self performSegueWithIdentifier:@"idSegueEnterToChooseDiver" sender:self];
 }
 
 - (IBAction)Dive1EditClick:(UILongPressGestureRecognizer *)sender {
@@ -1233,40 +1294,44 @@
 
 -(void)DisableDivePositions {
     
-    NSArray *dods = [[NSArray alloc] init];
-    
-    // lets get the valid dods based on group, type and board size
-    DiveTypes *types = [[DiveTypes alloc] init];
-    dods = [types GetAllDiveDODs:self.diveGroupID DiveTypeId:self.diveID BoardType:self.boardSize];
-    
-    // now put those into a NSNumber variable
-    self.straight = [[dods objectAtIndex:0] objectAtIndex:0];
-    self.pike = [[dods objectAtIndex:0] objectAtIndex:1];
-    self.tuck = [[dods objectAtIndex:0] objectAtIndex:2];
-    self.free = [[dods objectAtIndex:0] objectAtIndex:3];
-    
-    if ([self.straight isEqualToString:@"0.0"]) {
-        [self.SCPosition setEnabled:NO forSegmentAtIndex:0];
-    } else {
-        [self.SCPosition setEnabled:YES forSegmentAtIndex:0];
-    }
-    
-    if ([self.pike isEqualToString:@"0.0"]) {
-        [self.SCPosition setEnabled:NO forSegmentAtIndex:1];
-    } else {
-        [self.SCPosition setEnabled:YES forSegmentAtIndex:1];
-    }
-    
-    if ([self.tuck isEqualToString:@"0.0"]) {
-        [self.SCPosition setEnabled:NO forSegmentAtIndex:2];
-    } else {
-        [self.SCPosition setEnabled:YES forSegmentAtIndex:2];
-    }
-    
-    if ([self.free isEqualToString:@"0.0"]) {
-        [self.SCPosition setEnabled:NO forSegmentAtIndex:3];
-    } else {
-        [self.SCPosition setEnabled:YES forSegmentAtIndex:3];
+    // lets do some error checking here first
+    if (self.diveGroupID > 0 && self.diveID > 0) {
+        
+        NSArray *dods = [[NSArray alloc] init];
+        
+        // lets get the valid dods based on group, type and board size
+        DiveTypes *types = [[DiveTypes alloc] init];
+        dods = [types GetAllDiveDODs:self.diveGroupID DiveTypeId:self.diveID BoardType:self.boardSize];
+        
+        // now put those into a NSNumber variable
+        self.straight = [[dods objectAtIndex:0] objectAtIndex:0];
+        self.pike = [[dods objectAtIndex:0] objectAtIndex:1];
+        self.tuck = [[dods objectAtIndex:0] objectAtIndex:2];
+        self.free = [[dods objectAtIndex:0] objectAtIndex:3];
+        
+        if ([self.straight isEqualToString:@"0.0"]) {
+            [self.SCPosition setEnabled:NO forSegmentAtIndex:0];
+        } else {
+            [self.SCPosition setEnabled:YES forSegmentAtIndex:0];
+        }
+        
+        if ([self.pike isEqualToString:@"0.0"]) {
+            [self.SCPosition setEnabled:NO forSegmentAtIndex:1];
+        } else {
+            [self.SCPosition setEnabled:YES forSegmentAtIndex:1];
+        }
+        
+        if ([self.tuck isEqualToString:@"0.0"]) {
+            [self.SCPosition setEnabled:NO forSegmentAtIndex:2];
+        } else {
+            [self.SCPosition setEnabled:YES forSegmentAtIndex:2];
+        }
+        
+        if ([self.free isEqualToString:@"0.0"]) {
+            [self.SCPosition setEnabled:NO forSegmentAtIndex:3];
+        } else {
+            [self.SCPosition setEnabled:YES forSegmentAtIndex:3];
+        }
     }
 }
 

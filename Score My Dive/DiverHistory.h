@@ -17,5 +17,7 @@
 @property (nonatomic, strong) NSArray *diverInfo;
 
 @property (weak, nonatomic) IBOutlet UITableView *tblHistory;
+- (IBAction)btnReturnClick:(id)sender;
+
 
 @end

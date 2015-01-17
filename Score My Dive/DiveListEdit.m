@@ -10,12 +10,14 @@
 #import "JudgeScores.h"
 #import "DiveTypes.h"
 #import "DiveCategory.h"
+#import "DiveListEnter.h"
 
 @interface DiveListEdit ()
 
 @property (nonatomic) int diveGroupID;
 @property (nonatomic) int diveID;
 @property (nonatomic) int divePositionID;
+@property (nonatomic) BOOL noWarning;
 
 @property (nonatomic, strong) NSArray *diveGroupArray;
 @property (nonatomic, strong) NSArray *diveArray;
@@ -47,13 +49,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self fillText];
-    [self fillDiveNumber];
-    [self loadGroupPicker];
-    [self makeGroupPicker];
-    [self makeDivePicker];
-    [self showFirstWarning];
     
     // attributes for controls
     self.txtDiveGroup.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -98,14 +93,91 @@
         [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributesiPad forState:UIControlStateNormal];
         [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributesiPad forState:UIControlStateHighlighted];
         [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributesiPad forState:UIControlStateSelected];
-        
     }
+}
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self fillText];
+    [self fillDiveNumber];
+    [self loadGroupPicker];
+    [self makeGroupPicker];
+    [self makeDivePicker];
+    [self showFirstWarning];
+}
+
+// restore state because Apple doesn't know how to write a modern OS
+-(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+    [super encodeRestorableStateWithCoder:coder];
+    
+    NSNumber *segment = [NSNumber numberWithInt:self.SCPosition.selectedSegmentIndex];
+    [coder encodeObject:segment forKey:@"segment"];
+    [coder encodeObject:self.meetInfo forKey:@"meetInfo"];
+    [coder encodeInt:self.meetRecordID forKey:@"meetId"];
+    [coder encodeInt:self.diverRecordID forKey:@"diverId"];
+    [coder encodeObject:self.boardSize forKey:@"boardSize"];
+    [coder encodeObject:self.diveNumber forKey:@"diveNumber"];
+    [coder encodeObject:self.oldDiveName forKey:@"oldDiveName"];
+    [coder encodeObject:self.txtDiveGroup.text forKey:@"diveGroupText"];
+    [coder encodeInt:self.diveGroupID forKey:@"diveGroupId"];
+    [coder encodeObject:self.txtDive.text forKey:@"diveText"];
+    [coder encodeInt:self.diveID forKey:@"diveId"];
+    [coder encodeInt:self.divePositionID forKey:@"divePos"];
+    [coder encodeObject:self.diveGroupArray forKey:@"diveGroupArray"];
+    [coder encodeObject:self.diveArray forKey:@"diveArray"];
+    [coder encodeObject:self.lblDivedd.text forKey:@"dd"];
+    self.noWarning = YES;
+    [coder encodeBool:self.noWarning forKey:@"warning"];
+    
+}
+
+-(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+    [super decodeRestorableStateWithCoder:coder];
+    
+    self.SCPosition.selectedSegmentIndex = [[coder decodeObjectForKey:@"segment"] intValue];
+    self.meetInfo = [coder decodeObjectForKey:@"meetInfo"];
+    self.meetRecordID = [coder decodeIntForKey:@"meetId"];
+    self.diverRecordID = [coder decodeIntForKey:@"diverId"];
+    self.boardSize = [coder decodeObjectForKey:@"boardSize"];
+    self.diveNumber = [coder decodeObjectForKey:@"diveNumber"];
+    self.oldDiveName = [coder decodeObjectForKey:@"oldDiveName"];
+    self.txtDiveGroup.text = [coder decodeObjectForKey:@"diveGroupText"];
+    if (self.txtDiveGroup.text.length == 0) {
+        self.txtDiveGroup.text = @"";
+    }
+    self.diveGroupID = [coder decodeIntForKey:@"diveGroupId"];
+    self.txtDive.text = [coder decodeObjectForKey:@"diveText"];
+    if (self.txtDive.text.length == 0) {
+        self.txtDive.text = @"";
+    }
+    self.diveID = [coder decodeIntForKey:@"diveId"];
+    self.divePositionID = [coder decodeIntForKey:@"divePos"];
+    self.diveGroupArray = [coder decodeObjectForKey:@"diveGroupArray"];
+    self.diveArray = [coder decodeObjectForKey:@"diveArray"];
+    self.lblDivedd.text = [coder decodeObjectForKey:@"dd"];
+    self.noWarning = [coder decodeBoolForKey:@"warning"];
+    
+    [self loadDivePicker];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"idEditListToEnterList"]) {
+        
+        DiveListEnter *enter = [segue destinationViewController];
+        
+        enter.meetInfo = self.meetInfo;
+        enter.meetRecordID = self.meetRecordID;
+        enter.diverRecordID = self.diverRecordID;
+    }
 }
 
 // hide the PickerView on outside touch
@@ -165,9 +237,26 @@
         self.diveGroupID = [[self.diveGroupArray [row] objectAtIndex:0] intValue];
         
         [self loadDivePicker];
-        // when changing a cat show the correct dives in the type picker
-        self.txtDive.text = [[self.diveArray objectAtIndex:0] objectAtIndex:3];
-        self.diveID = [[[self.diveArray objectAtIndex:0] objectAtIndex:0] intValue];
+        
+        if ([self.boardSize  isEqual: @1.0] || [self.boardSize  isEqual: @3.0]) {
+            
+            // when changing a cat show the correct dives in the type picker
+            NSString *diveText = [[self.diveArray objectAtIndex:0] objectAtIndex:0];
+            diveText = [diveText stringByAppendingString:@" - "];
+            diveText = [diveText stringByAppendingString:[[self.diveArray objectAtIndex:0] objectAtIndex:3]];
+            self.txtDive.text = diveText;
+            self.diveID = [[[self.diveArray objectAtIndex:0] objectAtIndex:0] intValue];
+            
+        } else {
+            
+            // when changing a cat show the correct dives in the type picker
+            NSString *diveText = [[self.diveArray objectAtIndex:0] objectAtIndex:0];
+            diveText = [diveText stringByAppendingString:@" - "];
+            diveText = [diveText stringByAppendingString:[[self.diveArray objectAtIndex:0] objectAtIndex:4]];
+            self.txtDive.text = diveText;
+            self.diveID = [[[self.diveArray objectAtIndex:0] objectAtIndex:0] intValue];
+            
+        }
         
         // this will disable dive position choices based on cat, board, and dive type
         [self DisableDivePositions];
@@ -179,17 +268,42 @@
         
     } else {
         
-        // assign the first item in array to text box right away, so user doesn't have to
-        self.txtDive.text = [self.diveArray [row] objectAtIndex:3];
-        self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
+        if ([self.boardSize  isEqual: @1.0] || [self.boardSize  isEqual: @3.0]) {
         
-        // this will disable dive position choices based on cat, board, and dive type
-        [self DisableDivePositions];
-        
-        // then this will set the divedod label to the correct dod
-        [self GetDiveDOD];
-        
-        return [self.diveArray[row]objectAtIndex:3];
+            // assign the first item in array to text box right away, so user doesn't have to
+            NSString *diveText = [self.diveArray [row] objectAtIndex:0];
+            diveText = [diveText stringByAppendingString:@" - "];
+            diveText = [diveText stringByAppendingString:[self.diveArray [row] objectAtIndex:3]];
+            self.txtDive.text = diveText;
+            self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
+            
+            // this will disable dive position choices based on cat, board, and dive type
+            [self DisableDivePositions];
+            
+            // then this will set the divedod label to the correct dod
+            [self GetDiveDOD];
+            
+            return diveText;
+            
+        } else {
+            
+            // assign the first item in array to text box right away, so user doesn't have to
+            NSString *diveText = [self.diveArray [row] objectAtIndex:0];
+            diveText = [diveText stringByAppendingString:@" - "];
+            diveText = [diveText stringByAppendingString:[self.diveArray [row] objectAtIndex:4]];
+            self.txtDive.text = diveText;
+            self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
+            
+            // this will disable dive position choices based on cat, board, and dive type
+            [self DisableDivePositions];
+            
+            // then this will set the divedod label to the correct dod
+            [self GetDiveDOD];
+            
+            //return [self.diveArray[row]objectAtIndex:4];
+            return diveText;
+            
+        }
     }
 }
 
@@ -201,18 +315,53 @@
         [self.txtDiveGroup resignFirstResponder];
         self.diveGroupID = [[self.diveGroupArray [row] objectAtIndex:0] intValue];
         
-        // reload the type picker after a category has been changed
+        // empty and reload the type picker after a category has been changed
+        self.diveArray= nil;
+        [self.divePicker reloadAllComponents];
         [self loadDivePicker];
         
-        // when changing a cat show the correct dives in the type picker
-        self.txtDive.text = [[self.diveArray objectAtIndex:0] objectAtIndex:3];
-        self.diveID = [[[self.diveArray objectAtIndex:0] objectAtIndex:0] intValue];
+        if ([self.boardSize  isEqual: @1.0] || [self.boardSize  isEqual: @3.0]) {
+        
+            // when changing a cat show the correct dives in the type picker
+            NSString *diveText = [self.diveArray [row] objectAtIndex:0];
+            diveText = [diveText stringByAppendingString:@" - "];
+            diveText = [diveText stringByAppendingString:[self.diveArray [row] objectAtIndex:3]];
+            self.txtDive.text = diveText;
+            self.diveID = [[[self.diveArray objectAtIndex:0] objectAtIndex:0] intValue];
+            
+        } else {
+            
+            // when changing a cat show the correct dives in the type picker
+            NSString *diveText = [self.diveArray [row] objectAtIndex:0];
+            diveText = [diveText stringByAppendingString:@" - "];
+            diveText = [diveText stringByAppendingString:[self.diveArray [row] objectAtIndex:4]];
+            self.txtDive.text = diveText;
+            self.diveID = [[[self.diveArray objectAtIndex:0] objectAtIndex:0] intValue];
+            
+        }
         
     } else {
         
-        self.txtDive.text = [self.diveArray [row] objectAtIndex:3];
-        [self.txtDive resignFirstResponder];
-        self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
+        if ([self.boardSize  isEqual: @1.0] || [self.boardSize  isEqual: @3.0]) {
+        
+            NSString *diveText = [self.diveArray [row] objectAtIndex:0];
+            diveText = [diveText stringByAppendingString:@" - "];
+            diveText = [diveText stringByAppendingString:[self.diveArray [row] objectAtIndex:3]];
+            self.txtDive.text = diveText;
+            [self.txtDive resignFirstResponder];
+            self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
+            
+        } else {
+            
+            // lets add the dive number to the dive name
+            NSString *diveText = [self.diveArray [row] objectAtIndex:0];
+            diveText = [diveText stringByAppendingString:@" - "];
+            diveText = [diveText stringByAppendingString:[self.diveArray [row] objectAtIndex:4]];
+            self.txtDive.text = diveText;
+            [self.txtDive resignFirstResponder];
+            self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
+            
+        }
         
     }
     
@@ -255,7 +404,9 @@
         
         [self.delegate editDiveListWasFinished];
         
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self performSegueWithIdentifier:@"idEditListToEnterList" sender:self];
+        
+        //[self dismissViewControllerAnimated:YES completion:nil];
         
     } else {
         UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
@@ -268,18 +419,25 @@
     }
 }
 
+- (IBAction)btnReturnClick:(id)sender {
+    
+    [self performSegueWithIdentifier:@"idEditListToEnterList" sender:self];
+}
+
 #pragma private methods
 
 -(void)showFirstWarning {
     
-    UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Heads up!"
-                                                    message:@"If you edit a dive that already has a score, you will want to update the dive score in the \"Score Meet\" Screen."
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [error show];
-    [error reloadInputViews];
-    
+    if (!self.noWarning) {
+        
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Heads up!"
+                                                        message:@"If you edit a dive that already has a score, you will want to update the dive score in the \"Score Meet\" Screen."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
+    }
 }
 
 -(void)UpdateJudgeScores {

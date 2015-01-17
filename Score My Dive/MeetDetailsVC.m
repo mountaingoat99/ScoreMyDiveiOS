@@ -78,7 +78,7 @@
 
 // handles the return click
 -(IBAction)returnClick:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self performSegueWithIdentifier:@"idMeetDetailToHome" sender:self];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -16,6 +16,7 @@
 
 // send reports
 - (IBAction)sendClick:(id)sender;
+- (IBAction)btnReturnClick:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITextField *txtxChooseDiver;
 @property (weak, nonatomic) IBOutlet UITextField *txtChooseMeet;

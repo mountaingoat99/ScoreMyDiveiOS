@@ -48,8 +48,46 @@
     self.btnTotal.layer.shadowOffset = CGSizeMake(.1f, .1f);
     self.btnTotal.layer.masksToBounds = NO;
     self.btnTotal.layer.shadowOpacity = .7;
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     [self DiveText];
+}
+
+// restore state because Apple doesn't know how to write a modern OS
+-(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
+    [super encodeRestorableStateWithCoder:coder];
+    
+    [coder encodeInt:self.meetRecordID forKey:@"meetId"];
+    [coder encodeInt:self.diverRecordID forKey:@"diverId"];
+    [coder encodeInt:self.diveNumber forKey:@"diveNumber"];
+    [coder encodeObject:self.meetInfo forKey:@"meetInfo"];
+    [coder encodeBool:self.listOrNot forKey:@"listOrNot"];
+    [coder encodeObject:self.diveCategory forKey:@"diveCat"];
+    [coder encodeObject:self.divePosition forKey:@"divePos"];
+    [coder encodeObject:self.diveNameForDB forKey:@"diveNameDB"];
+    [coder encodeObject:self.multiplierToSend forKey:@"multiplier"];
+    
+    if (self.txtTotalScore.text.length > 0) {
+        [coder encodeObject:self.txtTotalScore.text forKey:@"total"];
+    }
+}
+
+-(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    [super decodeRestorableStateWithCoder:coder];
+    
+    self.meetRecordID = [coder decodeIntForKey:@"meetId"];
+    self.diverRecordID = [coder decodeIntForKey:@"diverId"];
+    self.diveNumber = [coder decodeIntForKey:@"diveNumber"];
+    self.meetInfo = [coder decodeObjectForKey:@"meetInfo"];
+    self.listOrNot = [coder decodeBoolForKey:@"listOrNot"];
+    self.diveCategory = [coder decodeObjectForKey:@"diveCat"];
+    self.divePosition = [coder decodeObjectForKey:@"divePos"];
+    self.diveNameForDB = [coder decodeObjectForKey:@"diveNameDB"];
+    self.multiplierToSend = [coder decodeObjectForKey:@"multiplier"];
+    self.txtTotalScore.text = [coder decodeObjectForKey:@"total"];
     
 }
 

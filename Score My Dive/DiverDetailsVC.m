@@ -76,7 +76,8 @@
 
 // handles the return click
 -(IBAction)returnClick:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self performSegueWithIdentifier:@"idDiverDetailToHome" sender:self];
 }
 
 - (void)didReceiveMemoryWarning {

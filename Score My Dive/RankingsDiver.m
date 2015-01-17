@@ -12,6 +12,7 @@
 #import "MeetCollection.h"
 #import "DiveNumber.h"
 #import "DiverMeetScores.h"
+#import "RankingsMeet.h"
 
 @interface RankingsDiver ()
 
@@ -185,6 +186,13 @@
     cell.detailTextLabel.text = points;
     
     return cell;
+}
+
+
+- (IBAction)btnReturnClick:(id)sender {
+    
+    [self performSegueWithIdentifier:@"idSegueDiveRankToMeetRank" sender:self];
+    
 }
 
 #pragma Private Methods

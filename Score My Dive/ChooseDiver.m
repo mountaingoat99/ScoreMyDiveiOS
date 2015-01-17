@@ -430,6 +430,11 @@
     
 }
 
+- (IBAction)btnReturnClick:(id)sender {
+    
+    [self performSegueWithIdentifier:@"idSegueDiverToMeetChoose" sender:self];
+}
+
 #pragma private methods
 
 -(void)loadSpinnerData {

@@ -51,5 +51,6 @@
 
 - (IBAction)btnEnterScoreClick:(id)sender;
 - (IBAction)btnEnterTotalScoreClick:(id)sender;
+- (IBAction)btnReturnClick:(id)sender;
 
 @end
