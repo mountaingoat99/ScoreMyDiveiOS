@@ -18,6 +18,7 @@
 #import "DiveListEdit.h"
 #import "DiveListChoose.h"
 #import "DiveList.h"
+#import "ChooseDiver.h"
 
 @interface DiveListEnter ()
 
@@ -155,18 +156,6 @@
     [coder encodeInt:self.divePositionID forKey:@"divePos"];
     [coder encodeObject:self.diveGroupArray forKey:@"diveGroupArray"];
     [coder encodeObject:self.diveArray forKey:@"diveArray"];
-    [coder encodeObject:self.onDiveNumber forKey:@"onDiveNumber"];
-    [coder encodeInt:self.maxDiveNumber forKey:@"maxDiveNumber"];
-    [coder encodeObject:self.editDiveNumber forKey:@"editDiveNumber"];
-    [coder encodeObject:self.boardSize forKey:@"boardSize"];
-    [coder encodeObject:self.multiplier forKey:@"multiplier"];
-    [coder encodeObject:self.straight forKey:@"straight"];
-    [coder encodeObject:self.pike forKey:@"pike"];
-    [coder encodeObject:self.tuck forKey:@"tuck"];
-    [coder encodeObject:self.free forKey:@"free"];
-    [coder encodeBool:self.allDivesEntered forKey:@"allDivesEntered"];
-    [coder encodeObject:self.oldDiveName forKey:@"oldDiveName"];
-    [coder encodeInt:self.diveTotal forKey:@"diveTotal"];
     [coder encodeObject:self.lblDivedd.text forKey:@"dd"];
     
 }
@@ -205,30 +194,6 @@
     NSLog(@"diveGroupArray %d", self.diveGroupArray.count);
     self.diveArray = [coder decodeObjectForKey:@"diveArray"];
     NSLog(@"diveArray %d", self.diveArray.count);
-    self.onDiveNumber = [coder decodeObjectForKey:@"onDiveNumber"];
-    NSLog(@"onDiveNumber %@", self.onDiveNumber);
-    self.maxDiveNumber = [coder decodeIntForKey:@"maxDiveNumber"];
-    NSLog(@"maxDiveNumber: %d", self.maxDiveNumber);
-    self.editDiveNumber = [coder decodeObjectForKey:@"editDiveNumber"];
-    NSLog(@"editDiveNumber %@", self.editDiveNumber);
-    self.boardSize = [coder decodeObjectForKey:@"boardSize"];
-    NSLog(@"boardSize: %@", self.boardSize);
-    self.multiplier = [coder decodeObjectForKey:@"multiplier"];
-    NSLog(@"multiplier: %@", self.multiplier);
-    self.straight = [coder decodeObjectForKey:@"straight"];
-    NSLog(@"straight: %@", self.straight);
-    self.pike = [coder decodeObjectForKey:@"pike"];
-    NSLog(@"pike: %@", self.pike);
-    self.tuck = [coder decodeObjectForKey:@"tuck"];
-    NSLog(@"tuck: %@", self.tuck);
-    self.free = [coder decodeObjectForKey:@"free"];
-    NSLog(@"free: %@", self.free);
-    self.allDivesEntered = [coder decodeBoolForKey:@"allDivesEntered"];
-    NSLog(@"allDivesEntered: %hhd", self.allDivesEntered);
-    self.oldDiveName = [coder decodeObjectForKey:@"oldDiveName"];
-    NSLog(@"oldDiveName: %@", self.oldDiveName);
-    self.diveTotal = [coder decodeIntForKey:@"diveTotal"];
-    NSLog(@"diveTotal: %d", self.diveTotal);
     self.lblDivedd.text = [coder decodeObjectForKey:@"dd"];
     NSLog(@"diveddText: %@", self.lblDivedd.text);
     
@@ -277,6 +242,13 @@
         choose.meetRecordID = self.meetRecordID;
         choose.diverRecordID = self.diverRecordID;
     }
+    
+    if([segue.identifier isEqualToString:@"idSegueListToChooseDiver"]) {
+        
+        ChooseDiver *choose = [segue destinationViewController];
+        choose.meetRecordID = self.meetRecordID;
+    }
+    
 }
 
 // hide the PickerView on outside touch
