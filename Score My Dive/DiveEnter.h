@@ -87,6 +87,6 @@
 - (IBAction)btnEnterScoreClick:(id)sender;
 - (IBAction)btnEnterTotalScoreClick:(id)sender;
 - (IBAction)lblOptionsClick:(id)sender;
-- (IBAction)btnReturnClick:(id)sender;
+//- (IBAction)btnReturnClick:(id)sender;
 
 @end

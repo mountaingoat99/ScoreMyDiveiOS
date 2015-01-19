@@ -37,6 +37,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblJudge6Text;
 @property (weak, nonatomic) IBOutlet UILabel *lblJudge7Text;
 
-- (IBAction)btnReturnClick:(id)sender;
+//- (IBAction)btnReturnClick:(id)sender;
 
 @end

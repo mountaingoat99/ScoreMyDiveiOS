@@ -14,6 +14,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tblQuickScores;
 
 -(IBAction)addNewRecord:(id)sender;
-- (IBAction)returnClick:(id)sender;
+//- (IBAction)returnClick:(id)sender;
 
 @end

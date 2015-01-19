@@ -41,24 +41,16 @@
 
 #pragma ViewController Methods
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+-(void)viewDidLoad {
+    [super viewDidLoad];
     
-    // load the diver and meet arrays before creating the pickerviews
-    [self loadData];
-    
-    // call the pickers
-    [self makeDiverPicker];
-    [self makeMeetPicker];
-    [self makeReportPicker];
-    
-    self.txtxChooseDiver.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.txtxChooseDiver.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.txtxChooseDiver.layer.masksToBounds = NO;
-    self.txtxChooseDiver.layer.shadowOpacity = .3;
-    self.txtxChooseDiver.keyboardAppearance = UIKeyboardAppearanceDark;
-    self.txtxChooseDiver.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
-    self.txtxChooseDiver.delegate = self;
+    self.txtChooseDiver.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.txtChooseDiver.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.txtChooseDiver.layer.masksToBounds = NO;
+    self.txtChooseDiver.layer.shadowOpacity = .3;
+    self.txtChooseDiver.keyboardAppearance = UIKeyboardAppearanceDark;
+    self.txtChooseDiver.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+    self.txtChooseDiver.delegate = self;
     
     self.txtChooseMeet.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtChooseMeet.layer.shadowOffset = CGSizeMake(.1f, .1f);
@@ -75,7 +67,47 @@
     self.txtChooseReport.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtChooseReport.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     self.txtChooseReport.delegate = self;
+    
+    // call the pickers
+    [self makeDiverPicker];
+    [self makeMeetPicker];
+    [self makeReportPicker];
+    
+    // add a done button to the date picker
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 0, 44)];
+    toolbar.barTintColor = [UIColor grayColor];
+    UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                      style:UIBarButtonItemStyleDone
+                                                                     target:self
+                                                                     action:@selector(dateSelectionDone:)];
+    
+    toolbar.items = [[NSArray alloc] initWithObjects:barButtonDone, nil];
+    barButtonDone.tintColor = [UIColor blackColor];
+    //[self.datePicker addSubview:toolbar];
+    self.txtChooseDiver.inputAccessoryView = toolbar;
+    self.txtChooseMeet.inputAccessoryView = toolbar;
+    self.txtChooseReport.inputAccessoryView = toolbar;
+}
 
+// done button a picker
+-(void)dateSelectionDone:(id)sender {
+    
+    if (self.txtChooseDiver.highlighted) {
+        [self.txtChooseDiver resignFirstResponder];
+    }
+    if (self.txtChooseMeet.highlighted) {
+        [self.txtChooseMeet resignFirstResponder];
+    }
+    if (self.txtChooseReport.highlighted) {
+        [self.txtChooseReport resignFirstResponder];
+    }   
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    // load the diver and meet arrays before creating the pickerviews
+    [self loadData];
 }
 
 // restore state
@@ -85,8 +117,8 @@
     
     self.fillText = NO;
     
-    if (self.txtxChooseDiver.text.length > 0) {
-        [coder encodeObject:self.txtxChooseDiver.text forKey:@"diver"];
+    if (self.txtChooseDiver.text.length > 0) {
+        [coder encodeObject:self.txtChooseDiver.text forKey:@"diver"];
         [coder encodeInt:self.diverRecordID forKey:@"diverId"];
         self.fillText = YES;
     }
@@ -109,7 +141,7 @@
     [super decodeRestorableStateWithCoder:coder];
     
     self.fillText = [coder decodeBoolForKey:@"textField"];
-    self.txtxChooseDiver.text = [coder decodeObjectForKey:@"diver"];
+    self.txtChooseDiver.text = [coder decodeObjectForKey:@"diver"];
     self.diverRecordID = [coder decodeIntForKey:@"diverId"];
     self.txtChooseMeet.text = [coder decodeObjectForKey:@"meet"];
     self.meetRecordID = [coder decodeIntForKey:@"meetId"];
@@ -147,7 +179,7 @@
         
     } else if (self.reportRecordID == 1) {
         
-        if (self.txtxChooseDiver.text.length > 0 && self.txtChooseMeet.text.length > 0) {
+        if (self.txtChooseDiver.text.length > 0 && self.txtChooseMeet.text.length > 0) {
             [self CreateDiverScoreTotalByMeet];
         } else {
             UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
@@ -160,7 +192,7 @@
         }
         
     } else {
-        if (self.txtxChooseDiver.text.length > 0 && self.txtChooseMeet.text.length > 0) {
+        if (self.txtChooseDiver.text.length > 0 && self.txtChooseMeet.text.length > 0) {
             [self CreateDiverJudgeScoreByMeet];
         } else {
             UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
@@ -174,10 +206,10 @@
     }
 }
 
-- (IBAction)btnReturnClick:(id)sender {
-    
-    [self performSegueWithIdentifier:@"idSegueReportToHome" sender:self];
-}
+//- (IBAction)btnReturnClick:(id)sender {
+//    
+//    [self performSegueWithIdentifier:@"idSegueReportToHome" sender:self];
+//}
 
 //keps the user from entering text in the txtfield
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
@@ -196,7 +228,7 @@
     self.divePicker.layer.shadowOpacity = .3;
     self.divePicker.dataSource = self;
     self.divePicker.delegate = self;
-    self.txtxChooseDiver.inputView = self.divePicker;
+    self.txtChooseDiver.inputView = self.divePicker;
 }
 
 -(void)makeMeetPicker{
@@ -241,7 +273,7 @@
     if (pickerView == self.divePicker) {
         
         // assign the first item in array to text box right away, so user doesn't have to
-        self.txtxChooseDiver.text = [self.diverArray [row] objectAtIndex:1];
+        self.txtChooseDiver.text = [self.diverArray [row] objectAtIndex:1];
         self.diverRecordID = [[self.diverArray [row] objectAtIndex:0] intValue];
         return [self.diverArray[row]objectAtIndex:1];
         
@@ -266,8 +298,8 @@
     
     if (pickerView == self.divePicker) {
         
-        self.txtxChooseDiver.text = [self.diverArray [row] objectAtIndex:1];
-        [self.txtxChooseDiver resignFirstResponder];
+        self.txtChooseDiver.text = [self.diverArray [row] objectAtIndex:1];
+        [self.txtChooseDiver resignFirstResponder];
         self.diverRecordID = [[self.diverArray [row] objectAtIndex:0] intValue];
         
     } else if (pickerView == self.meetPicker) {

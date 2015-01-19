@@ -99,7 +99,26 @@
         
     }
     
-    NSLog(@"ChooseDiver VeiwDidLoad");
+        [self makeDiverPicker];
+    
+    // add a done button to the date picker
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 0, 44)];
+    toolbar.barTintColor = [UIColor grayColor];
+    UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                      style:UIBarButtonItemStyleDone
+                                                                     target:self
+                                                                     action:@selector(dateSelectionDone:)];
+    
+    toolbar.items = [[NSArray alloc] initWithObjects:barButtonDone, nil];
+    barButtonDone.tintColor = [UIColor blackColor];
+    //[self.datePicker addSubview:toolbar];
+    self.txtChooseDiver.inputAccessoryView = toolbar;
+}
+
+// done button a picker
+-(void)dateSelectionDone:(id)sender {
+    
+    [self.txtChooseDiver resignFirstResponder];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -116,11 +135,7 @@
     
     [self loadSpinnerData];
     
-    [self makeDiverPicker];
-    
     [self HideControls];
-    
-    NSLog(@"ChooseDiver ViewWillAppear");
 }
 
 // restore state
@@ -128,8 +143,8 @@
     
     [super encodeRestorableStateWithCoder:coder];
     
-    NSNumber *diveSegments = [NSNumber numberWithInt:self.SCDiveTotals.selectedSegmentIndex];
-    NSNumber *boardSegments = [NSNumber numberWithInt:self.SCBoardSize.selectedSegmentIndex];
+    NSNumber *diveSegments = [NSNumber numberWithInt:(int)self.SCDiveTotals.selectedSegmentIndex];
+    NSNumber *boardSegments = [NSNumber numberWithInt:(int)self.SCBoardSize.selectedSegmentIndex];
     
     [coder encodeInt:self.meetRecordID forKey:@"meetid"];
     [coder encodeObject:diveSegments forKey:@"diveSegments"];
@@ -430,10 +445,10 @@
     
 }
 
-- (IBAction)btnReturnClick:(id)sender {
-    
-    [self performSegueWithIdentifier:@"idSegueDiverToMeetChoose" sender:self];
-}
+//- (IBAction)btnReturnClick:(id)sender {
+//    
+//    [self performSegueWithIdentifier:@"idSegueDiverToMeetChoose" sender:self];
+//}
 
 #pragma private methods
 

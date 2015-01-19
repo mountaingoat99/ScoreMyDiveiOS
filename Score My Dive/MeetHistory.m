@@ -189,11 +189,11 @@
 }
 
 
-- (IBAction)btnReturnClick:(id)sender {
-
-    [self performSegueWithIdentifier:@"idSegueMeetHistoryToDetail" sender:self];
-    
-}
+//- (IBAction)btnReturnClick:(id)sender {
+//
+//    [self performSegueWithIdentifier:@"idSegueMeetHistoryToDetail" sender:self];
+//    
+//}
 
 #pragma  private methods
 

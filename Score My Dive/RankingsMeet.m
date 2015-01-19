@@ -186,8 +186,8 @@
     }
 }
 
-- (IBAction)btnReturnClick:(id)sender {
-    
-    [self performSegueWithIdentifier:@"idSegueMeetRankToMeet" sender:self];
-}
+//- (IBAction)btnReturnClick:(id)sender {
+//    
+//    [self performSegueWithIdentifier:@"idSegueMeetRankToMeet" sender:self];
+//}
 @end

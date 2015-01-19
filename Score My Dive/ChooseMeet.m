@@ -54,15 +54,32 @@
         [self.btnRank setTitle:@"Rankings" forState:UIControlStateSelected];
     }
     
-    NSLog(@"ChooseMeet VeiwDidLoad");
+    [self makeMeetPicker];
+    
+    // add a done button to the date picker
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 0, 44)];
+    toolbar.barTintColor = [UIColor grayColor];
+    UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                      style:UIBarButtonItemStyleDone
+                                                                     target:self
+                                                                     action:@selector(dateSelectionDone:)];
+    
+    toolbar.items = [[NSArray alloc] initWithObjects:barButtonDone, nil];
+    barButtonDone.tintColor = [UIColor blackColor];
+    //[self.datePicker addSubview:toolbar];
+    self.txtChooseMeet.inputAccessoryView = toolbar;
+}
+
+// done button a picker
+-(void)dateSelectionDone:(id)sender {
+    
+    [self.txtChooseMeet resignFirstResponder];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     [self loadData];
-    
-    [self makeMeetPicker];
     
     if (self.txtChooseMeet.text.length > 0) {
         [self ShowJudgeTotal];
@@ -72,9 +89,6 @@
         [self.lblJudges setHidden:YES];
         [self.btnNext setHidden:YES];
     }
-    
-    NSLog(@"ChooseMeet ViewWillAppear");
-   
 }
 
 // restore state
@@ -144,15 +158,15 @@
     }
 }
 
-- (IBAction)btnRankClick:(id)sender {
-    
-    [self performSegueWithIdentifier:@"idSegueToRankings" sender:self];
-}
+//- (IBAction)btnRankClick:(id)sender {
+//    
+//    [self performSegueWithIdentifier:@"idSegueToRankings" sender:self];
+//}
 
-- (IBAction)btnReturnClick:(id)sender {
-    
-    [self performSegueWithIdentifier:@"idSegueMeetChooseToHome" sender:self];
-}
+//- (IBAction)btnReturnClick:(id)sender {
+//    
+//    [self performSegueWithIdentifier:@"idSegueMeetChooseToHome" sender:self];
+//}
 
 //keps the user from entering text in the txtfield
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
@@ -232,19 +246,14 @@
     
     if ([self.judgeTotal  isEqualToNumber: @2]) {
         self.lblJudges.text = @"2 Judges";
-        //NSLog(@"Judges total is %@", self.judgeTotal);
     } else if ([self.judgeTotal isEqualToNumber:@3]) {
         self.lblJudges.text = @"3 Judges";
-        //NSLog(@"Judges total is %@", self.judgeTotal);
     } else if ([self.judgeTotal  isEqualToNumber: @5]) {
         self.lblJudges.text = @"5 Judges";
-        //NSLog(@"Judges total is %@", self.judgeTotal);
     } else if ([self.judgeTotal  isEqualToNumber: @7]) {
         self.lblJudges.text = @"7 Judges";
-        //NSLog(@"Judges total is %@", self.judgeTotal);
     } else {
         self.lblJudges.text = @"2 Judges";
-        //NSLog(@"Judges total is %@", self.judgeTotal);
         self.judgeTotal = @2;
     }
 }

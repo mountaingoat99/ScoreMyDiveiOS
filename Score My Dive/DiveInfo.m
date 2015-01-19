@@ -93,10 +93,10 @@
 }
 
 
-- (IBAction)btnReturnClick:(id)sender {
-    
-    [self performSegueWithIdentifier:@"idSegueInfoToScores" sender:self];
-}
+//- (IBAction)btnReturnClick:(id)sender {
+//    
+//    [self performSegueWithIdentifier:@"idSegueInfoToScores" sender:self];
+//}
 
 #pragma private methods
 

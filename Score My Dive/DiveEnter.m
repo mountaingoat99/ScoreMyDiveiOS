@@ -129,6 +129,10 @@
     // sets up the following delegate method to disable horizontal scrolling
     // don't forget to declare the UIScrollViewDelegate in the .h file
     self.scrollView.delegate = self;
+    
+    [self makeGroupPicker];
+    [self makeDivePicker];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -141,8 +145,6 @@
     [self fillText];
     [self DiverBoardSize];
     [self loadGroupPicker];
-    [self makeGroupPicker];
-    [self makeDivePicker];
     [self fillDiveInfo];
     [self checkFinishedScoring];
 }
@@ -151,7 +153,7 @@
 -(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
     [super encodeRestorableStateWithCoder:coder];
     
-    NSNumber *segment = [NSNumber numberWithInt:self.SCPosition.selectedSegmentIndex];
+    NSNumber *segment = [NSNumber numberWithInt:(int)self.SCPosition.selectedSegmentIndex];
     [coder encodeObject:segment forKey:@"segment"];
     [coder encodeInt:self.meetRecordID forKey:@"meetId"];
     [coder encodeInt:self.diverRecordID forKey:@"diverId"];
@@ -562,10 +564,10 @@
     [error reloadInputViews];
 }
 
-- (IBAction)btnReturnClick:(id)sender {
-    
-    [self performSegueWithIdentifier:@"idSegueEnterToChooseDiver" sender:self];
-}
+//- (IBAction)btnReturnClick:(id)sender {
+//    
+//    [self performSegueWithIdentifier:@"idSegueEnterToChooseDiver" sender:self];
+//}
 
 - (IBAction)Dive1EditClick:(UILongPressGestureRecognizer *)sender {
     
@@ -1650,14 +1652,8 @@
     
     if (self.diveTotal == self.maxDiveNumber) {
         
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Congradulations!"
-                                                        message:@"Scoring is complete for this diver"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
-        
+        self.lblDiveNumber.text = @"Complete";
+                
         [self.txtDiveGroup setEnabled:NO];
         [self.txtDive setEnabled:NO];
         [self.btnEnterScore setEnabled:NO];

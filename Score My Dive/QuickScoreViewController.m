@@ -53,10 +53,10 @@
     
 }
 
--(IBAction)returnClick:(id)sender{
-    
-    [self performSegueWithIdentifier:@"idSegueQuickToHome" sender:self];
-}
+//-(IBAction)returnClick:(id)sender{
+//    
+//    [self performSegueWithIdentifier:@"idSegueQuickToHome" sender:self];
+//}
 
 
 -(void)addNewRecord:(id)sender {

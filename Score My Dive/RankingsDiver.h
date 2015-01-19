@@ -14,7 +14,7 @@
 @property (nonatomic, strong) NSNumber *boardSize;
 @property (weak, nonatomic) IBOutlet UITableView *tblDiverRankings;
 
-- (IBAction)btnReturnClick:(id)sender;
+//- (IBAction)btnReturnClick:(id)sender;
 
 
 @end

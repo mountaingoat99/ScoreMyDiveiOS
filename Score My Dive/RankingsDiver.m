@@ -189,11 +189,11 @@
 }
 
 
-- (IBAction)btnReturnClick:(id)sender {
-    
-    [self performSegueWithIdentifier:@"idSegueDiveRankToMeetRank" sender:self];
-    
-}
+//- (IBAction)btnReturnClick:(id)sender {
+//    
+//    [self performSegueWithIdentifier:@"idSegueDiveRankToMeetRank" sender:self];
+//    
+//}
 
 #pragma Private Methods
 

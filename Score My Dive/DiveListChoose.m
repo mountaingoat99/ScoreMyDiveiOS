@@ -73,6 +73,7 @@
     // don't forget to declare the UIScrollViewDelegate in the .h file
     self.scrollView.delegate = self;
     
+    [self makePicker];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -82,7 +83,6 @@
     [self GetCollectionofMeetInfo];
     [self getTheDiveTotal];
     [self loadPicker];
-    [self makePicker];
     [self fillText];
     [self fillType];
     [self fillDiveInfo];
@@ -282,10 +282,10 @@
     }
 }
 
-- (IBAction)btnReturnClick:(id)sender {
-    
-    [self performSegueWithIdentifier:@"idSegueChooseToList" sender:self];
-}
+//- (IBAction)btnReturnClick:(id)sender {
+//    
+//    [self performSegueWithIdentifier:@"idSegueChooseToList" sender:self];
+//}
 
 #pragma private methods
 
@@ -759,13 +759,8 @@
     
     if (self.diveTotal == self.whatNumber) {
         
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Congradulations!"
-                                                        message:@"Scoring is complete for this diver"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        self.lblHeader.text = @"Complete";
+        
     }
 }
 

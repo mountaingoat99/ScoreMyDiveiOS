@@ -234,10 +234,10 @@
     }
 }
 
-- (IBAction)btnReturnClick:(id)sender {
-    
-    [self performSegueWithIdentifier:@"idSegueEditToQuick" sender:self];
-}
+//- (IBAction)btnReturnClick:(id)sender {
+//    
+//    [self performSegueWithIdentifier:@"idSegueEditToQuick" sender:self];
+//}
 
 - (IBAction)diveOneClick:(id)sender {
     

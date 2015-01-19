@@ -194,10 +194,10 @@
 }
 
 
-- (IBAction)btnReturnClick:(id)sender {
-    
-    [self performSegueWithIdentifier:@"idSegueDiveHistoryToDetails" sender:self];
-}
+//- (IBAction)btnReturnClick:(id)sender {
+//    
+//    [self performSegueWithIdentifier:@"idSegueDiveHistoryToDetails" sender:self];
+//}
 
 #pragma  private methods
 

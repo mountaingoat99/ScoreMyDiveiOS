@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnRank;
 
 - (IBAction)nextClick:(id)sender;
-- (IBAction)btnRankClick:(id)sender;
-- (IBAction)btnReturnClick:(id)sender;
+//- (IBAction)btnRankClick:(id)sender;
+//- (IBAction)btnReturnClick:(id)sender;
 
 @end

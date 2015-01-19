@@ -94,6 +94,10 @@
         [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributesiPad forState:UIControlStateHighlighted];
         [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributesiPad forState:UIControlStateSelected];
     }
+    
+    [self makeGroupPicker];
+    [self makeDivePicker];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -102,8 +106,6 @@
     [self fillText];
     [self fillDiveNumber];
     [self loadGroupPicker];
-    [self makeGroupPicker];
-    [self makeDivePicker];
     [self showFirstWarning];
 }
 
@@ -112,7 +114,7 @@
     
     [super encodeRestorableStateWithCoder:coder];
     
-    NSNumber *segment = [NSNumber numberWithInt:self.SCPosition.selectedSegmentIndex];
+    NSNumber *segment = [NSNumber numberWithInt:(int)self.SCPosition.selectedSegmentIndex];
     [coder encodeObject:segment forKey:@"segment"];
     [coder encodeObject:self.meetInfo forKey:@"meetInfo"];
     [coder encodeInt:self.meetRecordID forKey:@"meetId"];
@@ -419,10 +421,10 @@
     }
 }
 
-- (IBAction)btnReturnClick:(id)sender {
-    
-    [self performSegueWithIdentifier:@"idEditListToEnterList" sender:self];
-}
+//- (IBAction)btnReturnClick:(id)sender {
+//    
+//    [self performSegueWithIdentifier:@"idEditListToEnterList" sender:self];
+//}
 
 #pragma private methods
 

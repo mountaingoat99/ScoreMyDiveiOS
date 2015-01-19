@@ -246,6 +246,34 @@
     return YES;
 }
 
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    //[textField resignFirstResponder];
+    
+    if (textField == self.txt1) {
+        [self.txt2 becomeFirstResponder];
+    }
+    if (textField == self.txt2) {
+        [self.txt3 becomeFirstResponder];
+    }
+    if (textField == self.txt3) {
+        [self.txt4 becomeFirstResponder];
+    }
+    if (textField == self.txt4) {
+        [self.txt5 becomeFirstResponder];
+    }
+    if (textField == self.txt5) {
+        [self.txt6 becomeFirstResponder];
+    }
+    if (textField == self.txt6) {
+        [self.txt7 becomeFirstResponder];
+    }
+    if (textField == self.txt7) {
+        [textField resignFirstResponder];
+    }
+    
+    return YES;
+}
+
 - (IBAction)btnTotalClick:(id)sender {
     
     bool good;

@@ -12,6 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tblRankings;
 
-- (IBAction)btnReturnClick:(id)sender;
+//- (IBAction)btnReturnClick:(id)sender;
 
 @end

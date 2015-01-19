@@ -14,6 +14,8 @@
 @interface MeetEdit ()
 
 @property (nonatomic) BOOL previousScores;
+@property (nonatomic, strong) UIDatePicker *datePicker;
+
 
 // private method to load the edited data
 -(void)loadInfoToEdit;
@@ -113,16 +115,34 @@
     }
     
     //replace keyboard with a date picker
-    UIDatePicker *datePicker = [[UIDatePicker alloc] init];
-    datePicker.datePickerMode = UIDatePickerModeDate;
-    datePicker.layer.backgroundColor = [UIColor grayColor].CGColor;
-    datePicker.layer.shadowColor = [UIColor blackColor].CGColor;
-    datePicker.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    datePicker.layer.masksToBounds = NO;
-    datePicker.layer.shadowOpacity = .5;
-    [datePicker addTarget:self action:@selector(updateTextField:) forControlEvents:UIControlEventValueChanged];
-    [self.txtDate setInputView:datePicker];
+    self.datePicker = [[UIDatePicker alloc] init];
+    self.datePicker.datePickerMode = UIDatePickerModeDate;
+    self.datePicker.layer.backgroundColor = [UIColor grayColor].CGColor;
+    self.datePicker.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.datePicker.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.datePicker.layer.masksToBounds = NO;
+    self.datePicker.layer.shadowOpacity = .5;
+    [self.datePicker addTarget:self action:@selector(updateTextField:) forControlEvents:UIControlEventValueChanged];
+    [self.txtDate setInputView:self.datePicker];
     
+    // add a done button to the date picker
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 0, 44)];
+    toolbar.barTintColor = [UIColor grayColor];
+    UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                      style:UIBarButtonItemStyleDone
+                                                                     target:self
+                                                                     action:@selector(dateSelectionDone:)];
+    
+    toolbar.items = [[NSArray alloc] initWithObjects:barButtonDone, nil];
+    barButtonDone.tintColor = [UIColor blackColor];
+    //[self.datePicker addSubview:toolbar];
+    self.txtDate.inputAccessoryView = toolbar;
+}
+
+// done button a picker
+-(void)dateSelectionDone:(id)sender {
+    
+    [self.txtDate resignFirstResponder];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -138,7 +158,7 @@
     
     [super encodeRestorableStateWithCoder:coder];
     
-    NSNumber *segment = [NSNumber numberWithInt:self.SCJudges.selectedSegmentIndex];
+    NSNumber *segment = [NSNumber numberWithInt:(int)self.SCJudges.selectedSegmentIndex];
     
     [coder encodeObject:self.delegate forKey:@"Delegate"];
     [coder encodeInt:self.recordIDToEdit forKey:@"RecordId"];
@@ -191,7 +211,24 @@
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
+    //[textField resignFirstResponder];
+    
+    if (textField == self.txtMeetName) {
+        [self.txtSchool becomeFirstResponder];
+    }
+    if (textField == self.txtSchool) {
+        [self.txtCity becomeFirstResponder];
+    }
+    if (textField == self.txtCity) {
+        [self.txtState becomeFirstResponder];
+    }
+    if (textField == self.txtState) {
+        [self.txtDate becomeFirstResponder];
+    }
+    if (textField == self.txtDate) {
+        [textField resignFirstResponder];
+    }
+    
     return YES;
 }
 
@@ -283,10 +320,10 @@
     }
 }
 
-- (IBAction)btnReturnClick:(id)sender {
-    
-    [self performSegueWithIdentifier:@"idSegueAddMeetToDetails" sender:self];
-}
+//- (IBAction)btnReturnClick:(id)sender {
+//    
+//    [self performSegueWithIdentifier:@"idSegueAddMeetToDetails" sender:self];
+//}
 
 #pragma private methods
 

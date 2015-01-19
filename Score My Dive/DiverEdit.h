@@ -28,6 +28,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtSchool;
 
 -(IBAction)saveInfo:(id)sender;
-- (IBAction)btnReturnClick:(id)sender;
+//- (IBAction)btnReturnClick:(id)sender;
 
 @end

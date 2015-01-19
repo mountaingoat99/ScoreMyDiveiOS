@@ -114,7 +114,21 @@
 }
     
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
+    
+    if (textField == self.txtName) {
+        [self.txtAge becomeFirstResponder];
+    }
+    if (textField == self.txtAge) {
+        [self.txtGrade becomeFirstResponder];
+    }
+    if (textField == self.txtGrade) {
+        [self.txtSchool becomeFirstResponder];
+    }
+    if (textField == self.txtSchool) {
+        [textField resignFirstResponder];
+    }
+    
+    //[textField resignFirstResponder];
     return YES;
 }
 
@@ -161,10 +175,10 @@
     }
 }
 
-- (IBAction)btnReturnClick:(id)sender {
-    
-    [self performSegueWithIdentifier:@"idSegueDiveEnterToDetail" sender:self];
-}
+//- (IBAction)btnReturnClick:(id)sender {
+//    
+//    [self performSegueWithIdentifier:@"idSegueDiveEnterToDetail" sender:self];
+//}
 
 #pragma private methods
 

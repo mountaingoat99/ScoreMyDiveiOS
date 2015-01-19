@@ -118,6 +118,8 @@
     // don't forget to declare the UIScrollViewDelegate in the .h file
     self.scrollView.delegate = self;
     
+    [self makeGroupPicker];
+    [self makeDivePicker];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -129,8 +131,6 @@
     [self fillText];
     [self DiverBoardSize];
     [self loadGroupPicker];
-    [self makeGroupPicker];
-    [self makeDivePicker];
     [self fillDiveInfo];
     [self updateButtonText];
     [self DisableDivePositions];
@@ -142,7 +142,7 @@
     
     [super encodeRestorableStateWithCoder:coder];
     
-    NSNumber *segment = [NSNumber numberWithInt:self.SCPosition.selectedSegmentIndex];
+    NSNumber *segment = [NSNumber numberWithInt:(int)self.SCPosition.selectedSegmentIndex];
     [coder encodeObject:segment forKey:@"segment"];
     [coder encodeInt:self.meetRecordID forKey:@"meetId"];
     [coder encodeInt:self.diverRecordID forKey:@"diverId"];
@@ -432,6 +432,7 @@
     
     // then this will set the divedod label to the correct dod
     [self GetDiveDOD];
+
 }
 
 - (IBAction)PositionIndexChanged:(UISegmentedControl *)sender {
@@ -506,10 +507,10 @@
     [error reloadInputViews];
 }
 
-- (IBAction)btnBackClick:(id)sender {
-    
-    [self performSegueWithIdentifier:@"idSegueListToChooseDiver" sender:self];
-}
+//- (IBAction)btnBackClick:(id)sender {
+//    
+//    [self performSegueWithIdentifier:@"idSegueListToChooseDiver" sender:self];
+//}
 
 // Long press to edit the dives
 - (IBAction)Dive1EditClick:(UILongPressGestureRecognizer *)sender {

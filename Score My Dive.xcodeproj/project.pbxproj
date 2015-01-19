@@ -33,6 +33,9 @@
 		2688576D1A298365000AEFF2 /* DiveTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 2688576C1A298365000AEFF2 /* DiveTypes.m */; };
 		2691AE6C1A0691FB000ABD3B /* DiverDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2691AE6B1A0691FB000ABD3B /* DiverDetailsVC.m */; };
 		2691AE6F1A069898000ABD3B /* MeetDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2691AE6E1A069898000ABD3B /* MeetDetailsVC.m */; };
+		269FB8851A6C7A3D006B9C27 /* DiveNumberCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 269FB8841A6C7A3D006B9C27 /* DiveNumberCheck.m */; };
+		269FB8881A6C9ABD006B9C27 /* AllPlatformDives.m in Sources */ = {isa = PBXBuildFile; fileRef = 269FB8871A6C9ABD006B9C27 /* AllPlatformDives.m */; };
+		269FB88B1A6C9ACB006B9C27 /* AllSpringboardDives.m in Sources */ = {isa = PBXBuildFile; fileRef = 269FB88A1A6C9ACB006B9C27 /* AllSpringboardDives.m */; };
 		26A248F71A2299C400760F38 /* ChooseDiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A248F61A2299C400760F38 /* ChooseDiver.m */; };
 		26ADE4471A4A07D600913ABA /* HTAutocompleteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 26ADE4441A4A07D600913ABA /* HTAutocompleteManager.m */; };
 		26ADE4481A4A07D600913ABA /* HTAutocompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 26ADE4461A4A07D600913ABA /* HTAutocompleteTextField.m */; };
@@ -123,6 +126,12 @@
 		2691AE6B1A0691FB000ABD3B /* DiverDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiverDetailsVC.m; sourceTree = "<group>"; };
 		2691AE6D1A069898000ABD3B /* MeetDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetDetailsVC.h; sourceTree = "<group>"; };
 		2691AE6E1A069898000ABD3B /* MeetDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetDetailsVC.m; sourceTree = "<group>"; };
+		269FB8831A6C7A3D006B9C27 /* DiveNumberCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveNumberCheck.h; sourceTree = "<group>"; };
+		269FB8841A6C7A3D006B9C27 /* DiveNumberCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveNumberCheck.m; sourceTree = "<group>"; };
+		269FB8861A6C9ABD006B9C27 /* AllPlatformDives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllPlatformDives.h; sourceTree = "<group>"; };
+		269FB8871A6C9ABD006B9C27 /* AllPlatformDives.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllPlatformDives.m; sourceTree = "<group>"; };
+		269FB8891A6C9ACB006B9C27 /* AllSpringboardDives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllSpringboardDives.h; sourceTree = "<group>"; };
+		269FB88A1A6C9ACB006B9C27 /* AllSpringboardDives.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllSpringboardDives.m; sourceTree = "<group>"; };
 		26A248F51A2299C400760F38 /* ChooseDiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseDiver.h; sourceTree = "<group>"; };
 		26A248F61A2299C400760F38 /* ChooseDiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseDiver.m; sourceTree = "<group>"; };
 		26ADE4431A4A07D600913ABA /* HTAutocompleteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTAutocompleteManager.h; path = ../HTAutocompleteManager.h; sourceTree = "<group>"; };
@@ -221,6 +230,7 @@
 		263AC5C31A030FD600846CB0 /* Score My Dive */ = {
 			isa = PBXGroup;
 			children = (
+				269FB8821A6C78F2006B9C27 /* Controllers */,
 				26A07ECF1A09CFDC00997E5C /* Model */,
 				26A07E8A1A09991200997E5C /* StoryBoard */,
 				26A07E891A0998C600997E5C /* Assets */,
@@ -260,6 +270,15 @@
 				263AC5DF1A030FD700846CB0 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		269FB8821A6C78F2006B9C27 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				269FB8831A6C7A3D006B9C27 /* DiveNumberCheck.h */,
+				269FB8841A6C7A3D006B9C27 /* DiveNumberCheck.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		26A07E881A09963700997E5C /* ViewControllers */ = {
@@ -367,6 +386,10 @@
 				26BE23471A10275A00E123D0 /* Meet.m */,
 				26BE23481A10275A00E123D0 /* Diver.h */,
 				26BE23491A10275A00E123D0 /* Diver.m */,
+				269FB8861A6C9ABD006B9C27 /* AllPlatformDives.h */,
+				269FB8871A6C9ABD006B9C27 /* AllPlatformDives.m */,
+				269FB8891A6C9ACB006B9C27 /* AllSpringboardDives.h */,
+				269FB88A1A6C9ACB006B9C27 /* AllSpringboardDives.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -498,12 +521,14 @@
 				26ADE4471A4A07D600913ABA /* HTAutocompleteManager.m in Sources */,
 				26BE234A1A10275A00E123D0 /* QuickScores.m in Sources */,
 				267643E91A218E2C00CD2CB1 /* ChooseMeet.m in Sources */,
+				269FB88B1A6C9ACB006B9C27 /* AllSpringboardDives.m in Sources */,
 				26BE237D1A1027CC00E123D0 /* JudgeScores.m in Sources */,
 				2642AB6A1A32A2CD002E8DFA /* MeetCollection.m in Sources */,
 				26E419A81A048E3100D79C05 /* QuickScoreViewController.m in Sources */,
 				26BE237B1A1027CC00E123D0 /* DiverBoardSize.m in Sources */,
 				267A3FCB1A280E370068FA9E /* DiverHistory.m in Sources */,
 				26D4A4121A50942700FCEC6F /* RankingsDiver.m in Sources */,
+				269FB8851A6C7A3D006B9C27 /* DiveNumberCheck.m in Sources */,
 				26BE237E1A1027CC00E123D0 /* DiveTotal.m in Sources */,
 				26BE237A1A1027CC00E123D0 /* DBManager.m in Sources */,
 				26ADE4481A4A07D600913ABA /* HTAutocompleteTextField.m in Sources */,
@@ -512,6 +537,7 @@
 				268857671A291981000AEFF2 /* DiveInfo.m in Sources */,
 				26D4A40F1A507D8900FCEC6F /* RankingsMeet.m in Sources */,
 				268857611A28EBCE000AEFF2 /* DiverMeetScores.m in Sources */,
+				269FB8881A6C9ABD006B9C27 /* AllPlatformDives.m in Sources */,
 				2688576A1A29693B000AEFF2 /* DiveListEnter.m in Sources */,
 				26B1D05C1A3355CC00112692 /* DiverCollection.m in Sources */,
 				26BE23501A10275A00E123D0 /* Diver.m in Sources */,
