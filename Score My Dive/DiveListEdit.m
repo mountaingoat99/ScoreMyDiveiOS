@@ -421,11 +421,6 @@
     }
 }
 
-//- (IBAction)btnReturnClick:(id)sender {
-//    
-//    [self performSegueWithIdentifier:@"idEditListToEnterList" sender:self];
-//}
-
 #pragma private methods
 
 -(void)showFirstWarning {

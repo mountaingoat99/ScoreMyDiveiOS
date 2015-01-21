@@ -34,14 +34,21 @@
     
         AllSpringboardDives *types = [[AllSpringboardDives alloc] init];
         diveTypes = [types GetSpringboardCategories:diveNumber];
-        reloadDiveTypes = [self GetDiveSpringboardInfo:diveTypes Position:position BoardSize:boardsize];
+        if (diveTypes.count > 0) {
+            reloadDiveTypes = [self GetDiveSpringboardInfo:diveTypes Position:position BoardSize:boardsize];
+        } else {
+            return diveTypes;
+        }
         
     } else {
         
         AllPlatformDives *types = [[AllPlatformDives alloc] init];
         diveTypes = [types GetPlatformCategories:diveNumber];
-        reloadDiveTypes = [self GetDivePlatformInfo:diveTypes Position:position BoardSize:boardsize];
-        
+        if (diveTypes.count > 0) {
+            reloadDiveTypes = [self GetDivePlatformInfo:diveTypes Position:position BoardSize:boardsize];
+        } else {
+            return diveTypes;
+        }
     }
     
     return reloadDiveTypes;
@@ -54,29 +61,29 @@
     
     NSArray *diveInfo;
     
-    NSNumber *diveId = [[diveInfo objectAtIndex:0] objectAtIndex:0];
-    NSString *diveName = [[diveInfo objectAtIndex:0] objectAtIndex:3];
-    NSNumber *diveDD;
+    NSString *diveId = [[divetypes objectAtIndex:0] objectAtIndex:0];
+    NSString *diveName = [[divetypes objectAtIndex:0] objectAtIndex:3];
+    NSString *diveDD;
     
     if ([boardsize isEqualToNumber:@1]) {
         if ([position isEqualToString:@"a"] || [position isEqualToString:@"A"]) {
-            diveDD = [[diveInfo objectAtIndex:0] objectAtIndex:4];
+            diveDD = [[divetypes objectAtIndex:0] objectAtIndex:4];
         } else if ([position isEqualToString:@"b"] || [position isEqualToString:@"B"]) {
-            diveDD = [[diveInfo objectAtIndex:0] objectAtIndex:5];
+            diveDD = [[divetypes objectAtIndex:0] objectAtIndex:5];
         } else if ([position isEqualToString:@"c"] || [position isEqualToString:@"C"]) {
-            diveDD = [[diveInfo objectAtIndex:0] objectAtIndex:6];
+            diveDD = [[divetypes objectAtIndex:0] objectAtIndex:6];
         } else if ([position isEqualToString:@"d"] || [position isEqualToString:@"D"]) {
-            diveDD = [[diveInfo objectAtIndex:0] objectAtIndex:7];
+            diveDD = [[divetypes objectAtIndex:0] objectAtIndex:7];
         }
     } else {
         if ([position isEqualToString:@"a"] || [position isEqualToString:@"A"]) {
-            diveDD = [[diveInfo objectAtIndex:0] objectAtIndex:8];
+            diveDD = [[divetypes objectAtIndex:0] objectAtIndex:8];
         } else if ([position isEqualToString:@"b"] || [position isEqualToString:@"B"]) {
-            diveDD = [[diveInfo objectAtIndex:0] objectAtIndex:9];
+            diveDD = [[divetypes objectAtIndex:0] objectAtIndex:9];
         } else if ([position isEqualToString:@"c"] || [position isEqualToString:@"C"]) {
-            diveDD = [[diveInfo objectAtIndex:0] objectAtIndex:10];
+            diveDD = [[divetypes objectAtIndex:0] objectAtIndex:10];
         } else if ([position isEqualToString:@"d"] || [position isEqualToString:@"D"]) {
-            diveDD = [[diveInfo objectAtIndex:0] objectAtIndex:11];
+            diveDD = [[divetypes objectAtIndex:0] objectAtIndex:11];
         }
     }
     
@@ -88,9 +95,9 @@
     
     NSArray *diveInfo;
     
-    NSNumber *diveId = [[diveInfo objectAtIndex:0] objectAtIndex:0];
+    NSString *diveId = [[diveInfo objectAtIndex:0] objectAtIndex:0];
     NSString *diveName = [[diveInfo objectAtIndex:0] objectAtIndex:4];
-    NSNumber *diveDD;
+    NSString *diveDD;
     
     if ([boardsize isEqualToNumber:@10]) {
         if ([position isEqualToString:@"a"] || [position isEqualToString:@"A"]) {

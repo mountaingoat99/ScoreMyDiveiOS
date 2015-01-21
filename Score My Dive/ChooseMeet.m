@@ -218,7 +218,7 @@
     // sets the text box for the choosen meet
     self.txtChooseMeet.text = [self.meetArray [row] objectAtIndex:1];
     
-    [self.txtChooseMeet resignFirstResponder];
+    //[self.txtChooseMeet resignFirstResponder];
     self.meetRecordID = [[self.meetArray [row] objectAtIndex:0] intValue];
     
     // update the judge control again

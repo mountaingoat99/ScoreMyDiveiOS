@@ -7,6 +7,8 @@
 //
 
 #import "HTAutocompleteManager.h"
+#import "AllSpringboardDives.h"
+#import "AllPlatformDives.h"
 
 static HTAutocompleteManager *sharedManager;
 
@@ -357,6 +359,135 @@ static HTAutocompleteManager *sharedManager;
         }
         
         for (NSString *stringFromReference in validNumbers)
+        {
+            NSString *stringToCompare;
+            if (ignoreCase)
+            {
+                stringToCompare = [stringFromReference lowercaseString];
+            }
+            else
+            {
+                stringToCompare = stringFromReference;
+            }
+            
+            if ([stringToCompare hasPrefix:stringToLookFor])
+            {
+                return [stringFromReference stringByReplacingCharactersInRange:[stringToCompare rangeOfString:stringToLookFor] withString:@""];
+            }
+        }
+        
+    } else if (textField.autocompleteType == HTAutocompleteSpringboard) {
+        
+        static dispatch_once_t numberOnceToken;
+        static NSArray *springBoardNumber;
+        
+        AllSpringboardDives *dives = [[AllSpringboardDives alloc] init];
+        
+        dispatch_once(&numberOnceToken, ^
+                      {
+                          springBoardNumber = [dives GetSpringboardName];
+                      });
+        
+        NSString *stringToLookFor;
+        NSArray *componentsString = [prefix componentsSeparatedByString:@","];
+        NSString *prefixLastComponent = [componentsString.lastObject stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if (ignoreCase)
+        {
+            stringToLookFor = [prefixLastComponent lowercaseString];
+        }
+        else
+        {
+            stringToLookFor = prefixLastComponent;
+        }
+        
+        for (int i = 0; i < springBoardNumber.count; i++) {
+            NSString *stringFromReference = [[springBoardNumber objectAtIndex:i] objectAtIndex:0];
+        
+            NSString *stringToCompare;
+            if (ignoreCase)
+            {
+                stringToCompare = [stringFromReference lowercaseString];
+            }
+            else
+            {
+                stringToCompare = stringFromReference;
+            }
+            
+            if ([stringToCompare hasPrefix:stringToLookFor])
+            {
+                return [stringFromReference stringByReplacingCharactersInRange:[stringToCompare rangeOfString:stringToLookFor] withString:@""];
+            }
+        }
+        
+    } else if (textField.autocompleteType == HTAutocompletePlatform) {
+        
+        static dispatch_once_t numberOnceToken;
+        static NSArray *platFormNumber;
+        
+        // call the class to get all the springboard dives
+        AllPlatformDives *dives = [[AllPlatformDives alloc] init];
+        
+        dispatch_once(&numberOnceToken, ^
+                      {
+                          platFormNumber = [dives GetPlatformNames];
+                      });
+        
+        NSString *stringToLookFor;
+        NSArray *componentsString = [prefix componentsSeparatedByString:@","];
+        NSString *prefixLastComponent = [componentsString.lastObject stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if (ignoreCase)
+        {
+            stringToLookFor = [prefixLastComponent lowercaseString];
+        }
+        else
+        {
+            stringToLookFor = prefixLastComponent;
+        }
+        
+        for (int i = 0; i < platFormNumber.count; i++) {
+            NSString *stringFromReference = [[platFormNumber objectAtIndex:i] objectAtIndex:0];
+            
+            NSString *stringToCompare;
+            if (ignoreCase)
+            {
+                stringToCompare = [stringFromReference lowercaseString];
+            }
+            else
+            {
+                stringToCompare = stringFromReference;
+            }
+            
+            if ([stringToCompare hasPrefix:stringToLookFor])
+            {
+                return [stringFromReference stringByReplacingCharactersInRange:[stringToCompare rangeOfString:stringToLookFor] withString:@""];
+            }
+        }
+        
+    } else if (textField.autocompleteType == HTAutocompletePositions) {
+        
+        static dispatch_once_t numberOnceToken;
+        static NSArray *positions;
+        dispatch_once(&numberOnceToken, ^
+                      {
+                          positions = @[ @"A",
+                                            @"B",
+                                            @"C",
+                                            @"D"];
+                      });
+        
+        NSString *stringToLookFor;
+        NSArray *componentsString = [prefix componentsSeparatedByString:@","];
+        NSString *prefixLastComponent = [componentsString.lastObject stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if (ignoreCase)
+        {
+            stringToLookFor = [prefixLastComponent lowercaseString];
+        }
+        else
+        {
+            stringToLookFor = prefixLastComponent;
+        }
+        
+        for (NSString *stringFromReference in positions)
         {
             NSString *stringToCompare;
             if (ignoreCase)

@@ -99,7 +99,7 @@
         
     }
     
-        [self makeDiverPicker];
+    [self makeDiverPicker];
     
     // add a done button to the date picker
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 0, 44)];
@@ -111,7 +111,6 @@
     
     toolbar.items = [[NSArray alloc] initWithObjects:barButtonDone, nil];
     barButtonDone.tintColor = [UIColor blackColor];
-    //[self.datePicker addSubview:toolbar];
     self.txtChooseDiver.inputAccessoryView = toolbar;
 }
 
@@ -132,9 +131,7 @@
     }
     
     [self getMeetName];
-    
     [self loadSpinnerData];
-    
     [self HideControls];
 }
 
@@ -278,7 +275,7 @@
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
     self.txtChooseDiver.text = [self.diverArray [row] objectAtIndex:1];
-    [self.txtChooseDiver resignFirstResponder];
+    //[self.txtChooseDiver resignFirstResponder];
     self.diverRecordID = [[self.diverArray [row] objectAtIndex:0] intValue];
     
     //call the method to check if a driver has been assigned to a meet and hid controls
@@ -422,7 +419,13 @@
                                    {
                                        NSLog(@"OK Action");
                                        [self DeleteAllDiverMeetInfo];
-                                       [self dismissViewControllerAnimated:YES completion:nil];
+                                       [self.txtChooseDiver resignFirstResponder];
+                                       [self.divePicker reloadAllComponents];
+                                       self.txtChooseDiver.text = @"";
+                                       [self.SCBoardSize setHidden:NO];
+                                       [self.SCDiveTotals setHidden:NO];
+                                       [self.lblDiveTotal setHidden:YES];
+                                       [self.lblBoardSize setHidden:YES];
                                    }];
         
         [alertController addAction:cancelAction];
@@ -441,14 +444,7 @@
         [error reloadInputViews];
         
     }
-    
-    
 }
-
-//- (IBAction)btnReturnClick:(id)sender {
-//    
-//    [self performSegueWithIdentifier:@"idSegueDiverToMeetChoose" sender:self];
-//}
 
 #pragma private methods
 

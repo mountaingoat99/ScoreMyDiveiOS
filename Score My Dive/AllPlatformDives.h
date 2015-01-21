@@ -10,6 +10,8 @@
 
 @interface AllPlatformDives : NSObject
 
+-(NSArray*)GetPlatformNames;
+
 -(NSArray*)GetPlatformCategories:(int)diveid;
 
 @end

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		260140E21A688CDC00DA9EB6 /* dive_dod.db in Resources */ = {isa = PBXBuildFile; fileRef = 260140E11A688CDC00DA9EB6 /* dive_dod.db */; };
 		2618B90A1A58BC3C007F75DE /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2618B9091A58BC3C007F75DE /* Media.xcassets */; };
 		2618CD261A521DEF0049E113 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2618CD251A521DEF0049E113 /* MessageUI.framework */; };
 		2618CD281A5221B60049E113 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2618CD271A5221B60049E113 /* Social.framework */; };
@@ -55,6 +54,7 @@
 		26BE238C1A1027CC00E123D0 /* DiveCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23771A1027CC00E123D0 /* DiveCategory.m */; };
 		26BE238D1A1027CC00E123D0 /* ValidScores.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23791A1027CC00E123D0 /* ValidScores.m */; };
 		26BE23911A1028B200E123D0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 26BE23901A1028B200E123D0 /* libsqlite3.dylib */; };
+		26BE672D1A6D8685001DA262 /* dive_dod.db in Resources */ = {isa = PBXBuildFile; fileRef = 26BE672C1A6D8685001DA262 /* dive_dod.db */; };
 		26C07FCF1A05921700DF35B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 263AC5CE1A030FD700846CB0 /* Main.storyboard */; };
 		26D4A40F1A507D8900FCEC6F /* RankingsMeet.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D4A40E1A507D8900FCEC6F /* RankingsMeet.m */; };
 		26D4A4121A50942700FCEC6F /* RankingsDiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D4A4111A50942700FCEC6F /* RankingsDiver.m */; };
@@ -76,7 +76,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		260140E11A688CDC00DA9EB6 /* dive_dod.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dive_dod.db; sourceTree = "<group>"; };
 		2618B9091A58BC3C007F75DE /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = ../../LaunchImage/Media.xcassets; sourceTree = "<group>"; };
 		2618CD251A521DEF0049E113 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		2618CD271A5221B60049E113 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -169,6 +168,7 @@
 		26BE23781A1027CC00E123D0 /* ValidScores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidScores.h; sourceTree = "<group>"; };
 		26BE23791A1027CC00E123D0 /* ValidScores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidScores.m; sourceTree = "<group>"; };
 		26BE23901A1028B200E123D0 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		26BE672C1A6D8685001DA262 /* dive_dod.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dive_dod.db; sourceTree = "<group>"; };
 		26D4A40D1A507D8900FCEC6F /* RankingsMeet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankingsMeet.h; sourceTree = "<group>"; };
 		26D4A40E1A507D8900FCEC6F /* RankingsMeet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankingsMeet.m; sourceTree = "<group>"; };
 		26D4A4101A50942700FCEC6F /* RankingsDiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankingsDiver.h; sourceTree = "<group>"; };
@@ -210,7 +210,7 @@
 				2618CD271A5221B60049E113 /* Social.framework */,
 				2618CD251A521DEF0049E113 /* MessageUI.framework */,
 				26BE23901A1028B200E123D0 /* libsqlite3.dylib */,
-				260140E11A688CDC00DA9EB6 /* dive_dod.db */,
+				26BE672C1A6D8685001DA262 /* dive_dod.db */,
 				26DF8AF61A043DAC00C273A6 /* QuartzCore.framework */,
 				263AC5C31A030FD600846CB0 /* Score My Dive */,
 				263AC5DD1A030FD700846CB0 /* Score My DiveTests */,
@@ -480,7 +480,7 @@
 				263AC5D51A030FD700846CB0 /* LaunchScreen.xib in Resources */,
 				2618B90A1A58BC3C007F75DE /* Media.xcassets in Resources */,
 				26C07FCF1A05921700DF35B4 /* Main.storyboard in Resources */,
-				260140E21A688CDC00DA9EB6 /* dive_dod.db in Resources */,
+				26BE672D1A6D8685001DA262 /* dive_dod.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
