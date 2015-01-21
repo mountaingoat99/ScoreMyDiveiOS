@@ -367,24 +367,24 @@
     
     if ([self.judgeTotal  isEqualToNumber: @2]) {
         self.SCJudges.selectedSegmentIndex = 0;
-        NSLog(@"Judges total is %@", self.judgeTotal);
-        NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
+        //NSLog(@"Judges total is %@", self.judgeTotal);
+        //NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
     } else if ([self.judgeTotal isEqualToNumber:@3]) {
         self.SCJudges.selectedSegmentIndex = 1;
-        NSLog(@"Judges total is %@", self.judgeTotal);
-        NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
+        //NSLog(@"Judges total is %@", self.judgeTotal);
+        //NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
     } else if ([self.judgeTotal  isEqualToNumber: @5]) {
         self.SCJudges.selectedSegmentIndex = 2;
-        NSLog(@"Judges total is %@", self.judgeTotal);
-        NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
+        //NSLog(@"Judges total is %@", self.judgeTotal);
+        //NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
     } else if ([self.judgeTotal  isEqualToNumber: @7]) {
         self.SCJudges.selectedSegmentIndex = 3;
-        NSLog(@"Judges total is %@", self.judgeTotal);
-        NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
+        //NSLog(@"Judges total is %@", self.judgeTotal);
+        //NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
     } else {
         self.SCJudges.selectedSegmentIndex = 0;
-        NSLog(@"Judges total is %@", self.judgeTotal);
-        NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
+        //NSLog(@"Judges total is %@", self.judgeTotal);
+        //NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
         self.judgeTotal = @2;
     }
 }

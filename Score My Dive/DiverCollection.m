@@ -413,35 +413,35 @@
         
         
         r.resultId = rId;
-        NSLog(@" resultid %@", rId);
+        //NSLog(@" resultid %@", rId);
         r.meetId = mId;
-        NSLog(@" result meetid=d %@", mId);
+        //NSLog(@" result meetid=d %@", mId);
         r.diverId = dId;
-        NSLog(@" result diveridf=d %@", dId);
+        //NSLog(@" result diveridf=d %@", dId);
         r.dive1 = [NSNumber numberWithDouble:[dive1 doubleValue]];
-        NSLog(@" dive1=d %@", dive1);
+        //NSLog(@" dive1=d %@", dive1);
         r.dive2 = [NSNumber numberWithDouble:[dive2 doubleValue]];
-        NSLog(@" dive2=d %@", dive2);
+        //NSLog(@" dive2=d %@", dive2);
         r.dive3 = [NSNumber numberWithDouble:[dive3 doubleValue]];
-        NSLog(@" dive3=d %@", dive3);
+        //NSLog(@" dive3=d %@", dive3);
         r.dive4 = [NSNumber numberWithDouble:[dive4 doubleValue]];
-        NSLog(@" dive4=d %@", dive4);
+        //NSLog(@" dive4=d %@", dive4);
         r.dive5 = [NSNumber numberWithDouble:[dive5 doubleValue]];
-        NSLog(@" dive5=d %@", dive5);
+        //NSLog(@" dive5=d %@", dive5);
         r.dive6 = [NSNumber numberWithDouble:[dive6 doubleValue]];
-        NSLog(@" dive6=d %@", dive6);
+        //NSLog(@" dive6=d %@", dive6);
         r.dive7 = [NSNumber numberWithDouble:[dive7 doubleValue]];
-        NSLog(@" dive7=d %@", dive7);
+        //NSLog(@" dive7=d %@", dive7);
         r.dive8 = [NSNumber numberWithDouble:[dive8 doubleValue]];
-        NSLog(@" dive8=d %@", dive8);
+        //NSLog(@" dive8=d %@", dive8);
         r.dive9 = [NSNumber numberWithDouble:[dive9 doubleValue]];
-        NSLog(@" dive9=d %@", dive9);
+        //NSLog(@" dive9=d %@", dive9);
         r.dive10 = [NSNumber numberWithDouble:[dive10 doubleValue]];
-        NSLog(@" dive10=d %@", dive10);
+        //NSLog(@" dive10=d %@", dive10);
         r.dive11 = [NSNumber numberWithDouble:[dive11 doubleValue]];
-        NSLog(@" dive11=d %@", dive11);
+        //NSLog(@" dive11=d %@", dive11);
         r.totalScoreTotal = [NSNumber numberWithDouble:[total doubleValue]];
-        NSLog(@" result total=d %@", total);
+        //NSLog(@" result total=d %@", total);
         
         return r;
         

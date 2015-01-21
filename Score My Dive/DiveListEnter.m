@@ -110,7 +110,7 @@
     self.txtDiveGroup.layer.shadowOpacity = .3;
     self.txtDiveGroup.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     self.txtDiveGroup.delegate = self;
-    [self.txtDiveGroup addTarget:self action:@selector(CheckDDForDiveGroup) forControlEvents:UIControlEventAllEvents];
+    //[self.txtDiveGroup addTarget:self action:@selector(CheckDDForDiveGroup) forControlEvents:UIControlEventAllEvents];
     
     self.txtDive.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtDive.layer.shadowOffset = CGSizeMake(.1f, .1f);
@@ -119,7 +119,7 @@
     self.txtDive.layer.shadowOpacity = .3;
     self.txtDive.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     self.txtDive.delegate = self;
-    [self.txtDive addTarget:self action:@selector(CheckDDForDive) forControlEvents:UIControlEventAllEvents];
+    //[self.txtDive addTarget:self action:@selector(CheckDDForDive) forControlEvents:UIControlEventAllEvents];
     
     self.SCPosition.layer.shadowColor = [UIColor blackColor].CGColor;
     self.SCPosition.layer.shadowOffset = CGSizeMake(.1f, .1f);
@@ -319,6 +319,35 @@
     [self.view endEditing:YES];
 }
 
+
+-(void)makeGroupPicker {
+    
+    self.groupPicker = [[UIPickerView alloc] init];
+    [self.groupPicker setBackgroundColor:[UIColor grayColor]];
+    self.groupPicker.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.groupPicker.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.groupPicker.layer.masksToBounds = NO;
+    self.groupPicker.layer.shadowOpacity = .3;
+    self.groupPicker.dataSource = self;
+    self.groupPicker.delegate = self;
+    self.txtDiveGroup.inputView = self.groupPicker;
+    
+}
+
+-(void)makeDivePicker {
+    
+    self.divePicker = [[UIPickerView alloc] init];
+    [self.divePicker setBackgroundColor:[UIColor grayColor]];
+    self.divePicker.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.divePicker.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.divePicker.layer.masksToBounds = NO;
+    self.divePicker.layer.shadowOpacity = .3;
+    self.divePicker.dataSource = self;
+    self.divePicker.delegate = self;
+    self.txtDive.inputView = self.divePicker;
+    
+}
+
 //keps the user from entering text in the txtfield
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
@@ -386,34 +415,6 @@
     return YES;
 }
 
--(void)makeGroupPicker {
-    
-    self.groupPicker = [[UIPickerView alloc] init];
-    [self.groupPicker setBackgroundColor:[UIColor grayColor]];
-    self.groupPicker.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.groupPicker.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.groupPicker.layer.masksToBounds = NO;
-    self.groupPicker.layer.shadowOpacity = .3;
-    self.groupPicker.dataSource = self;
-    self.groupPicker.delegate = self;
-    self.txtDiveGroup.inputView = self.groupPicker;
-    
-}
-
--(void)makeDivePicker {
-    
-    self.divePicker = [[UIPickerView alloc] init];
-    [self.divePicker setBackgroundColor:[UIColor grayColor]];
-    self.divePicker.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.divePicker.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.divePicker.layer.masksToBounds = NO;
-    self.divePicker.layer.shadowOpacity = .3;
-    self.divePicker.dataSource = self;
-    self.divePicker.delegate = self;
-    self.txtDive.inputView = self.divePicker;
-    
-}
-
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     
     if (pickerView ==self.groupPicker) {
@@ -421,7 +422,6 @@
     } else {
         return self.diveArray.count;
     }
-    
 }
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
@@ -457,6 +457,12 @@
             
         }
         
+        // this will disable dive position choices based on cat, board, and dive type
+        [self DisableDivePositions];
+        
+        // then this will set the divedod label to the correct dod
+        [self GetDiveDOD];
+        
         // if they choose anything from the pickers we need to clear the text on the regular text fields
         self.txtDiveNumberEntry.text = @"";
         self.txtDivePositionEntry.text = @"";
@@ -475,6 +481,12 @@
             self.txtDive.text = diveText;
             self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
             
+            // this will disable dive position choices based on cat, board, and dive type
+            [self DisableDivePositions];
+            
+            // then this will set the divedod label to the correct dod
+            [self GetDiveDOD];
+            
             // if they choose anything from the pickers we need to clear the text on the regular text fields
             self.txtDiveNumberEntry.text = @"";
             self.txtDivePositionEntry.text = @"";
@@ -490,6 +502,12 @@
             diveText = [diveText stringByAppendingString:[self.diveArray [row] objectAtIndex:4]];
             self.txtDive.text = diveText;
             self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
+            
+            // this will disable dive position choices based on cat, board, and dive type
+            [self DisableDivePositions];
+            
+            // then this will set the divedod label to the correct dod
+            [self GetDiveDOD];
 
             return diveText;
             
@@ -551,6 +569,12 @@
             
         }
     }
+    
+    // this will disable dive position choices based on cat, board, and dive type
+    [self DisableDivePositions];
+    
+    // then this will set the divedod label to the correct dod
+    [self GetDiveDOD];
 }
 
 - (IBAction)PositionIndexChanged:(UISegmentedControl *)sender {
@@ -674,7 +698,7 @@
 - (IBAction)Dive1EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive1 edit Test");
+        //NSLog(@"Dive1 edit Test");
         self.editDiveNumber = @1;
         self.oldDiveName = self.lblDive1.text;
         [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
@@ -684,7 +708,7 @@
 - (IBAction)Dive2EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive2 edit Test");
+        //NSLog(@"Dive2 edit Test");
         self.editDiveNumber = @2;
         self.oldDiveName = self.lblDive2.text;
         [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
@@ -694,7 +718,7 @@
 - (IBAction)Dive3EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive3 edit Test");
+        //NSLog(@"Dive3 edit Test");
         self.editDiveNumber = @3;
         self.oldDiveName = self.lblDive3.text;
         [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
@@ -704,7 +728,7 @@
 - (IBAction)Dive4EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive4 edit Test");
+        //NSLog(@"Dive4 edit Test");
         self.editDiveNumber = @4;
         self.oldDiveName = self.lblDive4.text;
         [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
@@ -714,7 +738,7 @@
 - (IBAction)Dive5EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive5 edit Test");
+        //NSLog(@"Dive5 edit Test");
         self.editDiveNumber = @5;
         self.oldDiveName = self.lblDive5.text;
         [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
@@ -724,7 +748,7 @@
 - (IBAction)Dive6EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive6 edit Test");
+        //NSLog(@"Dive6 edit Test");
         self.editDiveNumber = @6;
         self.oldDiveName = self.lblDive6.text;
         [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
@@ -734,7 +758,7 @@
 - (IBAction)Dive7EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive7 edit Test");
+        //NSLog(@"Dive7 edit Test");
         self.editDiveNumber = @7;
         self.oldDiveName = self.lblDive7.text;
         [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
@@ -744,7 +768,7 @@
 - (IBAction)Dive8EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive8 edit Test");
+        //NSLog(@"Dive8 edit Test");
         self.editDiveNumber = @8;
         self.oldDiveName = self.lblDive8.text;
         [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
@@ -754,7 +778,7 @@
 - (IBAction)Dive9EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive9 edit Test");
+        //NSLog(@"Dive9 edit Test");
         self.editDiveNumber = @9;
         self.oldDiveName = self.lblDive9.text;
         [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
@@ -764,7 +788,7 @@
 - (IBAction)Dive10EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive10 edit Test");
+        //NSLog(@"Dive10 edit Test");
         self.editDiveNumber = @10;
         self.oldDiveName = self.lblDive10.text;
         [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
@@ -774,7 +798,7 @@
 - (IBAction)Dive11EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"Dive11 edit Test");
+        //NSLog(@"Dive11 edit Test");
         self.editDiveNumber = @11;
         self.oldDiveName = self.lblDive11.text;
         [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
@@ -1139,27 +1163,27 @@
     }
 }
 
--(void)CheckDDForDiveGroup {
-    
-    if (self.txtDiveGroup.text.length > 0 && self.txtDive.text.length > 0) {
-        // this will disable dive position choices based on cat, board, and dive type
-        [self DisableDivePositions];
-        
-        // then this will set the divedod label to the correct dod
-        [self GetDiveDOD];
-    }
-}
-
--(void)CheckDDForDive {
-    
-    if (self.txtDiveGroup.text.length > 0 && self.txtDive.text.length > 0) {
-        // this will disable dive position choices based on cat, board, and dive type
-        [self DisableDivePositions];
-        
-        // then this will set the divedod label to the correct dod
-        [self GetDiveDOD];
-    }
-}
+//-(void)CheckDDForDiveGroup {
+//    
+//    if (self.txtDiveGroup.text.length > 0 && self.txtDive.text.length > 0) {
+//        // this will disable dive position choices based on cat, board, and dive type
+//        [self DisableDivePositions];
+//        
+//        // then this will set the divedod label to the correct dod
+//        [self GetDiveDOD];
+//    }
+//}
+//
+//-(void)CheckDDForDive {
+//    
+//    if (self.txtDiveGroup.text.length > 0 && self.txtDive.text.length > 0) {
+//        // this will disable dive position choices based on cat, board, and dive type
+//        [self DisableDivePositions];
+//        
+//        // then this will set the divedod label to the correct dod
+//        [self GetDiveDOD];
+//    }
+//}
 
 -(void)GetDiveDOD {
     

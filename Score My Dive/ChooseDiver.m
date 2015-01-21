@@ -177,7 +177,7 @@
     self.listStarted = [coder decodeObjectForKey:@"listStarted"];
     self.txtChooseDiver.text = [coder decodeObjectForKey:@"diverText"];
     
-    NSLog(@"ChooseDiver decode");
+    //NSLog(@"ChooseDiver decode");
 }
 
 - (void)didReceiveMemoryWarning {

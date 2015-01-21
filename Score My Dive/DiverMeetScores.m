@@ -119,7 +119,7 @@
     [[self.btnDive11 layer] setMasksToBounds:NO];
     [[self.btnDive11 layer] setShadowOpacity:.3];
     
-    NSLog(@"DiverMeetScores ViewDidLoad");
+    //NSLog(@"DiverMeetScores ViewDidLoad");
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -133,7 +133,7 @@
         [self loadResults];
     }
     
-    NSLog(@"DiverMeetScores viewWillAppear");
+    //NSLog(@"DiverMeetScores viewWillAppear");
 }
 
 // restore state
@@ -148,7 +148,7 @@
     [coder encodeInt:self.diveNumber forKey:@"diveNumber"];
     [coder encodeObject:self.boardSize forKey:@"boardSize"];
     
-    NSLog(@"DiverMeetScores encode");
+    //NSLog(@"DiverMeetScores encode");
 }
 
 -(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
@@ -162,7 +162,7 @@
     self.diveNumber = [coder decodeIntForKey:@"diveNumber"];
     self.boardSize = [coder decodeObjectForKey:@"boardSize"];
     
-    NSLog(@"DiverMeetScores Decode");
+    //NSLog(@"DiverMeetScores Decode");
 }
 
 - (void)didReceiveMemoryWarning {

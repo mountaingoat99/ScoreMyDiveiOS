@@ -39,7 +39,7 @@
     self.tblHistory.layer.masksToBounds = NO;
     self.tblHistory.layer.shadowRadius = 4.0f;
     self.tblHistory.layer.shadowOpacity = 1.0;
-    NSLog(@"DiverHistory ViewDidLoad");
+    //NSLog(@"DiverHistory ViewDidLoad");
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -48,13 +48,13 @@
     if (self.recordIdToEdit != -1) {
         [self loadData];
     }
-    NSLog(@"DiverHistory viewWillAppear");
+    //NSLog(@"DiverHistory viewWillAppear");
 }
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    NSLog(@"DiverHistory ViewDidAppear");
+    //NSLog(@"DiverHistory ViewDidAppear");
 }
 
 // restore state
@@ -67,7 +67,7 @@
     [coder encodeInt:self.callingIdToReturnTo forKey:@"CallingId"];
     [coder encodeObject:self.diverInfo forKey:@"Info"];
     
-    NSLog(@"DiverHistory encode");
+    //NSLog(@"DiverHistory encode");
 }
 
 -(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
@@ -79,7 +79,7 @@
     self.callingIdToReturnTo = [coder decodeIntForKey:@"CallingId"];
     self.diverInfo = [coder decodeObjectForKey:@"Info"];
     
-    NSLog(@"DiverHistory Decode");
+    //NSLog(@"DiverHistory Decode");
 }
 
 -(void)viewMeetScoreWasFinished {

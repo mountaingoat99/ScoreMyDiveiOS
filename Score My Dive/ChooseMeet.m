@@ -109,7 +109,7 @@
     self.meetRecordID = [coder decodeIntForKey:@"meetid"];
     self.txtChooseMeet.text = [coder decodeObjectForKey:@"meetText"];
     
-    NSLog(@"ChooseMeet decode");
+    //NSLog(@"ChooseMeet decode");
 }
 
 // push id to next view controller

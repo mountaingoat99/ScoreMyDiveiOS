@@ -1597,39 +1597,52 @@
         
         NSArray *dods = [[NSArray alloc] init];
         
+        // set the segmented control back to enabled
+        [self.SCPosition setEnabled:YES];
+        
         // lets get the valid dods based on group, type and board size
         DiveTypes *types = [[DiveTypes alloc] init];
         dods = [types GetAllDiveDODs:self.diveGroupID DiveTypeId:self.diveID BoardType:self.boardSize];
         
-        // now put those into a NSNumber variable
-        self.straight = [[dods objectAtIndex:0] objectAtIndex:0];
-        self.pike = [[dods objectAtIndex:0] objectAtIndex:1];
-        self.tuck = [[dods objectAtIndex:0] objectAtIndex:2];
-        self.free = [[dods objectAtIndex:0] objectAtIndex:3];
+        if (dods.count > 0) {
         
-        if ([self.straight isEqualToString:@"0.0"]) {
-            [self.SCPosition setEnabled:NO forSegmentAtIndex:0];
+            // now put those into a NSNumber variable
+            self.straight = [[dods objectAtIndex:0] objectAtIndex:0];
+            self.pike = [[dods objectAtIndex:0] objectAtIndex:1];
+            self.tuck = [[dods objectAtIndex:0] objectAtIndex:2];
+            self.free = [[dods objectAtIndex:0] objectAtIndex:3];
+            
+            if ([self.straight isEqualToString:@"0.0"]) {
+                [self.SCPosition setEnabled:NO forSegmentAtIndex:0];
+            } else {
+                [self.SCPosition setEnabled:YES forSegmentAtIndex:0];
+            }
+            
+            if ([self.pike isEqualToString:@"0.0"]) {
+                [self.SCPosition setEnabled:NO forSegmentAtIndex:1];
+            } else {
+                [self.SCPosition setEnabled:YES forSegmentAtIndex:1];
+            }
+            
+            if ([self.tuck isEqualToString:@"0.0"]) {
+                [self.SCPosition setEnabled:NO forSegmentAtIndex:2];
+            } else {
+                [self.SCPosition setEnabled:YES forSegmentAtIndex:2];
+            }
+            
+            if ([self.free isEqualToString:@"0.0"]) {
+                [self.SCPosition setEnabled:NO forSegmentAtIndex:3];
+            } else {
+                [self.SCPosition setEnabled:YES forSegmentAtIndex:3];
+            }
         } else {
-            [self.SCPosition setEnabled:YES forSegmentAtIndex:0];
+            // disable the segmented control until a dive has been chosen
+            [self.SCPosition setEnabled:NO];
         }
+    } else {
         
-        if ([self.pike isEqualToString:@"0.0"]) {
-            [self.SCPosition setEnabled:NO forSegmentAtIndex:1];
-        } else {
-            [self.SCPosition setEnabled:YES forSegmentAtIndex:1];
-        }
-        
-        if ([self.tuck isEqualToString:@"0.0"]) {
-            [self.SCPosition setEnabled:NO forSegmentAtIndex:2];
-        } else {
-            [self.SCPosition setEnabled:YES forSegmentAtIndex:2];
-        }
-        
-        if ([self.free isEqualToString:@"0.0"]) {
-            [self.SCPosition setEnabled:NO forSegmentAtIndex:3];
-        } else {
-            [self.SCPosition setEnabled:YES forSegmentAtIndex:3];
-        }
+        // disable the segmented control until a dive has been chosen
+        [self.SCPosition setEnabled:NO];
     }
 }
 
@@ -1655,28 +1668,6 @@
         self.lblDivedd.text = @"0.0";
     }
 }
-
-//-(void)CheckDDForDiveGroup {
-//    
-//    if (self.txtDiveGroup.text.length > 0 && self.txtDive.text.length > 0) {
-//        // this will disable dive position choices based on cat, board, and dive type
-//        [self DisableDivePositions];
-//        
-//        // then this will set the divedod label to the correct dod
-//        [self GetDiveDOD];
-//    }
-//}
-//
-//-(void)CheckDDForDive {
-//    
-//    if (self.txtDiveGroup.text.length > 0 && self.txtDive.text.length > 0) {
-//        // this will disable dive position choices based on cat, board, and dive type
-//        [self DisableDivePositions];
-//        
-//        // then this will set the divedod label to the correct dod
-//        [self GetDiveDOD];
-//    }
-//}
 
 -(void)GetDiveDOD {
     

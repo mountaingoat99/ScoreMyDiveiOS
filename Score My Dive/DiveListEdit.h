@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HTAutocompleteTextField.h"
 
 @protocol DiveListEnterViewControllerDelegate
 
@@ -14,7 +15,7 @@
 
 @end
 
-@interface DiveListEdit : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface DiveListEdit : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
 
 // delegate property
 @property (nonatomic, strong) id<DiveListEnterViewControllerDelegate> delegate;
@@ -33,6 +34,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblDivedd;
 @property (weak, nonatomic) IBOutlet UIButton *btnEnterDive;
 @property (weak, nonatomic) IBOutlet UILabel *lblOldDiveName;
+
+// autofill controls
+@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txtDiveNumberEntry;
+@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txtDivePositionEntry;
 
 - (IBAction)PositionIndexChanged:(UISegmentedControl *)sender;
 - (IBAction)btnEnterDive:(id)sender;
