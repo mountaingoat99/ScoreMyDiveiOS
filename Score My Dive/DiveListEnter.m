@@ -1337,7 +1337,6 @@
     self.diveID = 0;
     
     [self.groupPicker reloadAllComponents];
-    //[self.divePicker reloadAllComponents];
     
     self.txtDiveGroup.text = @"";
     self.txtDive.text = @"";

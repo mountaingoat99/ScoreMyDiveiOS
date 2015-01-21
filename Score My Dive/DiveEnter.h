@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HTAutocompleteTextField.h"
 
 @interface DiveEnter : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UIScrollViewDelegate, UITextFieldDelegate>
 
@@ -69,6 +70,10 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *SCPosition;
 @property (weak, nonatomic) IBOutlet UIButton *btnEnterScore;
 @property (weak, nonatomic) IBOutlet UIButton *btnEnterTotalScore;
+
+// autofill controls
+@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txtDiveNumberEntry;
+@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txtDivePositionEntry;
 
 // touch events for the dive edits
 - (IBAction)Dive1EditClick:(UILongPressGestureRecognizer *)sender;

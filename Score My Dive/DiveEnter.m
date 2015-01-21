@@ -7,6 +7,7 @@
 //
 
 #import "DiveEnter.h"
+#import "HTAutocompleteManager.h"
 #import "JudgeScores.h"
 #import "DiveCategory.h"
 #import "DiveTypes.h"
@@ -19,6 +20,7 @@
 #import "Results.h"
 #import "MeetCollection.h"
 #import "ChooseDiver.h"
+#import "DiveNumberCheck.h"
 
 @interface DiveEnter ()
 
@@ -38,6 +40,11 @@
 @property (nonatomic) BOOL allDivesEntered;
 @property (nonatomic) int diveTotal;
 @property (nonatomic, strong) NSNumber *scoreTotal;
+@property (nonatomic) int selectedPosition;
+
+@property (nonatomic, strong) NSString *diveNumberEntered;
+@property (nonatomic, strong) NSString *divePositionEntered;
+@property (nonatomic, strong) NSArray *diveTextArray;
 
 // properties to send to the diveScore screen
 @property (nonatomic, strong) NSString *diveCategory;
@@ -64,6 +71,10 @@
 -(void)checkFinishedScoring;
 -(void)ShowScoreTotal:(NSNumber*)scoretotal;
 
+
+-(void)CheckValidDiveFromText;
+-(void)ConvertTextEntries;
+
 @end
 
 @implementation DiveEnter
@@ -73,6 +84,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // sets the default datasource for the autocomplete custom text boxes
+    [HTAutocompleteTextField setDefaultAutocompleteDataSource:[HTAutocompleteManager sharedManager]];
+    
+    // attributes for controls
+    self.txtDiveNumberEntry.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.txtDiveNumberEntry.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.txtDiveNumberEntry.layer.masksToBounds = NO;
+    self.txtDiveNumberEntry.layer.shadowRadius = 4.0f;
+    self.txtDiveNumberEntry.layer.shadowOpacity = .3;
+    self.txtDiveNumberEntry.keyboardAppearance = UIKeyboardAppearanceDark;
+    self.txtDiveNumberEntry.keyboardType = UIKeyboardTypeNumberPad;
+    self.txtDiveNumberEntry.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+    self.txtDiveNumberEntry.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+    self.txtDiveNumberEntry.delegate = self;
+    [self.txtDiveNumberEntry addTarget:self action:@selector(CheckDDForDiveNumberEntry) forControlEvents:UIControlEventEditingChanged];
+    
+    self.txtDivePositionEntry.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.txtDivePositionEntry.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.txtDivePositionEntry.layer.masksToBounds = NO;
+    self.txtDivePositionEntry.layer.shadowRadius = 4.0f;
+    self.txtDivePositionEntry.layer.shadowOpacity = .3;
+    self.txtDivePositionEntry.keyboardAppearance = UIKeyboardAppearanceDark;
+    self.txtDivePositionEntry.autocompleteType = HTAutocompletePositions;
+    self.txtDivePositionEntry.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+    self.txtDivePositionEntry.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+    self.txtDivePositionEntry.delegate = self;
+    [self.txtDivePositionEntry addTarget:self action:@selector(CheckDDForDivePositionEntry) forControlEvents:UIControlEventEditingChanged];
+    
     // attributes for controls
     self.txtDiveGroup.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtDiveGroup.layer.shadowOffset = CGSizeMake(.1f, .1f);
@@ -81,6 +120,7 @@
     self.txtDiveGroup.layer.shadowOpacity = .3;
     self.txtDiveGroup.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     self.txtDiveGroup.delegate = self;
+    //[self.txtDiveGroup addTarget:self action:@selector(CheckDDForDiveGroup) forControlEvents:UIControlEventAllEvents];
     
     self.txtDive.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtDive.layer.shadowOffset = CGSizeMake(.1f, .1f);
@@ -89,6 +129,7 @@
     self.txtDive.layer.shadowOpacity = .3;
     self.txtDive.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     self.txtDive.delegate = self;
+    //[self.txtDive addTarget:self action:@selector(CheckDDForDive) forControlEvents:UIControlEventAllEvents];
     
     self.SCPosition.layer.shadowColor = [UIColor blackColor].CGColor;
     self.SCPosition.layer.shadowOffset = CGSizeMake(.1f, .1f);
@@ -133,6 +174,25 @@
     [self makeGroupPicker];
     [self makeDivePicker];
 
+    // add a done button to the pickers
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 0, 44)];
+    toolbar.barTintColor = [UIColor grayColor];
+    UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                      style:UIBarButtonItemStyleDone
+                                                                     target:self
+                                                                     action:@selector(dateSelectionDone:)];
+    
+    toolbar.items = [[NSArray alloc] initWithObjects:barButtonDone, nil];
+    barButtonDone.tintColor = [UIColor blackColor];
+    self.txtDiveGroup.inputAccessoryView = toolbar;
+    self.txtDive.inputAccessoryView = toolbar;
+}
+
+// done button a picker
+-(void)dateSelectionDone:(id)sender {
+    
+    [self.txtDiveGroup resignFirstResponder];
+    [self.txtDive resignFirstResponder];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -147,6 +207,13 @@
     [self loadGroupPicker];
     [self fillDiveInfo];
     [self checkFinishedScoring];
+    
+    // here we need to set the autocomplete type to the correct DiveTypes
+    if ([self.boardSize  isEqual: @1.0] || [self.boardSize  isEqual: @3.0]) {
+        self.txtDiveNumberEntry.autocompleteType = HTAutocompleteSpringboard;
+    } else {
+        self.txtDiveNumberEntry.autocompleteType = HTAutocompletePlatform;
+    }
 }
 
 // restore state because Apple doesn't know how to write a modern OS
@@ -166,6 +233,10 @@
     [coder encodeObject:self.diveGroupArray forKey:@"diveGroupArray"];
     [coder encodeObject:self.diveArray forKey:@"diveArray"];
     [coder encodeObject:self.lblDivedd.text forKey:@"dd"];
+    
+    [coder encodeObject:self.txtDiveNumberEntry.text forKey:@"diveNumEntry"];
+    [coder encodeObject:self.txtDivePositionEntry.text forKey:@"divePosEntry"];
+    [coder encodeObject:self.diveTextArray forKey:@"diveTextArray"];
 }
 
 -(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
@@ -189,6 +260,16 @@
     self.diveGroupArray = [coder decodeObjectForKey:@"diveGroupArray"];
     self.diveArray = [coder decodeObjectForKey:@"diveArray"];
     self.lblDivedd.text = [coder decodeObjectForKey:@"dd"];
+    
+    self.txtDiveNumberEntry.text = [coder decodeObjectForKey:@"diveNumEntry"];
+    if (self.txtDiveNumberEntry.text.length == 0) {
+        self.txtDiveNumberEntry.text = @"";
+    }
+    self.txtDivePositionEntry.text = [coder decodeObjectForKey:@"divePosEntry"];
+    if (self.txtDivePositionEntry.text.length == 0) {
+        self.txtDivePositionEntry.text = @"";
+    }
+    self.diveTextArray = [coder decodeObjectForKey:@"diveTextArray"];
     
     [self loadDivePicker];
     [self DisableDivePositions];
@@ -299,8 +380,68 @@
 //keps the user from entering text in the txtfield
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
-    return NO;
+    // we need to see which field is getting entry, only the number and position should use keyboard
+    // then we will clear the text of the pickers if text is entered and vice-versa
+    if (textField == self.txtDiveNumberEntry || textField == self.txtDivePositionEntry) {
+        
+        // lets the user use the back key
+        if (!string.length)
+            return YES;
+        
+        // only lets the user enter numeric digits and only 4 total
+        if (textField == self.txtDiveNumberEntry) {
+            NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+            NSString *expression = @"^\\d";
+            NSError *error = nil;
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:expression options:NSRegularExpressionCaseInsensitive error:&error];
+            NSUInteger numberOfMatches = [regex numberOfMatchesInString:newString options:0 range:NSMakeRange(0, [newString length])];
+            if (numberOfMatches == 0) return NO;
+            
+            // regex {4} was not working, had to cheese out and do this
+            if (textField.text.length >= 4) {
+                return NO;
+            }
+        }
+        
+        // only lets the user enter A, B, C, or D
+        if (textField == self.txtDivePositionEntry) {
+            NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+            NSString *expression = @"^[A-D]$";
+            NSError *error = nil;
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:expression options:NSRegularExpressionCaseInsensitive error:&error];
+            NSUInteger numberOfMatches = [regex numberOfMatchesInString:newString options:0 range:NSMakeRange(0, [newString length])];
+            if (numberOfMatches == 0) return NO;
+        }
+        
+        // clears out the picker text if user uses the txtfields
+        self.txtDiveGroup.text = @"";
+        [self.groupPicker reloadAllComponents];
+        self.txtDive.text = @"";
+        [self.divePicker reloadAllComponents];
+        [self.SCPosition setEnabled:NO];
+        self.diveGroupID = 0;
+        self.diveID = 0;
+        self.divePositionID = 0;
+        self.lblDivedd.text = @"0.0";
+        
+        return YES;
+        
+    } else {
+        
+        return NO;
+    }
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
     
+    if (textField == self.txtDiveNumberEntry) {
+        [self.txtDivePositionEntry becomeFirstResponder];
+    }
+    if (textField == self.txtDivePositionEntry) {
+        [self.txtDivePositionEntry resignFirstResponder];
+    }
+    
+    return YES;
 }
 
 -(void)makeGroupPicker {
@@ -379,6 +520,11 @@
         // then this will set the divedod label to the correct dod
         [self GetDiveDOD];
         
+        // if they choose anything from the pickers we need to clear the text on the regular text fields
+        self.txtDiveNumberEntry.text = @"";
+        self.txtDivePositionEntry.text = @"";
+        [self.SCPosition setEnabled:YES];
+        
         return [self.diveGroupArray[row]objectAtIndex:1];
         
     } else {
@@ -398,7 +544,11 @@
             // then this will set the divedod label to the correct dod
             [self GetDiveDOD];
             
-            //return [self.diveArray[row]objectAtIndex:3];
+            // if they choose anything from the pickers we need to clear the text on the regular text fields
+            self.txtDiveNumberEntry.text = @"";
+            self.txtDivePositionEntry.text = @"";
+            [self.SCPosition setEnabled:YES];
+            
             return diveText;
             
         } else {
@@ -416,7 +566,6 @@
             // then this will set the divedod label to the correct dod
             [self GetDiveDOD];
             
-            //return [self.diveArray[row]objectAtIndex:4];
             return diveText;
             
         }
@@ -428,7 +577,6 @@
     if (pickerView == self.groupPicker) {
         
         self.txtDiveGroup.text = [self.diveGroupArray [row] objectAtIndex:1];
-        [self.txtDiveGroup resignFirstResponder];
         self.diveGroupID = [[self.diveGroupArray [row] objectAtIndex:0] intValue];
         
         // empty and reload the type picker after a category has been changed
@@ -464,7 +612,6 @@
             diveText = [diveText stringByAppendingString:@" - "];
             diveText = [diveText stringByAppendingString:[self.diveArray [row] objectAtIndex:3]];
             self.txtDive.text = diveText;
-            [self.txtDive resignFirstResponder];
             self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
             
         } else {
@@ -473,7 +620,6 @@
             diveText = [diveText stringByAppendingString:@" - "];
             diveText = [diveText stringByAppendingString:[self.diveArray [row] objectAtIndex:4]];
             self.txtDive.text = diveText;
-            [self.txtDive resignFirstResponder];
             self.diveID = [[self.diveArray [row] objectAtIndex:0] intValue];
             
         }
@@ -510,48 +656,119 @@
 
 - (IBAction)btnEnterScoreClick:(id)sender {
     
-    int selectedPosition = (int)self.SCPosition.selectedSegmentIndex;
-    
-    if (self.diveGroupID != 0 && self.diveID != 0 && selectedPosition >= 0) {
+    // update  and send to next view controller from the txtfields
+    if (self.txtDiveNumberEntry.text.length > 0) {
+        // now make sure there is text in the position field
+        if (self.txtDivePositionEntry.text.length > 0) {
         
-        [self UpdateDiveInfoToSend];
-        
-        [self performSegueWithIdentifier:@"idSegueDiveEnterToScore" sender:self];
-        
+            // now make sure the dive is legit
+            [self CheckValidDiveFromText];
+            if (self.diveTextArray.count > 0) {
+                
+                [self ConvertTextEntries];
+                [self UpdateDiveInfoToSend];
+                
+                [self performSegueWithIdentifier:@"idSegueDiveEnterToScore" sender:self];
+            
+            } else {
+                UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                                message:@"That is not a valid dive! Make sure the Dive DD is more than 0.0"
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [error show];
+                [error reloadInputViews];
+            }
+            
+        } else {
+            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                            message:@"You also need to pick a Dive Position"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [error show];
+            [error reloadInputViews];
+        }
+    // update  and send to next view controller from the pickers
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"Please make sure you've picked a dive and a valid position"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
-    }
     
+        self.selectedPosition = (int)self.SCPosition.selectedSegmentIndex;
+        
+        if (self.diveGroupID != 0 && self.diveID != 0 && self.selectedPosition >= 0) {
+            
+            [self UpdateDiveInfoToSend];
+            
+            [self performSegueWithIdentifier:@"idSegueDiveEnterToScore" sender:self];
+            
+        } else {
+            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                            message:@"Please make sure you've picked a dive and a valid position"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [error show];
+            [error reloadInputViews];
+        }
+    }
 }
 
 - (IBAction)btnEnterTotalScoreClick:(id)sender {
     
-    int selectedPosition = (int)self.SCPosition.selectedSegmentIndex;
-    
-    if (self.diveGroupID != 0 && self.diveID != 0 && selectedPosition >= 0) {
-        
-        [self UpdateDiveInfoToSend];
-        
-        [self performSegueWithIdentifier:@"idSegueDiveEnterToFinalScore" sender:self];
-        
+    // update  and send to next view controller from the txtfields
+    if (self.txtDiveNumberEntry.text.length > 0) {
+        // now make sure there is text in the position field
+        if (self.txtDivePositionEntry.text.length > 0) {
+            
+            // now make sure the dive is legit
+            [self CheckValidDiveFromText];
+            if (self.diveTextArray.count > 0) {
+                
+                [self ConvertTextEntries];
+                [self UpdateDiveInfoToSend];
+                
+                [self performSegueWithIdentifier:@"idSegueDiveEnterToScore" sender:self];
+                
+            } else {
+                UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                                message:@"That is not a valid dive! Make sure the Dive DD is more than 0.0"
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [error show];
+                [error reloadInputViews];
+            }
+            
+        } else {
+            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                            message:@"You also need to pick a Dive Position"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [error show];
+            [error reloadInputViews];
+        }
+        // update  and send to next view controller from the pickers
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"Please make sure you've picked a dive and a valid position"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
-    }
     
+        self.selectedPosition = (int)self.SCPosition.selectedSegmentIndex;
+        
+        if (self.diveGroupID != 0 && self.diveID != 0 && self.selectedPosition >= 0) {
+            
+            [self UpdateDiveInfoToSend];
+            
+            [self performSegueWithIdentifier:@"idSegueDiveEnterToFinalScore" sender:self];
+            
+        } else {
+            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                            message:@"Please make sure you've picked a dive and a valid position"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [error show];
+            [error reloadInputViews];
+        }
+    }
 }
-
 
 - (IBAction)lblOptionsClick:(id)sender {
     
@@ -563,11 +780,6 @@
     [error show];
     [error reloadInputViews];
 }
-
-//- (IBAction)btnReturnClick:(id)sender {
-//    
-//    [self performSegueWithIdentifier:@"idSegueEnterToChooseDiver" sender:self];
-//}
 
 - (IBAction)Dive1EditClick:(UILongPressGestureRecognizer *)sender {
     
@@ -1140,7 +1352,7 @@
 -(void)UpdateDiveInfoToSend {
     
     NSString *diveName;
-    int selectedPosition = (int)self.SCPosition.selectedSegmentIndex;
+    //int selectedPosition = (int)self.SCPosition.selectedSegmentIndex;
     
     // first lets see if these are Springboard or platform dives
     if ([self.boardSize isEqualToNumber:@1.0] || [self.boardSize isEqualToNumber:@3.0]) {
@@ -1185,7 +1397,7 @@
     }
     
     // then lets get the position into a string
-    switch (selectedPosition) {
+    switch (self.selectedPosition) {
         case 0:
             self.divePosition = @"A - Straight";
             break;
@@ -1201,7 +1413,18 @@
     }
     
     // get the dive name and then append it to the diveid
-    diveName = self.txtDive.text;
+    // if entered in the text box
+    if (self.txtDiveNumberEntry.text.length > 0) {
+        
+        diveName = [self.diveTextArray objectAtIndex:1];
+        
+        // if used the spinner
+    } else {
+        
+        diveName = self.txtDive.text;
+        
+    }
+    
     self.diveNameForDB = [NSString stringWithFormat:@"%d", self.diveID];
     self.diveNameForDB = [self.diveNameForDB stringByAppendingString:@" - "];
     self.diveNameForDB = [self.diveNameForDB stringByAppendingString:diveName];
@@ -1211,6 +1434,79 @@
     NSString *multi = self.lblDivedd.text;
     self.multiplierToSend = [formatString numberFromString:multi];
 
+}
+
+// this will take the totals entered in the textbox and update the JudgeScoring variables we need
+-(void)ConvertTextEntries {
+    
+    // this decides which dive group we are using from the substring of the diveNumberText
+    int testString = [[self.txtDiveNumberEntry.text substringToIndex:1] intValue];
+    if ([self.boardSize isEqualToNumber:@1.0] || [self.boardSize isEqualToNumber:@3.0]) {
+        
+        switch (testString) {
+            case 1:
+                self.diveGroupID = 1;
+                break;
+            case 2:
+                self.diveGroupID = 2;
+                break;
+            case 3:
+                self.diveGroupID = 3;
+                break;
+            case 4:
+                self.diveGroupID = 4;
+                break;
+            case 5:
+                self.diveGroupID = 5;
+                break;
+        }
+        
+    } else {
+        
+        switch (testString) {
+            case 1:
+                self.diveGroupID = 1;
+                break;
+            case 2:
+                self.diveGroupID = 2;
+                break;
+            case 3:
+                self.diveGroupID = 3;
+                break;
+            case 4:
+                self.diveGroupID = 4;
+                break;
+            case 5:
+                self.diveGroupID = 5;
+                break;
+            case 6:
+                self.diveGroupID = 6;
+                break;
+        }
+    }
+    
+    // convert the diveID to the global one the JudgeScore method uses
+    self.diveID = [self.txtDiveNumberEntry.text intValue];
+    
+    // convert the divePosition text
+    if ([self.txtDivePositionEntry.text isEqualToString:@"A"]) {
+        self.selectedPosition = 0;
+    } else if ([self.txtDivePositionEntry.text isEqualToString:@"B"]) {
+        self.selectedPosition = 1;
+    } else if ([self.txtDivePositionEntry.text isEqualToString:@"C"]) {
+        self.selectedPosition = 2;
+    } else {
+        self.selectedPosition = 3;
+    }
+}
+
+-(void)CheckValidDiveFromText {
+    
+    DiveNumberCheck *check = [[DiveNumberCheck alloc] init];
+    self.diveNumberEntered = self.txtDiveNumberEntry.text;
+    self.divePositionEntered = self.txtDivePositionEntry.text;
+    
+    self.diveTextArray = [check CheckDiveNumberInput:self.diveNumberEntered Position:self.divePositionEntered BoardSize:self.boardSize];
 }
 
 -(void)loadGroupPicker {
@@ -1337,25 +1633,88 @@
     }
 }
 
+// we are using these as selector methods on the textfield to update the divedd when appropriate
+-(void)CheckDDForDiveNumberEntry {
+    
+    if (self.txtDiveNumberEntry.text.length >= 3 && self.txtDivePositionEntry.text.length > 0) {
+        [self GetDiveDOD];
+    }
+    
+    if (self.txtDiveNumberEntry.text.length == 0) {
+        self.lblDivedd.text = @"0.0";
+    }
+}
+
+-(void)CheckDDForDivePositionEntry {
+    
+    if (self.txtDiveNumberEntry.text.length >= 3 && self.txtDivePositionEntry.text.length > 0) {
+        [self GetDiveDOD];
+    }
+    
+    if (self.txtDivePositionEntry.text.length == 0) {
+        self.lblDivedd.text = @"0.0";
+    }
+}
+
+//-(void)CheckDDForDiveGroup {
+//    
+//    if (self.txtDiveGroup.text.length > 0 && self.txtDive.text.length > 0) {
+//        // this will disable dive position choices based on cat, board, and dive type
+//        [self DisableDivePositions];
+//        
+//        // then this will set the divedod label to the correct dod
+//        [self GetDiveDOD];
+//    }
+//}
+//
+//-(void)CheckDDForDive {
+//    
+//    if (self.txtDiveGroup.text.length > 0 && self.txtDive.text.length > 0) {
+//        // this will disable dive position choices based on cat, board, and dive type
+//        [self DisableDivePositions];
+//        
+//        // then this will set the divedod label to the correct dod
+//        [self GetDiveDOD];
+//    }
+//}
+
 -(void)GetDiveDOD {
     
-    switch (self.SCPosition.selectedSegmentIndex) {
-        case 0:
-            self.divePositionID = 0;
-            self.lblDivedd.text = self.straight;
-            break;
-        case 1:
-            self.divePositionID = 1;
-            self.lblDivedd.text = self.pike;
-            break;
-        case 2:
-            self.divePositionID = 2;
-            self.lblDivedd.text = self.tuck;
-            break;
-        case 3:
-            self.divePositionID = 3;
-            self.lblDivedd.text = self.free;
-            break;
+    //test dd on the txtfields
+    if (self.txtDiveNumberEntry.text.length > 0 || self.txtDivePositionEntry.text.length > 0) {
+        
+        DiveNumberCheck *check = [[DiveNumberCheck alloc] init];
+        self.diveNumberEntered = self.txtDiveNumberEntry.text;
+        self.divePositionEntered = self.txtDivePositionEntry.text;
+        
+        self.diveTextArray = [check CheckDiveNumberInput:self.diveNumberEntered Position:self.divePositionEntered BoardSize:self.boardSize];
+        
+        if (self.diveTextArray.count > 0) {
+            self.lblDivedd.text = [self.diveTextArray objectAtIndex:2];
+        } else {
+            self.lblDivedd.text = @"0.0";
+        }
+        
+    } else if (self.txtDiveGroup.text.length > 0) {  // or on the pickers and SC
+    
+        switch (self.SCPosition.selectedSegmentIndex) {
+            case 0:
+                self.divePositionID = 0;
+                self.lblDivedd.text = self.straight;
+                break;
+            case 1:
+                self.divePositionID = 1;
+                self.lblDivedd.text = self.pike;
+                break;
+            case 2:
+                self.divePositionID = 2;
+                self.lblDivedd.text = self.tuck;
+                break;
+            case 3:
+                self.divePositionID = 3;
+                self.lblDivedd.text = self.free;
+                break;
+        }
     }
 }
 
@@ -1704,13 +2063,23 @@
 
 -(void)resetValues {
     
+    [self.txtDiveNumberEntry resignFirstResponder];
+    [self.txtDivePositionEntry resignFirstResponder];
+    [self.txtDiveGroup resignFirstResponder];
+    [self.txtDive resignFirstResponder];
+    self.txtDiveNumberEntry.text = @"";
+    self.txtDivePositionEntry.text = @"";
+    
+    self.diveGroupID = 0;
+    self.diveID = 0;
+    
+    [self.groupPicker reloadAllComponents];
+    
     self.txtDiveGroup.text = @"";
     self.txtDive.text = @"";
     self.SCPosition.selectedSegmentIndex = -0;
     self.lblDivedd.text = @"0.0";
     
-    self.diveGroupID = 0;
-    self.diveID = 0;
     
 }
 
