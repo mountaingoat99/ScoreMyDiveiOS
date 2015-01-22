@@ -1417,17 +1417,16 @@
     if (self.txtDiveNumberEntry.text.length > 0) {
         
         diveName = [self.diveTextArray objectAtIndex:1];
+        self.diveNameForDB = [NSString stringWithFormat:@"%d", self.diveID];
+        self.diveNameForDB = [self.diveNameForDB stringByAppendingString:@" - "];
+        self.diveNameForDB = [self.diveNameForDB stringByAppendingString:diveName];
         
         // if used the spinner
     } else {
         
-        diveName = self.txtDive.text;
+        self.diveNameForDB = self.txtDive.text;
         
     }
-    
-    self.diveNameForDB = [NSString stringWithFormat:@"%d", self.diveID];
-    self.diveNameForDB = [self.diveNameForDB stringByAppendingString:@" - "];
-    self.diveNameForDB = [self.diveNameForDB stringByAppendingString:diveName];
     
     // then get the multiplier
     NSNumberFormatter *formatString = [[NSNumberFormatter alloc] init];
