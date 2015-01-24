@@ -36,6 +36,7 @@
     self.tblQuickScores.layer.masksToBounds = NO;
     self.tblQuickScores.layer.shadowRadius = 4.0f;
     self.tblQuickScores.layer.shadowOpacity = 1.0;
+
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -182,7 +183,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // dequeue the cell
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"idCellRecord" forIndexPath:indexPath];
-    
+    //cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"deleteCell.png"]];
     
     //set the text size
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
