@@ -89,6 +89,19 @@
     [self checkFinishedScoring];
 }
 
+// only allow portrait in iphone
+-(BOOL)shouldAutorotate {
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        
+        return NO;
+        
+    } else {
+        
+        return YES;
+    }
+}
+
 -(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
     [super encodeRestorableStateWithCoder:coder];
     

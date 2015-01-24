@@ -56,6 +56,19 @@
     [self DiveText];
 }
 
+// only allow portrait in iphone
+-(BOOL)shouldAutorotate {
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        
+        return NO;
+        
+    } else {
+        
+        return YES;
+    }
+}
+
 // restore state because Apple doesn't know how to write a modern OS
 -(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
     [super encodeRestorableStateWithCoder:coder];

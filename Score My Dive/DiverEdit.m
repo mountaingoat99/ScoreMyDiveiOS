@@ -71,6 +71,19 @@
     }
 }
 
+// only allow portrait in iphone
+-(BOOL)shouldAutorotate {
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        
+        return NO;
+        
+    } else {
+        
+        return YES;
+    }
+}
+
 // saving state
 -(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
     

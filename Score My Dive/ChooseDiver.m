@@ -135,6 +135,19 @@
     [self HideControls];
 }
 
+// only allow portrait in iphone
+-(BOOL)shouldAutorotate {
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        
+        return NO;
+        
+    } else {
+        
+        return YES;
+    }
+}
+
 // restore state
 -(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
     

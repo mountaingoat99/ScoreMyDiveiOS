@@ -51,6 +51,19 @@
     [self loadData];
 }
 
+// only allow portrait in iphone
+-(BOOL)shouldAutorotate {
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        
+        return NO;
+        
+    } else {
+        
+        return YES;
+    }
+}
+
 // push the meetId to the next controller
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     

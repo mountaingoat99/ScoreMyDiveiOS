@@ -49,6 +49,19 @@
     [self loadData];
 }
 
+// only allow portrait in iphone
+-(BOOL)shouldAutorotate {
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        
+        return NO;
+        
+    } else {
+        
+        return YES;
+    }
+}
+
 // make this viewcontroller the delegate of the MeetEdit ViewController
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
