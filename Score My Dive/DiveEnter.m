@@ -489,6 +489,11 @@
     
     if (pickerView == self.groupPicker) {
         
+        // if they choose anything from the pickers we need to clear the text on the regular text fields
+        self.txtDiveNumberEntry.text = @"";
+        self.txtDivePositionEntry.text = @"";
+        [self.SCPosition setEnabled:YES];
+        
         self.txtDiveGroup.text = [self.diveGroupArray [row] objectAtIndex:1];
         self.diveGroupID = [[self.diveGroupArray [row] objectAtIndex:0] intValue];
         
@@ -519,15 +524,16 @@
         
         // then this will set the divedod label to the correct dod
         [self GetDiveDOD];
+
+        
+        return [self.diveGroupArray[row]objectAtIndex:1];
+        
+    } else {
         
         // if they choose anything from the pickers we need to clear the text on the regular text fields
         self.txtDiveNumberEntry.text = @"";
         self.txtDivePositionEntry.text = @"";
         [self.SCPosition setEnabled:YES];
-        
-        return [self.diveGroupArray[row]objectAtIndex:1];
-        
-    } else {
         
         if ([self.boardSize  isEqual: @1.0] || [self.boardSize  isEqual: @3.0]) {
         
@@ -543,11 +549,6 @@
             
             // then this will set the divedod label to the correct dod
             [self GetDiveDOD];
-            
-            // if they choose anything from the pickers we need to clear the text on the regular text fields
-            self.txtDiveNumberEntry.text = @"";
-            self.txtDivePositionEntry.text = @"";
-            [self.SCPosition setEnabled:YES];
             
             return diveText;
             

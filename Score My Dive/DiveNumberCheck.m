@@ -95,39 +95,39 @@
     
     NSArray *diveInfo;
     
-    NSString *diveId = [[diveInfo objectAtIndex:0] objectAtIndex:0];
-    NSString *diveName = [[diveInfo objectAtIndex:0] objectAtIndex:4];
+    NSString *diveId = [[divetypes objectAtIndex:0] objectAtIndex:0];
+    NSString *diveName = [[divetypes objectAtIndex:0] objectAtIndex:4];
     NSString *diveDD;
     
     if ([boardsize isEqualToNumber:@10]) {
         if ([position isEqualToString:@"a"] || [position isEqualToString:@"A"]) {
-            diveDD = [[diveInfo objectAtIndex:0] objectAtIndex:5];
+            diveDD = [[divetypes objectAtIndex:0] objectAtIndex:5];
         } else if ([position isEqualToString:@"b"] || [position isEqualToString:@"B"]) {
-            diveDD = [[diveInfo objectAtIndex:0] objectAtIndex:6];
+            diveDD = [[divetypes objectAtIndex:0] objectAtIndex:6];
         } else if ([position isEqualToString:@"c"] || [position isEqualToString:@"C"]) {
-            diveDD = [[diveInfo objectAtIndex:0] objectAtIndex:7];
+            diveDD = [[divetypes objectAtIndex:0] objectAtIndex:7];
         } else if ([position isEqualToString:@"d"] || [position isEqualToString:@"D"]) {
-            diveDD = [[diveInfo objectAtIndex:0] objectAtIndex:8];
+            diveDD = [[divetypes objectAtIndex:0] objectAtIndex:8];
         }
     } else if ([boardsize isEqualToNumber:@7.5]) {
         if ([position isEqualToString:@"a"] || [position isEqualToString:@"A"]) {
-            diveDD = [[diveInfo objectAtIndex:0] objectAtIndex:9];
+            diveDD = [[divetypes objectAtIndex:0] objectAtIndex:9];
         } else if ([position isEqualToString:@"b"] || [position isEqualToString:@"B"]) {
-            diveDD = [[diveInfo objectAtIndex:0] objectAtIndex:10];
+            diveDD = [[divetypes objectAtIndex:0] objectAtIndex:10];
         } else if ([position isEqualToString:@"c"] || [position isEqualToString:@"C"]) {
-            diveDD = [[diveInfo objectAtIndex:0] objectAtIndex:11];
+            diveDD = [[divetypes objectAtIndex:0] objectAtIndex:11];
         } else if ([position isEqualToString:@"d"] || [position isEqualToString:@"D"]) {
-            diveDD = [[diveInfo objectAtIndex:0] objectAtIndex:12];
+            diveDD = [[divetypes objectAtIndex:0] objectAtIndex:12];
         }
     } else {
         if ([position isEqualToString:@"a"] || [position isEqualToString:@"A"]) {
-            diveDD = [[diveInfo objectAtIndex:0] objectAtIndex:13];
+            diveDD = [[divetypes objectAtIndex:0] objectAtIndex:13];
         } else if ([position isEqualToString:@"b"] || [position isEqualToString:@"B"]) {
-            diveDD = [[diveInfo objectAtIndex:0] objectAtIndex:14];
+            diveDD = [[divetypes objectAtIndex:0] objectAtIndex:14];
         } else if ([position isEqualToString:@"c"] || [position isEqualToString:@"C"]) {
-            diveDD = [[diveInfo objectAtIndex:0] objectAtIndex:15];
+            diveDD = [[divetypes objectAtIndex:0] objectAtIndex:15];
         } else if ([position isEqualToString:@"d"] || [position isEqualToString:@"D"]) {
-            diveDD = [[diveInfo objectAtIndex:0] objectAtIndex:16];
+            diveDD = [[divetypes objectAtIndex:0] objectAtIndex:16];
         }
     }
     

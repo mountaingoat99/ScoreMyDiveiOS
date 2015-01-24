@@ -31,8 +31,8 @@
 
 @implementation RankingsDiver
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+-(void)viewDidLoad {
+    [super viewDidLoad];
     
     self.tblDiverRankings.delegate = self;
     self.tblDiverRankings.dataSource = self;
@@ -43,6 +43,10 @@
     self.tblDiverRankings.layer.masksToBounds = NO;
     self.tblDiverRankings.layer.shadowRadius = 4.0f;
     self.tblDiverRankings.layer.shadowOpacity = 1.0;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
     [self loadData];
 }
