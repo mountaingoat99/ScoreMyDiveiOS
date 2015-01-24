@@ -13,6 +13,12 @@
 
 @interface HomeViewController ()
 
+-(void)OpenYouTube;
+-(void)sendEmail;
+-(void)canceledEmail;
+-(void)SentEmail;
+-(void)FailedEmail;
+
 @end
 
 @implementation HomeViewController
@@ -113,4 +119,134 @@
     
     [self performSegueWithIdentifier:@"idSegueHomeToQuickScore" sender:self];
 }
+
+- (IBAction)btnAboutClick:(id)sender {
+    
+    // updated alertController for iOS 8
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:@"Contact"
+                                          message:@"Thanks for using my app. Please email me if you have any questions or recommendations."
+                                          preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:@"Cancel"
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       NSLog(@"Cancel Action");
+                                   }];
+    
+    UIAlertAction *Email = [UIAlertAction
+                                       actionWithTitle:@"Email"
+                                       style:UIAlertActionStyleDefault
+                                       handler:^(UIAlertAction *action)
+                                       {
+                                           [self sendEmail];
+                                       }];
+    
+    UIAlertAction *Youtube = [UIAlertAction
+                                       actionWithTitle:@"How-To Video"
+                                       style:UIAlertActionStyleDefault
+                                       handler:^(UIAlertAction *action)
+                                       {
+                                           [self OpenYouTube];
+                                       }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:Email];
+    [alertController addAction:Youtube];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+// go to Youtube Link
+-(void)OpenYouTube {
+    
+    
+    
+    [self performSegueWithIdentifier:@"idSegueToWebView" sender:self];
+    
+    //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://youtu.be/ndOXhtE_2hs"]];
+    
+}
+
+// Email
+-(void)sendEmail {
+    
+    NSString *EmailTo = @"jeremey.rodriguez@outlook.com";
+    NSString *subject = @"Score My Dive Feedback";
+    
+    MFMailComposeViewController *composer = [[MFMailComposeViewController alloc] init];
+    composer.mailComposeDelegate = self;
+    [composer setToRecipients:@[EmailTo]];
+    [composer setSubject:subject];
+    
+
+    
+    // present it on the screen
+    [self presentViewController:composer animated:YES completion:nil];
+    
+}
+
+// delegate method
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            [self canceledEmail];
+            break;
+        case MFMailComposeResultSent:
+            [self SentEmail];
+            break;
+        case MFMailComposeResultFailed:
+            [self FailedEmail];
+            break;
+        default:
+            break;
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+  // filling up
+}
+
+-(void)canceledEmail {
+    
+    UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Email Cancelled"
+                                                    message:@""
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [error show];
+    [error reloadInputViews];
+    
+}
+
+-(void)SentEmail {
+    
+    UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Email Sent"
+                                                    message:@""
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [error show];
+    [error reloadInputViews];
+    
+}
+
+-(void)FailedEmail {
+    
+    UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Email Failed"
+                                                    message:@""
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [error show];
+    [error reloadInputViews];
+    
+}
+
 @end

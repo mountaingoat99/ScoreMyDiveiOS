@@ -20,6 +20,7 @@
 		263AC5E11A030FD700846CB0 /* Score_My_DiveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 263AC5E01A030FD700846CB0 /* Score_My_DiveTests.m */; };
 		2642AB6A1A32A2CD002E8DFA /* MeetCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2642AB691A32A2CD002E8DFA /* MeetCollection.m */; };
 		2651CF051A17D56E0050D587 /* QuickScoreEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2651CF041A17D56E0050D587 /* QuickScoreEdit.m */; };
+		265CFDDD1A7336A20015A4E0 /* YouTubeWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CFDDC1A7336A20015A4E0 /* YouTubeWebViewViewController.m */; };
 		266ACFC41A462BFB00F89645 /* DiveListEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 266ACFC31A462BFB00F89645 /* DiveListEdit.m */; };
 		266ACFC71A46654700F89645 /* DiveListChoose.m in Sources */ = {isa = PBXBuildFile; fileRef = 266ACFC61A46654700F89645 /* DiveListChoose.m */; };
 		267643E61A218DF000CD2CB1 /* ReportsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 267643E51A218DF000CD2CB1 /* ReportsViewController.m */; };
@@ -101,6 +102,8 @@
 		2642AB691A32A2CD002E8DFA /* MeetCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetCollection.m; sourceTree = "<group>"; };
 		2651CF031A17D56E0050D587 /* QuickScoreEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickScoreEdit.h; sourceTree = "<group>"; };
 		2651CF041A17D56E0050D587 /* QuickScoreEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickScoreEdit.m; sourceTree = "<group>"; };
+		265CFDDB1A7336A20015A4E0 /* YouTubeWebViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeWebViewViewController.h; sourceTree = "<group>"; };
+		265CFDDC1A7336A20015A4E0 /* YouTubeWebViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeWebViewViewController.m; sourceTree = "<group>"; };
 		266ACFC21A462BFB00F89645 /* DiveListEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveListEdit.h; sourceTree = "<group>"; };
 		266ACFC31A462BFB00F89645 /* DiveListEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveListEdit.m; sourceTree = "<group>"; };
 		266ACFC51A46654700F89645 /* DiveListChoose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveListChoose.h; sourceTree = "<group>"; };
@@ -328,6 +331,8 @@
 				26D4A40E1A507D8900FCEC6F /* RankingsMeet.m */,
 				26D4A4101A50942700FCEC6F /* RankingsDiver.h */,
 				26D4A4111A50942700FCEC6F /* RankingsDiver.m */,
+				265CFDDB1A7336A20015A4E0 /* YouTubeWebViewViewController.h */,
+				265CFDDC1A7336A20015A4E0 /* YouTubeWebViewViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -528,6 +533,7 @@
 				26BE237B1A1027CC00E123D0 /* DiverBoardSize.m in Sources */,
 				267A3FCB1A280E370068FA9E /* DiverHistory.m in Sources */,
 				26D4A4121A50942700FCEC6F /* RankingsDiver.m in Sources */,
+				265CFDDD1A7336A20015A4E0 /* YouTubeWebViewViewController.m in Sources */,
 				269FB8851A6C7A3D006B9C27 /* DiveNumberCheck.m in Sources */,
 				26BE237E1A1027CC00E123D0 /* DiveTotal.m in Sources */,
 				26BE237A1A1027CC00E123D0 /* DBManager.m in Sources */,

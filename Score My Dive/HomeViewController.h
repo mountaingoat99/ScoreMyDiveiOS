@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 
-@interface HomeViewController : UIViewController
+@interface HomeViewController : UIViewController <MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *btnQuick;
 @property (weak, nonatomic) IBOutlet UIButton *btnMeetsDivers;
@@ -19,6 +20,7 @@
 - (IBAction)btnDetailedScoringClick:(id)sender;
 - (IBAction)btnMeetDiverClick:(id)sender;
 - (IBAction)btnQuickScoreClick:(id)sender;
+- (IBAction)btnAboutClick:(id)sender;
 
 @end
 
