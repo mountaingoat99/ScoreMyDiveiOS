@@ -256,6 +256,7 @@
 
 // show the next dive number when a user picks the txtbox
 -(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
     [self.diveNumberPicker selectRow:self.whatNumber inComponent:0 animated:YES];
     

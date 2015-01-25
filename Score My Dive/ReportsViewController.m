@@ -365,65 +365,75 @@
     JudgeScores *scores = [[JudgeScores alloc] init];
     meetinfo = [scores FetchMeetResults:self.meetRecordID];
     
-    // here we want to get the meet name for the file name
-    NSString *meetName = [[meetinfo objectAtIndex:0] objectAtIndex:3];
-    meetName = [meetName stringByAppendingString:@" Meet Results.csv"];
+    if (meetinfo.count > 0) {
     
-    NSUInteger count = [meetinfo count];
-    
-    for (NSUInteger i = 0; i < count; i++) {
-        [csv appendFormat:@"\n%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@",
-            [[meetinfo objectAtIndex:i] objectAtIndex:1],
-            [[meetinfo objectAtIndex:i] objectAtIndex:2],
-            [[meetinfo objectAtIndex:i] objectAtIndex:3],
-            newDate = [[[meetinfo objectAtIndex:i] objectAtIndex:4] stringByReplacingOccurrencesOfString:@"," withString:@""],   // date in DB has a comma, we need to remove it for the csv format
-            [[meetinfo objectAtIndex:i] objectAtIndex:5],
-            [[meetinfo objectAtIndex:i] objectAtIndex:6],
-            [[meetinfo objectAtIndex:i] objectAtIndex:7],
-            [[meetinfo objectAtIndex:i] objectAtIndex:8],
-            [[meetinfo objectAtIndex:i] objectAtIndex:9],
-            [[meetinfo objectAtIndex:i] objectAtIndex:10],
-            [[meetinfo objectAtIndex:i] objectAtIndex:11],
-            [[meetinfo objectAtIndex:i] objectAtIndex:12],
-            [[meetinfo objectAtIndex:i] objectAtIndex:13],
-            [[meetinfo objectAtIndex:i] objectAtIndex:14],
-            [[meetinfo objectAtIndex:i] objectAtIndex:15],
-            [[meetinfo objectAtIndex:i] objectAtIndex:16],
-            [[meetinfo objectAtIndex:i] objectAtIndex:17],
-            [[meetinfo objectAtIndex:i] objectAtIndex:18],
-            [[meetinfo objectAtIndex:i] objectAtIndex:19],
-            [[meetinfo objectAtIndex:i] objectAtIndex:20],
-            [[meetinfo objectAtIndex:i] objectAtIndex:21],
-            [[meetinfo objectAtIndex:i] objectAtIndex:22],
-            [[meetinfo objectAtIndex:i] objectAtIndex:23],
-            [[meetinfo objectAtIndex:i] objectAtIndex:24],
-            [[meetinfo objectAtIndex:i] objectAtIndex:25],
-            [[meetinfo objectAtIndex:i] objectAtIndex:26],
-            [[meetinfo objectAtIndex:i] objectAtIndex:27],
-            [[meetinfo objectAtIndex:i] objectAtIndex:28],
-            [[meetinfo objectAtIndex:i] objectAtIndex:29],
-            [[meetinfo objectAtIndex:i] objectAtIndex:30],
-            [[meetinfo objectAtIndex:i] objectAtIndex:31]];
-    }
-    
-    // lets get the document path
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *docDirectory = [paths objectAtIndex:0];
-    
-    // then the full path and file name
-    NSString *outputFileName = [docDirectory stringByAppendingPathComponent:meetName];
-    
-    NSError *csvError = nil;
-    
-    BOOL written = [csv writeToFile:outputFileName atomically:YES encoding:NSUTF8StringEncoding error:&csvError];
-    
-    if (!written) {
-        NSLog(@"MeetResults write failed, error=%@", csvError);
+        // here we want to get the meet name for the file name
+        NSString *meetName = [[meetinfo objectAtIndex:0] objectAtIndex:3];
+        meetName = [meetName stringByAppendingString:@" Meet Results.csv"];
+        
+        NSUInteger count = [meetinfo count];
+        
+        for (NSUInteger i = 0; i < count; i++) {
+            [csv appendFormat:@"\n%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@",
+                [[meetinfo objectAtIndex:i] objectAtIndex:1],
+                [[meetinfo objectAtIndex:i] objectAtIndex:2],
+                [[meetinfo objectAtIndex:i] objectAtIndex:3],
+                newDate = [[[meetinfo objectAtIndex:i] objectAtIndex:4] stringByReplacingOccurrencesOfString:@"," withString:@""],   // date in DB has a comma, we need to remove it for the csv format
+                [[meetinfo objectAtIndex:i] objectAtIndex:5],
+                [[meetinfo objectAtIndex:i] objectAtIndex:6],
+                [[meetinfo objectAtIndex:i] objectAtIndex:7],
+                [[meetinfo objectAtIndex:i] objectAtIndex:8],
+                [[meetinfo objectAtIndex:i] objectAtIndex:9],
+                [[meetinfo objectAtIndex:i] objectAtIndex:10],
+                [[meetinfo objectAtIndex:i] objectAtIndex:11],
+                [[meetinfo objectAtIndex:i] objectAtIndex:12],
+                [[meetinfo objectAtIndex:i] objectAtIndex:13],
+                [[meetinfo objectAtIndex:i] objectAtIndex:14],
+                [[meetinfo objectAtIndex:i] objectAtIndex:15],
+                [[meetinfo objectAtIndex:i] objectAtIndex:16],
+                [[meetinfo objectAtIndex:i] objectAtIndex:17],
+                [[meetinfo objectAtIndex:i] objectAtIndex:18],
+                [[meetinfo objectAtIndex:i] objectAtIndex:19],
+                [[meetinfo objectAtIndex:i] objectAtIndex:20],
+                [[meetinfo objectAtIndex:i] objectAtIndex:21],
+                [[meetinfo objectAtIndex:i] objectAtIndex:22],
+                [[meetinfo objectAtIndex:i] objectAtIndex:23],
+                [[meetinfo objectAtIndex:i] objectAtIndex:24],
+                [[meetinfo objectAtIndex:i] objectAtIndex:25],
+                [[meetinfo objectAtIndex:i] objectAtIndex:26],
+                [[meetinfo objectAtIndex:i] objectAtIndex:27],
+                [[meetinfo objectAtIndex:i] objectAtIndex:28],
+                [[meetinfo objectAtIndex:i] objectAtIndex:29],
+                [[meetinfo objectAtIndex:i] objectAtIndex:30],
+                [[meetinfo objectAtIndex:i] objectAtIndex:31]];
+        }
+        
+        // lets get the document path
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *docDirectory = [paths objectAtIndex:0];
+        
+        // then the full path and file name
+        NSString *outputFileName = [docDirectory stringByAppendingPathComponent:meetName];
+        
+        NSError *csvError = nil;
+        
+        BOOL written = [csv writeToFile:outputFileName atomically:YES encoding:NSUTF8StringEncoding error:&csvError];
+        
+        if (!written) {
+            NSLog(@"MeetResults write failed, error=%@", csvError);
+        } else {
+            NSLog(@"MeetResults saved! File Path =%@", outputFileName);
+            [self sendEmail:outputFileName fileName:meetName];
+        }
     } else {
-        NSLog(@"MeetResults saved! File Path =%@", outputFileName);
-        [self sendEmail:outputFileName fileName:meetName];
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                        message:@"There are no results for this diver at this meet"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
     }
-
 }
 
 -(void)CreateDiverScoreTotalByMeet {
@@ -436,49 +446,61 @@
     JudgeScores *scores = [[JudgeScores alloc] init];
     meetinfo = [scores FetchMeetScores:self.meetRecordID diverid:self.diverRecordID];
     
-    // here we want to get the meet name for the file name
-    NSString *meetName = [[meetinfo objectAtIndex:0] objectAtIndex:1];
-    meetName = [meetName stringByAppendingString:[[meetinfo objectAtIndex:0] objectAtIndex:3]];
-    meetName = [meetName stringByAppendingString:@" Diver Scores.csv"];
+    if (meetinfo.count > 0) {
     
-    NSUInteger count = [meetinfo count];
-    
-    for (NSUInteger i = 0; i < count; i++) {
-        [csv appendFormat:@"\n%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@",
-         [[meetinfo objectAtIndex:i] objectAtIndex:1],
-         [[meetinfo objectAtIndex:i] objectAtIndex:2],
-         [[meetinfo objectAtIndex:i] objectAtIndex:3],
-         newDate = [[[meetinfo objectAtIndex:i] objectAtIndex:4] stringByReplacingOccurrencesOfString:@"," withString:@""],   // date in DB has a comma, we need to remove it for the csv format
-         [[meetinfo objectAtIndex:i] objectAtIndex:5],
-         [[meetinfo objectAtIndex:i] objectAtIndex:6],
-         [[meetinfo objectAtIndex:i] objectAtIndex:7],
-         [[meetinfo objectAtIndex:i] objectAtIndex:8],
-         [[meetinfo objectAtIndex:i] objectAtIndex:9],
-         [[meetinfo objectAtIndex:i] objectAtIndex:10],
-         [[meetinfo objectAtIndex:i] objectAtIndex:11],
-         [[meetinfo objectAtIndex:i] objectAtIndex:12],
-         [[meetinfo objectAtIndex:i] objectAtIndex:13],
-         [[meetinfo objectAtIndex:i] objectAtIndex:14],
-         [[meetinfo objectAtIndex:i] objectAtIndex:15],
-         [[meetinfo objectAtIndex:i] objectAtIndex:16]];
-    }
-    
-    // lets get the document path
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *docDirectory = [paths objectAtIndex:0];
-    
-    // then the full path and file name
-    NSString *outputFileName = [docDirectory stringByAppendingPathComponent:meetName];
-    
-    NSError *csvError = nil;
-    
-    BOOL written = [csv writeToFile:outputFileName atomically:YES encoding:NSUTF8StringEncoding error:&csvError];
-    
-    if (!written) {
-        NSLog(@"DiverScoreTotalByMeet write failed, error=%@", csvError);
+        // here we want to get the meet name for the file name
+        NSString *meetName = [[meetinfo objectAtIndex:0] objectAtIndex:1];
+        meetName = [meetName stringByAppendingString:[[meetinfo objectAtIndex:0] objectAtIndex:3]];
+        meetName = [meetName stringByAppendingString:@" Diver Scores.csv"];
+        
+        NSUInteger count = [meetinfo count];
+        
+        for (NSUInteger i = 0; i < count; i++) {
+            [csv appendFormat:@"\n%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@",
+             [[meetinfo objectAtIndex:i] objectAtIndex:1],
+             [[meetinfo objectAtIndex:i] objectAtIndex:2],
+             [[meetinfo objectAtIndex:i] objectAtIndex:3],
+             newDate = [[[meetinfo objectAtIndex:i] objectAtIndex:4] stringByReplacingOccurrencesOfString:@"," withString:@""],   // date in DB has a comma, we need to remove it for the csv format
+             [[meetinfo objectAtIndex:i] objectAtIndex:5],
+             [[meetinfo objectAtIndex:i] objectAtIndex:6],
+             [[meetinfo objectAtIndex:i] objectAtIndex:7],
+             [[meetinfo objectAtIndex:i] objectAtIndex:8],
+             [[meetinfo objectAtIndex:i] objectAtIndex:9],
+             [[meetinfo objectAtIndex:i] objectAtIndex:10],
+             [[meetinfo objectAtIndex:i] objectAtIndex:11],
+             [[meetinfo objectAtIndex:i] objectAtIndex:12],
+             [[meetinfo objectAtIndex:i] objectAtIndex:13],
+             [[meetinfo objectAtIndex:i] objectAtIndex:14],
+             [[meetinfo objectAtIndex:i] objectAtIndex:15],
+             [[meetinfo objectAtIndex:i] objectAtIndex:16]];
+        }
+        
+        // lets get the document path
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *docDirectory = [paths objectAtIndex:0];
+        
+        // then the full path and file name
+        NSString *outputFileName = [docDirectory stringByAppendingPathComponent:meetName];
+        
+        NSError *csvError = nil;
+        
+        BOOL written = [csv writeToFile:outputFileName atomically:YES encoding:NSUTF8StringEncoding error:&csvError];
+        
+        if (!written) {
+            NSLog(@"DiverScoreTotalByMeet write failed, error=%@", csvError);
+        } else {
+            NSLog(@"DiverScoreTotalByMeet saved! File Path =%@", outputFileName);
+            [self sendEmail:outputFileName fileName:meetName];
+        }
+        
     } else {
-        NSLog(@"DiverScoreTotalByMeet saved! File Path =%@", outputFileName);
-        [self sendEmail:outputFileName fileName:meetName];
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                        message:@"There are no results for this diver at this meet"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
     }
     
 }
@@ -490,51 +512,63 @@
     NSMutableString *csv = [NSMutableString stringWithString:@"Diver, Meet Name, Dive Number, Dive Name, Position, DD, Total, Judges, Pass/Failed, Score 1, Score 2, Score 3, Score 4, Score 5, Score 6, Score 7"];
     
     JudgeScores *scores = [[JudgeScores alloc] init];
-    meetinfo = [scores FetchJudgeMeetScores:self.meetRecordID diverid:self.diverRecordID]; 
+    meetinfo = [scores FetchJudgeMeetScores:self.meetRecordID diverid:self.diverRecordID];
     
-    // here we want to get the meet name for the file name
-    NSString *meetName = [[meetinfo objectAtIndex:0] objectAtIndex:1];
-    meetName = [meetName stringByAppendingString:[[meetinfo objectAtIndex:0] objectAtIndex:2]];
-    meetName = [meetName stringByAppendingString:@" Judge Scores.csv"];
+    if (meetinfo.count > 0) {
     
-    NSUInteger count = [meetinfo count];
-    
-    for (NSUInteger i = 0; i < count; i++) {
-        [csv appendFormat:@"\n%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@",
-         [[meetinfo objectAtIndex:i] objectAtIndex:1],
-         [[meetinfo objectAtIndex:i] objectAtIndex:2],
-         [[meetinfo objectAtIndex:i] objectAtIndex:3],
-         [[meetinfo objectAtIndex:i] objectAtIndex:4],
-         [[meetinfo objectAtIndex:i] objectAtIndex:5],
-         [[meetinfo objectAtIndex:i] objectAtIndex:6],
-         [[meetinfo objectAtIndex:i] objectAtIndex:7],
-         [[meetinfo objectAtIndex:i] objectAtIndex:8],
-         [[meetinfo objectAtIndex:i] objectAtIndex:9],
-         [[meetinfo objectAtIndex:i] objectAtIndex:10],
-         [[meetinfo objectAtIndex:i] objectAtIndex:11],
-         [[meetinfo objectAtIndex:i] objectAtIndex:12],
-         [[meetinfo objectAtIndex:i] objectAtIndex:13],
-         [[meetinfo objectAtIndex:i] objectAtIndex:14],
-         [[meetinfo objectAtIndex:i] objectAtIndex:15],
-         [[meetinfo objectAtIndex:i] objectAtIndex:16]];
-    }
-    
-    // lets get the document path
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *docDirectory = [paths objectAtIndex:0];
-    
-    // then the full path and file name
-    NSString *outputFileName = [docDirectory stringByAppendingPathComponent:meetName];
-    
-    NSError *csvError = nil;
-    
-    BOOL written = [csv writeToFile:outputFileName atomically:YES encoding:NSUTF8StringEncoding error:&csvError];
-    
-    if (!written) {
-        NSLog(@"JudgeScoresByMeet write failed, error=%@", csvError);
+        // here we want to get the meet name for the file name
+        NSString *meetName = [[meetinfo objectAtIndex:0] objectAtIndex:1];
+        meetName = [meetName stringByAppendingString:[[meetinfo objectAtIndex:0] objectAtIndex:2]];
+        meetName = [meetName stringByAppendingString:@" Judge Scores.csv"];
+        
+        NSUInteger count = [meetinfo count];
+        
+        for (NSUInteger i = 0; i < count; i++) {
+            [csv appendFormat:@"\n%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@",
+             [[meetinfo objectAtIndex:i] objectAtIndex:1],
+             [[meetinfo objectAtIndex:i] objectAtIndex:2],
+             [[meetinfo objectAtIndex:i] objectAtIndex:3],
+             [[meetinfo objectAtIndex:i] objectAtIndex:4],
+             [[meetinfo objectAtIndex:i] objectAtIndex:5],
+             [[meetinfo objectAtIndex:i] objectAtIndex:6],
+             [[meetinfo objectAtIndex:i] objectAtIndex:7],
+             [[meetinfo objectAtIndex:i] objectAtIndex:8],
+             [[meetinfo objectAtIndex:i] objectAtIndex:9],
+             [[meetinfo objectAtIndex:i] objectAtIndex:10],
+             [[meetinfo objectAtIndex:i] objectAtIndex:11],
+             [[meetinfo objectAtIndex:i] objectAtIndex:12],
+             [[meetinfo objectAtIndex:i] objectAtIndex:13],
+             [[meetinfo objectAtIndex:i] objectAtIndex:14],
+             [[meetinfo objectAtIndex:i] objectAtIndex:15],
+             [[meetinfo objectAtIndex:i] objectAtIndex:16]];
+        }
+        
+        // lets get the document path
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *docDirectory = [paths objectAtIndex:0];
+        
+        // then the full path and file name
+        NSString *outputFileName = [docDirectory stringByAppendingPathComponent:meetName];
+        
+        NSError *csvError = nil;
+        
+        BOOL written = [csv writeToFile:outputFileName atomically:YES encoding:NSUTF8StringEncoding error:&csvError];
+        
+        if (!written) {
+            NSLog(@"JudgeScoresByMeet write failed, error=%@", csvError);
+        } else {
+            NSLog(@"JudgeScoresByMeet saved! File Path =%@", outputFileName);
+            [self sendEmail:outputFileName fileName:meetName];
+        }
+        
     } else {
-        NSLog(@"JudgeScoresByMeet saved! File Path =%@", outputFileName);
-        [self sendEmail:outputFileName fileName:meetName];
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                        message:@"There are no results for this diver at this meet"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
     }
     
 }

@@ -97,26 +97,26 @@
 
 -(NSArray*)FetchJudgeScores:(int)meetid diverid:(int)diverid divenumber:(NSNumber*)divenumber {
     
-    NSArray *scores = [[NSArray alloc] init];
+//    NSArray *scores = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select total_score, score_1, score_2, score_3, score_4, score_5, score_6, score_7 from judges_scores where meet_id=%d and diver_id=%d and dive_number=%@", meetid, diverid, divenumber];
     
-    scores = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *scores = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     
     return scores;
 }
 
 -(NSArray*)FetchJudgeScoreObject:(int)meetid diverid:(int)diverid {
     
-    NSArray *scores = [[NSArray alloc] init];
+    //NSArray *scores = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from judges_scores where meet_id=%d and diver_id=%d", meetid, diverid];
     
-    scores = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *scores = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     
     return scores;
     
@@ -617,9 +617,9 @@
     
     NSNumber *diveDD;
     
-    JudgeScores *dd = [[JudgeScores alloc] init];
+//    JudgeScores *dd = [[JudgeScores alloc] init];
     // here we use the divenumber - 1 to get the array index for the correct dive
-    dd = [[[[meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:6] objectAtIndex:divenumber - 1];
+    JudgeScores *dd = [[[[meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:6] objectAtIndex:divenumber - 1];
     
     return diveDD = dd.multiplier;
     
@@ -646,25 +646,25 @@
 
 -(NSArray*)FetchMeetResults:(int)meetid {
     
-    NSArray *info = [[NSArray alloc] init];
+//    NSArray *info = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"SELECT DISTINCT d.id, d.name, d.school, m.name, m.date, j.judge_total, dt.dive_count, db.first_board, r.total_score, r.dive_1, r.dive_2, r.dive_3, r.dive_4, r.dive_5, r.dive_6, r.dive_7, r.dive_8, r.dive_9, r.dive_10, r.dive_11, js.dive_number, js.dive_type, js.dive_position, js.multiplier, js.failed, js.score_1, js.score_2, js.score_3, js.score_4, js.score_5, js.score_6, js.score_7 FROM diver d INNER JOIN results r on r.diver_id = d.id INNER JOIN meet m on m.id = r.meet_id INNER JOIN judges j on j.meet_id = m.id INNER JOIN dive_total dt on dt.diver_id = d.id AND dt.meet_id=%d INNER JOIN diver_board_size db on db.diver_id = d.id AND db.meet_id=%d INNER JOIN judges_scores js on js.diver_id = d.id AND js.meet_id=%d WHERE m.id=%d ORDER BY d.id asc, db.first_board asc, js.dive_number asc", meetid, meetid, meetid, meetid];
     
-    info = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *info = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     
     return info;
 }
 -(NSArray*)FetchMeetScores:(int)meetid diverid:(int)diverid {
     
-    NSArray *info = [[NSArray alloc] init];
+    //NSArray *info = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"SELECT d.id, d.name, d.school, m.name, m.date, r.total_score, r.dive_1, r.dive_2, r.dive_3, r.dive_4, r.dive_5, r.dive_6, r.dive_7, r.dive_8, r.dive_9, r.dive_10, r.dive_11 FROM results r INNER JOIN diver d ON d.id = r.diver_id INNER JOIN meet m ON m.id = r.meet_id WHERE r.meet_id= %d and r.diver_id= %d", meetid, diverid];
     
-    info = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *info = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     
     return info;
     
@@ -672,13 +672,13 @@
 
 -(NSArray*)FetchJudgeMeetScores:(int)meetid diverid:(int)diverid {
     
-    NSArray *info = [[NSArray alloc] init];
+    //NSArray *info = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"SELECT d.id, d.name, m.name, js.dive_number, js.dive_type, js.dive_position, js.multiplier, js.total_score, j.judge_total, js.failed, js.score_1, js.score_2, js.score_3, js.score_4, js.score_5, js.score_6, js.score_7 from results r INNER JOIN diver d ON d.id = r.diver_id INNER JOIN meet m ON m.id = r.meet_id INNER JOIN judges j ON j.meet_id = m.id INNER JOIN judges_scores js ON js.diver_id = r.diver_id AND js.meet_id = r.meet_id WHERE js.meet_id=%d AND js.diver_id=%d", meetid, diverid];
     
-    info = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *info = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     
     return info;
     

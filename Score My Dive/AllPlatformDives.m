@@ -19,13 +19,13 @@
 
 -(NSArray*)GetPlatformNames {
     
-    NSArray *dives = [[NSArray alloc] init];
+//    NSArray *dives = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select id from all_platform_dives"];
     
-    dives = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *dives = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     
     return dives;
     
@@ -33,13 +33,13 @@
 
 -(NSArray*)GetPlatformCategories:(int)diveid {
     
-    NSArray *dives = [[NSArray alloc] init];
+    //NSArray *dives = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from all_platform_dives where id=%d", diveid];
     
-    dives = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *dives = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     
     return dives;
     

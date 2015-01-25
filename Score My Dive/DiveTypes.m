@@ -52,13 +52,13 @@
 // springboard
 -(NSArray*)GetForwardOneSpringboard {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from springboard_forward where one_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -67,13 +67,13 @@
 
 -(NSArray*)GetForwardThreeSpringboard {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from springboard_forward where three_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -82,13 +82,13 @@
 
 -(NSArray*)GetBackOneSpringboard {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from springboard_back where one_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -97,13 +97,13 @@
 
 -(NSArray*)GetBackThreeSpringboard {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from springboard_back where three_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -112,13 +112,13 @@
 
 -(NSArray*)GetInwardOneSpringboard {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from springboard_inward where one_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -127,13 +127,13 @@
 
 -(NSArray*)GetInwardThreeSpringboard {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from springboard_inward where three_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -142,13 +142,13 @@
 
 -(NSArray*)GetReverseOneSpringboard {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from springboard_reverse where one_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -157,13 +157,13 @@
 
 -(NSArray*)GetReverseThreeSpringboard {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from springboard_reverse where three_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -172,13 +172,13 @@
 
 -(NSArray*)GetTwistOneSpringboard {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from springboard_twist where one_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -187,13 +187,13 @@
 
 -(NSArray*)GetTwistThreeSpringboard {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from springboard_twist where three_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -203,13 +203,13 @@
 // platform
 -(NSArray*)GetForwardFivePlatform {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from platform_front where five_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -218,13 +218,13 @@
 
 -(NSArray*)GetForwardSevenFivePlatform {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from platform_front where seven_five_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -233,13 +233,13 @@
 
 -(NSArray*)GetForwardTenPlatform {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from platform_front where ten_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -248,13 +248,13 @@
 
 -(NSArray*)GetBackFivePlatform {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from platform_back where five_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -263,13 +263,13 @@
 
 -(NSArray*)GetBackSevenFivePlatform {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from platform_back where seven_five_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -278,13 +278,13 @@
 
 -(NSArray*)GetBackTenPlatform {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from platform_back where ten_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -293,13 +293,13 @@
 
 -(NSArray*)GetInwardFivePlatform {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from platform_inward where five_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -308,13 +308,13 @@
 
 -(NSArray*)GetInwardSevenFivePlatform {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from platform_inward where seven_five_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -323,13 +323,13 @@
 
 -(NSArray*)GetInwardTenPlatform {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from platform_inward where ten_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -338,13 +338,13 @@
 
 -(NSArray*)GetReverseFivePlatform {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from platform_reverse where five_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -353,13 +353,13 @@
 
 -(NSArray*)GetReverseSevenFivePlatform {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from platform_reverse where seven_five_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -368,13 +368,13 @@
 
 -(NSArray*)GetReverseTenPlatform {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from platform_reverse where ten_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -383,13 +383,13 @@
 
 -(NSArray*)GetTwistFivePlatform {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from platform_twist where five_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -398,13 +398,13 @@
 
 -(NSArray*)GetTwistSevenFivePlatform {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from platform_twist where seven_five_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -413,13 +413,13 @@
 
 -(NSArray*)GetTwistTenPlatform {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from platform_twist where ten_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -428,13 +428,13 @@
 
 -(NSArray*)GetArmstandFivePlatform {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from platform_armstand where five_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -443,13 +443,13 @@
 
 -(NSArray*)GetArmstandSevenFivePlatform {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from platform_armstand where seven_five_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -457,13 +457,13 @@
 }
 -(NSArray*)GetArmstandTenPlatform {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from platform_armstand where ten_meter=1"];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -646,13 +646,13 @@
 // springboard
 -(NSArray*)GetForwardOneSpringboardById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select oneS, oneP, oneT, oneF from springboard_forward where one_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -661,13 +661,13 @@
 
 -(NSArray*)GetForwardThreeSpringboardById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select threeS, threeP, threeT, threeF from springboard_forward where three_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -676,13 +676,13 @@
 
 -(NSArray*)GetBackOneSpringboardById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select oneS, oneP, oneT, oneF from springboard_back where one_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -691,13 +691,13 @@
 
 -(NSArray*)GetBackThreeSpringboardById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select threeS, threeP, threeT, threeF from springboard_back where three_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -706,13 +706,13 @@
 
 -(NSArray*)GetInwardOneSpringboardById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select oneS, oneP, oneT, oneF from springboard_inward where one_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -721,13 +721,13 @@
 
 -(NSArray*)GetInwardThreeSpringboardById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select threeS, threeP, threeT, threeF from springboard_inward where three_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -736,13 +736,13 @@
 
 -(NSArray*)GetReverseOneSpringboardById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select oneS, oneP, oneT, oneF from springboard_reverse where one_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -751,13 +751,13 @@
 
 -(NSArray*)GetReverseThreeSpringboardById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select threeS, threeP, threeT, threeF from springboard_reverse where three_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -766,13 +766,13 @@
 
 -(NSArray*)GetTwistOneSpringboardById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select oneS, oneP, oneT, oneF from springboard_twist where one_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -781,13 +781,13 @@
 
 -(NSArray*)GetTwistThreeSpringboardById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select threeS, threeP, threeT, threeF from springboard_twist where three_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -797,13 +797,13 @@
 // platform
 -(NSArray*)GetForwardFivePlatformById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select fiveS, fiveP, fiveT, fiveF from platform_front where five_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -812,13 +812,13 @@
 
 -(NSArray*)GetForwardSevenFivePlatformById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select seven_fiveS, seven_fiveP, seven_fiveT, seven_fiveF from platform_front where seven_five_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -827,13 +827,13 @@
 
 -(NSArray*)GetForwardTenPlatformById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select tenS, tenP, tenT, tenF from platform_front where ten_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -842,13 +842,13 @@
 
 -(NSArray*)GetBackFivePlatformById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select fiveS, fiveP, fiveT, fiveF from platform_back where five_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -857,13 +857,13 @@
 
 -(NSArray*)GetBackSevenFivePlatformById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select seven_fiveS, seven_fiveP, seven_fiveT, seven_fiveF from platform_back where seven_five_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -872,13 +872,13 @@
 
 -(NSArray*)GetBackTenPlatformById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select tenS, tenP, tenT, tenF from platform_back where ten_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -887,13 +887,13 @@
 
 -(NSArray*)GetInwardFivePlatformById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select fiveS, fiveP, fiveT, fiveF from platform_inward where five_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -902,13 +902,13 @@
 
 -(NSArray*)GetInwardSevenFivePlatformById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select seven_fiveS, seven_fiveP, seven_fiveT, seven_fiveF from platform_inward where seven_five_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -917,13 +917,13 @@
 
 -(NSArray*)GetInwardTenPlatformById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select tenS, tenP, tenT, tenF from platform_inward where ten_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -932,13 +932,13 @@
 
 -(NSArray*)GetReverseFivePlatformById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select fiveS, fiveP, fiveT, fiveF from platform_reverse where five_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -947,13 +947,13 @@
 
 -(NSArray*)GetReverseSevenFivePlatformById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select seven_fiveS, seven_fiveP, seven_fiveT, seven_fiveF from platform_reverse where seven_five_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -962,13 +962,13 @@
 
 -(NSArray*)GetReverseTenPlatformById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select tenS, tenP, tenT, tenF from platform_reverse where ten_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -977,13 +977,13 @@
 
 -(NSArray*)GetTwistFivePlatformById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select fiveS, fiveP, fiveT, fiveF from platform_twist where five_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -992,13 +992,13 @@
 
 -(NSArray*)GetTwistSevenFivePlatformById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select seven_fiveS, seven_fiveP, seven_fiveT, seven_fiveF from platform_twist where seven_five_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -1007,13 +1007,13 @@
 
 -(NSArray*)GetTwistTenPlatformById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select tenS, tenP, tenT, tenF from platform_twist where ten_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -1022,13 +1022,13 @@
 
 -(NSArray*)GetArmstandFivePlatformById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select fiveS, fiveP, fiveT, fiveF from platform_armstand where five_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -1037,13 +1037,13 @@
 
 -(NSArray*)GetArmstandSevenFivePlatformById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select seven_fiveS, seven_fiveP, seven_fiveT, seven_fiveF from platform_armstand where seven_five_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;
@@ -1051,13 +1051,13 @@
 }
 -(NSArray*)GetArmstandTenPlatformById:(int)diveId {
     
-    NSArray *names = [[NSArray alloc] init];
+    //NSArray *names = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select tenS, tenP, tenT, tenF from platform_armstand where ten_meter=1 and id=%d", diveId];
     
-    names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *names = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     NSLog(@"query is: %@", query);
     
     return names;

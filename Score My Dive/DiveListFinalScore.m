@@ -407,9 +407,9 @@
 
 -(void)DiverBoardSize {
     
-    DiverBoardSize *board = [[DiverBoardSize alloc] init];
+//    DiverBoardSize *board = [[DiverBoardSize alloc] init];
     
-    board = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:4];
+    DiverBoardSize *board = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:4];
     
     self.boardSize = board.firstSize;
     

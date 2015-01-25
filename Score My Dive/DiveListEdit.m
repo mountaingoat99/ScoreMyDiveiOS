@@ -855,7 +855,7 @@
 
 -(void)DisableDivePositions {
     
-    NSArray *dods = [[NSArray alloc] init];
+//    NSArray *dods = [[NSArray alloc] init];
     
     if (self.txtDive.text.length > 0) {
         
@@ -864,7 +864,7 @@
         
         // lets get the valid dods based on group, type and board size
         DiveTypes *types = [[DiveTypes alloc] init];
-        dods = [types GetAllDiveDODs:self.diveGroupID DiveTypeId:self.diveID BoardType:self.boardSize];
+        NSArray *dods = [types GetAllDiveDODs:self.diveGroupID DiveTypeId:self.diveID BoardType:self.boardSize];
             
         if (dods.count > 0) {
         

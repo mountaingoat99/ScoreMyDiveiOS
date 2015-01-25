@@ -25,8 +25,8 @@
 // this will get all the diveinfo for what ever divenumber and position is sent in a returns just the id Name, and DD
 -(NSArray*)CheckDiveNumberInput:(NSString*)diveString Position:(NSString*)position BoardSize:(NSNumber*)boardsize {
     
-    NSArray *diveTypes = [[NSArray alloc] init];
-    NSArray *reloadDiveTypes = [[NSArray alloc] init];
+    NSArray *diveTypes;
+    NSArray *reloadDiveTypes;
     
     int diveNumber = [diveString intValue];
     

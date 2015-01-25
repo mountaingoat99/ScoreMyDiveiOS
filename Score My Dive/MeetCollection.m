@@ -29,15 +29,15 @@
     
     // collection objects, meet collection is the array that will hold the objects
     NSArray *meetCollec;
-    Meet *meet = [[Meet alloc] init];
-    Judges *judges = [[Judges alloc] init];
+//    Meet *meet = [[Meet alloc] init];
+//    Judges *judges = [[Judges alloc] init];
     NSArray *diverCollection;
     
     // get the meet
-    meet = [self CallMeet:meetId];
+    Meet *meet = [self CallMeet:meetId];
     
     // get the judges
-    judges = [self CallJudges:meetId];
+    Judges *judges = [self CallJudges:meetId];
     
     //get the diversCollection
     diverCollection = [self CallDivers:meetId diverid:diverid];
@@ -53,14 +53,14 @@
     
     // collection objects, meet collection is the array that will hold the objects
     NSArray *meetCollec;
-    Meet *meet = [[Meet alloc] init];
-    Judges *judges = [[Judges alloc] init];
+//    Meet *meet = [[Meet alloc] init];
+//    Judges *judges = [[Judges alloc] init];
     
     // get the meet
-    meet = [self CallMeet:meetid];
+    Meet *meet = [self CallMeet:meetid];
     
     // get the judges
-    judges = [self CallJudges:meetid];
+    Judges *judges = [self CallJudges:meetid];
     
     meetCollec = [[NSArray alloc] initWithObjects:meet, judges, nil];
     

@@ -514,11 +514,11 @@
         [self.lblDiveTotal setHidden:NO];
         [self.lblBoardSize setHidden:NO];
         
-        DiveTotal *total = [[DiveTotal alloc] init];
-        DiverBoardSize *bSize = [[DiverBoardSize alloc] init];
+        //DiveTotal *total = [[DiveTotal alloc] init];
+        //DiverBoardSize *bSize = [[DiverBoardSize alloc] init];
         
-        total = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:2];
-        bSize = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:4];
+        DiveTotal *total = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:2];
+        DiverBoardSize *bSize = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:4];
         
         yesDives = [total.diveTotal stringValue];
         yesBoard = [bSize.firstSize stringValue];

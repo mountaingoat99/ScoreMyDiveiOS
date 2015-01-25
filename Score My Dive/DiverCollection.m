@@ -29,12 +29,12 @@
 -(Results*)CallResults:(int)meetid diverid:(int)diverid;
 
 // diver info by all meets
--(DiveList*)CallDiveList:(int)diverid;
--(DiveTotal*)CallDiveTotal:(int)diverid;
--(DiveNumber*)CallDiveNumber:(int)diverid;
--(DiverBoardSize*)CallBoardSize:(int)diverid;
--(NSMutableArray*)CallJudgeScores:(int)diverid;
--(Results*)CallResults:(int)diverid;
+//-(DiveList*)CallDiveList:(int)diverid;
+//-(DiveTotal*)CallDiveTotal:(int)diverid;
+//-(DiveNumber*)CallDiveNumber:(int)diverid;
+//-(DiverBoardSize*)CallBoardSize:(int)diverid;
+//-(NSMutableArray*)CallJudgeScores:(int)diverid;
+//-(Results*)CallResults:(int)diverid;
 
 @end
 
@@ -48,48 +48,48 @@
     
     // collection objects
     NSMutableArray *diverCollec = [[NSMutableArray alloc] init];
-    Diver *diver = [[Diver alloc] init];
-    DiveList *list = [[DiveList alloc] init];
-    DiveTotal *total = [[DiveTotal alloc] init];
-    DiveNumber *number = [[DiveNumber alloc] init];
-    DiverBoardSize *board = [[DiverBoardSize alloc] init];
-    Results *results = [[Results alloc] init];
+//    Diver *diver = [[Diver alloc] init];
+//    DiveList *list = [[DiveList alloc] init];
+//    DiveTotal *total = [[DiveTotal alloc] init];
+//    DiveNumber *number = [[DiveNumber alloc] init];
+    //DiverBoardSize *board = [[DiverBoardSize alloc] init];
+//    Results *results = [[Results alloc] init];
     //JudgeScores *jScores = [[JudgeScores alloc] init];
     NSMutableArray *judgeScores;
     
     //get the diver
-    diver = [self CallDiver:diverid];
+    Diver *diver = [self CallDiver:diverid];
     if (diver != nil) {
         [diverCollec addObject:diver];
     }
     
     
     //get a divelist
-    list = [self CallDiveList:meetid diverid:diverid];
+    DiveList *list = [self CallDiveList:meetid diverid:diverid];
     if (list != nil) {
         [diverCollec addObject:list];
     }
     
     //get diveTotal
-    total = [self CallDiveTotal:meetid diverid:diverid];
+    DiveTotal *total = [self CallDiveTotal:meetid diverid:diverid];
     if (total != nil) {
         [diverCollec addObject:total];
     }
     
     //get diveNumber
-    number = [self CallDiveNumber:meetid diverid:diverid];
+    DiveNumber *number = [self CallDiveNumber:meetid diverid:diverid];
     if (number != nil) {
         [diverCollec addObject:number];
     }
     
     //getdiveboardsize
-    board = [self CallBoardSize:meetid diverid:diverid];
+    DiverBoardSize *board = [self CallBoardSize:meetid diverid:diverid];
     if (board) {
         [diverCollec addObject:board];
     }
     
     //get results
-    results = [self CallResults:meetid diverid:diverid];
+    Results *results = [self CallResults:meetid diverid:diverid];
     if (results != nil) {
         [diverCollec addObject:results];
     }
@@ -107,36 +107,36 @@
 //TODO: this need to be reworked
 // this will give me a diver and all of it's children
 // including the meets the diver has been in
--(NSMutableArray*)GetDiverInfo:(int)diverid {
-    
-    // collection objects
-    NSMutableArray *diverCollec = [[NSMutableArray alloc] init];
-    Diver *diver = [[Diver alloc] init];
-//    DiveList *list = [[DiveList alloc] init];
-//    DiveTotal *total = [[DiveTotal alloc] init];
-//    DiveNumber *number = [[DiveNumber alloc] init];
-//    DiverBoardSize *board = [[DiverBoardSize alloc] init];
-//    JudgeScores *jScores = [[JudgeScores alloc] init];
-//    Results *results = [[Results alloc] init];
-    
-    //get the diver
-    diver = [self CallDiver:diverid];
-    
-    //get a divelist
-    //list = [self CallDiveList:meetid diverid:diverid];
-    
-    //get diveTotal
-    
-    //get diveNumber
-    
-    //getdiveboardsize
-    
-    //get judge score
-    
-    //get results
-    
-    return diverCollec;
-}
+//-(NSMutableArray*)GetDiverInfo:(int)diverid {
+//    
+//    // collection objects
+//    NSMutableArray *diverCollec = [[NSMutableArray alloc] init];
+//    Diver *diver = [[Diver alloc] init];
+////    DiveList *list = [[DiveList alloc] init];
+////    DiveTotal *total = [[DiveTotal alloc] init];
+////    DiveNumber *number = [[DiveNumber alloc] init];
+////    DiverBoardSize *board = [[DiverBoardSize alloc] init];
+////    JudgeScores *jScores = [[JudgeScores alloc] init];
+////    Results *results = [[Results alloc] init];
+//    
+//    //get the diver
+//    diver = [self CallDiver:diverid];
+//    
+//    //get a divelist
+//    //list = [self CallDiveList:meetid diverid:diverid];
+//    
+//    //get diveTotal
+//    
+//    //get diveNumber
+//    
+//    //getdiveboardsize
+//    
+//    //get judge score
+//    
+//    //get results
+//    
+//    return diverCollec;
+//}
 
 #pragma private methods
 
@@ -156,15 +156,15 @@
         NSString *school = [[NSString alloc] initWithString:[[diverInfo objectAtIndex:0] objectAtIndex:4]];
         
         diver.diverID = theDiverid;
-        NSLog(@" diverid %@:", theDiverid);
+        //NSLog(@" diverid %@:", theDiverid);
         diver.Name = name;
-        NSLog(@" diverid %@:", name);
+        //NSLog(@" diverid %@:", name);
         diver.Age = age;
-        NSLog(@" diverid %@:", age);
+        //NSLog(@" diverid %@:", age);
         diver.Grade = grade;
-        NSLog(@" diverid %@:", grade);
+        //NSLog(@" diverid %@:", grade);
         diver.School = school;
-        NSLog(@" diverid %@:", school);
+        //NSLog(@" diverid %@:", school);
     
         return diver;
         
@@ -192,15 +192,15 @@
         NSString *noList = [[NSString alloc] initWithString:[[divelist objectAtIndex:0] objectAtIndex:4]];
         
         list.listId = lId;
-        NSLog(@" listid %@", lId);
+        //NSLog(@" listid %@", lId);
         list.meetId = mId;
-        NSLog(@" list meetid=d %@", mId);
+        //NSLog(@" list meetid=d %@", mId);
         list.diverId = dId;
-        NSLog(@" list diveridf=d %@", dId);
+        //NSLog(@" list diveridf=d %@", dId);
         list.listFilled = [NSNumber numberWithInteger:[listFilled integerValue]];
-        NSLog(@" list filled=d %@", listFilled);
+        //NSLog(@" list filled=d %@", listFilled);
         list.noList = [NSNumber numberWithInteger:[noList integerValue]];
-        NSLog(@" list nolist=d %@", noList);
+        //NSLog(@" list nolist=d %@", noList);
         
         return list;
         
@@ -225,13 +225,13 @@
         NSString *diveCount = [[NSString alloc] initWithString:[[diveTotal objectAtIndex:0] objectAtIndex:3]];
         
         total.totalId = tId;
-        NSLog(@" totalid %@", tId);
+        //NSLog(@" totalid %@", tId);
         total.meetId = mId;
-        NSLog(@" total meetid=d %@", mId);
+        //NSLog(@" total meetid=d %@", mId);
         total.diverId = dId;
-        NSLog(@" total diveridf=d %@", dId);
+        //NSLog(@" total diveridf=d %@", dId);
         total.diveTotal = [NSNumber numberWithInteger:[diveCount integerValue]];
-        NSLog(@" dive total=d %@", diveCount);
+        //NSLog(@" dive total=d %@", diveCount);
        
         return total;
         
@@ -256,13 +256,13 @@
         NSString *diveNumer = [[NSString alloc] initWithString:[[diveNumber objectAtIndex:0] objectAtIndex:3]];
         
         number.numberId = nId;
-        NSLog(@" totalid %@", nId);
+        //NSLog(@" totalid %@", nId);
         number.meetId = mId;
-        NSLog(@" total meetid=d %@", mId);
+        //NSLog(@" total meetid=d %@", mId);
         number.diverId = dId;
-        NSLog(@" total diveridf=d %@", dId);
+        //NSLog(@" total diveridf=d %@", dId);
         number.number = [NSNumber numberWithInteger:[diveNumer integerValue]];
-        NSLog(@" dive number=d %@", diveNumber);
+        //NSLog(@" dive number=d %@", diveNumber);
         
         return number;
         
@@ -290,17 +290,17 @@
         
         
         size.boardId = bId;
-        NSLog(@" totalid %@", bId);
+        //NSLog(@" totalid %@", bId);
         size.meetId = mId;
-        NSLog(@" total meetid=d %@", mId);
+        //NSLog(@" total meetid=d %@", mId);
         size.diverId = dId;
-        NSLog(@" total diveridf=d %@", dId);
+        //NSLog(@" total diveridf=d %@", dId);
         size.firstSize = [NSNumber numberWithDouble:[boardOne doubleValue]];
-        NSLog(@" dive number=d %@", boardOne);
+        //NSLog(@" dive number=d %@", boardOne);
         size.secondSize = [NSNumber numberWithDouble:[boardTwo doubleValue]];
-        NSLog(@" dive number=d %@", boardTwo);
+        //NSLog(@" dive number=d %@", boardTwo);
         size.thirdSize = [NSNumber numberWithDouble:[boardThree doubleValue]];
-        NSLog(@" dive number=d %@", boardThree);
+        //NSLog(@" dive number=d %@", boardThree);
         
         return size;
         
@@ -345,9 +345,9 @@
             NSString *score6 = [[NSString alloc] initWithString:[[judgeScores objectAtIndex:index] objectAtIndex:16]];
             NSString *score7 = [[NSString alloc] initWithString:[[judgeScores objectAtIndex:index] objectAtIndex:17]];
             
-            JudgeScores *update = [[JudgeScores alloc] init];
+//            JudgeScores *update = [[JudgeScores alloc] init];
             
-            update = [self judgeScoreInsert:jId mid:mId did:dId board:boardSize number:diveNumber cat:diveCat type:diveType pos:divePosition failed:failed multiplier:multiplier total:totalScore score1:score1 score2:score2 score3:score3 score4:score4 score5:score5 score6:score6 score7:score7];
+            JudgeScores *update = [self judgeScoreInsert:jId mid:mId did:dId board:boardSize number:diveNumber cat:diveCat type:diveType pos:divePosition failed:failed multiplier:multiplier total:totalScore score1:score1 score2:score2 score3:score3 score4:score4 score5:score5 score6:score6 score7:score7];
     
             [jScores insertObject:update atIndex:index];
             
@@ -452,52 +452,52 @@
 }
 
 // diver info by all meets;
--(DiveList*)CallDiveList:(int)diverid {
-    
-    DiveList *list = [[DiveList alloc] init];
-    
-    return list;
-    
-}
-
--(DiveTotal*)CallDiveTotal:(int)diverid {
-    
-    DiveTotal *total = [[DiveTotal alloc] init];
-    
-    return total;
-    
-}
-
--(DiveNumber*)CallDiveNumber:(int)diverid {
-    
-    DiveNumber *number = [[DiveNumber alloc] init];
-    
-    return number;
-    
-}
-
--(DiverBoardSize*)CallBoardSize:(int)diverid {
-    
-    DiverBoardSize *size = [[DiverBoardSize alloc] init];
-    
-    return size;
-    
-}
-
--(NSMutableArray*)CallJudgeScores:(int)diverid {
-    
-    NSMutableArray *jScores;
-    
-    return jScores;
-    
-}
-
--(Results*)CallResults:(int)diverid {
-    
-    Results *r = [[Results alloc] init];
-    
-    return r;
-    
-}
+//-(DiveList*)CallDiveList:(int)diverid {
+//    
+//    DiveList *list = [[DiveList alloc] init];
+//    
+//    return list;
+//    
+//}
+//
+//-(DiveTotal*)CallDiveTotal:(int)diverid {
+//    
+//    DiveTotal *total = [[DiveTotal alloc] init];
+//    
+//    return total;
+//    
+//}
+//
+//-(DiveNumber*)CallDiveNumber:(int)diverid {
+//    
+//    DiveNumber *number = [[DiveNumber alloc] init];
+//    
+//    return number;
+//    
+//}
+//
+//-(DiverBoardSize*)CallBoardSize:(int)diverid {
+//    
+//    DiverBoardSize *size = [[DiverBoardSize alloc] init];
+//    
+//    return size;
+//    
+//}
+//
+//-(NSMutableArray*)CallJudgeScores:(int)diverid {
+//    
+//    NSMutableArray *jScores;
+//    
+//    return jScores;
+//    
+//}
+//
+//-(Results*)CallResults:(int)diverid {
+//    
+//    Results *r = [[Results alloc] init];
+//    
+//    return r;
+//    
+//}
 
 @end

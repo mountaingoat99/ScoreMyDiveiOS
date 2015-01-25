@@ -435,9 +435,9 @@
 // loads the current record to update
 -(void)loadDiverInfo {
     
-    Diver *diver = [[Diver alloc] init];
+//    Diver *diver = [[Diver alloc] init];
     
-    diver = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:0];
+    Diver *diver = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:0];
     
     self.lblName.text = diver.Name;
     self.lblSchool.text = diver.School;
@@ -446,11 +446,11 @@
 
 -(void)loadMeetInfo {
     
-    Meet *meet = [[Meet alloc] init];
+//    Meet *meet = [[Meet alloc] init];
     NSString *schoolAndDate;
     NSString *cityState;
     
-    meet = [self.meetInfo objectAtIndex:0];
+    Meet *meet = [self.meetInfo objectAtIndex:0];
     
     self.lblMeetName.text = meet.meetName;
     schoolAndDate = meet.schoolName;
@@ -464,12 +464,12 @@
 
 -(void)FindDiveTotal {
     
-    DiveTotal *total = [[DiveTotal alloc] init];
-    total = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:2];
+//    DiveTotal *total = [[DiveTotal alloc] init];
+    DiveTotal *total = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:2];
     self.diveTotal = total.diveTotal;
     
-    DiveNumber *number = [[DiveNumber alloc] init];
-    number = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:3];
+//    DiveNumber *number = [[DiveNumber alloc] init];
+    DiveNumber *number = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:3];
     self.maxDiveNumber = [number.number intValue];
     
     [self HideControls];
@@ -512,9 +512,9 @@
 
 -(void)loadType {
     
-    DiverBoardSize *board = [[DiverBoardSize alloc] init];
+//    DiverBoardSize *board = [[DiverBoardSize alloc] init];
     
-    board = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:4];
+    DiverBoardSize *board = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:4];
     NSString *boardType;
     
     boardType = [board.firstSize stringValue];
@@ -524,11 +524,11 @@
 
 -(void)loadResults {
     
-    Results *result = [[Results alloc] init];
-    JudgeScores *scores = [[JudgeScores alloc] init];
+//    Results *result = [[Results alloc] init];
+    JudgeScores *scores = nil;
     NSString *failed;
     
-    result = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:5];
+    Results *result = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:5];
     
     //results total
     double totalDouble = [result.totalScoreTotal doubleValue];

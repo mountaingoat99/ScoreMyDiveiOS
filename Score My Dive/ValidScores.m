@@ -19,13 +19,13 @@
 
 -(NSArray*)GetValidScores {
     
-    NSArray *scores = [[NSArray alloc] init];
+//    NSArray *scores = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select scores from valid_scores"];
     
-    scores = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *scores = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     
     return scores;
 }

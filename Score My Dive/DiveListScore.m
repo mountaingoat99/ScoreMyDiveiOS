@@ -499,9 +499,9 @@
 #pragma private methods
 -(void)whatJudgeTotal {
     
-    Judges *judges = [[Judges alloc] init];
+    //Judges *judges = [[Judges alloc] init];
     
-    judges = [self.meetInfo objectAtIndex:1];
+    Judges *judges = [self.meetInfo objectAtIndex:1];
     
     self.judgesTotal = judges.judgeTotal;
     
@@ -725,9 +725,9 @@
 
 -(void)DiverBoardSize {
     
-    DiverBoardSize *board = [[DiverBoardSize alloc] init];
+    //DiverBoardSize *board = [[DiverBoardSize alloc] init];
     
-    board = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:4];
+    DiverBoardSize *board = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:4];
     
     self.boardSize = board.firstSize;
     

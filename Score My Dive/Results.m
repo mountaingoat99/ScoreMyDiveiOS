@@ -180,13 +180,13 @@
 
 -(NSArray*)GetResults:(int)meetid DiverId:(int)diverid {
     
-    NSArray *results = [[NSArray alloc] init];
+    //NSArray *results = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select dive_1, dive_2, dive_3, dive_4, dive_5, dive_6, dive_7, dive_8, dive_9, dive_10, dive_11, total_score from results where meet_id=%d and diver_id=%d", meetid, diverid];
     
-    results = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *results = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     
     return results;
     
@@ -194,13 +194,13 @@
 
 -(NSArray*)GetScores:(int)meetid DiverId:(int)diverid {
     
-    NSArray *results = [[NSArray alloc] init];
+    //NSArray *results = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select dive_1, dive_2, dive_3, dive_4, dive_5, dive_6, dive_7, dive_8, dive_9, dive_10, dive_11 from results where meet_id=%d and diver_id=%d", meetid, diverid];
     
-    results = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *results = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     
     return results;
     
@@ -208,13 +208,13 @@
 
 -(NSArray*)GetResultObject:(int)meetid DiverId:(int)diverid {
     
-    NSArray *results = [[NSArray alloc] init];
+    //NSArray *results = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from results where meet_id=%d and diver_id=%d", meetid, diverid];
     
-    results = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *results = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     
     return results;
     
@@ -279,8 +279,8 @@
     
     BOOL valid;
     
-    NSArray *results = [[NSArray alloc] init];
-    results = [self GetScores:meetid DiverId:diverid];
+    //NSArray *results = [[NSArray alloc] init];
+     NSArray *results = [self GetScores:meetid DiverId:diverid];
     
     // throw the results into ints
     double score1 = [[[results objectAtIndex:0] objectAtIndex:0] doubleValue];

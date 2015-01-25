@@ -115,9 +115,9 @@
 
 -(void)loadDiverInfo {
     
-    Diver *diver = [[Diver alloc] init];
+//    Diver *diver = [[Diver alloc] init];
     
-    diver = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:0];
+    Diver *diver = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:0];
     
     self.lblDiverName.text = diver.Name;
     
@@ -125,9 +125,9 @@
 
 -(void)loadMeetInfo {
     
-    Meet *meet = [[Meet alloc] init];
+//    Meet *meet = [[Meet alloc] init];
     
-    meet = [self.meetInfo objectAtIndex:0];
+    Meet *meet = [self.meetInfo objectAtIndex:0];
     
     self.lblDiverSchool.text = meet.meetName;
     
@@ -135,8 +135,8 @@
 
 -(void)findJudgeTotal {
     
-    Judges *judge = [[Judges alloc] init];
-    judge = [self.meetInfo objectAtIndex:1];
+//    Judges *judge = [[Judges alloc] init];
+    Judges *judge = [self.meetInfo objectAtIndex:1];
     self.judgeTotal = [judge.judgeTotal intValue];
     
     [self HideControls];

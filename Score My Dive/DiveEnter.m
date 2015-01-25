@@ -740,7 +740,7 @@
                 [self ConvertTextEntries];
                 [self UpdateDiveInfoToSend];
                 
-                [self performSegueWithIdentifier:@"idSegueDiveEnterToScore" sender:self];
+                [self performSegueWithIdentifier:@"idSegueDiveEnterToFinalScore" sender:self];
                 
             } else {
                 UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
@@ -1355,9 +1355,9 @@
 
 -(void)getTheDiveTotal {
     
-    DiveTotal *total = [[DiveTotal alloc] init];
+    //DiveTotal *total = [[DiveTotal alloc] init];
     
-    total = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:2];
+    DiveTotal *total = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:2];
     
     self.diveTotal = [total.diveTotal intValue];
     
@@ -1555,22 +1555,22 @@
 -(void)fillText {
     
     // meet info
-    Meet *meet = [[Meet alloc] init];
-    meet = [self.meetInfo objectAtIndex:0];
+    //Meet *meet = [[Meet alloc] init];
+    Meet *meet = [self.meetInfo objectAtIndex:0];
     self.lblMeetName.text = meet.meetName;
     
     // diver info
-    Diver *diver = [[Diver alloc] init];
-    diver = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:0];
+    //Diver *diver = [[Diver alloc] init];
+    Diver *diver = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:0];
     self.lblDiverName.text = diver.Name;
     
 }
 
 -(void)DiverBoardSize {
     
-    DiverBoardSize *board = [[DiverBoardSize alloc] init];
+    //DiverBoardSize *board = [[DiverBoardSize alloc] init];
     
-    board = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:4];
+    DiverBoardSize *board = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:4];
     
     self.boardSize = board.firstSize;
     
@@ -1590,8 +1590,8 @@
     self.maxDiveNumber = [scores GetMaxDiveNumber:self.meetRecordID diverid:self.diverRecordID];
     
     // we need to see what the dive total is first and set it for the whole class
-    DiveTotal *total = [[DiveTotal alloc] init];
-    total = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:2];
+    //DiveTotal *total = [[DiveTotal alloc] init];
+    DiveTotal *total = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:2];
     self.diveTotal = [total.diveTotal intValue];
     
     NSString *diveNum = @"Dive ";
@@ -1608,14 +1608,14 @@
     // lets do some error checking here first
     if (self.diveGroupID > 0 && self.diveID > 0) {
         
-        NSArray *dods = [[NSArray alloc] init];
+        //NSArray *dods = [[NSArray alloc] init];
         
         // set the segmented control back to enabled
         [self.SCPosition setEnabled:YES];
         
         // lets get the valid dods based on group, type and board size
         DiveTypes *types = [[DiveTypes alloc] init];
-        dods = [types GetAllDiveDODs:self.diveGroupID DiveTypeId:self.diveID BoardType:self.boardSize];
+        NSArray *dods = [types GetAllDiveDODs:self.diveGroupID DiveTypeId:self.diveID BoardType:self.boardSize];
         
         if (dods.count > 0) {
         
@@ -1728,15 +1728,15 @@
     NSString *diveInfoText;
     
     //result object for the label
-    Results *score = [[Results alloc] init];
+    //Results *score = [[Results alloc] init];
     JudgeScores *diveInfo = [[JudgeScores alloc] init];
     
     // for checking a failed dive
-    JudgeScores *failInfo = [[JudgeScores alloc] init];
+    JudgeScores *failInfo = nil;
     NSString *failedDive;
     
     // lets get the results from the meetcollection object for the whole method to use
-    score = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:5];
+    Results *score = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:5];
     
     if (self.maxDiveNumber >= 1) {
         

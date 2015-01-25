@@ -14,6 +14,6 @@
 
 -(NSMutableArray*)GetDiverInfoByMeet:(int)meetid diverid:(int)diverid;
 
--(NSMutableArray*)GetDiverInfo:(int)diverid;
+//-(NSMutableArray*)GetDiverInfo:(int)diverid;
 
 @end

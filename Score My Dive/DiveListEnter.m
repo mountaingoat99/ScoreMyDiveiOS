@@ -1051,22 +1051,22 @@
 -(void)fillText {
     
     // meet info
-    Meet *meet = [[Meet alloc] init];
-    meet = [self.meetInfo objectAtIndex:0];
+//    Meet *meet = [[Meet alloc] init];
+    Meet *meet = [self.meetInfo objectAtIndex:0];
     self.lblMeetName.text = meet.meetName;
     
     // diver info
-    Diver *diver = [[Diver alloc] init];
-    diver = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:0];
+//    Diver *diver = [[Diver alloc] init];
+    Diver *diver = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:0];
     self.lblDiverName.text = diver.Name;
     
 }
 
 -(void)DiverBoardSize {
     
-    DiverBoardSize *board = [[DiverBoardSize alloc] init];
+//    DiverBoardSize *board = [[DiverBoardSize alloc] init];
     
-    board = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:4];
+    DiverBoardSize *board = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:4];
     
     self.boardSize = board.firstSize;
     
@@ -1078,8 +1078,8 @@
     self.maxDiveNumber = [scores GetMaxDiveNumber:self.meetRecordID diverid:self.diverRecordID];
     
     // we need to see what the dive total is first and set it for the whole class
-    DiveTotal *total = [[DiveTotal alloc] init];
-    total = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:2];
+//    DiveTotal *total = [[DiveTotal alloc] init];
+    DiveTotal *total = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:2];
     self.diveTotal = [total.diveTotal intValue];
     
     if (self.maxDiveNumber != self.diveTotal) {
@@ -1099,7 +1099,7 @@
 
 -(void)DisableDivePositions {
     
-    NSArray *dods = [[NSArray alloc] init];
+    //NSArray *dods = [[NSArray alloc] init];
     
     if (self.txtDive.text.length > 0) {
         
@@ -1108,7 +1108,7 @@
         
         // lets get the valid dods based on group, type and board size
         DiveTypes *types = [[DiveTypes alloc] init];
-        dods = [types GetAllDiveDODs:self.diveGroupID DiveTypeId:self.diveID BoardType:self.boardSize];
+        NSArray *dods = [types GetAllDiveDODs:self.diveGroupID DiveTypeId:self.diveID BoardType:self.boardSize];
         
         if (dods.count > 0) {
         
@@ -1400,8 +1400,8 @@
         [self HideAllControls];
         
         // lets see if the diveList is filled yet and only update it if not
-        DiveList *list = [[DiveList alloc] init];
-        list = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:1];
+//        DiveList *list = [[DiveList alloc] init];
+        DiveList *list = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:1];
         int filled = [list.listFilled intValue];
         
         if (filled == 1) {
