@@ -60,10 +60,10 @@
 		26D4A40F1A507D8900FCEC6F /* RankingsMeet.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D4A40E1A507D8900FCEC6F /* RankingsMeet.m */; };
 		26D4A4121A50942700FCEC6F /* RankingsDiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D4A4111A50942700FCEC6F /* RankingsDiver.m */; };
 		26DF8AF71A043DAD00C273A6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26DF8AF61A043DAC00C273A6 /* QuartzCore.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		26E419A11A047FDF00D79C05 /* AppIconBlack.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26E419A01A047FDF00D79C05 /* AppIconBlack.xcassets */; };
 		26E419A31A0480C800D79C05 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26E419A21A0480C800D79C05 /* Images.xcassets */; };
 		26E419A81A048E3100D79C05 /* QuickScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E419A71A048E3100D79C05 /* QuickScoreViewController.m */; };
 		26E5C9261A4DE50700C542F7 /* DiveEnter.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E5C9251A4DE50700C542F7 /* DiveEnter.m */; };
+		26F7906A1A770BDB0006098B /* AppIconBlack.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26F790691A770BDB0006098B /* AppIconBlack.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,12 +177,12 @@
 		26D4A4101A50942700FCEC6F /* RankingsDiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankingsDiver.h; sourceTree = "<group>"; };
 		26D4A4111A50942700FCEC6F /* RankingsDiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankingsDiver.m; sourceTree = "<group>"; };
 		26DF8AF61A043DAC00C273A6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		26E419A01A047FDF00D79C05 /* AppIconBlack.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = AppIconBlack.xcassets; path = ../../../../../Documents/AppIconBlack.xcassets; sourceTree = "<group>"; };
 		26E419A21A0480C800D79C05 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		26E419A61A048E3100D79C05 /* QuickScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickScoreViewController.h; sourceTree = "<group>"; };
 		26E419A71A048E3100D79C05 /* QuickScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickScoreViewController.m; sourceTree = "<group>"; };
 		26E5C9241A4DE50700C542F7 /* DiveEnter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveEnter.h; sourceTree = "<group>"; };
 		26E5C9251A4DE50700C542F7 /* DiveEnter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveEnter.m; sourceTree = "<group>"; };
+		26F790691A770BDB0006098B /* AppIconBlack.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIconBlack.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -341,7 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				2618B9091A58BC3C007F75DE /* Media.xcassets */,
-				26E419A01A047FDF00D79C05 /* AppIconBlack.xcassets */,
+				26F790691A770BDB0006098B /* AppIconBlack.xcassets */,
 				26E419A21A0480C800D79C05 /* Images.xcassets */,
 			);
 			name = Assets;
@@ -480,7 +480,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26E419A11A047FDF00D79C05 /* AppIconBlack.xcassets in Resources */,
+				26F7906A1A770BDB0006098B /* AppIconBlack.xcassets in Resources */,
 				26E419A31A0480C800D79C05 /* Images.xcassets in Resources */,
 				263AC5D51A030FD700846CB0 /* LaunchScreen.xib in Resources */,
 				2618B90A1A58BC3C007F75DE /* Media.xcassets in Resources */,
