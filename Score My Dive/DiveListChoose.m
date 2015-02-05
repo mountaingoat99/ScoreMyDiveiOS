@@ -339,9 +339,9 @@
 
 -(void)getTheDiveTotal {
     
-    DiveTotal *total = [[DiveTotal alloc] init];
+    //DiveTotal *total = [[DiveTotal alloc] init];
     
-    total = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:2];
+    DiveTotal *total = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:2];
     
     self.diveTotal = [total.diveTotal intValue];
     
@@ -381,22 +381,22 @@
 -(void)fillText {
     
     // meet info
-    Meet *meet = [[Meet alloc] init];
-    meet = [self.meetInfo objectAtIndex:0];
+    //Meet *meet = [[Meet alloc] init];
+    Meet *meet = [self.meetInfo objectAtIndex:0];
     self.lblSchoolName.text = meet.schoolName;
     
     // diver info
-    Diver *diver = [[Diver alloc] init];
-    diver = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:0];
+    //Diver *diver = [[Diver alloc] init];
+    Diver *diver = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:0];
     self.lblDiverName.text = diver.Name;
     
 }
 
 -(void)fillType {
     
-    DiverBoardSize *board = [[DiverBoardSize alloc] init];
+    //DiverBoardSize *board = [[DiverBoardSize alloc] init];
     
-    board = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:4];
+    DiverBoardSize *board = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:4];
     
     NSNumber *boardSize = board.firstSize;
     
@@ -489,7 +489,7 @@
     NSString *diveInfoText;
     
     //result object for the label
-    Results *score = [[Results alloc] init];
+    //Results *score = [[Results alloc] init];
     JudgeScores *diveInfo = [[JudgeScores alloc] init];
     
     // for checking a failed dive
@@ -497,12 +497,12 @@
     NSString *failedDive;
     
     // lets see what dive number we are on first
-    DiveNumber *number = [[DiveNumber alloc] init];
-    number = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:3];
+    //DiveNumber *number = [[DiveNumber alloc] init];
+    DiveNumber *number = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:3];
     self.whatNumber = [number.number intValue];
     
     // lets get the results from the meetcollection object for the whole method to use
-    score = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:5];
+    Results *score = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:5];
     
     // now we check the number and show the score and divetype
     if (self.whatNumber >= 1) {

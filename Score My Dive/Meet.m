@@ -66,13 +66,13 @@
 }
 
 -(NSArray*)GetAllMeets {
-    NSArray *meets = [[NSArray alloc] init];
+//    NSArray *meets = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = @"select * from meet";
     
-    meets = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *meets = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     
     return meets;
     
@@ -80,13 +80,13 @@
 
 -(NSArray*)LoadMeet:(int)meetid {
     
-    NSArray *meet = [[NSArray alloc] init];
+//    NSArray *meet = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select * from meet where id=%d", meetid];
     
-    meet = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *meet = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     
     return meet;
 }
@@ -116,40 +116,40 @@
     
     //init DB, Array, and Object
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
-    NSArray *meetInfo = [[NSArray alloc] init];
+    //NSArray *meetInfo = [[NSArray alloc] init];
     //Meet *theMeet = [[Meet alloc] init];
 
     // query
     NSString *query = [NSString stringWithFormat:@"select * from meet where id=%d", meetid];
     
     // get the data
-    meetInfo = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *meetInfo = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     
     return meetInfo;
 }
 
 -(NSArray*)GetMeetHistory:(int)diverid {
     
-    NSArray *divers = [[NSArray alloc] init];
+    //NSArray *divers = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"SELECT m.id, m.name, m.date FROM meet m INNER JOIN results r on (m.id = r.meet_id) WHERE r.diver_id=%d", diverid];
     
-    divers = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *divers = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     
     return divers;
 }
 
 -(NSArray*)GetNameForMeetRank {
     
-    NSArray *meets = [[NSArray alloc] init];
+    //NSArray *meets = [[NSArray alloc] init];
     
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dive_dod.db"];
     
     NSString *query = [NSString stringWithFormat:@"select distinct m.id, m.name, d.first_board from meet m inner join diver_board_size d on d.meet_id = m.id where d.first_board > 0 order by m.id asc, d.first_board asc"];
     
-    meets = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    NSArray *meets = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     
     return meets;
 }
