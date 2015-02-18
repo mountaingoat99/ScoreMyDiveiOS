@@ -197,7 +197,7 @@
         
     } else {
         
-        return 50.0;
+        return 80.0;
     }
 }
 
@@ -216,8 +216,8 @@
         
     } else {
         
-        cell.textLabel.font = [UIFont systemFontOfSize:20.0];
-        cell.detailTextLabel.font = [UIFont systemFontOfSize:16.0];
+        cell.textLabel.font = [UIFont systemFontOfSize:30.0];
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:26.0];
         cell.textLabel.numberOfLines = 2;
         cell.contentView.backgroundColor = [UIColor colorWithRed:.40 green:.40 blue:.40 alpha:1];
         
