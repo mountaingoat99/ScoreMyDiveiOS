@@ -16,6 +16,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.webView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.webView.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    self.webView.layer.masksToBounds = NO;
+    self.webView.layer.shadowOpacity = 1.0;
+    
     //load url into webview
     NSString *strURL = @"http://youtu.be/ndOXhtE_2hs";
     NSURL *url = [NSURL URLWithString:strURL];

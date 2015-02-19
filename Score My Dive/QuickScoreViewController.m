@@ -34,8 +34,8 @@
     self.tblQuickScores.layer.shadowColor = [UIColor blackColor].CGColor;
     self.tblQuickScores.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.tblQuickScores.layer.masksToBounds = NO;
-    self.tblQuickScores.layer.shadowRadius = 4.0f;
     self.tblQuickScores.layer.shadowOpacity = 1.0;
+    [self.tblQuickScores setSeparatorColor:[UIColor blackColor]];
 
 }
 
@@ -67,12 +67,6 @@
     
 }
 
-//-(IBAction)returnClick:(id)sender{
-//    
-//    [self performSegueWithIdentifier:@"idSegueQuickToHome" sender:self];
-//}
-
-
 -(void)addNewRecord:(id)sender {
     // before performing the segue , set the value to the recordIDToEdit
     // to indicate we want to add and not edit
@@ -102,9 +96,6 @@
 // in Ipad because of some unknown apple logic
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.contentView.backgroundColor = [UIColor colorWithRed:.50 green:.50 blue:.50 alpha:1];
-    
     // get the record ID of the selected name and set to the recordIDToEdit property
     self.recordIDToEdit = [[[self.arrQuickInfo objectAtIndex:indexPath.row] objectAtIndex:0] intValue];
     
@@ -116,24 +107,15 @@
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath  {
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.contentView.backgroundColor = [UIColor colorWithRed:.40 green:.40 blue:.40 alpha:1];
+    cell.contentView.backgroundColor = cell.contentView.backgroundColor;
     
 }
 
 -(void)tableView:(UITableView*)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    cell.contentView.backgroundColor = [UIColor colorWithRed:.40 green:.40 blue:.40 alpha:1];
+    cell.contentView.backgroundColor = cell.contentView.backgroundColor;
     
 }
-
-// calls the edit cell
-//-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-//    // get the record ID of the selected name and set to the recordIDToEdit property
-//    self.recordIDToEdit = [[[self.arrQuickInfo objectAtIndex:indexPath.row] objectAtIndex:0] intValue];
-//    
-//    // perform the segue
-//    [self performSegueWithIdentifier:@"idSegueEditInfo" sender:self];
-//}
 
 // now make this veiwcontroller class the delegate of the QuickScoreEdit ViewController
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -204,14 +186,16 @@
         cell.textLabel.font = [UIFont systemFontOfSize:13.0];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
         cell.textLabel.numberOfLines = 2;
-        cell.contentView.backgroundColor = [UIColor colorWithRed:.40 green:.40 blue:.40 alpha:1];
+        cell.backgroundColor = [UIColor clearColor];
+        //cell.contentView.backgroundColor = [UIColor colorWithRed:.45 green:.79 blue:1.0 alpha:1];
         
     } else {
         
         cell.textLabel.font = [UIFont systemFontOfSize:30.0];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:26.0];
         cell.textLabel.numberOfLines = 2;
-        cell.contentView.backgroundColor = [UIColor colorWithRed:.40 green:.40 blue:.40 alpha:1];
+        cell.backgroundColor = [UIColor clearColor];
+        //cell.contentView.backgroundColor = [UIColor colorWithRed:.45 green:.79 blue:1.0 alpha:1];
         
     }
 

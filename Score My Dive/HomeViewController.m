@@ -28,24 +28,24 @@
     
     // drop shadow for the buttons
     self.btnQuick.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.btnQuick.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.btnQuick.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.btnQuick.layer.masksToBounds = NO;
-    self.btnQuick.layer.shadowOpacity = .5;
+    self.btnQuick.layer.shadowOpacity = 1.0;
     
     self.btnMeetsDivers.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.btnMeetsDivers.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.btnMeetsDivers.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.btnMeetsDivers.layer.masksToBounds = NO;
-    self.btnMeetsDivers.layer.shadowOpacity = .5;
+    self.btnMeetsDivers.layer.shadowOpacity = 1.0;
     
     self.btnReports.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.btnReports.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.btnReports.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.btnReports.layer.masksToBounds = NO;
-    self.btnReports.layer.shadowOpacity = .5;
+    self.btnReports.layer.shadowOpacity = 1.0;
     
     self.btnDetailed.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.btnDetailed.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.btnDetailed.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.btnDetailed.layer.masksToBounds = NO;
-    self.btnDetailed.layer.shadowOpacity = .5;
+    self.btnDetailed.layer.shadowOpacity = 1.0;
     
 }
 

@@ -29,7 +29,6 @@
 @property (nonatomic) BOOL previousInfo;
 
 -(void)loadSpinnerData;
--(void)getMeetName;
 -(BOOL)PreviousMeetInfo;
 -(void)HideControls;
 -(void)writeNewDiveCollection;
@@ -130,7 +129,6 @@
         self.boardSize1ID = 1;
     }
     
-    [self getMeetName];
     [self loadSpinnerData];
     [self HideControls];
 }
@@ -468,13 +466,6 @@
     
     Diver *divers = [[Diver alloc] init];
     self.diverArray = [divers GetAllDivers];
-    
-}
-
--(void)getMeetName {
-    
-    Meet *meetName = [[Meet alloc] init];
-    self.lblMeetName.text = [meetName GetMeetName:self.meetRecordID];
     
 }
 

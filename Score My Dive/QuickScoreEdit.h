@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnDive9;
 @property (weak, nonatomic) IBOutlet UIButton *btnDive10;
 @property (weak, nonatomic) IBOutlet UIButton *btnDive11;
+@property (weak, nonatomic) IBOutlet UILabel *backgroundLabel;
 
 
 // declaration for the delegate property

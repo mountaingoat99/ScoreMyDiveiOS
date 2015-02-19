@@ -39,90 +39,97 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
+//    [[self.backgroundLabel layer] setBorderColor:[[UIColor blackColor] CGColor]];
+//    [[self.backgroundLabel layer] setBorderWidth:1.0];
+    [[self.backgroundLabel layer] setShadowColor:[[UIColor blackColor] CGColor]];
+    [[self.backgroundLabel layer] setShadowOffset:CGSizeMake(1.0f, 1.0f)];
+    [[self.backgroundLabel layer] setMasksToBounds:NO];
+    [[self.backgroundLabel layer] setShadowOpacity:1.0];
+    
     // sets a border around the label to make it look like a text box
-    [[self.btnName layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[self.btnName layer] setBorderWidth:1.0];
-    [[self.btnName layer] setShadowColor:[[UIColor blackColor] CGColor]];
-    [[self.btnName layer] setShadowOffset:CGSizeMake(.1f, .1f)];
-    [[self.btnName layer] setMasksToBounds:NO];
-    [[self.btnName layer] setShadowOpacity:.3];
-    
-    [[self.btnDive1 layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive1 layer] setBorderWidth:1.0];
-    [[self.btnDive1 layer] setShadowColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive1 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
-    [[self.btnDive1 layer] setMasksToBounds:NO];
-    [[self.btnDive1 layer] setShadowOpacity:.3];
-    
-    [[self.btnDive2 layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive2 layer] setBorderWidth:1.0];
-    [[self.btnDive2 layer] setShadowColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive2 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
-    [[self.btnDive2 layer] setMasksToBounds:NO];
-    [[self.btnDive2 layer] setShadowOpacity:.3];
-    
-    [[self.btnDive3 layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive3 layer] setBorderWidth:1.0];
-    [[self.btnDive3 layer] setShadowColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive3 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
-    [[self.btnDive3 layer] setMasksToBounds:NO];
-    [[self.btnDive3 layer] setShadowOpacity:.3];
-    
-    [[self.btnDive4 layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive4 layer] setBorderWidth:1.0];
-    [[self.btnDive4 layer] setShadowColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive4 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
-    [[self.btnDive4 layer] setMasksToBounds:NO];
-    [[self.btnDive4 layer] setShadowOpacity:.3];
-    
-    [[self.btnDive5 layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive5 layer] setBorderWidth:1.0];
-    [[self.btnDive5 layer] setShadowColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive5 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
-    [[self.btnDive5 layer] setMasksToBounds:NO];
-    [[self.btnDive5 layer] setShadowOpacity:.3];
-    
-    [[self.btnDive6 layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive6 layer] setBorderWidth:1.0];
-    [[self.btnDive6 layer] setShadowColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive6 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
-    [[self.btnDive6 layer] setMasksToBounds:NO];
-    [[self.btnDive6 layer] setShadowOpacity:.3];
-    
-    [[self.btnDive7 layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive7 layer] setBorderWidth:1.0];
-    [[self.btnDive7 layer] setShadowColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive7 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
-    [[self.btnDive7 layer] setMasksToBounds:NO];
-    [[self.btnDive7 layer] setShadowOpacity:.3];
-    
-    [[self.btnDive8 layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive8 layer] setBorderWidth:1.0];
-    [[self.btnDive8 layer] setShadowColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive8 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
-    [[self.btnDive8 layer] setMasksToBounds:NO];
-    [[self.btnDive8 layer] setShadowOpacity:.3];
-    
-    [[self.btnDive9 layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive9 layer] setBorderWidth:1.0];
-    [[self.btnDive9 layer] setShadowColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive9 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
-    [[self.btnDive9 layer] setMasksToBounds:NO];
-    [[self.btnDive9 layer] setShadowOpacity:.3];
-    
-    [[self.btnDive10 layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive10 layer] setBorderWidth:1.0];
-    [[self.btnDive10 layer] setShadowColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive10 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
-    [[self.btnDive10 layer] setMasksToBounds:NO];
-    [[self.btnDive10 layer] setShadowOpacity:.3];
-    
-    [[self.btnDive11 layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive11 layer] setBorderWidth:1.0];
-    [[self.btnDive11 layer] setShadowColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive11 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
-    [[self.btnDive11 layer] setMasksToBounds:NO];
-    [[self.btnDive11 layer] setShadowOpacity:.3];
+//    [[self.btnName layer] setBorderColor:[[UIColor blackColor] CGColor]];
+//    [[self.btnName layer] setBorderWidth:1.0];
+//    [[self.btnName layer] setShadowColor:[[UIColor blackColor] CGColor]];
+//    [[self.btnName layer] setShadowOffset:CGSizeMake(.1f, .1f)];
+//    [[self.btnName layer] setMasksToBounds:NO];
+//    [[self.btnName layer] setShadowOpacity:.3];
+//    
+//    [[self.btnDive1 layer] setBorderColor:[[UIColor blackColor] CGColor]];
+//    [[self.btnDive1 layer] setBorderWidth:1.0];
+//    [[self.btnDive1 layer] setShadowColor:[[UIColor blackColor] CGColor]];
+//    [[self.btnDive1 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
+//    [[self.btnDive1 layer] setMasksToBounds:NO];
+//    [[self.btnDive1 layer] setShadowOpacity:.3];
+//    
+//    [[self.btnDive2 layer] setBorderColor:[[UIColor blackColor] CGColor]];
+//    [[self.btnDive2 layer] setBorderWidth:1.0];
+//    [[self.btnDive2 layer] setShadowColor:[[UIColor blackColor] CGColor]];
+//    [[self.btnDive2 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
+//    [[self.btnDive2 layer] setMasksToBounds:NO];
+//    [[self.btnDive2 layer] setShadowOpacity:.3];
+//    
+//    [[self.btnDive3 layer] setBorderColor:[[UIColor blackColor] CGColor]];
+//    [[self.btnDive3 layer] setBorderWidth:1.0];
+//    [[self.btnDive3 layer] setShadowColor:[[UIColor blackColor] CGColor]];
+//    [[self.btnDive3 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
+//    [[self.btnDive3 layer] setMasksToBounds:NO];
+//    [[self.btnDive3 layer] setShadowOpacity:.3];
+//    
+//    [[self.btnDive4 layer] setBorderColor:[[UIColor blackColor] CGColor]];
+//    [[self.btnDive4 layer] setBorderWidth:1.0];
+//    [[self.btnDive4 layer] setShadowColor:[[UIColor blackColor] CGColor]];
+//    [[self.btnDive4 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
+//    [[self.btnDive4 layer] setMasksToBounds:NO];
+//    [[self.btnDive4 layer] setShadowOpacity:.3];
+//    
+//    [[self.btnDive5 layer] setBorderColor:[[UIColor blackColor] CGColor]];
+//    [[self.btnDive5 layer] setBorderWidth:1.0];
+//    [[self.btnDive5 layer] setShadowColor:[[UIColor blackColor] CGColor]];
+//    [[self.btnDive5 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
+//    [[self.btnDive5 layer] setMasksToBounds:NO];
+//    [[self.btnDive5 layer] setShadowOpacity:.3];
+//    
+//    [[self.btnDive6 layer] setBorderColor:[[UIColor blackColor] CGColor]];
+//    [[self.btnDive6 layer] setBorderWidth:1.0];
+//    [[self.btnDive6 layer] setShadowColor:[[UIColor blackColor] CGColor]];
+//    [[self.btnDive6 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
+//    [[self.btnDive6 layer] setMasksToBounds:NO];
+//    [[self.btnDive6 layer] setShadowOpacity:.3];
+//    
+//    [[self.btnDive7 layer] setBorderColor:[[UIColor blackColor] CGColor]];
+//    [[self.btnDive7 layer] setBorderWidth:1.0];
+//    [[self.btnDive7 layer] setShadowColor:[[UIColor blackColor] CGColor]];
+//    [[self.btnDive7 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
+//    [[self.btnDive7 layer] setMasksToBounds:NO];
+//    [[self.btnDive7 layer] setShadowOpacity:.3];
+//    
+//    [[self.btnDive8 layer] setBorderColor:[[UIColor blackColor] CGColor]];
+//    [[self.btnDive8 layer] setBorderWidth:1.0];
+//    [[self.btnDive8 layer] setShadowColor:[[UIColor blackColor] CGColor]];
+//    [[self.btnDive8 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
+//    [[self.btnDive8 layer] setMasksToBounds:NO];
+//    [[self.btnDive8 layer] setShadowOpacity:.3];
+//    
+//    [[self.btnDive9 layer] setBorderColor:[[UIColor blackColor] CGColor]];
+//    [[self.btnDive9 layer] setBorderWidth:1.0];
+//    [[self.btnDive9 layer] setShadowColor:[[UIColor blackColor] CGColor]];
+//    [[self.btnDive9 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
+//    [[self.btnDive9 layer] setMasksToBounds:NO];
+//    [[self.btnDive9 layer] setShadowOpacity:.3];
+//    
+//    [[self.btnDive10 layer] setBorderColor:[[UIColor blackColor] CGColor]];
+//    [[self.btnDive10 layer] setBorderWidth:1.0];
+//    [[self.btnDive10 layer] setShadowColor:[[UIColor blackColor] CGColor]];
+//    [[self.btnDive10 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
+//    [[self.btnDive10 layer] setMasksToBounds:NO];
+//    [[self.btnDive10 layer] setShadowOpacity:.3];
+//    
+//    [[self.btnDive11 layer] setBorderColor:[[UIColor blackColor] CGColor]];
+//    [[self.btnDive11 layer] setBorderWidth:1.0];
+//    [[self.btnDive11 layer] setShadowColor:[[UIColor blackColor] CGColor]];
+//    [[self.btnDive11 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
+//    [[self.btnDive11 layer] setMasksToBounds:NO];
+//    [[self.btnDive11 layer] setShadowOpacity:.3];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

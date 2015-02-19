@@ -20,7 +20,7 @@
 @property (nonatomic) BOOL savedState;
 
 @property (weak, nonatomic) IBOutlet UITextField *txtChooseDiver;
-@property (weak, nonatomic) IBOutlet UILabel *lblMeetName;
+@property (weak, nonatomic) IBOutlet UITextField *txtChooseMeet;
 @property (weak, nonatomic) IBOutlet UILabel *lblDiveTotal;
 @property (weak, nonatomic) IBOutlet UILabel *lblBoardSize;
 
