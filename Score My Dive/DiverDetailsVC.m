@@ -37,8 +37,8 @@
     self.tblDivers.layer.shadowColor = [UIColor blackColor].CGColor;
     self.tblDivers.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.tblDivers.layer.masksToBounds = NO;
-    self.tblDivers.layer.shadowRadius = 4.0f;
     self.tblDivers.layer.shadowOpacity = 1.0;
+    [self.tblDivers setSeparatorColor:[UIColor blackColor]];
     
     [self TabBarSelection];
 }
@@ -144,9 +144,6 @@
     
         self.recordIDToEdit = [[[self.arrDiverInfo objectAtIndex:indexPath.row] objectAtIndex:0] intValue];
         
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        cell.contentView.backgroundColor = [UIColor colorWithRed:.50 green:.50 blue:.50 alpha:1];
-        
         [self performSegueWithIdentifier:@"idSegueDiverHistory" sender:self];
         
     } else {
@@ -168,13 +165,12 @@
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath  {
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.contentView.backgroundColor = [UIColor colorWithRed:.40 green:.40 blue:.40 alpha:1];
-    
+    cell.contentView.backgroundColor = cell.contentView.backgroundColor;
 }
 
 -(void)tableView:(UITableView*)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    cell.contentView.backgroundColor = [UIColor colorWithRed:.40 green:.40 blue:.40 alpha:1];
+    cell.contentView.backgroundColor = cell.contentView.backgroundColor;
     
 }
 
@@ -212,14 +208,14 @@
         cell.textLabel.font = [UIFont systemFontOfSize:13.0];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
         cell.textLabel.numberOfLines = 2;
-        cell.contentView.backgroundColor = [UIColor colorWithRed:.40 green:.40 blue:.40 alpha:1];
+        cell.backgroundColor = [UIColor clearColor];
         
     } else {
         
         cell.textLabel.font = [UIFont systemFontOfSize:30.0];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:26.0];
         cell.textLabel.numberOfLines = 2;
-        cell.contentView.backgroundColor = [UIColor colorWithRed:.40 green:.40 blue:.40 alpha:1];
+        cell.backgroundColor = [UIColor clearColor];
         
     }
     
@@ -253,7 +249,7 @@
 
 -(void)TabBarSelection {
     
-    UIColor *backgroundColor = [UIColor colorWithRed:.50 green:.50 blue:.50 alpha:1];
+    UIColor *backgroundColor = [UIColor colorWithRed:.45 green:.79 blue:1.0 alpha:1];
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
     //CGFloat screenHeight = screenRect.size.height;
@@ -272,10 +268,10 @@
 
     // set the selected icon color
     [[UITabBar appearance] setTintColor:[UIColor blackColor]];
-    [[UITabBar appearance] setBackgroundColor:[UIColor darkGrayColor]];
+    [[UITabBar appearance] setBackgroundColor:[UIColor blackColor]];
     
     // set the dark color to the selected tab
-    [[UITabBar appearance] setSelectionIndicatorImage:[AppDelegate imageFromColor:[UIColor colorWithRed:.40 green:.40 blue:.40 alpha:1] forSize:CGSizeMake(screenWidth / 2, 49) withCornerRadius:0]];
+    [[UITabBar appearance] setSelectionIndicatorImage:[AppDelegate imageFromColor:[UIColor colorWithRed:.45 green:.79 blue:1.0 alpha:1] forSize:CGSizeMake(screenWidth / 2, 49) withCornerRadius:0]];
 }
 
 @end
