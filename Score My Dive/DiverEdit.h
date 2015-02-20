@@ -26,8 +26,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtAge;
 @property (weak, nonatomic) IBOutlet UITextField *txtGrade;
 @property (weak, nonatomic) IBOutlet UITextField *txtSchool;
+@property (weak, nonatomic) IBOutlet UILabel *backgroundLabel;
 
 -(IBAction)saveInfo:(id)sender;
-//- (IBAction)btnReturnClick:(id)sender;
 
 @end
