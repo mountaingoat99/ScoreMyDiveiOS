@@ -87,12 +87,6 @@
     
 }
 
-//// handles the return click
-//-(IBAction)returnClick:(id)sender {
-//    
-//    [self performSegueWithIdentifier:@"idDiverDetailToHome" sender:self];
-//}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
