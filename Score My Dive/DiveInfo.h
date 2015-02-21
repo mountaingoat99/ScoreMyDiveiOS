@@ -36,7 +36,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblJudge5Text;
 @property (weak, nonatomic) IBOutlet UILabel *lblJudge6Text;
 @property (weak, nonatomic) IBOutlet UILabel *lblJudge7Text;
-
-//- (IBAction)btnReturnClick:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *backgroundPanel1;
+@property (weak, nonatomic) IBOutlet UILabel *backgroundPanel2;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *backgroundConstraint;
 
 @end

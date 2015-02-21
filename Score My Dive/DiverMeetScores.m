@@ -82,7 +82,6 @@
             self.backgroundConstraint.constant = 120;
         }
     }
-    
 }
 
 // only allow portrait in iphone

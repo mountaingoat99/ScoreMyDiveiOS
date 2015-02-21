@@ -33,6 +33,20 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[self.backgroundPanel1 layer] setBorderColor:[[UIColor blackColor] CGColor]];
+    [[self.backgroundPanel1 layer] setBorderWidth:1.0];
+    [[self.backgroundPanel1 layer] setShadowColor:[[UIColor blackColor] CGColor]];
+    [[self.backgroundPanel1 layer] setShadowOffset:CGSizeMake(1.0f, 1.0f)];
+    [[self.backgroundPanel1 layer] setMasksToBounds:NO];
+    [[self.backgroundPanel1 layer] setShadowOpacity:1.0];
+    
+    [[self.backgroundPanel2 layer] setBorderColor:[[UIColor blackColor] CGColor]];
+    [[self.backgroundPanel2 layer] setBorderWidth:1.0];
+    [[self.backgroundPanel2 layer] setShadowColor:[[UIColor blackColor] CGColor]];
+    [[self.backgroundPanel2 layer] setShadowOffset:CGSizeMake(1.0f, 1.0f)];
+    [[self.backgroundPanel2 layer] setMasksToBounds:NO];
+    [[self.backgroundPanel2 layer] setShadowOpacity:1.0];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -44,7 +58,27 @@
         [self findJudgeTotal];
         [self loadScores];
     }
+}
+
+-(void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
     
+    if (self.judgeTotal == 2 || self.judgeTotal == 3) {
+        
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            
+        } else {
+            self.backgroundConstraint.constant = 60;
+        }
+    }
+    
+    if (self.judgeTotal == 5) {
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            
+        } else {
+            self.backgroundConstraint.constant = 30;
+        }
+    }
 }
 
 // only allow portrait in iphone
@@ -105,17 +139,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-//- (IBAction)btnReturnClick:(id)sender {
-//    
-//    [self performSegueWithIdentifier:@"idSegueInfoToScores" sender:self];
-//}
-
 #pragma private methods
 
 -(void)loadDiverInfo {
-    
-//    Diver *diver = [[Diver alloc] init];
     
     Diver *diver = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:0];
     
@@ -125,8 +151,6 @@
 
 -(void)loadMeetInfo {
     
-//    Meet *meet = [[Meet alloc] init];
-    
     Meet *meet = [self.meetInfo objectAtIndex:0];
     
     self.lblDiverSchool.text = meet.meetName;
@@ -135,7 +159,6 @@
 
 -(void)findJudgeTotal {
     
-//    Judges *judge = [[Judges alloc] init];
     Judges *judge = [self.meetInfo objectAtIndex:1];
     self.judgeTotal = [judge.judgeTotal intValue];
     
