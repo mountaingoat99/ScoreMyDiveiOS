@@ -109,7 +109,7 @@
     
     if (meets.count > 0 && divers.count > 0) {
         
-        [self performSegueWithIdentifier:@"idSegueHomeToChooseMeet" sender:self];
+        [self performSegueWithIdentifier:@"idSegueHomeToChoose" sender:self];
         
     } else {
         

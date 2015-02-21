@@ -37,6 +37,7 @@
 -(void)CheckForNoList;
 -(void)checkforListStarted;
 -(void)resetDiver;
+-(void)showRankings;
 
 @end
 
@@ -405,7 +406,7 @@
                                 handler:^(UIAlertAction *action)
                                 {
                                     NSLog(@"rankings Action");
-                                    //[self resetDiver];
+                                    [self showRankings];
                                 }];
     
     UIAlertAction *resetAction = [UIAlertAction
@@ -432,6 +433,12 @@
 }
 
 #pragma private methods
+
+-(void)showRankings {
+    
+    [self performSegueWithIdentifier:@"idSegueChooseToRankings" sender:self];
+    
+}
 
 -(void)resetDiver {
     

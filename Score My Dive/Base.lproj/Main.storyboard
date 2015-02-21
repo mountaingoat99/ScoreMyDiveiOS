@@ -138,6 +138,7 @@
                                 </variation>
                                 <connections>
                                     <action selector="btnDetailedScoringClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="25B-eU-HhB"/>
+                                    <segue destination="O1M-Zl-WrP" kind="show" identifier="idSegueHomeToChoose" id="cnm-6c-aWD"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Detailed Scoring" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="auL-il-gNh">
@@ -300,7 +301,6 @@
                         <outlet property="btnMeetsDivers" destination="Brh-FX-UB8" id="Mo8-pG-ISV"/>
                         <outlet property="btnQuick" destination="jmr-UA-BIl" id="Oi8-Ye-Ons"/>
                         <outlet property="btnReports" destination="8lc-EQ-hPd" id="hRe-yy-fMX"/>
-                        <segue destination="gyi-Um-8hX" kind="show" identifier="idSegueHomeToChooseMeet" id="ODQ-1S-U5a"/>
                         <segue destination="w5B-nA-pM5" kind="show" identifier="idSegueHomeToReports" id="w4U-Wl-UcP"/>
                         <segue destination="Rjl-wi-ZvV" kind="show" identifier="idSegueHomeToQuickScore" id="2fN-uI-qei"/>
                         <segue destination="79K-nl-rUV" kind="show" identifier="idSegueToMeetDivers" id="Q9B-Pi-oeZ"/>
@@ -5980,7 +5980,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="gyi-Um-8hX" kind="show" identifier="idSegueMeetRankToMeet" id="JbB-PZ-Au6"/>
+                                    <segue destination="O1M-Zl-WrP" kind="show" identifier="idSegueMeetRankToChoose" id="gVN-Yb-wsf"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="BackButton" translatesAutoresizingMaskIntoConstraints="NO" id="XQ5-JA-FXK">
@@ -6209,9 +6209,6 @@
                                         <exclude reference="hoZ-5Z-jgK"/>
                                     </mask>
                                 </variation>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="idSegueMeetChooseToHome" id="9gK-gP-ZwA"/>
-                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="BackButton" translatesAutoresizingMaskIntoConstraints="NO" id="EWt-5G-0qH">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -6302,9 +6299,6 @@
                                         <include reference="gBZ-LC-ziF"/>
                                     </mask>
                                 </variation>
-                                <connections>
-                                    <segue destination="bwZ-QA-kiz" kind="show" identifier="idSegueToRankings" id="HAM-AW-Tc1"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="3 Judges" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYw-Ko-Z7s">
                                 <rect key="frame" x="16" y="112" width="135" height="21"/>
@@ -6475,12 +6469,11 @@
                         <outlet property="btnRank" destination="Ihe-6k-xtr" id="r28-ei-R01"/>
                         <outlet property="lblJudges" destination="zYw-Ko-Z7s" id="5dr-AV-fr8"/>
                         <outlet property="txtChooseMeet" destination="cCa-tG-VdE" id="mCz-yP-HII"/>
-                        <segue destination="O1M-Zl-WrP" kind="show" identifier="idMeetSegue" id="eU3-Kl-lwc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OOP-am-hcJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="585" y="696"/>
+            <point key="canvasLocation" x="550.5" y="365.25"/>
         </scene>
         <!--DiveListEdit-->
         <scene sceneID="XCp-ty-S7z">
@@ -12564,7 +12557,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="gyi-Um-8hX" kind="show" identifier="idSegueDiverToMeetChoose" id="PVp-VU-Wrr"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="idSegueChooseToHome" id="iOH-4O-Sc4"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g5V-f1-Tf1">
@@ -13240,11 +13233,12 @@
                         <outlet property="txtChooseDiver" destination="I0i-tt-Zsr" id="7wP-qx-a7e"/>
                         <segue destination="45S-Rk-1AR" kind="show" identifier="idSegueChooseToScore" id="fUy-vt-kRQ"/>
                         <segue destination="ptW-d7-ktO" kind="show" identifier="idSegueDiveList" id="Gvc-v4-oSy"/>
+                        <segue destination="bwZ-QA-kiz" kind="show" identifier="idSegueChooseToRankings" id="zxI-mr-eLH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Y4-1Q-c7b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1227" y="696"/>
+            <point key="canvasLocation" x="1298.25" y="696"/>
         </scene>
         <!--DiveEnter-->
         <scene sceneID="sIe-dW-tbM">
@@ -19420,14 +19414,13 @@
         <segue reference="Egm-yZ-Z6w"/>
         <segue reference="Gl0-fW-l2B"/>
         <segue reference="7UA-br-TXQ"/>
-        <segue reference="geP-ok-uHu"/>
         <segue reference="ebm-qU-aOW"/>
-        <segue reference="eU3-Kl-lwc"/>
-        <segue reference="PVp-VU-Wrr"/>
-        <segue reference="HAM-AW-Tc1"/>
-        <segue reference="9gK-gP-ZwA"/>
-        <segue reference="fUy-vt-kRQ"/>
+        <segue reference="cnm-6c-aWD"/>
+        <segue reference="iOH-4O-Sc4"/>
         <segue reference="Gvc-v4-oSy"/>
+        <segue reference="zxI-mr-eLH"/>
+        <segue reference="fUy-vt-kRQ"/>
+        <segue reference="gkk-lV-b4s"/>
         <segue reference="AXm-EU-hgU"/>
     </inferredMetricsTieBreakers>
 </document>
