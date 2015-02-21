@@ -36,6 +36,7 @@
 -(void)DeleteAllDiverMeetInfo;
 -(void)CheckForNoList;
 -(void)checkforListStarted;
+-(void)resetDiver;
 
 @end
 
@@ -392,41 +393,57 @@
 
 - (IBAction)ResetDiverClick:(id)sender {
     
+    
+    UIAlertController *alertController = [UIAlertController
+                                            alertControllerWithTitle:@"Deleting a Diver from a Meet will also delete any scores entered for the diver"
+                                            message:nil
+                                            preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *rankingsAction = [UIAlertAction
+                                actionWithTitle:@"Rankings"
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction *action)
+                                {
+                                    NSLog(@"rankings Action");
+                                    //[self resetDiver];
+                                }];
+    
+    UIAlertAction *resetAction = [UIAlertAction
+                                actionWithTitle:@"Delete Diver From Meet"
+                                style:UIAlertActionStyleDestructive
+                                handler:^(UIAlertAction *action)
+                                {
+                                    NSLog(@"resetDiver Action");
+                                    [self resetDiver];
+                                }];
+    
+    [alertController addAction:resetAction];
+    [alertController addAction:rankingsAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+    UIPopoverPresentationController *popover = alertController.popoverPresentationController;
+    if (popover) {
+        popover.sourceView = self.view;
+        popover.sourceRect = [sender frame];
+        popover.permittedArrowDirections = UIPopoverArrowDirectionDown;
+    }
+    
+}
+
+#pragma private methods
+
+-(void)resetDiver {
+    
     if (self.txtChooseDiver.text.length != 0) {
-        // updated alertController for iOS 8
-        UIAlertController *alertController = [UIAlertController
-                                              alertControllerWithTitle:@"Be warned, this removes all diver info from a meet, including scores and dive lists."
-                                              message:nil
-                                              preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *cancelAction = [UIAlertAction
-                                       actionWithTitle:@"Cancel"
-                                       style:UIAlertActionStyleCancel
-                                       handler:^(UIAlertAction *action)
-                                       {
-                                           NSLog(@"Cancel Action");
-                                       }];
-        
-        UIAlertAction *okAction = [UIAlertAction
-                                   actionWithTitle:@"OK"
-                                   style:UIAlertActionStyleDefault
-                                   handler:^(UIAlertAction *action)
-                                   {
-                                       NSLog(@"OK Action");
-                                       [self DeleteAllDiverMeetInfo];
-                                       [self.txtChooseDiver resignFirstResponder];
-                                       [self.divePicker reloadAllComponents];
-                                       self.txtChooseDiver.text = @"";
-                                       [self.SCBoardSize setHidden:NO];
-                                       [self.SCDiveTotals setHidden:NO];
-                                       [self.lblDiveTotal setHidden:YES];
-                                       [self.lblBoardSize setHidden:YES];
-                                   }];
-        
-        [alertController addAction:cancelAction];
-        [alertController addAction:okAction];
-        
-        [self presentViewController:alertController animated:YES completion:nil];
+        [self DeleteAllDiverMeetInfo];
+        [self.txtChooseDiver resignFirstResponder];
+        [self.divePicker reloadAllComponents];
+        self.txtChooseDiver.text = @"";
+        [self.SCBoardSize setHidden:NO];
+        [self.SCDiveTotals setHidden:NO];
+        [self.lblDiveTotal setHidden:YES];
+        [self.lblBoardSize setHidden:YES];
         
     } else {
         
@@ -441,7 +458,6 @@
     }
 }
 
-#pragma private methods
 
 -(void)loadSpinnerData {
     if (self.diverArray != nil) {
