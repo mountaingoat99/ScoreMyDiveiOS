@@ -41,8 +41,8 @@
     self.tblDiverRankings.layer.shadowColor = [UIColor blackColor].CGColor;
     self.tblDiverRankings.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.tblDiverRankings.layer.masksToBounds = NO;
-    self.tblDiverRankings.layer.shadowRadius = 4.0f;
     self.tblDiverRankings.layer.shadowOpacity = 1.0;
+    [self.tblDiverRankings setSeparatorColor:[UIColor blackColor]];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -111,9 +111,6 @@
 // in Ipad because of some unknown apple logic
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.contentView.backgroundColor = [UIColor colorWithRed:.50 green:.50 blue:.50 alpha:1];
-    
     // assigns the diverid clicked so it can be sent to the DiverMeetScore controller
     self.diverId = [[[self.arrDivers objectAtIndex:indexPath.row] objectAtIndex:0] intValue];
     
@@ -140,14 +137,13 @@
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath  {
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.contentView.backgroundColor = [UIColor colorWithRed:.40 green:.40 blue:.40 alpha:1];
+    cell.contentView.backgroundColor = cell.contentView.backgroundColor;
     
 }
 
 -(void)tableView:(UITableView*)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    cell.contentView.backgroundColor = [UIColor colorWithRed:.40 green:.40 blue:.40 alpha:1];
-    
+    cell.contentView.backgroundColor = cell.contentView.backgroundColor;
 }
 
 // tells the tableView we want to have just one section
@@ -184,14 +180,14 @@
         cell.textLabel.font = [UIFont systemFontOfSize:13.0];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
         cell.textLabel.numberOfLines = 2;
-        cell.contentView.backgroundColor = [UIColor colorWithRed:.40 green:.40 blue:.40 alpha:1];
+        cell.backgroundColor = [UIColor clearColor];
         
     } else {
         
         cell.textLabel.font = [UIFont systemFontOfSize:30.0];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:26.0];
         cell.textLabel.numberOfLines = 2;
-        cell.contentView.backgroundColor = [UIColor colorWithRed:.40 green:.40 blue:.40 alpha:1];
+        cell.backgroundColor = [UIColor clearColor];
         
     }
     
@@ -204,13 +200,6 @@
     
     return cell;
 }
-
-
-//- (IBAction)btnReturnClick:(id)sender {
-//    
-//    [self performSegueWithIdentifier:@"idSegueDiveRankToMeetRank" sender:self];
-//    
-//}
 
 #pragma Private Methods
 

@@ -37,8 +37,8 @@
     self.tblRankings.layer.shadowColor = [UIColor blackColor].CGColor;
     self.tblRankings.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.tblRankings.layer.masksToBounds = NO;
-    self.tblRankings.layer.shadowRadius = 4.0f;
     self.tblRankings.layer.shadowOpacity = 1.0;
+    [self.tblRankings setSeparatorColor:[UIColor blackColor]];
     
     [self loadData];
 }
@@ -81,9 +81,6 @@
 // in Ipad because of some unknown apple logic
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.contentView.backgroundColor = [UIColor colorWithRed:.50 green:.50 blue:.50 alpha:1];
-    
     // assigns the diverid clicked so it can be sent to the DiverMeetScore controller
     self.meetId = [[[self.arrMeets objectAtIndex:indexPath.row] objectAtIndex:0] intValue];
     self.boardSize = [[self.arrMeets objectAtIndex:indexPath.row] objectAtIndex:2];
@@ -107,13 +104,13 @@
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath  {
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.contentView.backgroundColor = [UIColor colorWithRed:.40 green:.40 blue:.40 alpha:1];
+    cell.contentView.backgroundColor = cell.contentView.backgroundColor;
     
 }
 
 -(void)tableView:(UITableView*)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    cell.contentView.backgroundColor = [UIColor colorWithRed:.40 green:.40 blue:.40 alpha:1];
+    cell.contentView.backgroundColor = cell.contentView.backgroundColor;
     
 }
 
@@ -151,14 +148,14 @@
         cell.textLabel.font = [UIFont systemFontOfSize:13.0];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
         cell.textLabel.numberOfLines = 2;
-        cell.contentView.backgroundColor = [UIColor colorWithRed:.40 green:.40 blue:.40 alpha:1];
+        cell.backgroundColor = [UIColor clearColor];
         
     } else {
         
         cell.textLabel.font = [UIFont systemFontOfSize:30.0];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:26.0];
         cell.textLabel.numberOfLines = 2;
-        cell.contentView.backgroundColor = [UIColor colorWithRed:.40 green:.40 blue:.40 alpha:1];
+        cell.backgroundColor = [UIColor clearColor];
         
     }
     
