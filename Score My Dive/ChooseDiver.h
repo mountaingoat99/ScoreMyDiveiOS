@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnEnterList;
 @property (weak, nonatomic) IBOutlet UIButton *btnEnterScores;
 @property (weak, nonatomic) IBOutlet UIButton *btnResetDiver;
+@property (weak, nonatomic) IBOutlet UILabel *backgroundPanel;
 
 //segmented control methods
 - (IBAction)DiveTotalIndexChanged:(UISegmentedControl *)sender;

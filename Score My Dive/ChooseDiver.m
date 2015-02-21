@@ -46,55 +46,49 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
-    // attributes for controls
-    self.txtChooseDiver.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.txtChooseDiver.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.txtChooseDiver.layer.masksToBounds = NO;
-    self.txtChooseDiver.layer.shadowRadius = 4.0f;
-    self.txtChooseDiver.layer.shadowOpacity = .3;
+    self.backgroundPanel.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.backgroundPanel.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    self.backgroundPanel.layer.masksToBounds = NO;
+    self.backgroundPanel.layer.shadowOpacity = 1.0;
+    self.backgroundPanel.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+    
     self.txtChooseDiver.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtChooseDiver.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     self.txtChooseDiver.delegate = self;
     
     self.SCDiveTotals.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.SCDiveTotals.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.SCDiveTotals.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.SCDiveTotals.layer.masksToBounds = NO;
-    self.SCDiveTotals.layer.shadowOpacity = .7;
+    self.SCDiveTotals.layer.shadowOpacity = 1.0;
     
     self.SCBoardSize.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.SCBoardSize.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.SCBoardSize.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.SCBoardSize.layer.masksToBounds = NO;
-    self.SCBoardSize.layer.shadowOpacity = .7;
-    
-    self.btnEnterList.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.btnEnterList.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.btnEnterList.layer.masksToBounds = NO;
-    self.btnEnterList.layer.shadowOpacity = .7;
-    
-    self.btnEnterScores.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.btnEnterScores.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.btnEnterScores.layer.masksToBounds = NO;
-    self.btnEnterScores.layer.shadowOpacity = .7;
-    
+    self.SCBoardSize.layer.shadowOpacity = 1.0;
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         
         // color attributes for the segmented controls in iphone
-        NSDictionary *segmentedControlTextAttributes = @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont systemFontOfSize:10.0f]};
+        NSDictionary *segmentedControlTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont systemFontOfSize:10.0f]};
+        
+        NSDictionary *segmentedControlTextAttributesPicked = @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont systemFontOfSize:10.0f]};
         
         [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributes forState:UIControlStateNormal];
         [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributes forState:UIControlStateHighlighted];
-        [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributes forState:UIControlStateSelected];
+        [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributesPicked forState:UIControlStateSelected];
         
         
     } else {
         
         // color and size attributes for the SC in iPad
-        NSDictionary *segmentedControlTextAttributesiPad = @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont systemFontOfSize:14.0f]};
+        NSDictionary *segmentedControlTextAttributesiPad = @{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont systemFontOfSize:18.0f]};
+        
+        
+        NSDictionary *segmentedControlTextAttributesiPadPicked = @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont systemFontOfSize:18.0f]};
         
         [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributesiPad forState:UIControlStateNormal];
         [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributesiPad forState:UIControlStateHighlighted];
-        [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributesiPad forState:UIControlStateSelected];
+        [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributesiPadPicked forState:UIControlStateSelected];
         
     }
     
@@ -102,7 +96,7 @@
     
     // add a done button to the date picker
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 0, 44)];
-    toolbar.barTintColor = [UIColor grayColor];
+    toolbar.barTintColor = [UIColor colorWithRed:.16 green:.45 blue:.81 alpha:1];
     UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithTitle:@"Done"
                                                                       style:UIBarButtonItemStyleDone
                                                                      target:self
@@ -188,7 +182,6 @@
     self.listStarted = [coder decodeObjectForKey:@"listStarted"];
     self.txtChooseDiver.text = [coder decodeObjectForKey:@"diverText"];
     
-    //NSLog(@"ChooseDiver decode");
 }
 
 - (void)didReceiveMemoryWarning {
@@ -197,15 +190,7 @@
 }
 
 -(IBAction)unwindToChooseDiver:(UIStoryboardSegue *)segue{
-    
-    // reset everything and reload the spinner
-//    self.txtChooseDiver.text = @"";
-//    [self loadSpinnerData];
-//    [self makeDiverPicker];
-//    [self.SCBoardSize setHidden:NO];
-//    [self.SCDiveTotals setHidden:NO];
-//    [self.lblDiveTotal setHidden:YES];
-//    [self.lblBoardSize setHidden:YES];
+
     
 }
 
@@ -225,7 +210,6 @@
         
         DiveEnter *diver = [segue destinationViewController];
         // here we will just send a collection and the diver and meetid
-        //diver.meetInfo = self.meetInfo;
         diver.meetRecordID = self.meetRecordID;
         diver.diverRecordID = self.diverRecordID;
     }
@@ -249,11 +233,11 @@
 -(void)makeDiverPicker{
     
     self.divePicker = [[UIPickerView alloc] init];
-    [self.divePicker setBackgroundColor:[UIColor grayColor]];
+    [self.divePicker setBackgroundColor:[UIColor colorWithRed:.16 green:.45 blue:.81 alpha:1]];
     self.divePicker.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.divePicker.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.divePicker.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.divePicker.layer.masksToBounds = NO;
-    self.divePicker.layer.shadowOpacity = .3;
+    self.divePicker.layer.shadowOpacity = 1.0;
     self.divePicker.dataSource = self;
     self.divePicker.delegate = self;
     self.txtChooseDiver.inputView = self.divePicker;
@@ -504,9 +488,6 @@
         [self.btnResetDiver setHidden:NO];
         [self.lblDiveTotal setHidden:NO];
         [self.lblBoardSize setHidden:NO];
-        
-        //DiveTotal *total = [[DiveTotal alloc] init];
-        //DiverBoardSize *bSize = [[DiverBoardSize alloc] init];
         
         DiveTotal *total = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:2];
         DiverBoardSize *bSize = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:4];
