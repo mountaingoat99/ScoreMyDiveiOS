@@ -28,40 +28,22 @@
     self.backgroundLabel.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.backgroundLabel.layer.masksToBounds = NO;
     self.backgroundLabel.layer.shadowOpacity = 1.0;
-    self.backgroundLabel.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
-    
-    // drop shadow for the text boxes
-//    self.txtName.layer.shadowColor = [UIColor blackColor].CGColor;
-//    self.txtName.layer.shadowOffset = CGSizeMake(.1f, .1f);
-//    self.txtName.layer.masksToBounds = NO;
-//    self.txtName.layer.shadowOpacity = .3;
+
     self.txtName.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtName.autocapitalizationType = UITextAutocapitalizationTypeWords;
-    //self.txtName.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
-    
-//    self.txtSchool.layer.shadowColor = [UIColor blackColor].CGColor;
-//    self.txtSchool.layer.shadowOffset = CGSizeMake(.1f, .1f);
-//    self.txtSchool.layer.masksToBounds = NO;
-//    self.txtSchool.layer.shadowOpacity = .3;
+    self.txtName.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+
     self.txtSchool.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtSchool.autocapitalizationType = UITextAutocapitalizationTypeWords;
-    //self.txtSchool.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
-    
-//    self.txtAge.layer.shadowColor = [UIColor blackColor].CGColor;
-//    self.txtAge.layer.shadowOffset = CGSizeMake(.1f, .1f);
-//    self.txtAge.layer.masksToBounds = NO;
-//    self.txtAge.layer.shadowOpacity = .3;
+    self.txtSchool.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+
     self.txtAge.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtAge.keyboardType = UIKeyboardTypeNumberPad;
-    //self.txtAge.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
-    
-//    self.txtGrade.layer.shadowColor = [UIColor blackColor].CGColor;
-//    self.txtGrade.layer.shadowOffset = CGSizeMake(.1f, .1f);
-//    self.txtGrade.layer.masksToBounds = NO;
-//    self.txtGrade.layer.shadowOpacity = .3;
+    self.txtAge.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+
     self.txtGrade.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtGrade.autocapitalizationType = UITextAutocapitalizationTypeWords;
-    //self.txtGrade.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+    self.txtGrade.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     
     self.txtName.delegate = self;
     self.txtSchool.delegate = self;

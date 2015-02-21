@@ -38,19 +38,24 @@
     self.backgroundLabel.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.backgroundLabel.layer.masksToBounds = NO;
     self.backgroundLabel.layer.shadowOpacity = 1.0;
-    self.backgroundLabel.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     
     self.txtMeetName.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtMeetName.autocapitalizationType = UITextAutocapitalizationTypeWords;
+    self.txtMeetName.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
 
     self.txtSchool.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtSchool.autocapitalizationType = UITextAutocapitalizationTypeWords;
+    self.txtSchool.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
 
     self.txtCity.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtCity.autocapitalizationType = UITextAutocapitalizationTypeWords;
+    self.txtCity.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
 
     self.txtState.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtState.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+    self.txtState.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+    
+    self.txtDate.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     
     self.txtMeetName.delegate = self;
     self.txtSchool.delegate = self;

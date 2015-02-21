@@ -187,7 +187,6 @@
         cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
         cell.textLabel.numberOfLines = 2;
         cell.backgroundColor = [UIColor clearColor];
-        //cell.contentView.backgroundColor = [UIColor colorWithRed:.45 green:.79 blue:1.0 alpha:1];
         
     } else {
         
@@ -195,7 +194,6 @@
         cell.detailTextLabel.font = [UIFont systemFontOfSize:26.0];
         cell.textLabel.numberOfLines = 2;
         cell.backgroundColor = [UIColor clearColor];
-        //cell.contentView.backgroundColor = [UIColor colorWithRed:.45 green:.79 blue:1.0 alpha:1];
         
     }
 
