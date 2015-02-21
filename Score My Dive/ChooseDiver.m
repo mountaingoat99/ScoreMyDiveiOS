@@ -22,6 +22,11 @@
 
 @interface ChooseDiver ()
 
+// moved from the Choose meet
+@property (nonatomic, strong)NSArray *meetArray;
+@property (nonatomic, strong) UIPickerView *meetPicker;
+-(void)loadData;
+
 @property (nonatomic, strong) NSArray *diverArray;
 @property (nonatomic, strong) UIPickerView *divePicker;
 @property (nonatomic) BOOL noList;
@@ -98,6 +103,7 @@
     }
     
     [self makeDiverPicker];
+    [self makeMeetPicker];
     
     // add a done button to the date picker
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 0, 44)];
@@ -110,16 +116,20 @@
     toolbar.items = [[NSArray alloc] initWithObjects:barButtonDone, nil];
     barButtonDone.tintColor = [UIColor blackColor];
     self.txtChooseDiver.inputAccessoryView = toolbar;
+    self.txtChooseMeet.inputAccessoryView = toolbar;
 }
 
 // done button a picker
 -(void)dateSelectionDone:(id)sender {
     
     [self.txtChooseDiver resignFirstResponder];
+    [self.txtChooseMeet resignFirstResponder];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    [self loadData];
     
     if (!self.savedState) {
         // initilize no list to false first
@@ -128,7 +138,6 @@
         self.boardSize1ID = 1;
     }
     
-    [self loadSpinnerData];
     [self HideControls];
 }
 
@@ -157,6 +166,9 @@
     [coder encodeObject:diveSegments forKey:@"diveSegments"];
     [coder encodeObject:boardSegments forKey:@"boardSegments"];
     
+    if (self.txtChooseMeet.text.length > 0) {
+        [coder encodeObject:self.txtChooseMeet.text forKey:@"meetText"];
+    }
     
     if (self.txtChooseDiver.text.length > 0) {
         [coder encodeObject:self.txtChooseDiver.text forKey:@"diverText"];
@@ -185,6 +197,7 @@
     self.savedState = [coder decodeBoolForKey:@"savedState"];
     self.noList = [coder decodeBoolForKey:@"noList"];
     self.listStarted = [coder decodeObjectForKey:@"listStarted"];
+    self.txtChooseMeet.text = [coder decodeObjectForKey:@"meetText"];
     self.txtChooseDiver.text = [coder decodeObjectForKey:@"diverText"];
     
 }
@@ -235,6 +248,18 @@
 }
 
 // pickerview methods
+-(void)makeMeetPicker{
+    self.meetPicker = [[UIPickerView alloc] init];
+    [self.meetPicker setBackgroundColor:[UIColor colorWithRed:.16 green:.45 blue:.81 alpha:1]];
+    self.meetPicker.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.meetPicker.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    self.meetPicker.layer.masksToBounds = NO;
+    self.meetPicker.layer.shadowOpacity = 1.0;
+    self.meetPicker.dataSource = self;
+    self.meetPicker.delegate = self;
+    self.txtChooseMeet.inputView = self.meetPicker;
+}
+
 -(void)makeDiverPicker{
     
     self.divePicker = [[UIPickerView alloc] init];
@@ -248,9 +273,25 @@
     self.txtChooseDiver.inputView = self.divePicker;
 }
 
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    if (textField == self.txtChooseMeet) {
+        [self.txtChooseDiver becomeFirstResponder];
+    }
+    if (textField == self.txtChooseDiver) {
+        [self.txtChooseDiver resignFirstResponder];
+    }
+    
+    return YES;
+}
+
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     
-    return self.diverArray.count;
+    if (pickerView == self.meetPicker) {
+        return self.meetArray.count;
+    } else {
+        return self.diverArray.count;
+    }
 }
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
@@ -258,28 +299,82 @@
 }
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    // assign the first item in array to text box right away, so user doesn't have to
-    self.txtChooseDiver.text = [self.diverArray [row] objectAtIndex:1];
-    self.diverRecordID = [[self.diverArray [row] objectAtIndex:0] intValue];
     
-    //call the method to check if a driver has been assigned to a meet and hide controls
-    [self HideControls];
+    if (pickerView == self.meetPicker) {
+        
+        // assign the first item in array to text box right away, so user doesn't have to
+        self.txtChooseMeet.text = [self.meetArray [row] objectAtIndex:1];
+        // get the meet id to see if a judge total has been picked yet
+        self.meetRecordID = [[self.meetArray [row] objectAtIndex:0] intValue];
+        
+        [self loadSpinnerData];
+        
+        return [self.meetArray[row]objectAtIndex:1];
+        
+    } else {
+        
+        if (self.txtChooseMeet.text.length > 0) {
     
-    // call the method to see if the have a noList record
-    [self CheckForNoList];
-    
-    return [self.diverArray[row]objectAtIndex:1];
-    
+            // assign the first item in array to text box right away, so user doesn't have to
+            self.txtChooseDiver.text = [self.diverArray [row] objectAtIndex:1];
+            self.diverRecordID = [[self.diverArray [row] objectAtIndex:0] intValue];
+            
+            //call the method to check if a diver has been assigned to a meet and hide controls
+            [self HideControls];
+            
+            // call the method to see if the have a noList record
+            [self CheckForNoList];
+            
+            return [self.diverArray[row]objectAtIndex:1];
+                
+        } else {
+            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                            message:@"Please Pick a Meet choosing a Diver"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [error show];
+            [error reloadInputViews];
+            
+            return nil;
+        }
+    }
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
-    self.txtChooseDiver.text = [self.diverArray [row] objectAtIndex:1];
-    //[self.txtChooseDiver resignFirstResponder];
-    self.diverRecordID = [[self.diverArray [row] objectAtIndex:0] intValue];
+    if (pickerView == self.meetPicker) {
+        // sets the text box for the choosen meet
+        self.txtChooseMeet.text = [self.meetArray [row] objectAtIndex:1];
+        
+        //[self.txtChooseMeet resignFirstResponder];
+        self.meetRecordID = [[self.meetArray [row] objectAtIndex:0] intValue];
+        
+        [self loadSpinnerData];
+        
+        // here we will need to get the meetobject
+        
+    } else {
+        
+        if (self.txtChooseMeet.text.length > 0) {
     
-    //call the method to check if a driver has been assigned to a meet and hid controls
-    [self HideControls];
+            self.txtChooseDiver.text = [self.diverArray [row] objectAtIndex:1];
+            //[self.txtChooseDiver resignFirstResponder];
+            self.diverRecordID = [[self.diverArray [row] objectAtIndex:0] intValue];
+            
+            //call the method to check if a driver has been assigned to a meet and hid controls
+            [self HideControls];
+            
+        } else {
+            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                            message:@"Please Pick a Meet choosing a Diver"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [error show];
+            [error reloadInputViews];
+        }
+    }
 }
 
 //segmented control methods
@@ -437,6 +532,17 @@
 
 #pragma private methods
 
+-(void)loadData {
+    
+    if (self.meetArray != nil) {
+        self.meetArray = nil;
+    }
+    
+    Meet *meets = [[Meet alloc] init];
+    self.meetArray = [meets GetAllMeets];
+    
+}
+
 -(void)showRankings {
     
     [self performSegueWithIdentifier:@"idSegueChooseToRankings" sender:self];
@@ -470,6 +576,9 @@
 
 
 -(void)loadSpinnerData {
+    
+    // here we need to get divers by meet
+    
     if (self.diverArray != nil) {
         self.diverArray = nil;
     }

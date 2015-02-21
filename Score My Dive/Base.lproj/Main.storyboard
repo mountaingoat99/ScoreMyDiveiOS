@@ -12760,9 +12760,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                    <rect key="frame" x="48" y="295" width="151" height="26"/>
                                 </variation>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="DgL-ZQ-iav">
@@ -12803,9 +12802,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                <variation key="heightClass=regular-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                    <rect key="frame" x="298" y="300" width="101" height="36"/>
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dyn-XZ-qo0">
@@ -12931,6 +12929,7 @@
                             </constraint>
                             <constraint firstItem="ncL-Xb-t24" firstAttribute="leading" secondItem="mua-fE-Rtc" secondAttribute="leading" id="Lhm-Zl-saI"/>
                             <constraint firstItem="hi7-uh-tRj" firstAttribute="bottom" secondItem="ObD-U2-DT0" secondAttribute="bottom" id="Mmf-xm-ZAo"/>
+                            <constraint firstItem="inS-tw-1xk" firstAttribute="leading" secondItem="ncL-Xb-t24" secondAttribute="trailing" constant="16" id="N79-Pv-gz5"/>
                             <constraint firstItem="Dyn-XZ-qo0" firstAttribute="trailing" secondItem="HS5-gd-58E" secondAttribute="trailingMargin" id="NFY-gm-cbx"/>
                             <constraint firstItem="qEU-ly-ZDw" firstAttribute="trailing" secondItem="HS5-gd-58E" secondAttribute="trailingMargin" id="NFb-9B-QxH"/>
                             <constraint firstItem="DgL-ZQ-iav" firstAttribute="trailing" secondItem="I0i-tt-Zsr" secondAttribute="trailing" id="NXu-nJ-ahd"/>
@@ -13109,6 +13108,7 @@
                                 <exclude reference="tzX-g6-bT5"/>
                                 <exclude reference="wWg-UM-iNR"/>
                                 <exclude reference="Cri-Jq-6Dz"/>
+                                <exclude reference="N79-Pv-gz5"/>
                                 <exclude reference="SQl-wu-8ud"/>
                                 <exclude reference="Eos-WK-bW2"/>
                                 <exclude reference="NFY-gm-cbx"/>
@@ -13217,9 +13217,10 @@
                                 <include reference="NXu-nJ-ahd"/>
                                 <exclude reference="Rpj-Yc-8E8"/>
                                 <exclude reference="Zpc-zV-8Vi"/>
-                                <include reference="nWc-Vq-nt5"/>
+                                <exclude reference="nWc-Vq-nt5"/>
                                 <exclude reference="noa-8e-2MT"/>
                                 <include reference="tzX-g6-bT5"/>
+                                <include reference="N79-Pv-gz5"/>
                                 <exclude reference="Eos-WK-bW2"/>
                                 <exclude reference="IN4-Uk-YmF"/>
                                 <exclude reference="NFY-gm-cbx"/>
