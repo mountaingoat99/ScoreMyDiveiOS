@@ -33,21 +33,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.backgroundPanel.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.backgroundPanel.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    self.backgroundPanel.layer.masksToBounds = NO;
+    self.backgroundPanel.layer.shadowOpacity = 1.0;
 
-    self.txtTotalScore.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.txtTotalScore.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.txtTotalScore.layer.masksToBounds = NO;
-    self.txtTotalScore.layer.shadowRadius = 4.0f;
-    self.txtTotalScore.layer.shadowOpacity = .3;
     self.txtTotalScore.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0);
     self.txtTotalScore.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtTotalScore.keyboardType = UIKeyboardTypeDecimalPad;
     self.txtTotalScore.delegate = self;
-    
-    self.btnTotal.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.btnTotal.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.btnTotal.layer.masksToBounds = NO;
-    self.btnTotal.layer.shadowOpacity = .7;
+
 }
 
 -(void)viewWillAppear:(BOOL)animated {

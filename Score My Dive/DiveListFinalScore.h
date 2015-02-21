@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtTotalScore;
 @property (weak, nonatomic) IBOutlet UIButton *btnTotal;
 @property (weak, nonatomic) IBOutlet UIButton *btnFailed;
+@property (weak, nonatomic) IBOutlet UILabel *backgroundPanel;
 
 - (IBAction)btnTotalClick:(id)sender;
 - (IBAction)btnFailedClick:(id)sender;
