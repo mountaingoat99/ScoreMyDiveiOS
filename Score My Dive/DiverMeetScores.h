@@ -36,6 +36,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblDive9;
 @property (weak, nonatomic) IBOutlet UILabel *lblDive10;
 @property (weak, nonatomic) IBOutlet UILabel *lblDive11;
+@property (weak, nonatomic) IBOutlet UILabel *backgroundPanel1;
+@property (weak, nonatomic) IBOutlet UILabel *backgroundPanel2;
+@property (weak, nonatomic) IBOutlet UILabel *label9;
+@property (weak, nonatomic) IBOutlet UILabel *label7;
+@property (weak, nonatomic) IBOutlet UILabel *label8;
+@property (weak, nonatomic) IBOutlet UILabel *label11;
+@property (weak, nonatomic) IBOutlet UILabel *label10;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *backgroundConstraint;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblDive7Text;
 @property (weak, nonatomic) IBOutlet UILabel *lblDive8Text;

@@ -34,7 +34,6 @@
     self.judgeTotal = @2;
     [self.lblJudgeWarning setHidden:YES];
     
-    
     self.backgroundLabel.layer.shadowColor = [UIColor blackColor].CGColor;
     self.backgroundLabel.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.backgroundLabel.layer.masksToBounds = NO;
@@ -139,10 +138,12 @@
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        // add in the phone constraint
-    } else {
-        self.backgroundBottomContraint.constant = -80;
+    if (!self.previousScores) {
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            // add in the phone constraint
+        } else {
+            self.backgroundBottomContraint.constant = -80;
+        }
     }
 }
 
@@ -301,7 +302,6 @@
             [self.delegate editInfoWasFinished];
             
             // pop the view controller
-            //[self dismissViewControllerAnimated:YES completion:nil];
             [self performSegueWithIdentifier:@"idSegueAddMeetToDetails" sender:self];
             
         }
@@ -325,11 +325,6 @@
             break;
     }
 }
-
-//- (IBAction)btnReturnClick:(id)sender {
-//    
-//    [self performSegueWithIdentifier:@"idSegueAddMeetToDetails" sender:self];
-//}
 
 #pragma private methods
 
@@ -373,24 +368,14 @@
     
     if ([self.judgeTotal  isEqualToNumber: @2]) {
         self.SCJudges.selectedSegmentIndex = 0;
-        //NSLog(@"Judges total is %@", self.judgeTotal);
-        //NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
     } else if ([self.judgeTotal isEqualToNumber:@3]) {
         self.SCJudges.selectedSegmentIndex = 1;
-        //NSLog(@"Judges total is %@", self.judgeTotal);
-        //NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
     } else if ([self.judgeTotal  isEqualToNumber: @5]) {
         self.SCJudges.selectedSegmentIndex = 2;
-        //NSLog(@"Judges total is %@", self.judgeTotal);
-        //NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
     } else if ([self.judgeTotal  isEqualToNumber: @7]) {
         self.SCJudges.selectedSegmentIndex = 3;
-        //NSLog(@"Judges total is %@", self.judgeTotal);
-        //NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
     } else {
         self.SCJudges.selectedSegmentIndex = 0;
-        //NSLog(@"Judges total is %@", self.judgeTotal);
-        //NSLog(@"index is %ld", (long)self.SCJudges.selectedSegmentIndex);
         self.judgeTotal = @2;
     }
 }
@@ -399,9 +384,10 @@
     
     Results *result = [[Results alloc] init];
     
-    if ((self.previousScores = [result ResultsExist:self.recordIDToEdit])) {
+    self.previousScores = [result ResultsExist:self.recordIDToEdit];
+    
+    if (self.previousScores) {
         [self.SCJudges setEnabled:NO];
-        self.backgroundBottomContraint.constant = 30;
         [self.lblJudgeWarning setHidden:NO];
     }
 }

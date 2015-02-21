@@ -41,85 +41,20 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
-    //sets the border for the label/buttons
-    [[self.btnDive1 layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive1 layer] setBorderWidth:1.0];
-    [[self.btnDive1 layer] setShadowColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive1 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
-    [[self.btnDive1 layer] setMasksToBounds:NO];
-    [[self.btnDive1 layer] setShadowOpacity:.3];
+    [[self.backgroundPanel1 layer] setBorderColor:[[UIColor blackColor] CGColor]];
+    [[self.backgroundPanel1 layer] setBorderWidth:1.0];
+    [[self.backgroundPanel1 layer] setShadowColor:[[UIColor blackColor] CGColor]];
+    [[self.backgroundPanel1 layer] setShadowOffset:CGSizeMake(1.0f, 1.0f)];
+    [[self.backgroundPanel1 layer] setMasksToBounds:NO];
+    [[self.backgroundPanel1 layer] setShadowOpacity:1.0];
     
-    [[self.btnDive2 layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive2 layer] setBorderWidth:1.0];
-    [[self.btnDive2 layer] setShadowColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive2 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
-    [[self.btnDive2 layer] setMasksToBounds:NO];
-    [[self.btnDive2 layer] setShadowOpacity:.3];
+    [[self.backgroundPanel2 layer] setBorderColor:[[UIColor blackColor] CGColor]];
+    [[self.backgroundPanel2 layer] setBorderWidth:1.0];
+    [[self.backgroundPanel2 layer] setShadowColor:[[UIColor blackColor] CGColor]];
+    [[self.backgroundPanel2 layer] setShadowOffset:CGSizeMake(1.0f, 1.0f)];
+    [[self.backgroundPanel2 layer] setMasksToBounds:NO];
+    [[self.backgroundPanel2 layer] setShadowOpacity:1.0];
     
-    [[self.btnDive3 layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive3 layer] setBorderWidth:1.0];
-    [[self.btnDive3 layer] setShadowColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive3 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
-    [[self.btnDive3 layer] setMasksToBounds:NO];
-    [[self.btnDive3 layer] setShadowOpacity:.3];
-    
-    [[self.btnDive4 layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive4 layer] setBorderWidth:1.0];
-    [[self.btnDive4 layer] setShadowColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive4 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
-    [[self.btnDive4 layer] setMasksToBounds:NO];
-    [[self.btnDive4 layer] setShadowOpacity:.3];
-    
-    [[self.btnDive5 layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive5 layer] setBorderWidth:1.0];
-    [[self.btnDive5 layer] setShadowColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive5 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
-    [[self.btnDive5 layer] setMasksToBounds:NO];
-    [[self.btnDive5 layer] setShadowOpacity:.3];
-    
-    [[self.btnDive6 layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive6 layer] setBorderWidth:1.0];
-    [[self.btnDive6 layer] setShadowColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive6 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
-    [[self.btnDive6 layer] setMasksToBounds:NO];
-    [[self.btnDive6 layer] setShadowOpacity:.3];
-    
-    [[self.btnDive7 layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive7 layer] setBorderWidth:1.0];
-    [[self.btnDive7 layer] setShadowColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive7 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
-    [[self.btnDive7 layer] setMasksToBounds:NO];
-    [[self.btnDive7 layer] setShadowOpacity:.3];
-    
-    [[self.btnDive8 layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive8 layer] setBorderWidth:1.0];
-    [[self.btnDive8 layer] setShadowColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive8 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
-    [[self.btnDive8 layer] setMasksToBounds:NO];
-    [[self.btnDive8 layer] setShadowOpacity:.3];
-    
-    [[self.btnDive9 layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive9 layer] setBorderWidth:1.0];
-    [[self.btnDive9 layer] setShadowColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive9 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
-    [[self.btnDive9 layer] setMasksToBounds:NO];
-    [[self.btnDive9 layer] setShadowOpacity:.3];
-    
-    [[self.btnDive10 layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive10 layer] setBorderWidth:1.0];
-    [[self.btnDive10 layer] setShadowColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive10 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
-    [[self.btnDive10 layer] setMasksToBounds:NO];
-    [[self.btnDive10 layer] setShadowOpacity:.3];
-    
-    [[self.btnDive11 layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive11 layer] setBorderWidth:1.0];
-    [[self.btnDive11 layer] setShadowColor:[[UIColor blackColor] CGColor]];
-    [[self.btnDive11 layer] setShadowOffset:CGSizeMake(.1f, .1f)];
-    [[self.btnDive11 layer] setMasksToBounds:NO];
-    [[self.btnDive11 layer] setShadowOpacity:.3];
-    
-    //NSLog(@"DiverMeetScores ViewDidLoad");
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -134,6 +69,20 @@
     }
     
     //NSLog(@"DiverMeetScores viewWillAppear");
+}
+
+-(void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    if ([self.diveTotal isEqualToNumber:@6]) {
+        
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            
+        } else {
+            self.backgroundConstraint.constant = 120;
+        }
+    }
+    
 }
 
 // only allow portrait in iphone
@@ -464,18 +413,13 @@
 
 -(void)FindDiveTotal {
     
-//    DiveTotal *total = [[DiveTotal alloc] init];
     DiveTotal *total = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:2];
     self.diveTotal = total.diveTotal;
     
-//    DiveNumber *number = [[DiveNumber alloc] init];
     DiveNumber *number = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:3];
     self.maxDiveNumber = [number.number intValue];
     
     [self HideControls];
-    
-    // here we should also get the divenumber and disable the buttons if not at that number yet
-    // convert it to an int and check each click event
     
 }
 
@@ -486,33 +430,36 @@
         [self.lblDive7Text setHidden:YES];
         [self.lblDive7 setHidden:YES];
         [self.btnDive7 setHidden:YES];
+        [self.label7 setHidden:YES];
         [self.btnDive7 setEnabled:NO];
         
         [self.lblDive8Text setHidden:YES];
         [self.lblDive8 setHidden:YES];
         [self.btnDive8 setHidden:YES];
+        [self.label8 setHidden:YES];
         [self.btnDive8 setEnabled:NO];
         
         [self.lblDive9Text setHidden:YES];
         [self.lblDive9 setHidden:YES];
         [self.btnDive9 setHidden:YES];
+        [self.label9 setHidden:YES];
         [self.btnDive9 setEnabled:NO];
         
         [self.lblDive10Text setHidden:YES];
         [self.lblDive10 setHidden:YES];
         [self.btnDive10 setHidden:YES];
+        [self.label10 setHidden:YES];
         [self.btnDive10 setEnabled:NO];
         
         [self.lblDive11Text setHidden:YES];
         [self.lblDive11 setHidden:YES];
         [self.btnDive11 setHidden:YES];
+        [self.label11 setHidden:YES];
         [self.btnDive11 setEnabled:NO];
     }
 }
 
 -(void)loadType {
-    
-//    DiverBoardSize *board = [[DiverBoardSize alloc] init];
     
     DiverBoardSize *board = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:4];
     NSString *boardType;
@@ -524,7 +471,6 @@
 
 -(void)loadResults {
     
-//    Results *result = [[Results alloc] init];
     JudgeScores *scores = nil;
     NSString *failed;
     
