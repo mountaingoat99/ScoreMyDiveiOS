@@ -29,6 +29,7 @@
 @property (nonatomic, strong) NSNumber *scr6;
 @property (nonatomic, strong) NSNumber *scr7;
 @property (nonatomic, strong) NSNumber *boardSize;
+@property (nonatomic) int judgeTotal;
 
 -(void)whatJudgeTotal;
 -(void)HideControls;
@@ -49,87 +50,52 @@
     // sets the default datasource for the autocomplete custom text boxes
     [HTAutocompleteTextField setDefaultAutocompleteDataSource:[HTAutocompleteManager sharedManager]];
     
-    self.txt1.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.txt1.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.txt1.layer.masksToBounds = NO;
-    self.txt1.layer.shadowRadius = 4.0f;
-    self.txt1.layer.shadowOpacity = .3;
+    self.backgroundPanel.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.backgroundPanel.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    self.backgroundPanel.layer.masksToBounds = NO;
+    self.backgroundPanel.layer.shadowOpacity = 1.0;
+
     self.txt1.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
     self.txt1.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txt1.keyboardType = UIKeyboardTypeDecimalPad;
     self.txt1.autocompleteType = HTAutoCompleteTypeNumbers;
     self.txt1.delegate = self;
-    
-    self.txt2.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.txt2.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.txt2.layer.masksToBounds = NO;
-    self.txt2.layer.shadowRadius = 4.0f;
-    self.txt2.layer.shadowOpacity = .3;
+
     self.txt2.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
     self.txt2.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txt2.keyboardType = UIKeyboardTypeDecimalPad;
     self.txt2.autocompleteType = HTAutoCompleteTypeNumbers;
     self.txt2.delegate = self;
-    
-    self.txt3.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.txt3.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.txt3.layer.masksToBounds = NO;
-    self.txt3.layer.shadowRadius = 4.0f;
-    self.txt3.layer.shadowOpacity = .3;
+
     self.txt3.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
     self.txt3.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txt3.keyboardType = UIKeyboardTypeDecimalPad;
     self.txt3.autocompleteType = HTAutoCompleteTypeNumbers;
     self.txt3.delegate = self;
-    
-    self.txt4.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.txt4.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.txt4.layer.masksToBounds = NO;
-    self.txt4.layer.shadowRadius = 4.0f;
-    self.txt4.layer.shadowOpacity = .3;
+
     self.txt4.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
     self.txt4.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txt4.keyboardType = UIKeyboardTypeDecimalPad;
     self.txt4.autocompleteType = HTAutoCompleteTypeNumbers;
     self.txt4.delegate = self;
-    
-    self.txt5.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.txt5.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.txt5.layer.masksToBounds = NO;
-    self.txt5.layer.shadowRadius = 4.0f;
-    self.txt5.layer.shadowOpacity = .3;
+
     self.txt5.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
     self.txt5.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txt5.keyboardType = UIKeyboardTypeDecimalPad;
     self.txt5.autocompleteType = HTAutoCompleteTypeNumbers;
     self.txt5.delegate = self;
-    
-    self.txt6.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.txt6.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.txt6.layer.masksToBounds = NO;
-    self.txt6.layer.shadowRadius = 4.0f;
-    self.txt6.layer.shadowOpacity = .3;
+
     self.txt6.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
     self.txt6.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txt6.keyboardType = UIKeyboardTypeDecimalPad;
     self.txt6.autocompleteType = HTAutoCompleteTypeNumbers;
     self.txt6.delegate = self;
-    
-    self.txt7.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.txt7.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.txt7.layer.masksToBounds = NO;
-    self.txt7.layer.shadowRadius = 4.0f;
-    self.txt7.layer.shadowOpacity = .3;
+
     self.txt7.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
     self.txt7.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txt7.keyboardType = UIKeyboardTypeDecimalPad;
     self.txt7.autocompleteType = HTAutoCompleteTypeNumbers;
     self.txt7.delegate = self;
-    
-    self.btnTotal.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.btnTotal.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.btnTotal.layer.masksToBounds = NO;
-    self.btnTotal.layer.shadowOpacity = .7;
     
 }
 
@@ -140,6 +106,25 @@
     [self HideControls];
     [self DiveText];
     
+}
+
+-(void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        
+        
+    } else {
+    
+        switch (self.judgeTotal) {
+            case 2: case 3:
+                self.panelConstraint.constant = -90;
+                break;
+            case 5:
+                self.panelConstraint.constant = -140;
+                break;
+        }
+    }
 }
 
 // only allow portrait in iphone
@@ -498,9 +483,7 @@
 
 #pragma private methods
 -(void)whatJudgeTotal {
-    
-    //Judges *judges = [[Judges alloc] init];
-    
+        
     Judges *judges = [self.meetInfo objectAtIndex:1];
     
     self.judgesTotal = judges.judgeTotal;
@@ -509,9 +492,9 @@
 
 -(void)HideControls {
     
-    int judgetotal = [self.judgesTotal intValue];
+    self.judgeTotal = [self.judgesTotal intValue];
     
-    switch (judgetotal) {
+    switch (self.judgeTotal) {
         case 2:
             [self.txt3 setHidden:YES];
             [self.txt4 setHidden:YES];
@@ -523,6 +506,11 @@
             [self.lblScore5 setHidden:YES];
             [self.lblScore6 setHidden:YES];
             [self.lblScore7 setHidden:YES];
+            [self.line3 setHidden:YES];
+            [self.line4 setHidden:YES];
+            [self.line5 setHidden:YES];
+            [self.line6 setHidden:YES];
+            [self.line7 setHidden:YES];
             break;
         case 3:
             [self.txt4 setHidden:YES];
@@ -533,11 +521,18 @@
             [self.lblScore5 setHidden:YES];
             [self.lblScore6 setHidden:YES];
             [self.lblScore7 setHidden:YES];
+            [self.line4 setHidden:YES];
+            [self.line5 setHidden:YES];
+            [self.line6 setHidden:YES];
+            [self.line7 setHidden:YES];
+
         case 5:
             [self.txt6 setHidden:YES];
             [self.txt7 setHidden:YES];
             [self.lblScore6 setHidden:YES];
             [self.lblScore7 setHidden:YES];
+            [self.line6 setHidden:YES];
+            [self.line7 setHidden:YES];
         default:
             break;
             
@@ -724,8 +719,6 @@
 }
 
 -(void)DiverBoardSize {
-    
-    //DiverBoardSize *board = [[DiverBoardSize alloc] init];
     
     DiverBoardSize *board = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:4];
     

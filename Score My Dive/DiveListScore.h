@@ -32,6 +32,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblScore7;
 @property (weak, nonatomic) IBOutlet UIButton *btnTotal;
 @property (weak, nonatomic) IBOutlet UIButton *btnFailed;
+@property (weak, nonatomic) IBOutlet UILabel *backgroundPanel;
+@property (weak, nonatomic) IBOutlet UILabel *line3;
+@property (weak, nonatomic) IBOutlet UILabel *line4;
+@property (weak, nonatomic) IBOutlet UILabel *line5;
+@property (weak, nonatomic) IBOutlet UILabel *line6;
+@property (weak, nonatomic) IBOutlet UILabel *line7;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *panelConstraint;
 
 //auto complete text fields
 @property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txt1;
