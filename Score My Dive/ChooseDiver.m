@@ -52,7 +52,10 @@
     self.backgroundPanel.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.backgroundPanel.layer.masksToBounds = NO;
     self.backgroundPanel.layer.shadowOpacity = 1.0;
-    self.backgroundPanel.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+    
+    self.txtChooseMeet.keyboardAppearance = UIKeyboardAppearanceDark;
+    self.txtChooseMeet.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+    self.txtChooseMeet.delegate = self;
     
     self.txtChooseDiver.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtChooseDiver.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);

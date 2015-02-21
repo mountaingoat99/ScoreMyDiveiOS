@@ -1283,7 +1283,9 @@
                             <constraint firstItem="naO-pz-mQy" firstAttribute="top" secondItem="p3b-M5-Yhv" secondAttribute="bottom" constant="14" id="EUj-hK-u1o">
                                 <variation key="heightClass=regular-widthClass=regular" constant="30"/>
                             </constraint>
-                            <constraint firstItem="B49-F0-imY" firstAttribute="top" secondItem="Ldg-KF-BZn" secondAttribute="bottom" constant="14" id="Efe-2g-MCk"/>
+                            <constraint firstItem="B49-F0-imY" firstAttribute="top" secondItem="Ldg-KF-BZn" secondAttribute="bottom" constant="14" id="Efe-2g-MCk">
+                                <variation key="heightClass=regular-widthClass=regular" constant="24"/>
+                            </constraint>
                             <constraint firstItem="p3b-M5-Yhv" firstAttribute="centerY" secondItem="Rzs-F8-4XZ" secondAttribute="centerY" id="F56-5O-wNX"/>
                             <constraint firstItem="7QS-IP-qpL" firstAttribute="trailing" secondItem="Tqx-Ix-9Rb" secondAttribute="trailingMargin" id="F7d-1m-l3Y"/>
                             <constraint firstItem="WZq-Xs-eFk" firstAttribute="top" secondItem="p4I-Uq-VWb" secondAttribute="bottom" constant="14" id="F8i-b4-IcM"/>
@@ -12758,8 +12760,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=regular">
+                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                    <rect key="frame" x="48" y="295" width="151" height="26"/>
                                 </variation>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="DgL-ZQ-iav">
@@ -12800,8 +12803,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=regular">
+                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                    <rect key="frame" x="298" y="300" width="101" height="36"/>
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dyn-XZ-qo0">
@@ -12823,7 +12827,7 @@
                                     <rect key="frame" x="304" y="205" width="280" height="30"/>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                     <mask key="constraints">
                                         <include reference="LXJ-IC-xKj"/>
                                     </mask>
@@ -12851,7 +12855,7 @@
                                     <rect key="frame" x="16" y="205" width="280" height="30"/>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                     <mask key="constraints">
                                         <include reference="QmC-Mc-gI8"/>
                                     </mask>
@@ -12879,7 +12883,9 @@
                                 <variation key="heightClass=regular-widthClass=regular" constant="32"/>
                             </constraint>
                             <constraint firstItem="ncL-Xb-t24" firstAttribute="centerY" secondItem="DgL-ZQ-iav" secondAttribute="centerY" id="4Oi-Ev-w25"/>
-                            <constraint firstItem="4s0-He-YWu" firstAttribute="top" secondItem="I0i-tt-Zsr" secondAttribute="bottom" constant="14" id="5Cm-fo-BoN"/>
+                            <constraint firstItem="4s0-He-YWu" firstAttribute="top" secondItem="I0i-tt-Zsr" secondAttribute="bottom" constant="14" id="5Cm-fo-BoN">
+                                <variation key="heightClass=regular-widthClass=regular" constant="24"/>
+                            </constraint>
                             <constraint firstItem="ncL-Xb-t24" firstAttribute="leading" secondItem="Tdu-it-OGx" secondAttribute="leading" id="5Nt-8m-nqw"/>
                             <constraint firstItem="DgL-ZQ-iav" firstAttribute="leading" secondItem="HS5-gd-58E" secondAttribute="leadingMargin" id="5TZ-LN-czt"/>
                             <constraint firstItem="rzb-ZK-zcC" firstAttribute="leading" secondItem="I0i-tt-Zsr" secondAttribute="leading" id="5vR-2U-Mxk"/>
@@ -12905,7 +12911,9 @@
                                 <variation key="heightClass=regular-widthClass=regular" constant="20"/>
                             </constraint>
                             <constraint firstItem="Dyn-XZ-qo0" firstAttribute="leading" secondItem="mua-fE-Rtc" secondAttribute="trailing" constant="8" id="Eos-WK-bW2"/>
-                            <constraint firstItem="DgL-ZQ-iav" firstAttribute="top" secondItem="4s0-He-YWu" secondAttribute="bottom" constant="14" id="GfU-ta-fpA"/>
+                            <constraint firstItem="DgL-ZQ-iav" firstAttribute="top" secondItem="4s0-He-YWu" secondAttribute="bottom" constant="14" id="GfU-ta-fpA">
+                                <variation key="heightClass=regular-widthClass=regular" constant="24"/>
+                            </constraint>
                             <constraint firstAttribute="centerX" secondItem="I0i-tt-Zsr" secondAttribute="centerX" constant="-1" id="H2J-Pg-UrN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="I0i-tt-Zsr" secondAttribute="trailing" constant="-1" id="HW7-vq-J5F"/>
                             <constraint firstItem="DgL-ZQ-iav" firstAttribute="leading" secondItem="4s0-He-YWu" secondAttribute="leading" id="HpH-ME-Zrz"/>
@@ -12939,7 +12947,9 @@
                                 <variation key="heightClass=regular-widthClass=regular" constant="18"/>
                             </constraint>
                             <constraint firstItem="DgL-ZQ-iav" firstAttribute="trailing" secondItem="4s0-He-YWu" secondAttribute="trailing" id="Rpj-Yc-8E8"/>
-                            <constraint firstItem="Dyn-XZ-qo0" firstAttribute="top" secondItem="DgL-ZQ-iav" secondAttribute="bottom" constant="14" id="S4e-nB-C6t"/>
+                            <constraint firstItem="Dyn-XZ-qo0" firstAttribute="top" secondItem="DgL-ZQ-iav" secondAttribute="bottom" constant="14" id="S4e-nB-C6t">
+                                <variation key="heightClass=regular-widthClass=regular" constant="24"/>
+                            </constraint>
                             <constraint firstItem="ncL-Xb-t24" firstAttribute="centerY" secondItem="inS-tw-1xk" secondAttribute="centerY" id="SHc-LY-3tb"/>
                             <constraint firstItem="inS-tw-1xk" firstAttribute="baseline" secondItem="ncL-Xb-t24" secondAttribute="baseline" id="SQl-wu-8ud"/>
                             <constraint firstItem="VcJ-f9-nML" firstAttribute="centerY" secondItem="PKJ-ve-j4K" secondAttribute="centerY" id="Sag-gx-fK5"/>
@@ -12980,7 +12990,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="I0i-tt-Zsr" secondAttribute="trailing" constant="-1" id="lvZ-Aw-5XK"/>
                             <constraint firstItem="Tdu-it-OGx" firstAttribute="leading" secondItem="ncL-Xb-t24" secondAttribute="leading" id="mVu-kA-gUx"/>
                             <constraint firstItem="ncL-Xb-t24" firstAttribute="leading" secondItem="I0i-tt-Zsr" secondAttribute="leading" id="n2U-Nj-mU8"/>
-                            <constraint firstItem="mua-fE-Rtc" firstAttribute="top" secondItem="DgL-ZQ-iav" secondAttribute="bottom" constant="14" id="nGu-Kk-szR"/>
+                            <constraint firstItem="mua-fE-Rtc" firstAttribute="top" secondItem="DgL-ZQ-iav" secondAttribute="bottom" constant="14" id="nGu-Kk-szR">
+                                <variation key="heightClass=regular-widthClass=regular" constant="24"/>
+                            </constraint>
                             <constraint firstItem="DgL-ZQ-iav" firstAttribute="leading" secondItem="inS-tw-1xk" secondAttribute="leading" id="nWc-Vq-nt5"/>
                             <constraint firstItem="Tdu-it-OGx" firstAttribute="top" secondItem="I0i-tt-Zsr" secondAttribute="bottom" constant="14" id="nmX-is-5rx">
                                 <variation key="heightClass=regular-widthClass=regular" constant="18"/>
@@ -13001,7 +13013,7 @@
                             <constraint firstItem="ncL-Xb-t24" firstAttribute="centerY" secondItem="inS-tw-1xk" secondAttribute="centerY" id="xQi-g7-ZCK"/>
                             <constraint firstItem="Dyn-XZ-qo0" firstAttribute="top" secondItem="DgL-ZQ-iav" secondAttribute="bottom" constant="14" id="xcy-gx-Fz3"/>
                             <constraint firstItem="mua-fE-Rtc" firstAttribute="top" secondItem="ncL-Xb-t24" secondAttribute="bottom" constant="14" id="yOc-Vg-tml">
-                                <variation key="heightClass=regular-widthClass=regular" constant="18"/>
+                                <variation key="heightClass=regular-widthClass=regular" constant="24"/>
                             </constraint>
                             <constraint firstItem="4s0-He-YWu" firstAttribute="top" secondItem="I0i-tt-Zsr" secondAttribute="bottom" constant="11" id="z2L-nE-xA5"/>
                         </constraints>
@@ -13190,7 +13202,7 @@
                                 <exclude reference="l11-Ug-eoJ"/>
                                 <include reference="nGu-Kk-szR"/>
                                 <exclude reference="wVC-nS-U9V"/>
-                                <include reference="yOc-Vg-tml"/>
+                                <exclude reference="yOc-Vg-tml"/>
                                 <include reference="3Gh-zQ-rvS"/>
                                 <include reference="5Cm-fo-BoN"/>
                                 <exclude reference="74F-CH-MA8"/>
@@ -13231,6 +13243,7 @@
                         <outlet property="lblBoardSize" destination="inS-tw-1xk" id="iyY-QY-k7t"/>
                         <outlet property="lblDiveTotal" destination="YTT-ed-3qz" id="YRL-qF-tGW"/>
                         <outlet property="txtChooseDiver" destination="I0i-tt-Zsr" id="7wP-qx-a7e"/>
+                        <outlet property="txtChooseMeet" destination="ObD-U2-DT0" id="wR1-sK-EMe"/>
                         <segue destination="45S-Rk-1AR" kind="show" identifier="idSegueChooseToScore" id="fUy-vt-kRQ"/>
                         <segue destination="ptW-d7-ktO" kind="show" identifier="idSegueDiveList" id="Gvc-v4-oSy"/>
                         <segue destination="bwZ-QA-kiz" kind="show" identifier="idSegueChooseToRankings" id="zxI-mr-eLH"/>
