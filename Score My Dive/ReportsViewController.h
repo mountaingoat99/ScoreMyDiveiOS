@@ -21,5 +21,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtChooseDiver;
 @property (weak, nonatomic) IBOutlet UITextField *txtChooseMeet;
 @property (weak, nonatomic) IBOutlet UITextField *txtChooseReport;
+@property (weak, nonatomic) IBOutlet UILabel *backgroundPanel;
 
 @end

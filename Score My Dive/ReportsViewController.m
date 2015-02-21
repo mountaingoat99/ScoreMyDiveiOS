@@ -44,28 +44,19 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
-    self.txtChooseDiver.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.txtChooseDiver.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.txtChooseDiver.layer.masksToBounds = NO;
-    self.txtChooseDiver.layer.shadowOpacity = .3;
+    self.backgroundPanel.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.backgroundPanel.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    self.backgroundPanel.layer.masksToBounds = NO;
+    self.backgroundPanel.layer.shadowOpacity = 1.0;
+    self.backgroundPanel.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+    
     self.txtChooseDiver.keyboardAppearance = UIKeyboardAppearanceDark;
-    self.txtChooseDiver.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     self.txtChooseDiver.delegate = self;
     
-    self.txtChooseMeet.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.txtChooseMeet.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.txtChooseMeet.layer.masksToBounds = NO;
-    self.txtChooseMeet.layer.shadowOpacity = .3;
     self.txtChooseMeet.keyboardAppearance = UIKeyboardAppearanceDark;
-    self.txtChooseMeet.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     self.txtChooseMeet.delegate = self;
     
-    self.txtChooseReport.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.txtChooseReport.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.txtChooseReport.layer.masksToBounds = NO;
-    self.txtChooseReport.layer.shadowOpacity = .3;
     self.txtChooseReport.keyboardAppearance = UIKeyboardAppearanceDark;
-    self.txtChooseReport.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     self.txtChooseReport.delegate = self;
     
     // call the pickers
@@ -75,7 +66,7 @@
     
     // add a done button to the date picker
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 0, 44)];
-    toolbar.barTintColor = [UIColor grayColor];
+    toolbar.barTintColor = [UIColor colorWithRed:.16 green:.45 blue:.81 alpha:1];
     UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithTitle:@"Done"
                                                                       style:UIBarButtonItemStyleDone
                                                                      target:self
@@ -83,7 +74,6 @@
     
     toolbar.items = [[NSArray alloc] initWithObjects:barButtonDone, nil];
     barButtonDone.tintColor = [UIColor blackColor];
-    //[self.datePicker addSubview:toolbar];
     self.txtChooseDiver.inputAccessoryView = toolbar;
     self.txtChooseMeet.inputAccessoryView = toolbar;
     self.txtChooseReport.inputAccessoryView = toolbar;
@@ -219,26 +209,20 @@
     }
 }
 
-//- (IBAction)btnReturnClick:(id)sender {
-//    
-//    [self performSegueWithIdentifier:@"idSegueReportToHome" sender:self];
-//}
-
 //keps the user from entering text in the txtfield
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
     return NO;
-    
 }
 
 -(void)makeDiverPicker{
     
     self.divePicker = [[UIPickerView alloc] init];
-    [self.divePicker setBackgroundColor:[UIColor grayColor]];
+    [self.divePicker setBackgroundColor:[UIColor colorWithRed:.16 green:.45 blue:.81 alpha:1]];
     self.divePicker.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.divePicker.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.divePicker.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.divePicker.layer.masksToBounds = NO;
-    self.divePicker.layer.shadowOpacity = .3;
+    self.divePicker.layer.shadowOpacity = 1.0;
     self.divePicker.dataSource = self;
     self.divePicker.delegate = self;
     self.txtChooseDiver.inputView = self.divePicker;
@@ -246,11 +230,11 @@
 
 -(void)makeMeetPicker{
     self.meetPicker = [[UIPickerView alloc] init];
-    [self.meetPicker setBackgroundColor:[UIColor grayColor]];
+    [self.meetPicker setBackgroundColor:[UIColor colorWithRed:.16 green:.45 blue:.81 alpha:1]];
     self.meetPicker.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.meetPicker.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.meetPicker.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.meetPicker.layer.masksToBounds = NO;
-    self.meetPicker.layer.shadowOpacity = .3;
+    self.meetPicker.layer.shadowOpacity = 1.0;
     self.meetPicker.dataSource = self;
     self.meetPicker.delegate = self;
     self.txtChooseMeet.inputView = self.meetPicker;
@@ -258,11 +242,11 @@
 
 -(void)makeReportPicker{
     self.reportPicker = [[UIPickerView alloc] init];
-    [self.reportPicker setBackgroundColor:[UIColor grayColor]];
+    [self.reportPicker setBackgroundColor:[UIColor colorWithRed:.16 green:.45 blue:.81 alpha:1]];
     self.reportPicker.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.reportPicker.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.reportPicker.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.reportPicker.layer.masksToBounds = NO;
-    self.reportPicker.layer.shadowOpacity = .3;
+    self.reportPicker.layer.shadowOpacity = 1.0;
     self.reportPicker.dataSource = self;
     self.reportPicker.delegate = self;
     self.txtChooseReport.inputView = self.reportPicker;

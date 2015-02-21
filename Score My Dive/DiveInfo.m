@@ -34,15 +34,15 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
-    [[self.backgroundPanel1 layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[self.backgroundPanel1 layer] setBorderWidth:1.0];
+    //[[self.backgroundPanel1 layer] setBorderColor:[[UIColor blackColor] CGColor]];
+    //[[self.backgroundPanel1 layer] setBorderWidth:1.0];
     [[self.backgroundPanel1 layer] setShadowColor:[[UIColor blackColor] CGColor]];
     [[self.backgroundPanel1 layer] setShadowOffset:CGSizeMake(1.0f, 1.0f)];
     [[self.backgroundPanel1 layer] setMasksToBounds:NO];
     [[self.backgroundPanel1 layer] setShadowOpacity:1.0];
     
-    [[self.backgroundPanel2 layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[self.backgroundPanel2 layer] setBorderWidth:1.0];
+    //[[self.backgroundPanel2 layer] setBorderColor:[[UIColor blackColor] CGColor]];
+    //[[self.backgroundPanel2 layer] setBorderWidth:1.0];
     [[self.backgroundPanel2 layer] setShadowColor:[[UIColor blackColor] CGColor]];
     [[self.backgroundPanel2 layer] setShadowOffset:CGSizeMake(1.0f, 1.0f)];
     [[self.backgroundPanel2 layer] setMasksToBounds:NO];
