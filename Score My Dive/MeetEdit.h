@@ -33,9 +33,11 @@
 @property (strong, nonatomic) IBOutlet UITextField *txtDate;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *SCJudges;
 @property (weak, nonatomic) IBOutlet UILabel *lblJudgeWarning;
+@property (weak, nonatomic) IBOutlet UILabel *backgroundLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *backgroundBottomContraint;
+
 
 -(IBAction)saveInfo:(id)sender;
 - (IBAction)JudgesClick:(UISegmentedControl *)sender;
-//- (IBAction)btnReturnClick:(id)sender;
 
 @end

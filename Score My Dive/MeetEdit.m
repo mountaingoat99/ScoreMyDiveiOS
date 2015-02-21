@@ -34,44 +34,24 @@
     self.judgeTotal = @2;
     [self.lblJudgeWarning setHidden:YES];
     
-    // drop shadow for the text boxes
-    self.txtMeetName.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.txtMeetName.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.txtMeetName.layer.masksToBounds = NO;
-    self.txtMeetName.layer.shadowOpacity = .3;
+    
+    self.backgroundLabel.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.backgroundLabel.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    self.backgroundLabel.layer.masksToBounds = NO;
+    self.backgroundLabel.layer.shadowOpacity = 1.0;
+    self.backgroundLabel.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+    
     self.txtMeetName.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtMeetName.autocapitalizationType = UITextAutocapitalizationTypeWords;
-    self.txtMeetName.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
-    
-    self.txtSchool.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.txtSchool.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.txtSchool.layer.masksToBounds = NO;
-    self.txtSchool.layer.shadowOpacity = .3;
+
     self.txtSchool.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtSchool.autocapitalizationType = UITextAutocapitalizationTypeWords;
-    self.txtSchool.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
-    
-    self.txtCity.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.txtCity.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.txtCity.layer.masksToBounds = NO;
-    self.txtCity.layer.shadowOpacity = .3;
+
     self.txtCity.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtCity.autocapitalizationType = UITextAutocapitalizationTypeWords;
-    self.txtCity.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
-    
-    self.txtState.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.txtState.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.txtState.layer.masksToBounds = NO;
-    self.txtState.layer.shadowOpacity = .3;
+
     self.txtState.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtState.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
-    self.txtState.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
-    
-    self.txtDate.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.txtDate.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.txtDate.layer.masksToBounds = NO;
-    self.txtDate.layer.shadowOpacity = .3;
-    self.txtDate.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     
     self.txtMeetName.delegate = self;
     self.txtSchool.delegate = self;
@@ -80,28 +60,32 @@
     self.txtDate.delegate = self;
     
     self.SCJudges.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.SCJudges.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.SCJudges.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.SCJudges.layer.masksToBounds = NO;
-    self.SCJudges.layer.shadowOpacity = .7;
+    self.SCJudges.layer.shadowOpacity = 1.0;
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         
         // color attributes for the segmented controls in iphone
-        NSDictionary *segmentedControlTextAttributes = @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont systemFontOfSize:10.0f]};
+        NSDictionary *segmentedControlTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont systemFontOfSize:10.0f]};
+        
+        NSDictionary *segmentedControlTextAttributesPicked = @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont systemFontOfSize:10.0f]};
         
         [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributes forState:UIControlStateNormal];
         [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributes forState:UIControlStateHighlighted];
-        [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributes forState:UIControlStateSelected];
+        [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributesPicked forState:UIControlStateSelected];
         
         
     } else {
         
         // color and size attributes for the SC in iPad
-        NSDictionary *segmentedControlTextAttributesiPad = @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont systemFontOfSize:14.0f]};
+        NSDictionary *segmentedControlTextAttributesiPad = @{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont systemFontOfSize:18.0f]};
+        
+        NSDictionary *segmentedControlTextAttributesiPadPicked = @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont systemFontOfSize:18.0f]};
         
         [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributesiPad forState:UIControlStateNormal];
         [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributesiPad forState:UIControlStateHighlighted];
-        [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributesiPad forState:UIControlStateSelected];
+        [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributesiPadPicked forState:UIControlStateSelected];
         
     }
     
@@ -117,17 +101,17 @@
     //replace keyboard with a date picker
     self.datePicker = [[UIDatePicker alloc] init];
     self.datePicker.datePickerMode = UIDatePickerModeDate;
-    self.datePicker.layer.backgroundColor = [UIColor grayColor].CGColor;
+    self.datePicker.layer.backgroundColor = [UIColor colorWithRed:.16 green:.45 blue:.81 alpha:1].CGColor;
     self.datePicker.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.datePicker.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.datePicker.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.datePicker.layer.masksToBounds = NO;
-    self.datePicker.layer.shadowOpacity = .5;
+    self.datePicker.layer.shadowOpacity = 1.0;
     [self.datePicker addTarget:self action:@selector(updateTextField:) forControlEvents:UIControlEventValueChanged];
     [self.txtDate setInputView:self.datePicker];
     
     // add a done button to the date picker
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 0, 44)];
-    toolbar.barTintColor = [UIColor grayColor];
+    toolbar.barTintColor = [UIColor colorWithRed:.16 green:.45 blue:.81 alpha:1];
     UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithTitle:@"Done"
                                                                       style:UIBarButtonItemStyleDone
                                                                      target:self
@@ -135,7 +119,6 @@
     
     toolbar.items = [[NSArray alloc] initWithObjects:barButtonDone, nil];
     barButtonDone.tintColor = [UIColor blackColor];
-    //[self.datePicker addSubview:toolbar];
     self.txtDate.inputAccessoryView = toolbar;
 }
 
@@ -150,6 +133,16 @@
     
     if (self.recordIDToEdit != -1) {
         [self loadInfoToEdit];
+    }
+}
+
+-(void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        // add in the phone constraint
+    } else {
+        self.backgroundBottomContraint.constant = -80;
     }
 }
 
@@ -408,9 +401,9 @@
     
     if ((self.previousScores = [result ResultsExist:self.recordIDToEdit])) {
         [self.SCJudges setEnabled:NO];
+        self.backgroundBottomContraint.constant = 30;
         [self.lblJudgeWarning setHidden:NO];
     }
-    
 }
 
 @end
