@@ -22,6 +22,7 @@
 #import "ChooseDiver.h"
 #import "DiveNumberCheck.h"
 #import "TypeDiveNumber.h"
+#import "ChooseDiveNumber.h"
 
 @interface DiveListEnter ()
 
@@ -336,6 +337,20 @@
         TypeDiveNumber *dest = segue.destinationViewController;
         
         dest.delegate = self;
+        
+        dest.meetRecordID = self.meetRecordID;
+        dest.diverRecordID = self.diverRecordID;
+        dest.meetInfo = self.meetInfo;
+        dest.boardSize = self.boardSize;
+        dest.maxDiveNumber = self.maxDiveNumber;
+        dest.onDiveNumber = self.onDiveNumber;
+        dest.whoCalled = 1;
+    }
+    
+    if ([segue.identifier isEqualToString:@"idSegueListToChooseDive"]) {
+        ChooseDiveNumber *dest = segue.destinationViewController;
+        
+        //dest.delegate = self; ********************************************************************************************************
         
         dest.meetRecordID = self.meetRecordID;
         dest.diverRecordID = self.diverRecordID;

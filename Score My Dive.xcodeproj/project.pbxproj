@@ -25,6 +25,7 @@
 		266ACFC71A46654700F89645 /* DiveListChoose.m in Sources */ = {isa = PBXBuildFile; fileRef = 266ACFC61A46654700F89645 /* DiveListChoose.m */; };
 		267643E61A218DF000CD2CB1 /* ReportsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 267643E51A218DF000CD2CB1 /* ReportsViewController.m */; };
 		267643E91A218E2C00CD2CB1 /* ChooseMeet.m in Sources */ = {isa = PBXBuildFile; fileRef = 267643E81A218E2C00CD2CB1 /* ChooseMeet.m */; };
+		2677C2771A9A647A002DDC12 /* ChooseDiveNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2677C2761A9A647A002DDC12 /* ChooseDiveNumber.m */; };
 		267A3FC81A280DE80068FA9E /* MeetHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 267A3FC71A280DE80068FA9E /* MeetHistory.m */; };
 		267A3FCB1A280E370068FA9E /* DiverHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 267A3FCA1A280E370068FA9E /* DiverHistory.m */; };
 		268857611A28EBCE000AEFF2 /* DiverMeetScores.m in Sources */ = {isa = PBXBuildFile; fileRef = 268857601A28EBCE000AEFF2 /* DiverMeetScores.m */; };
@@ -113,6 +114,8 @@
 		267643E51A218DF000CD2CB1 /* ReportsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportsViewController.m; sourceTree = "<group>"; };
 		267643E71A218E2C00CD2CB1 /* ChooseMeet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseMeet.h; sourceTree = "<group>"; };
 		267643E81A218E2C00CD2CB1 /* ChooseMeet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseMeet.m; sourceTree = "<group>"; };
+		2677C2751A9A647A002DDC12 /* ChooseDiveNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseDiveNumber.h; sourceTree = "<group>"; };
+		2677C2761A9A647A002DDC12 /* ChooseDiveNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseDiveNumber.m; sourceTree = "<group>"; };
 		267A3FC61A280DE80068FA9E /* MeetHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetHistory.h; sourceTree = "<group>"; };
 		267A3FC71A280DE80068FA9E /* MeetHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetHistory.m; sourceTree = "<group>"; };
 		267A3FC91A280E370068FA9E /* DiverHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiverHistory.h; sourceTree = "<group>"; };
@@ -290,6 +293,8 @@
 		26A07E881A09963700997E5C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2677C2751A9A647A002DDC12 /* ChooseDiveNumber.h */,
+				2677C2761A9A647A002DDC12 /* ChooseDiveNumber.m */,
 				26AAE0F71A993E0700B0E871 /* TypeDiveNumber.h */,
 				26AAE0F81A993E0700B0E871 /* TypeDiveNumber.m */,
 				26E5C9241A4DE50700C542F7 /* DiveEnter.h */,
@@ -523,6 +528,7 @@
 				2688576D1A298365000AEFF2 /* DiveTypes.m in Sources */,
 				263AC5CD1A030FD600846CB0 /* HomeViewController.m in Sources */,
 				26E5C9261A4DE50700C542F7 /* DiveEnter.m in Sources */,
+				2677C2771A9A647A002DDC12 /* ChooseDiveNumber.m in Sources */,
 				262756CA1A1D811200DAC877 /* DiverEdit.m in Sources */,
 				2691AE6F1A069898000ABD3B /* MeetDetailsVC.m in Sources */,
 				263AC5CA1A030FD600846CB0 /* AppDelegate.m in Sources */,
