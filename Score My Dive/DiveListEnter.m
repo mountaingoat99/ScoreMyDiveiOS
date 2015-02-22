@@ -21,6 +21,7 @@
 #import "DiveList.h"
 #import "ChooseDiver.h"
 #import "DiveNumberCheck.h"
+#import "TypeDiveNumber.h"
 
 @interface DiveListEnter ()
 
@@ -78,6 +79,16 @@
     // sets the default datasource for the autocomplete custom text boxes
     [HTAutocompleteTextField setDefaultAutocompleteDataSource:[HTAutocompleteManager sharedManager]];
     
+    self.backgroundPanel1.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.backgroundPanel1.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    self.backgroundPanel1.layer.masksToBounds = NO;
+    self.backgroundPanel1.layer.shadowOpacity = 1.0;
+    
+    self.backgroundPanel2.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.backgroundPanel2.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    self.backgroundPanel2.layer.masksToBounds = NO;
+    self.backgroundPanel2.layer.shadowOpacity = 1.0;
+    
     // attributes for controls
     self.txtDiveNumberEntry.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtDiveNumberEntry.layer.shadowOffset = CGSizeMake(.1f, .1f);
@@ -110,7 +121,6 @@
     self.txtDiveGroup.layer.shadowOpacity = .3;
     self.txtDiveGroup.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     self.txtDiveGroup.delegate = self;
-    //[self.txtDiveGroup addTarget:self action:@selector(CheckDDForDiveGroup) forControlEvents:UIControlEventAllEvents];
     
     self.txtDive.layer.shadowColor = [UIColor blackColor].CGColor;
     self.txtDive.layer.shadowOffset = CGSizeMake(.1f, .1f);
@@ -119,7 +129,6 @@
     self.txtDive.layer.shadowOpacity = .3;
     self.txtDive.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     self.txtDive.delegate = self;
-    //[self.txtDive addTarget:self action:@selector(CheckDDForDive) forControlEvents:UIControlEventAllEvents];
     
     self.SCPosition.layer.shadowColor = [UIColor blackColor].CGColor;
     self.SCPosition.layer.shadowOffset = CGSizeMake(.1f, .1f);
@@ -323,6 +332,18 @@
         choose.meetRecordID = self.meetRecordID;
     }
     
+    if ([segue.identifier isEqualToString:@"idSegueListToType"]) {
+        TypeDiveNumber *dest = segue.destinationViewController;
+        
+        dest.delegate = self;
+        
+        dest.meetRecordID = self.meetRecordID;
+        dest.diverRecordID = self.diverRecordID;
+        dest.meetInfo = self.meetInfo;
+        dest.boardSize = self.boardSize;
+        dest.maxDiveNumber = self.maxDiveNumber;
+        dest.onDiveNumber = self.onDiveNumber;
+    }
 }
 
 // hide the PickerView on outside touch
@@ -709,6 +730,12 @@
     [error reloadInputViews];
 }
 
+- (IBAction)btnSwitchDiver:(id)sender {
+}
+
+- (IBAction)btnChooseDives:(id)sender {
+}
+
 - (IBAction)Dive1EditClick:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
@@ -828,6 +855,14 @@
     [self resetValues];
 }
 
+// delegate method to update after typing a dive number
+-(void)typeDiveNumberWasFinished {
+    
+    [self fillDiveNumber];
+    [self fillDiveInfo];
+    [self updateButtonText];
+    [self resetValues];
+}
 
 #pragma private methods
 
@@ -1051,20 +1086,16 @@
 -(void)fillText {
     
     // meet info
-//    Meet *meet = [[Meet alloc] init];
     Meet *meet = [self.meetInfo objectAtIndex:0];
     self.lblMeetName.text = meet.meetName;
     
     // diver info
-//    Diver *diver = [[Diver alloc] init];
     Diver *diver = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:0];
     self.lblDiverName.text = diver.Name;
     
 }
 
 -(void)DiverBoardSize {
-    
-//    DiverBoardSize *board = [[DiverBoardSize alloc] init];
     
     DiverBoardSize *board = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:4];
     
@@ -1078,7 +1109,6 @@
     self.maxDiveNumber = [scores GetMaxDiveNumber:self.meetRecordID diverid:self.diverRecordID];
     
     // we need to see what the dive total is first and set it for the whole class
-//    DiveTotal *total = [[DiveTotal alloc] init];
     DiveTotal *total = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:2];
     self.diveTotal = [total.diveTotal intValue];
     
@@ -1098,9 +1128,7 @@
 }
 
 -(void)DisableDivePositions {
-    
-    //NSArray *dods = [[NSArray alloc] init];
-    
+        
     if (self.txtDive.text.length > 0) {
         
         // set the segmented control back to enabled

@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "DiveListEdit.h"
+#import "TypeDiveNumber.h"
 #import "HTAutocompleteTextField.h"
 
-@interface DiveListEnter : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, DiveListEnterViewControllerDelegate, UIScrollViewDelegate, UITextFieldDelegate>
+@interface DiveListEnter : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, DiveListEnterViewControllerDelegate, UIScrollViewDelegate, UITextFieldDelegate, TypeDiveNumberDelegate>
 
 @property (nonatomic) int meetRecordID;
 @property (nonatomic) int diverRecordID;
@@ -41,6 +42,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblDive9;
 @property (weak, nonatomic) IBOutlet UILabel *lblDive10;
 @property (weak, nonatomic) IBOutlet UILabel *lblDive11;
+@property (weak, nonatomic) IBOutlet UILabel *backgroundPanel1;
+@property (weak, nonatomic) IBOutlet UILabel *backgroundPanel2;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblDive1text;
 @property (weak, nonatomic) IBOutlet UILabel *lblDive2text;
@@ -73,7 +76,8 @@
 - (IBAction)PositionIndexChanged:(UISegmentedControl *)sender;
 - (IBAction)btnEnterDive:(id)sender;
 - (IBAction)lblOptionsClick:(id)sender;
-//- (IBAction)btnBackClick:(id)sender;
+- (IBAction)btnSwitchDiver:(id)sender;
+- (IBAction)btnChooseDives:(id)sender;
 
 // touch events for the dive edits
 - (IBAction)Dive1EditClick:(UILongPressGestureRecognizer *)sender;

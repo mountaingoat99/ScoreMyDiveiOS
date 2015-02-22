@@ -950,7 +950,7 @@
         }
         
     } else if (self.txtDiveGroup.text.length > 0) {  // or on the pickers and SC
-    
+        
         switch (self.SCPosition.selectedSegmentIndex) {
             case 0:
                 self.divePositionID = 0;

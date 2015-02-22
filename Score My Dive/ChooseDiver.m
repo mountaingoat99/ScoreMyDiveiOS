@@ -367,7 +367,7 @@
             
         } else {
             UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                            message:@"Please Pick a Meet choosing a Diver"
+                                                            message:@"Please Pick a Meet before choosing a Diver"
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
@@ -525,7 +525,7 @@
     if (popover) {
         popover.sourceView = self.view;
         popover.sourceRect = [sender frame];
-        popover.permittedArrowDirections = UIPopoverArrowDirectionDown;
+        popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
     }
     
 }
@@ -554,7 +554,10 @@
     if (self.txtChooseDiver.text.length != 0) {
         [self DeleteAllDiverMeetInfo];
         [self.txtChooseDiver resignFirstResponder];
-        [self.divePicker reloadAllComponents];
+        [self.txtChooseMeet resignFirstResponder];
+        //[self.divePicker reloadAllComponents];
+        //[self.meetPicker reloadAllComponents];
+        self.txtChooseMeet.text = @"";
         self.txtChooseDiver.text = @"";
         [self.SCBoardSize setHidden:NO];
         [self.SCDiveTotals setHidden:NO];

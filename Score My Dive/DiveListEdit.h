@@ -41,6 +41,5 @@
 
 - (IBAction)PositionIndexChanged:(UISegmentedControl *)sender;
 - (IBAction)btnEnterDive:(id)sender;
-//- (IBAction)btnReturnClick:(id)sender;
 
 @end

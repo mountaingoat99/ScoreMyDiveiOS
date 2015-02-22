@@ -37,6 +37,7 @@
 		269FB8881A6C9ABD006B9C27 /* AllPlatformDives.m in Sources */ = {isa = PBXBuildFile; fileRef = 269FB8871A6C9ABD006B9C27 /* AllPlatformDives.m */; };
 		269FB88B1A6C9ACB006B9C27 /* AllSpringboardDives.m in Sources */ = {isa = PBXBuildFile; fileRef = 269FB88A1A6C9ACB006B9C27 /* AllSpringboardDives.m */; };
 		26A248F71A2299C400760F38 /* ChooseDiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A248F61A2299C400760F38 /* ChooseDiver.m */; };
+		26AAE0F91A993E0700B0E871 /* TypeDiveNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 26AAE0F81A993E0700B0E871 /* TypeDiveNumber.m */; };
 		26ADE4471A4A07D600913ABA /* HTAutocompleteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 26ADE4441A4A07D600913ABA /* HTAutocompleteManager.m */; };
 		26ADE4481A4A07D600913ABA /* HTAutocompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 26ADE4461A4A07D600913ABA /* HTAutocompleteTextField.m */; };
 		26B1D05C1A3355CC00112692 /* DiverCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B1D05B1A3355CC00112692 /* DiverCollection.m */; };
@@ -136,6 +137,8 @@
 		269FB88A1A6C9ACB006B9C27 /* AllSpringboardDives.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllSpringboardDives.m; sourceTree = "<group>"; };
 		26A248F51A2299C400760F38 /* ChooseDiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseDiver.h; sourceTree = "<group>"; };
 		26A248F61A2299C400760F38 /* ChooseDiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseDiver.m; sourceTree = "<group>"; };
+		26AAE0F71A993E0700B0E871 /* TypeDiveNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TypeDiveNumber.h; path = ../TypeDiveNumber.h; sourceTree = "<group>"; };
+		26AAE0F81A993E0700B0E871 /* TypeDiveNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TypeDiveNumber.m; path = ../TypeDiveNumber.m; sourceTree = "<group>"; };
 		26ADE4431A4A07D600913ABA /* HTAutocompleteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTAutocompleteManager.h; path = ../HTAutocompleteManager.h; sourceTree = "<group>"; };
 		26ADE4441A4A07D600913ABA /* HTAutocompleteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTAutocompleteManager.m; path = ../HTAutocompleteManager.m; sourceTree = "<group>"; };
 		26ADE4451A4A07D600913ABA /* HTAutocompleteTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTAutocompleteTextField.h; path = ../HTAutocompleteTextField.h; sourceTree = "<group>"; };
@@ -287,6 +290,8 @@
 		26A07E881A09963700997E5C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				26AAE0F71A993E0700B0E871 /* TypeDiveNumber.h */,
+				26AAE0F81A993E0700B0E871 /* TypeDiveNumber.m */,
 				26E5C9241A4DE50700C542F7 /* DiveEnter.h */,
 				26E5C9251A4DE50700C542F7 /* DiveEnter.m */,
 				268857681A29693B000AEFF2 /* DiveListEnter.h */,
@@ -530,6 +535,7 @@
 				26BE237D1A1027CC00E123D0 /* JudgeScores.m in Sources */,
 				2642AB6A1A32A2CD002E8DFA /* MeetCollection.m in Sources */,
 				26E419A81A048E3100D79C05 /* QuickScoreViewController.m in Sources */,
+				26AAE0F91A993E0700B0E871 /* TypeDiveNumber.m in Sources */,
 				26BE237B1A1027CC00E123D0 /* DiverBoardSize.m in Sources */,
 				267A3FCB1A280E370068FA9E /* DiverHistory.m in Sources */,
 				26D4A4121A50942700FCEC6F /* RankingsDiver.m in Sources */,
