@@ -25,6 +25,11 @@
 @property (nonatomic, strong) NSArray *meetInfo;
 @property (nonatomic) int maxDiveNumber;
 @property (nonatomic, strong) NSNumber *onDiveNumber;
+// this lets the class know who called them
+// 1 is the DiveListEnter
+// 2 is the DiveListEdit
+// 3 is the DiveEnter
+@property (nonatomic) int whoCalled;
 
 @property (nonatomic) int diveGroupID;
 @property (nonatomic) int diveID;

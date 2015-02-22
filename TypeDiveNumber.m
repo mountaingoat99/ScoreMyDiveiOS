@@ -198,7 +198,14 @@
             }
             
             // call the delegate method to reload the class that called it and pop it off
-            [self.delegate typeDiveNumberWasFinished];
+            if (self.whoCalled == 1) {
+                [self.delegate typeDiveNumberWasFinished];
+            } else if (self.whoCalled == 2) {
+                // diveListEdit delegate
+            } else {
+                // diveEnterDelegate - this may need to go right to score
+            }
+            
             [self dismissViewControllerAnimated:YES completion:nil];
 
         } else {

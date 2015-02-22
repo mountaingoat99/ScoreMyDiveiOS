@@ -343,6 +343,7 @@
         dest.boardSize = self.boardSize;
         dest.maxDiveNumber = self.maxDiveNumber;
         dest.onDiveNumber = self.onDiveNumber;
+        dest.whoCalled = 1;
     }
 }
 
