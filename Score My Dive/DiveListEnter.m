@@ -360,6 +360,11 @@
     [self EnableStartMeet];
 }
 
+// empty
+-(void)editDiveNumberWasFinished {
+    // unimplemented delegate method
+}
+
 #pragma private methods
 
 -(void)fillText {

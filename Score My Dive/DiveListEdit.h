@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "HTAutocompleteTextField.h"
+#import "TypeDiveNumber.h"
+#import "ChooseDiveNumber.h"
 
 @protocol DiveListEnterViewControllerDelegate
 
@@ -15,7 +17,7 @@
 
 @end
 
-@interface DiveListEdit : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
+@interface DiveListEdit : UIViewController <TypeDiveNumberDelegate>
 
 // delegate property
 @property (nonatomic, strong) id<DiveListEnterViewControllerDelegate> delegate;
@@ -26,20 +28,9 @@
 @property (nonatomic, strong) NSNumber *diveNumber;
 @property (nonatomic, strong) NSString *oldDiveName;
 @property (nonatomic, strong) NSArray *meetInfo;
+@property (weak, nonatomic) IBOutlet UILabel *backgroundPanel;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblDiveNumber;
-@property (weak, nonatomic) IBOutlet UITextField *txtDiveGroup;
-@property (weak, nonatomic) IBOutlet UITextField *txtDive;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *SCPosition;
-@property (weak, nonatomic) IBOutlet UILabel *lblDivedd;
-@property (weak, nonatomic) IBOutlet UIButton *btnEnterDive;
 @property (weak, nonatomic) IBOutlet UILabel *lblOldDiveName;
-
-// autofill controls
-@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txtDiveNumberEntry;
-@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txtDivePositionEntry;
-
-- (IBAction)PositionIndexChanged:(UISegmentedControl *)sender;
-- (IBAction)btnEnterDive:(id)sender;
 
 @end

@@ -27,6 +27,7 @@
 -(void)ConvertTextEntries;
 -(void)UpdateJudgeScores;
 -(void)updateListStarted;
+-(void)editDive;
 
 @end
 
@@ -105,8 +106,12 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    if ([segue.identifier isEqualToString:@""]) {
-        // diveList Enter
+    if ([segue.identifier isEqualToString:@"idSegueTypeToEnterList"]) {
+        
+        DiveListEnter *diver = [segue destinationViewController];
+        diver.meetInfo = self.meetInfo;
+        diver.meetRecordID = self.meetRecordID;
+        diver.diverRecordID = self.diverRecordID;
     }
     
     if ([segue.identifier isEqualToString:@""]) {
@@ -189,12 +194,18 @@
         if (self.diveTextArray.count > 0) {
             
             [self ConvertTextEntries];
-            [self UpdateJudgeScores];
             
-            // start the list
-            if ([self.onDiveNumber isEqualToNumber:@1]) {
+            // see who called depends on how we update or create a judge scores
+            if (self.whoCalled == 1) {
+                [self UpdateJudgeScores];
                 
-                [self updateListStarted];
+                // start the list
+                if ([self.onDiveNumber isEqualToNumber:@1]) {
+                    
+                    [self updateListStarted];
+                }
+            } else if (self.whoCalled == 2) {
+                [self editDive];
             }
             
             // call the delegate method to reload the class that called it and pop it off
@@ -204,13 +215,15 @@
             // 3 is the DiveEnter
             if (self.whoCalled == 1) {
                 [self.delegate typeDiveNumberWasFinished];
+                [self dismissViewControllerAnimated:YES completion:nil];
+            // this calls the delegate and then goes right back to diveListEnter
             } else if (self.whoCalled == 2) {
-                // diveListEdit delegate
+                [self.delegate editDiveNumberWasFinished];
+                [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+                //[self performSegueWithIdentifier:@"idSegueTypeToEnterList" sender:self];
             } else {
                 // diveEnterDelegate - this may need to go right to score
             }
-            
-            [self dismissViewControllerAnimated:YES completion:nil];
 
         } else {
             UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
@@ -451,6 +464,97 @@
         // create a new record
         [scores CreateJudgeScores:self.meetRecordID diverid:self.diverRecordID boardsize:boardSizeDouble divenumber:newDiveNumber divecategory:diveCategory divetype:diveNameForDB diveposition:divePosition failed:@0 multiplier:multiplier totalscore:@0 score1:@0 score2:@0 score3:@0 score4:@0 score5:@0 score6:@0 score7:@0];
     }
+}
+
+-(void)editDive {
+    
+    NSString *diveCategory;
+    NSString *divePosition;
+    NSString *diveName;
+    NSString *diveNameForDB;
+    NSNumber *multiplier;
+    //int selectedPosition = (int)self.SCPosition.selectedSegmentIndex;
+    
+    JudgeScores *scores = [[JudgeScores alloc] init];
+    
+    // first lets see if these are Springboard or platform dives
+    if ([self.boardSize isEqualToNumber:@1.0] || [self.boardSize isEqualToNumber:@3.0]) {
+        switch (self.diveGroupID) {
+            case 1:
+                diveCategory = @"Forward Dive";
+                break;
+            case 2:
+                diveCategory = @"Back Dive";
+                break;
+            case 3:
+                diveCategory = @"Reverse Dive";
+                break;
+            case 4:
+                diveCategory = @"Inward Dive";
+                break;
+            case 5:
+                diveCategory = @"Twist Dive";
+                break;
+        }
+    } else {
+        switch (self.diveGroupID) {
+            case 1:
+                diveCategory = @"Front Platform Dive";
+                break;
+            case 2:
+                diveCategory = @"Back Platform Dive";
+                break;
+            case 3:
+                diveCategory = @"Reverse Platform Dive";
+                break;
+            case 4:
+                diveCategory = @"Inward Platform Dive";
+                break;
+            case 5:
+                diveCategory = @"Twist Platform Dive";
+                break;
+            case 6:
+                diveCategory = @"Armstand Platform Dive";
+                break;
+        }
+    }
+    
+    // then lets get the position into a string
+    switch (self.selectedPosition) {
+        case 0:
+            divePosition = @"A - Straight";
+            break;
+        case 1:
+            divePosition = @"B - Pike";
+            break;
+        case 2:
+            divePosition = @"C - Tuck";
+            break;
+        case 3:
+            divePosition = @"D - Free";
+            break;
+    }
+    
+    // get the dive name and then append it to the diveid
+    // if entered in the text box
+    if (self.txtDiveNumberEntry.text.length > 0) {
+        
+        diveName = [self.diveTextArray objectAtIndex:1];
+        diveNameForDB = [NSString stringWithFormat:@"%d", self.diveID];
+        diveNameForDB = [diveNameForDB stringByAppendingString:@" - "];
+        diveNameForDB = [diveNameForDB stringByAppendingString:diveName];
+    }
+
+    
+    // then get the multiplier
+    NSNumberFormatter *formatString = [[NSNumberFormatter alloc] init];
+    NSString *multi = self.lblDivedd.text;
+    multiplier = [formatString numberFromString:multi];
+    
+    // if this is the first dive we are just updating the first record we wrote
+    [scores UpdateJudgeScoreTypes:self.meetRecordID diverid:self.diverRecordID divecat:diveCategory divetype:diveNameForDB divepos:divePosition  multiplier:multiplier
+                    oldDiveNumber:self.onDiveNumber divenumber:self.onDiveNumber];
+    
 }
 
 -(void)updateListStarted {
