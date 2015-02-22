@@ -9,6 +9,9 @@
 #import "ChooseDiveNumber.h"
 #import "DiveCategory.h"
 #import "DiveTypes.h"
+#import "JudgeScores.h"
+#import "DiveList.h"
+#import "DiveListEnter.h"
 
 @interface ChooseDiveNumber ()
 
@@ -20,12 +23,14 @@
 @property (nonatomic, strong) NSString *pike;
 @property (nonatomic, strong) NSString *tuck;
 @property (nonatomic, strong) NSString *free;
+@property (nonatomic) int selectedPosition;
 
 -(void)makeGroupPicker;
 -(void)makeDivePicker;
 -(void)loadGroupPicker;
 -(void)loadDivePicker;
 -(void)DisableDivePositions;
+-(void)GetDiveDOD;
 
 @end
 
@@ -46,15 +51,18 @@
     self.txtDive.delegate = self;
     
     self.SCPosition.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.SCPosition.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    self.SCPosition.layer.shadowOffset = CGSizeMake(.5f, .5f);
     self.SCPosition.layer.masksToBounds = NO;
     self.SCPosition.layer.shadowOpacity = 1.0;
     
     // color attributes for the segmented controls
-    NSDictionary *segmentedControlTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont systemFontOfSize:10.0f]};
+    NSDictionary *segmentedControlTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont systemFontOfSize:18.0f]};
     
-    NSDictionary *segmentedControlTextAttributesPicked = @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont systemFontOfSize:10.0f]};
+    NSDictionary *segmentedControlTextAttributesPicked = @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont systemFontOfSize:18.0f]};
     
+    NSDictionary *segmentedControlDisabled = @{NSForegroundColorAttributeName:[UIColor grayColor], NSFontAttributeName:[UIFont systemFontOfSize:18.0f]};
+    
+    [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlDisabled forState:UIControlStateDisabled];
     [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributes forState:UIControlStateNormal];
     [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributes forState:UIControlStateHighlighted];
     [[UISegmentedControl appearance] setTitleTextAttributes:segmentedControlTextAttributesPicked forState:UIControlStateSelected];
@@ -306,9 +314,148 @@
 }
 
 - (IBAction)btnEnter:(id)sender {
+    
+    self.selectedPosition = (int)self.SCPosition.selectedSegmentIndex;
+    
+    if (self.diveGroupID != 0 && self.diveID != 0 && self.selectedPosition >= 0) {
+        
+        [self UpdateJudgeScores];
+        
+        // start the list
+        if ([self.onDiveNumber isEqualToNumber:@1]) {
+            
+            [self updateListStarted];
+        }
+        
+        // call the delegate method to reload the class that called it and pop it off
+        // this lets the class know who called them
+        // 1 is the DiveListEnter
+        // 2 is the DiveListEdit
+        // 3 is the DiveEnter
+        if (self.whoCalled == 1) {
+            [self.delegate chooseDiveNumberWasFinished];
+        } else if (self.whoCalled == 2) {
+            // diveListEdit delegate
+        } else {
+            // diveEnterDelegate - this may need to go right to score
+        }
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+        
+    } else {
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                        message:@"Please make sure you've picked a dive and a valid position"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
+    }
 }
 
 #pragma private methods
+
+-(void)UpdateJudgeScores {
+    
+    NSString *diveCategory;
+    NSString *divePosition;
+    NSString *diveNameForDB;
+    NSNumber *multiplier;
+    
+    JudgeScores *scores = [[JudgeScores alloc] init];
+    
+    // first lets see if these are Springboard or platform dives
+    if ([self.boardSize isEqualToNumber:@1.0] || [self.boardSize isEqualToNumber:@3.0]) {
+        switch (self.diveGroupID) {
+            case 1:
+                diveCategory = @"Forward Dive";
+                break;
+            case 2:
+                diveCategory = @"Back Dive";
+                break;
+            case 3:
+                diveCategory = @"Reverse Dive";
+                break;
+            case 4:
+                diveCategory = @"Inward Dive";
+                break;
+            case 5:
+                diveCategory = @"Twist Dive";
+                break;
+        }
+    } else {
+        switch (self.diveGroupID) {
+            case 1:
+                diveCategory = @"Front Platform Dive";
+                break;
+            case 2:
+                diveCategory = @"Back Platform Dive";
+                break;
+            case 3:
+                diveCategory = @"Reverse Platform Dive";
+                break;
+            case 4:
+                diveCategory = @"Inward Platform Dive";
+                break;
+            case 5:
+                diveCategory = @"Twist Platform Dive";
+                break;
+            case 6:
+                diveCategory = @"Armstand Platform Dive";
+                break;
+        }
+    }
+    
+    // then lets get the position into a string
+    switch (self.selectedPosition) {
+        case 0:
+            divePosition = @"A - Straight";
+            break;
+        case 1:
+            divePosition = @"B - Pike";
+            break;
+        case 2:
+            divePosition = @"C - Tuck";
+            break;
+        case 3:
+            divePosition = @"D - Free";
+            break;
+    }
+    
+    diveNameForDB = self.txtDive.text;
+    
+    // use this dive number for the first entry
+    NSNumber *firstDiveNumber = [NSNumber numberWithInt:self.maxDiveNumber];
+    
+    // create a new dive number, just increment the old number
+    NSNumber *newDiveNumber = [NSNumber numberWithInt:self.maxDiveNumber + 1];
+    
+    // then get the multiplier
+    NSNumberFormatter *formatString = [[NSNumberFormatter alloc] init];
+    NSString *multi = self.lblDivedd.text;
+    multiplier = [formatString numberFromString:multi];
+    
+    // get a double value from the boardSize
+    double boardSizeDouble = [self.boardSize doubleValue];
+    
+    if ([newDiveNumber isEqualToNumber:@1]) {
+        
+        // if this is the first dive we are just updating the first record we wrote
+        [scores UpdateJudgeScoreTypes:self.meetRecordID diverid:self.diverRecordID divecat:diveCategory divetype:diveNameForDB divepos:divePosition  multiplier:multiplier
+                        oldDiveNumber:firstDiveNumber divenumber:self.onDiveNumber];
+        
+    } else {
+        // create a new record
+        [scores CreateJudgeScores:self.meetRecordID diverid:self.diverRecordID boardsize:boardSizeDouble divenumber:newDiveNumber divecategory:diveCategory divetype:diveNameForDB diveposition:divePosition failed:@0 multiplier:multiplier totalscore:@0 score1:@0 score2:@0 score3:@0 score4:@0 score5:@0 score6:@0 score7:@0];
+    }
+}
+
+-(void)updateListStarted {
+    
+    DiveList *list = [[DiveList alloc] init];
+    
+    [list updateListStarted:self.meetRecordID diverid:self.diverRecordID];
+}
 
 -(void)loadGroupPicker {
     
@@ -355,6 +502,8 @@
         
         if (dods.count > 0) {
             
+            
+            
             // now put those into a NSNumber variable
             self.straight = [[dods objectAtIndex:0] objectAtIndex:0];
             self.pike = [[dods objectAtIndex:0] objectAtIndex:1];
@@ -398,42 +547,25 @@
 
 -(void)GetDiveDOD {
     
-    //test dd on the txtfields
-//    if (self.txtDiveNumberEntry.text.length > 0 || self.txtDivePositionEntry.text.length > 0) {
-//        
-//        DiveNumberCheck *check = [[DiveNumberCheck alloc] init];
-//        self.diveNumberEntered = self.txtDiveNumberEntry.text;
-//        self.divePositionEntered = self.txtDivePositionEntry.text;
-//        
-//        self.diveTextArray = [check CheckDiveNumberInput:self.diveNumberEntered Position:self.divePositionEntered BoardSize:self.boardSize];
-//        
-//        if (self.diveTextArray.count > 0) {
-//            self.lblDivedd.text = [self.diveTextArray objectAtIndex:2];
-//        } else {
-//            self.lblDivedd.text = @"0.0";
-//        }
-//        
-//    } else
+    if (self.txtDiveGroup.text.length > 0) {  // or on the pickers and SC
     
-        if (self.txtDiveGroup.text.length > 0) {  // or on the pickers and SC
-        
-        switch (self.SCPosition.selectedSegmentIndex) {
-            case 0:
-                self.divePositionID = 0;
-                self.lblDivedd.text = self.straight;
-                break;
-            case 1:
-                self.divePositionID = 1;
-                self.lblDivedd.text = self.pike;
-                break;
-            case 2:
-                self.divePositionID = 2;
-                self.lblDivedd.text = self.tuck;
-                break;
-            case 3:
-                self.divePositionID = 3;
-                self.lblDivedd.text = self.free;
-                break;
+    switch (self.SCPosition.selectedSegmentIndex) {
+        case 0:
+            self.divePositionID = 0;
+            self.lblDivedd.text = self.straight;
+            break;
+        case 1:
+            self.divePositionID = 1;
+            self.lblDivedd.text = self.pike;
+            break;
+        case 2:
+            self.divePositionID = 2;
+            self.lblDivedd.text = self.tuck;
+            break;
+        case 3:
+            self.divePositionID = 3;
+            self.lblDivedd.text = self.free;
+            break;
         }
     }
 }

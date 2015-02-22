@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ChooseDiveNumberDelegate
+
+-(void)chooseDiveNumberWasFinished;
+
+@end
+
 @interface ChooseDiveNumber : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
+
+@property (nonatomic, strong) id<ChooseDiveNumberDelegate> delegate;
 
 @property (nonatomic, strong) NSNumber *boardSize;
 @property (nonatomic) int meetRecordID;

@@ -7713,12 +7713,16 @@
                             <constraint firstItem="0px-Sm-AlJ" firstAttribute="top" secondItem="eOM-PC-vER" secondAttribute="bottom" constant="8" id="6Fi-Dm-EHE"/>
                             <constraint firstItem="kuB-vg-nwy" firstAttribute="centerY" secondItem="7UF-v3-UvR" secondAttribute="centerY" id="6Up-vz-jN2"/>
                             <constraint firstItem="YA7-kE-r8u" firstAttribute="top" secondItem="EBv-LD-dqQ" secondAttribute="top" constant="-14" id="6Vv-BN-i1K"/>
-                            <constraint firstItem="eOM-PC-vER" firstAttribute="top" secondItem="NgJ-uk-9pJ" secondAttribute="bottom" constant="8" id="96f-Po-Upn"/>
+                            <constraint firstItem="eOM-PC-vER" firstAttribute="top" secondItem="NgJ-uk-9pJ" secondAttribute="bottom" constant="8" id="96f-Po-Upn">
+                                <variation key="widthClass=compact" constant="16"/>
+                            </constraint>
                             <constraint firstItem="NgJ-uk-9pJ" firstAttribute="leading" secondItem="dMr-RZ-YLX" secondAttribute="leading" id="BcM-F6-MjN"/>
                             <constraint firstItem="NgJ-uk-9pJ" firstAttribute="top" secondItem="dMr-RZ-YLX" secondAttribute="bottom" constant="8" id="CT9-Mt-Uo4"/>
                             <constraint firstItem="7UF-v3-UvR" firstAttribute="centerY" secondItem="0px-Sm-AlJ" secondAttribute="centerY" id="EbN-mf-s43"/>
                             <constraint firstItem="NgJ-uk-9pJ" firstAttribute="trailing" secondItem="dMr-RZ-YLX" secondAttribute="trailing" id="H0o-KB-ii7"/>
-                            <constraint firstItem="0px-Sm-AlJ" firstAttribute="top" secondItem="eOM-PC-vER" secondAttribute="bottom" constant="8" id="HhE-oM-TvF"/>
+                            <constraint firstItem="0px-Sm-AlJ" firstAttribute="top" secondItem="eOM-PC-vER" secondAttribute="bottom" constant="8" id="HhE-oM-TvF">
+                                <variation key="widthClass=compact" constant="16"/>
+                            </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="dMr-RZ-YLX" secondAttribute="trailing" constant="14" id="Hvf-57-Gen"/>
                             <constraint firstItem="eOM-PC-vER" firstAttribute="top" secondItem="NgJ-uk-9pJ" secondAttribute="bottom" constant="8" id="HxG-tq-Irq">
                                 <variation key="heightClass=regular-widthClass=regular" constant="14"/>
@@ -7902,7 +7906,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <value key="contentSizeForViewInPopover" type="size" width="400" height="230"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="400" height="235"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -7919,7 +7923,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZUH-je-n83" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-301.5" y="2730.75"/>
+            <point key="canvasLocation" x="-625.5" y="2731"/>
         </scene>
         <!--DiveListEnter-->
         <scene sceneID="9lQ-AD-gS9">

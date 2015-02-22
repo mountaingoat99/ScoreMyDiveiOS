@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "DiveListEdit.h"
 #import "TypeDiveNumber.h"
+#import "ChooseDiveNumber.h"
 #import "HTAutocompleteTextField.h"
 
-@interface DiveListEnter : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, DiveListEnterViewControllerDelegate, UIScrollViewDelegate, UITextFieldDelegate, TypeDiveNumberDelegate>
+@interface DiveListEnter : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, DiveListEnterViewControllerDelegate, UIScrollViewDelegate, UITextFieldDelegate, TypeDiveNumberDelegate, ChooseDiveNumberDelegate>
 
 @property (nonatomic) int meetRecordID;
 @property (nonatomic) int diverRecordID;

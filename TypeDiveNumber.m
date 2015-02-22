@@ -198,6 +198,10 @@
             }
             
             // call the delegate method to reload the class that called it and pop it off
+            // this lets the class know who called them
+            // 1 is the DiveListEnter
+            // 2 is the DiveListEdit
+            // 3 is the DiveEnter
             if (self.whoCalled == 1) {
                 [self.delegate typeDiveNumberWasFinished];
             } else if (self.whoCalled == 2) {

@@ -350,7 +350,7 @@
     if ([segue.identifier isEqualToString:@"idSegueListToChooseDive"]) {
         ChooseDiveNumber *dest = segue.destinationViewController;
         
-        //dest.delegate = self; ********************************************************************************************************
+        dest.delegate = self;
         
         dest.meetRecordID = self.meetRecordID;
         dest.diverRecordID = self.diverRecordID;
@@ -873,6 +873,15 @@
 
 // delegate method to update after typing a dive number
 -(void)typeDiveNumberWasFinished {
+    
+    [self fillDiveNumber];
+    [self fillDiveInfo];
+    [self updateButtonText];
+    [self resetValues];
+}
+
+// delegate method to update after choosing a dive
+-(void)chooseDiveNumberWasFinished {
     
     [self fillDiveNumber];
     [self fillDiveInfo];
