@@ -365,6 +365,10 @@
     // unimplemented delegate method
 }
 
+-(void)editChooseDiveNumberWasFinished  {
+    // unimplemented method
+}
+
 #pragma private methods
 
 -(void)fillText {

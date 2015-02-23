@@ -31,6 +31,7 @@
 -(void)loadDivePicker;
 -(void)DisableDivePositions;
 -(void)GetDiveDOD;
+-(void)editDive;
 
 @end
 
@@ -93,6 +94,52 @@
     
     [self.txtDiveGroup resignFirstResponder];
     [self.txtDive resignFirstResponder];
+}
+
+// restore state because Apple doesn't know how to write a modern OS
+-(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
+    [super encodeRestorableStateWithCoder:coder];
+    
+    NSNumber *segment = [NSNumber numberWithInt:(int)self.SCPosition.selectedSegmentIndex];
+    [coder encodeObject:segment forKey:@"segment"];
+    [coder encodeInt:self.meetRecordID forKey:@"meetId"];
+    [coder encodeInt:self.diverRecordID forKey:@"diverId"];
+    [coder encodeObject:self.meetInfo forKey:@"meetInfo"];
+    [coder encodeObject:self.txtDiveGroup.text forKey:@"diveGroupText"];
+    [coder encodeInt:self.diveGroupID forKey:@"diveGroupId"];
+    [coder encodeObject:self.txtDive.text forKey:@"diveText"];
+    [coder encodeInt:self.diveID forKey:@"diveId"];
+    [coder encodeInt:self.divePositionID forKey:@"divePos"];
+    [coder encodeObject:self.diveGroupArray forKey:@"diveGroupArray"];
+    [coder encodeObject:self.diveArray forKey:@"diveArray"];
+    [coder encodeObject:self.lblDivedd.text forKey:@"dd"];
+    
+}
+
+-(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    [super decodeRestorableStateWithCoder:coder];
+    
+    self.SCPosition.selectedSegmentIndex = [[coder decodeObjectForKey:@"segment"] intValue];
+    self.meetRecordID = [coder decodeIntForKey:@"meetId"];
+    self.diverRecordID = [coder decodeIntForKey:@"diverId"];
+    self.meetInfo = [coder decodeObjectForKey:@"meetInfo"];
+    self.txtDiveGroup.text = [coder decodeObjectForKey:@"diveGroupText"];
+    if (self.txtDiveGroup.text.length == 0) {
+        self.txtDiveGroup.text = @"";
+    }
+    self.diveGroupID = [coder decodeIntForKey:@"diveGroupId"];
+    self.txtDive.text = [coder decodeObjectForKey:@"diveText"];
+    if (self.txtDive.text.length == 0) {
+        self.txtDive.text = @"";
+    }
+    self.diveID = [coder decodeIntForKey:@"diveId"];
+    self.divePositionID = [coder decodeIntForKey:@"divePos"];
+    self.diveGroupArray = [coder decodeObjectForKey:@"diveGroupArray"];
+    self.diveArray = [coder decodeObjectForKey:@"diveArray"];
+    self.lblDivedd.text = [coder decodeObjectForKey:@"dd"];
+    
+    [self loadDivePicker];
+    [self DisableDivePositions];
 }
 
 -(void)makeGroupPicker {
@@ -311,6 +358,9 @@
             self.lblDivedd.text = self.free;
             break;
     }
+    
+    // then this will set the divedod label to the correct dod
+    [self GetDiveDOD];
 }
 
 - (IBAction)btnEnter:(id)sender {
@@ -319,14 +369,19 @@
     
     if (self.diveGroupID != 0 && self.diveID != 0 && self.selectedPosition >= 0) {
         
-        [self UpdateJudgeScores];
-        
-        // start the list
-        if ([self.onDiveNumber isEqualToNumber:@1]) {
+        // see who called depends on how we update or create a judgescore
+        if (self.whoCalled == 1) {
             
-            [self updateListStarted];
+            [self UpdateJudgeScores];
+            // start the list
+            if ([self.onDiveNumber isEqualToNumber:@1]) {
+                
+                [self updateListStarted];
+            }
+        } else if (self.whoCalled == 2) {
+            [self editDive];
         }
-        
+
         // call the delegate method to reload the class that called it and pop it off
         // this lets the class know who called them
         // 1 is the DiveListEnter
@@ -335,7 +390,8 @@
         if (self.whoCalled == 1) {
             [self.delegate chooseDiveNumberWasFinished];
         } else if (self.whoCalled == 2) {
-            // diveListEdit delegate
+            [self.delegate editChooseDiveNumberWasFinished];
+            [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
         } else {
             // diveEnterDelegate - this may need to go right to score
         }
@@ -448,6 +504,87 @@
         // create a new record
         [scores CreateJudgeScores:self.meetRecordID diverid:self.diverRecordID boardsize:boardSizeDouble divenumber:newDiveNumber divecategory:diveCategory divetype:diveNameForDB diveposition:divePosition failed:@0 multiplier:multiplier totalscore:@0 score1:@0 score2:@0 score3:@0 score4:@0 score5:@0 score6:@0 score7:@0];
     }
+}
+
+-(void)editDive {
+    
+    NSString *diveCategory;
+    NSString *divePosition;
+    NSString *diveNameForDB;
+    NSNumber *multiplier;
+    //int selectedPosition = (int)self.SCPosition.selectedSegmentIndex;
+    
+    JudgeScores *scores = [[JudgeScores alloc] init];
+    
+    // first lets see if these are Springboard or platform dives
+    if ([self.boardSize isEqualToNumber:@1.0] || [self.boardSize isEqualToNumber:@3.0]) {
+        switch (self.diveGroupID) {
+            case 1:
+                diveCategory = @"Forward Dive";
+                break;
+            case 2:
+                diveCategory = @"Back Dive";
+                break;
+            case 3:
+                diveCategory = @"Reverse Dive";
+                break;
+            case 4:
+                diveCategory = @"Inward Dive";
+                break;
+            case 5:
+                diveCategory = @"Twist Dive";
+                break;
+        }
+    } else {
+        switch (self.diveGroupID) {
+            case 1:
+                diveCategory = @"Front Platform Dive";
+                break;
+            case 2:
+                diveCategory = @"Back Platform Dive";
+                break;
+            case 3:
+                diveCategory = @"Reverse Platform Dive";
+                break;
+            case 4:
+                diveCategory = @"Inward Platform Dive";
+                break;
+            case 5:
+                diveCategory = @"Twist Platform Dive";
+                break;
+            case 6:
+                diveCategory = @"Armstand Platform Dive";
+                break;
+        }
+    }
+    
+    // then lets get the position into a string
+    switch (self.selectedPosition) {
+        case 0:
+            divePosition = @"A - Straight";
+            break;
+        case 1:
+            divePosition = @"B - Pike";
+            break;
+        case 2:
+            divePosition = @"C - Tuck";
+            break;
+        case 3:
+            divePosition = @"D - Free";
+            break;
+    }
+    
+    diveNameForDB = self.txtDive.text;
+    
+    // then get the multiplier
+    NSNumberFormatter *formatString = [[NSNumberFormatter alloc] init];
+    NSString *multi = self.lblDivedd.text;
+    multiplier = [formatString numberFromString:multi];
+    
+    // if this is the first dive we are just updating the first record we wrote
+    [scores UpdateJudgeScoreTypes:self.meetRecordID diverid:self.diverRecordID divecat:diveCategory divetype:diveNameForDB divepos:divePosition  multiplier:multiplier
+                    oldDiveNumber:self.onDiveNumber divenumber:self.onDiveNumber];
+    
 }
 
 -(void)updateListStarted {

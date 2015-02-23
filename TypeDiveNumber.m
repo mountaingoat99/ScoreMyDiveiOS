@@ -70,7 +70,6 @@
     [coder encodeObject:self.meetInfo forKey:@"meetInfo"];
     [coder encodeInt:self.divePositionID forKey:@"divePos"];
     [coder encodeObject:self.lblDivedd.text forKey:@"dd"];
-    
     [coder encodeObject:self.txtDiveNumberEntry.text forKey:@"diveNumEntry"];
     [coder encodeObject:self.txtDivePositionEntry.text forKey:@"divePosEntry"];
     [coder encodeObject:self.diveTextArray forKey:@"diveTextArray"];
@@ -106,12 +105,8 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    if ([segue.identifier isEqualToString:@"idSegueTypeToEnterList"]) {
-        
-        DiveListEnter *diver = [segue destinationViewController];
-        diver.meetInfo = self.meetInfo;
-        diver.meetRecordID = self.meetRecordID;
-        diver.diverRecordID = self.diverRecordID;
+    if ([segue.identifier isEqualToString:@""]) {
+        // diveListEnter
     }
     
     if ([segue.identifier isEqualToString:@""]) {
@@ -220,7 +215,6 @@
             } else if (self.whoCalled == 2) {
                 [self.delegate editDiveNumberWasFinished];
                 [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-                //[self performSegueWithIdentifier:@"idSegueTypeToEnterList" sender:self];
             } else {
                 // diveEnterDelegate - this may need to go right to score
             }

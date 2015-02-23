@@ -11,6 +11,7 @@
 @protocol ChooseDiveNumberDelegate
 
 -(void)chooseDiveNumberWasFinished;
+-(void)editChooseDiveNumberWasFinished;
 
 @end
 
@@ -42,6 +43,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *backgroundPanel;
 
+- (IBAction)PositionIndexChanged:(UISegmentedControl *)sender;
 - (IBAction)btnEnter:(id)sender;
 
 @end

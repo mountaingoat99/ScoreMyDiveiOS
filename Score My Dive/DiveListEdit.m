@@ -112,7 +112,7 @@
     if ([segue.identifier isEqualToString:@"idSegueEditToChoose"]) {
         ChooseDiveNumber *dest = segue.destinationViewController;
         
-        //dest.delegate = self;
+        dest.delegate = self;
         
         dest.meetRecordID = self.meetRecordID;
         dest.diverRecordID = self.diverRecordID;
@@ -136,6 +136,15 @@
 }
 
 -(void)typeDiveNumberWasFinished {
+    //unimplemented method
+}
+
+-(void)editChooseDiveNumberWasFinished {
+    
+    [self.delegate editDiveListWasFinished];
+}
+
+-(void)chooseDiveNumberWasFinished {
     //unimplemented method
 }
 

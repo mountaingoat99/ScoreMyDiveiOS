@@ -17,7 +17,7 @@
 
 @end
 
-@interface DiveListEdit : UIViewController <TypeDiveNumberDelegate>
+@interface DiveListEdit : UIViewController <TypeDiveNumberDelegate, ChooseDiveNumberDelegate>
 
 // delegate property
 @property (nonatomic, strong) id<DiveListEnterViewControllerDelegate> delegate;
