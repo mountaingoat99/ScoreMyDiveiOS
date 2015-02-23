@@ -421,6 +421,7 @@
         [self.lblDive1 setHidden:NO];
         [self.lblDive1text setHidden:NO];
         [self.view1 setUserInteractionEnabled:YES];
+        [self.label1 setHidden:NO];
     }
     
     if (self.maxDiveNumber >= 2) {
@@ -428,6 +429,7 @@
         [self.lblDive2 setHidden:NO];
         [self.lblDive2text setHidden:NO];
         [self.view2 setUserInteractionEnabled:YES];
+        [self.label2 setHidden:NO];
     }
     
     if (self.maxDiveNumber >= 3) {
@@ -435,6 +437,7 @@
         [self.lblDive3 setHidden:NO];
         [self.lblDive3text setHidden:NO];
         [self.view3 setUserInteractionEnabled:YES];
+        [self.label3 setHidden:NO];
     }
     
     if (self.maxDiveNumber >= 4) {
@@ -442,6 +445,7 @@
         [self.lblDive4 setHidden:NO];
         [self.lblDive4text setHidden:NO];
         [self.view4 setUserInteractionEnabled:YES];
+        [self.label4 setHidden:NO];
     }
     
     if (self.maxDiveNumber >= 5) {
@@ -449,6 +453,7 @@
         [self.lblDive5 setHidden:NO];
         [self.lblDive5text setHidden:NO];
         [self.view5 setUserInteractionEnabled:YES];
+        [self.label5 setHidden:NO];
     }
     
     if (self.maxDiveNumber >= 6) {
@@ -456,6 +461,7 @@
         [self.lblDive6 setHidden:NO];
         [self.lblDive6text setHidden:NO];
         [self.view6 setUserInteractionEnabled:YES];
+        [self.label6 setHidden:NO];
     }
     
     // we won't even bother checking these unless the diveTotal is 11
@@ -465,6 +471,7 @@
             [self.lblDive7 setHidden:NO];
             [self.lblDive7text setHidden:NO];
             [self.view7 setUserInteractionEnabled:YES];
+            [self.label7 setHidden:NO];
         }
         
         if (self.maxDiveNumber >= 8) {
@@ -472,6 +479,7 @@
             [self.lblDive8 setHidden:NO];
             [self.lblDive8text setHidden:NO];
             [self.view8 setUserInteractionEnabled:YES];
+            [self.label8 setHidden:NO];
         }
         
         if (self.maxDiveNumber >= 9) {
@@ -479,6 +487,7 @@
             [self.lblDive9 setHidden:NO];
             [self.lblDive9text setHidden:NO];
             [self.view9 setUserInteractionEnabled:YES];
+            [self.label9 setHidden:NO];
         }
         
         if (self.maxDiveNumber >= 10) {
@@ -486,6 +495,7 @@
             [self.lblDive10 setHidden:NO];
             [self.lblDive10text setHidden:NO];
             [self.view10 setUserInteractionEnabled:YES];
+            [self.label10 setHidden:NO];
         }
         
         if (self.maxDiveNumber >= 11) {
@@ -493,6 +503,7 @@
             [self.lblDive11 setHidden:NO];
             [self.lblDive11text setHidden:NO];
             [self.view11 setUserInteractionEnabled:YES];
+            [self.label11 setHidden:NO];
         }
     }
 }
@@ -521,6 +532,17 @@
     [self.lblDive9text setHidden:YES];
     [self.lblDive10text setHidden:YES];
     [self.lblDive11text setHidden:YES];
+    [self.label1 setHidden:YES];
+    [self.label2 setHidden:YES];
+    [self.label3 setHidden:YES];
+    [self.label4 setHidden:YES];
+    [self.label5 setHidden:YES];
+    [self.label6 setHidden:YES];
+    [self.label7 setHidden:YES];
+    [self.label8 setHidden:YES];
+    [self.label9 setHidden:YES];
+    [self.label10 setHidden:YES];
+    [self.label11 setHidden:YES];
     [self.view1 setUserInteractionEnabled:NO];
     [self.view2 setUserInteractionEnabled:NO];
     [self.view3 setUserInteractionEnabled:NO];
