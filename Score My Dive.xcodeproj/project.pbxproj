@@ -59,6 +59,8 @@
 		26BE23911A1028B200E123D0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 26BE23901A1028B200E123D0 /* libsqlite3.dylib */; };
 		26C07FCF1A05921700DF35B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 263AC5CE1A030FD700846CB0 /* Main.storyboard */; };
 		26D22C701A706ADE0035C80A /* dive_dod.db in Resources */ = {isa = PBXBuildFile; fileRef = 26D22C6F1A706ADE0035C80A /* dive_dod.db */; };
+		26D2E5C21A9C9DA800D9EB7A /* TypeDiveNumberEnter.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D2E5C11A9C9DA800D9EB7A /* TypeDiveNumberEnter.m */; };
+		26D2E5C51A9CA01D00D9EB7A /* ChooseDiveNumberEnter.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D2E5C41A9CA01D00D9EB7A /* ChooseDiveNumberEnter.m */; };
 		26D4A40F1A507D8900FCEC6F /* RankingsMeet.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D4A40E1A507D8900FCEC6F /* RankingsMeet.m */; };
 		26D4A4121A50942700FCEC6F /* RankingsDiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D4A4111A50942700FCEC6F /* RankingsDiver.m */; };
 		26DF8AF71A043DAD00C273A6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26DF8AF61A043DAC00C273A6 /* QuartzCore.framework */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -178,6 +180,10 @@
 		26BE23791A1027CC00E123D0 /* ValidScores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidScores.m; sourceTree = "<group>"; };
 		26BE23901A1028B200E123D0 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		26D22C6F1A706ADE0035C80A /* dive_dod.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dive_dod.db; sourceTree = "<group>"; };
+		26D2E5C01A9C9DA800D9EB7A /* TypeDiveNumberEnter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeDiveNumberEnter.h; sourceTree = "<group>"; };
+		26D2E5C11A9C9DA800D9EB7A /* TypeDiveNumberEnter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeDiveNumberEnter.m; sourceTree = "<group>"; };
+		26D2E5C31A9CA01D00D9EB7A /* ChooseDiveNumberEnter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseDiveNumberEnter.h; sourceTree = "<group>"; };
+		26D2E5C41A9CA01D00D9EB7A /* ChooseDiveNumberEnter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseDiveNumberEnter.m; sourceTree = "<group>"; };
 		26D4A40D1A507D8900FCEC6F /* RankingsMeet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankingsMeet.h; sourceTree = "<group>"; };
 		26D4A40E1A507D8900FCEC6F /* RankingsMeet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankingsMeet.m; sourceTree = "<group>"; };
 		26D4A4101A50942700FCEC6F /* RankingsDiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankingsDiver.h; sourceTree = "<group>"; };
@@ -293,10 +299,14 @@
 		26A07E881A09963700997E5C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				26D2E5C31A9CA01D00D9EB7A /* ChooseDiveNumberEnter.h */,
+				26D2E5C41A9CA01D00D9EB7A /* ChooseDiveNumberEnter.m */,
 				2677C2751A9A647A002DDC12 /* ChooseDiveNumber.h */,
 				2677C2761A9A647A002DDC12 /* ChooseDiveNumber.m */,
 				26AAE0F71A993E0700B0E871 /* TypeDiveNumber.h */,
 				26AAE0F81A993E0700B0E871 /* TypeDiveNumber.m */,
+				26D2E5C01A9C9DA800D9EB7A /* TypeDiveNumberEnter.h */,
+				26D2E5C11A9C9DA800D9EB7A /* TypeDiveNumberEnter.m */,
 				26E5C9241A4DE50700C542F7 /* DiveEnter.h */,
 				26E5C9251A4DE50700C542F7 /* DiveEnter.m */,
 				268857681A29693B000AEFF2 /* DiveListEnter.h */,
@@ -521,6 +531,7 @@
 				267643E61A218DF000CD2CB1 /* ReportsViewController.m in Sources */,
 				26B88D231A12EF9600DBE909 /* MeetEdit.m in Sources */,
 				26BE238C1A1027CC00E123D0 /* DiveCategory.m in Sources */,
+				26D2E5C21A9C9DA800D9EB7A /* TypeDiveNumberEnter.m in Sources */,
 				26BE234D1A10275A00E123D0 /* DiveList.m in Sources */,
 				267A3FC81A280DE80068FA9E /* MeetHistory.m in Sources */,
 				261E71931A490C9F0036ABE3 /* DiveListScore.m in Sources */,
@@ -558,6 +569,7 @@
 				269FB8881A6C9ABD006B9C27 /* AllPlatformDives.m in Sources */,
 				2688576A1A29693B000AEFF2 /* DiveListEnter.m in Sources */,
 				26B1D05C1A3355CC00112692 /* DiverCollection.m in Sources */,
+				26D2E5C51A9CA01D00D9EB7A /* ChooseDiveNumberEnter.m in Sources */,
 				26BE23501A10275A00E123D0 /* Diver.m in Sources */,
 				2691AE6C1A0691FB000ABD3B /* DiverDetailsVC.m in Sources */,
 				26BE238D1A1027CC00E123D0 /* ValidScores.m in Sources */,
