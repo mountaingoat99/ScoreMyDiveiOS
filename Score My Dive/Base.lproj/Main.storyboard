@@ -16234,8 +16234,22 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="backgroundPanel1" destination="ZdH-JR-DvF" id="dzR-r7-9Xe"/>
+                        <outlet property="backgroundPanel2" destination="hsO-HA-H1n" id="Ntr-xr-mIb"/>
+                        <outlet property="backgroundPanel3" destination="XnC-LI-1g9" id="daB-Ne-SVf"/>
                         <outlet property="btnEnterScore" destination="Ge2-Eu-4Y2" id="Rzk-Y4-H4g"/>
                         <outlet property="btnEnterTotalScore" destination="SNj-6f-ULG" id="z1b-la-eKe"/>
+                        <outlet property="label1" destination="5yh-b9-iKc" id="7kY-GI-2dc"/>
+                        <outlet property="label10" destination="CLV-ZA-cNR" id="bSo-uj-CRD"/>
+                        <outlet property="label11" destination="NjE-Z0-SO1" id="LdJ-FA-544"/>
+                        <outlet property="label2" destination="oRq-la-lde" id="dgI-hA-NHq"/>
+                        <outlet property="label3" destination="xCK-Wy-zYO" id="Vdp-lv-58l"/>
+                        <outlet property="label4" destination="u8q-ey-FZC" id="tcG-2R-VPd"/>
+                        <outlet property="label5" destination="d6L-YW-GLQ" id="u14-0M-zjl"/>
+                        <outlet property="label6" destination="v66-Ut-wEd" id="88b-Uc-uvc"/>
+                        <outlet property="label7" destination="myU-tx-sbG" id="b0e-r1-Hhj"/>
+                        <outlet property="label8" destination="Kng-uW-7zD" id="OWn-Bj-Chm"/>
+                        <outlet property="label9" destination="Xi4-ei-RyR" id="ETV-jH-97x"/>
                         <outlet property="lblBoardType" destination="xM6-HR-2RU" id="bMq-Mi-ywp"/>
                         <outlet property="lblDive1" destination="Np8-dp-IHe" id="65F-DD-VLf"/>
                         <outlet property="lblDive10" destination="u39-Fh-Cv4" id="mGV-k6-J98"/>

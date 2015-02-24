@@ -9,27 +9,22 @@
 #import <UIKit/UIKit.h>
 #import "HTAutocompleteTextField.h"
 
-@interface DiveEnter : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UIScrollViewDelegate, UITextFieldDelegate>
+@interface DiveEnter : UIViewController <UIScrollViewDelegate>
 
 @property (nonatomic) int meetRecordID;
 @property (nonatomic) int diverRecordID;
 @property (nonatomic, strong) NSArray *meetInfo;
 
-@property (nonatomic) int diveGroupID;
-@property (nonatomic) int diveID;
-@property (nonatomic) int divePositionID;
-
 @property (weak, nonatomic) IBOutlet UILabel *lblDiveNumber;
 @property (weak, nonatomic) IBOutlet UILabel *lblDiverName;
 @property (weak, nonatomic) IBOutlet UILabel *lblMeetName;
 
-@property (weak, nonatomic) IBOutlet UITextField *txtDiveGroup;
-@property (weak, nonatomic) IBOutlet UITextField *txtDive;
-@property (weak, nonatomic) IBOutlet UILabel *lblDiveddText;
 @property (weak, nonatomic) IBOutlet UILabel *lblTotalScore;
 @property (weak, nonatomic) IBOutlet UILabel *lblBoardType;
+@property (weak, nonatomic) IBOutlet UILabel *backgroundPanel1;
+@property (weak, nonatomic) IBOutlet UILabel *backgroundPanel2;
+@property (weak, nonatomic) IBOutlet UILabel *backgroundPanel3;
 
-@property (weak, nonatomic) IBOutlet UILabel *lblDivedd;
 @property (weak, nonatomic) IBOutlet UILabel *lblDive1;
 @property (weak, nonatomic) IBOutlet UILabel *lblDive2;
 @property (weak, nonatomic) IBOutlet UILabel *lblDive3;
@@ -66,14 +61,21 @@
 @property (weak, nonatomic) IBOutlet UIView *view10;
 @property (weak, nonatomic) IBOutlet UIView *view11;
 
+@property (weak, nonatomic) IBOutlet UILabel *label1;
+@property (weak, nonatomic) IBOutlet UILabel *label2;
+@property (weak, nonatomic) IBOutlet UILabel *label3;
+@property (weak, nonatomic) IBOutlet UILabel *label4;
+@property (weak, nonatomic) IBOutlet UILabel *label5;
+@property (weak, nonatomic) IBOutlet UILabel *label6;
+@property (weak, nonatomic) IBOutlet UILabel *label7;
+@property (weak, nonatomic) IBOutlet UILabel *label8;
+@property (weak, nonatomic) IBOutlet UILabel *label9;
+@property (weak, nonatomic) IBOutlet UILabel *label10;
+@property (weak, nonatomic) IBOutlet UILabel *label11;
+
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *SCPosition;
 @property (weak, nonatomic) IBOutlet UIButton *btnEnterScore;
 @property (weak, nonatomic) IBOutlet UIButton *btnEnterTotalScore;
-
-// autofill controls
-@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txtDiveNumberEntry;
-@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txtDivePositionEntry;
 
 // touch events for the dive edits
 - (IBAction)Dive1EditClick:(UILongPressGestureRecognizer *)sender;
@@ -88,10 +90,8 @@
 - (IBAction)Dive10EditClick:(UILongPressGestureRecognizer *)sender;
 - (IBAction)Dive11EditClick:(UILongPressGestureRecognizer *)sender;
 
-- (IBAction)PositionIndexChanged:(UISegmentedControl *)sender;
 - (IBAction)btnEnterScoreClick:(id)sender;
 - (IBAction)btnEnterTotalScoreClick:(id)sender;
 - (IBAction)lblOptionsClick:(id)sender;
-//- (IBAction)btnReturnClick:(id)sender;
 
 @end
