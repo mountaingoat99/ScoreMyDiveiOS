@@ -201,7 +201,7 @@
                 }
             } else if (self.whoCalled == 2) {
                 [self editDive];
-            }
+            } 
             
             // call the delegate method to reload the class that called it and pop it off
             // this lets the class know who called them

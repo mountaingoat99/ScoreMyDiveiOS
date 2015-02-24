@@ -20,6 +20,8 @@
 #import "MeetCollection.h"
 #import "ChooseDiver.h"
 #import "DiveNumberCheck.h"
+#import "ChooseDiveNumber.h"
+#import "TypeDiveNumber.h"
 
 @interface DiveEnter ()
 
@@ -210,6 +212,34 @@
         
         ChooseDiver *choose = [segue destinationViewController];
         choose.meetRecordID = self.meetRecordID;
+    }
+    
+    if ([segue.identifier isEqualToString:@""]) {
+        TypeDiveNumber *dest = segue.destinationViewController;
+        
+        //dest.delegate = self;
+        
+        dest.meetRecordID = self.meetRecordID;
+        dest.diverRecordID = self.diverRecordID;
+        dest.meetInfo = self.meetInfo;
+        dest.boardSize = self.boardSize;
+        dest.maxDiveNumber = self.maxDiveNumber;
+        dest.onDiveNumber = self.onDiveNumber;
+        dest.whoCalled = 3;
+    }
+    
+    if ([segue.identifier isEqualToString:@""]) {
+        ChooseDiveNumber *dest = segue.destinationViewController;
+        
+        //dest.delegate = self;
+        
+        dest.meetRecordID = self.meetRecordID;
+        dest.diverRecordID = self.diverRecordID;
+        dest.meetInfo = self.meetInfo;
+        dest.boardSize = self.boardSize;
+        dest.maxDiveNumber = self.maxDiveNumber;
+        dest.onDiveNumber = self.onDiveNumber;
+        dest.whoCalled = 3;
     }
 }
 
@@ -981,7 +1011,7 @@
         }
         
         self.lblDive1.text = diveInfoText;
-        [self.backgroundPanel3 setHidden:NO];
+        //[self.backgroundPanel3 setHidden:NO];
         [self.lblDive1 setHidden:NO];
         [self.lblDive1text setHidden:NO];
         [self.label1 setHidden:NO];
@@ -1306,7 +1336,7 @@
     [self.view9 setUserInteractionEnabled:NO];
     [self.view10 setUserInteractionEnabled:NO];
     [self.view11 setUserInteractionEnabled:NO];
-    [self.backgroundPanel3 setHidden:YES];
+    //[self.backgroundPanel3 setHidden:YES];
     
 }
 
