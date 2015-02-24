@@ -25,6 +25,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblBoardType;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *lblHeader;
+@property (weak, nonatomic) IBOutlet UILabel *backgroundPanel1;
+@property (weak, nonatomic) IBOutlet UILabel *bacgroundPanel2;
+@property (weak, nonatomic) IBOutlet UILabel *backgroundPanel3;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblDive1;
 @property (weak, nonatomic) IBOutlet UILabel *lblDive2;
@@ -52,6 +55,5 @@
 
 - (IBAction)btnEnterScoreClick:(id)sender;
 - (IBAction)btnEnterTotalScoreClick:(id)sender;
-//- (IBAction)btnReturnClick:(id)sender;
 
 @end

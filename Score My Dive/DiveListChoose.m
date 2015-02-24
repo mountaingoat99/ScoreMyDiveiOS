@@ -50,24 +50,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.backgroundPanel1.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.backgroundPanel1.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    self.backgroundPanel1.layer.masksToBounds = NO;
+    self.backgroundPanel1.layer.shadowOpacity = 1.0;
+    
+    self.bacgroundPanel2.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.bacgroundPanel2.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    self.bacgroundPanel2.layer.masksToBounds = NO;
+    self.bacgroundPanel2.layer.shadowOpacity = 1.0;
+    
+    self.backgroundPanel3.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.backgroundPanel3.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    self.backgroundPanel3.layer.masksToBounds = NO;
+    self.backgroundPanel3.layer.shadowOpacity = 1.0;
+    
     // attributes for controls
-    self.txtDiveNumber.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.txtDiveNumber.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.txtDiveNumber.layer.masksToBounds = NO;
-    self.txtDiveNumber.layer.shadowRadius = 4.0f;
-    self.txtDiveNumber.layer.shadowOpacity = .3;
     self.txtDiveNumber.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     self.txtDiveNumber.delegate = self;
-    
-    self.btnEnterScore.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.btnEnterScore.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.btnEnterScore.layer.masksToBounds = NO;
-    self.btnEnterScore.layer.shadowOpacity = .7;
-    
-    self.btnEnterTotalScore.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.btnEnterTotalScore.layer.shadowOffset = CGSizeMake(.1f, .1f);
-    self.btnEnterTotalScore.layer.masksToBounds = NO;
-    self.btnEnterTotalScore.layer.shadowOpacity = .7;
     
     // sets up the following delegate method to disable horizontal scrolling
     // don't forget to declare the UIScrollViewDelegate in the .h file
@@ -87,6 +87,20 @@
     [self fillType];
     [self fillDiveInfo];
     [self checkFinishedScoring];
+    
+    // here we need to see if the dives are all scored, if so we will just set the text back to dive 1
+    if (self.whatNumber == self.diveTotal) {
+        
+        if (self.txtDiveNumber.text.length == 0) {
+            self.txtDiveNumber.text = self.diveNumberArray [0];
+        }
+        // this sets it to what ever the current dive number is
+    } else {
+        
+        if (self.txtDiveNumber.text.length == 0) {
+            self.txtDiveNumber.text = self.diveNumberArray[self.whatNumber];
+        }
+    }
 }
 
 // only allow portrait in iphone
@@ -198,15 +212,17 @@
 // shows the next dive number as soon as the user presses the txt
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     
-    // here we need to see if the dives are all scores, if so we will just set the text back to dive 1
+    // here we need to see if the dives are all scored, if so we will just set the text back to dive 1
     if (self.whatNumber == self.diveTotal) {
+        
         if (self.txtDiveNumber.text.length == 0) {
             self.txtDiveNumber.text = self.diveNumberArray [0];
         }
+    // this sets it to what ever the current dive number is
     } else {
     
         if (self.txtDiveNumber.text.length == 0) {
-            self.txtDiveNumber.text = self.diveNumberArray [self.whatNumber];
+            self.txtDiveNumber.text = self.diveNumberArray[self.whatNumber];
         }
     }
     return YES;
@@ -214,11 +230,12 @@
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     
-    if (pickerView ==self.diveNumberPicker) {
-        return self.diveNumberArray.count;
-    } else {
-        return self.diveNumberArray.count;
-    }
+    // not sure why I was doing this, delete once testing is fine
+    //if (pickerView ==self.diveNumberPicker) {
+    return self.diveNumberArray.count;
+    //} else {
+        //return self.diveNumberArray.count;
+    //}
 }
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
@@ -226,9 +243,6 @@
 }
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    
-    // assign the first item in array to text box right away, so user doesn't have to
-    //self.txtDiveNumber.text = self.diveNumberArray [row];
     
     // here we need to see what dive number is chosen and add that number to the self.diveNumber variable
     [self diveNumberFromPicker];
@@ -298,11 +312,6 @@
     }
 }
 
-//- (IBAction)btnReturnClick:(id)sender {
-//    
-//    [self performSegueWithIdentifier:@"idSegueChooseToList" sender:self];
-//}
-
 #pragma private methods
 
 -(void)GetCollectionofMeetInfo {
@@ -350,11 +359,11 @@
 -(void)makePicker {
     
     self.diveNumberPicker = [[UIPickerView alloc] init];
-    [self.diveNumberPicker setBackgroundColor:[UIColor grayColor]];
+    [self.diveNumberPicker setBackgroundColor:[UIColor colorWithRed:.16 green:.45 blue:.81 alpha:1]];
     self.diveNumberPicker.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.diveNumberPicker.layer.shadowOffset = CGSizeMake(.1f, .1f);
+    self.diveNumberPicker.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.diveNumberPicker.layer.masksToBounds = NO;
-    self.diveNumberPicker.layer.shadowOpacity = .3;
+    self.diveNumberPicker.layer.shadowOpacity = 1.0;
     self.diveNumberPicker.dataSource = self;
     self.diveNumberPicker.delegate = self;
     self.txtDiveNumber.inputView = self.diveNumberPicker;
@@ -381,20 +390,16 @@
 -(void)fillText {
     
     // meet info
-    //Meet *meet = [[Meet alloc] init];
     Meet *meet = [self.meetInfo objectAtIndex:0];
     self.lblSchoolName.text = meet.schoolName;
     
     // diver info
-    //Diver *diver = [[Diver alloc] init];
     Diver *diver = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:0];
     self.lblDiverName.text = diver.Name;
     
 }
 
 -(void)fillType {
-    
-    //DiverBoardSize *board = [[DiverBoardSize alloc] init];
     
     DiverBoardSize *board = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:4];
     
