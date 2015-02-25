@@ -22,6 +22,7 @@
 #import "DiveNumberCheck.h"
 #import "TypeDiveNumber.h"
 #import "ChooseDiveNumber.h"
+#import "SwitchDiver.h"
 
 @interface DiveListEnter ()
 
@@ -192,6 +193,15 @@
         dest.maxDiveNumber = self.maxDiveNumber;
         dest.onDiveNumber = self.onDiveNumber;
         dest.whoCalled = 1;
+    }
+    
+    if([segue.identifier isEqualToString:@"SegueEnterListToSwitch"]) {
+        
+        SwitchDiver *switchDiver = [segue destinationViewController];
+        
+        switchDiver.meetRecordID = self.meetRecordID;
+        switchDiver.diverRecordID = self.diverRecordID;
+        switchDiver.meetInfo = self.meetInfo;
     }
 }
 

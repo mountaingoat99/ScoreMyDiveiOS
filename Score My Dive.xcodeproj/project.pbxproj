@@ -67,6 +67,7 @@
 		26E419A31A0480C800D79C05 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26E419A21A0480C800D79C05 /* Images.xcassets */; };
 		26E419A81A048E3100D79C05 /* QuickScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E419A71A048E3100D79C05 /* QuickScoreViewController.m */; };
 		26E5C9261A4DE50700C542F7 /* DiveEnter.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E5C9251A4DE50700C542F7 /* DiveEnter.m */; };
+		26F18E211A9DF12100BC1DF1 /* SwitchDiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F18E201A9DF12100BC1DF1 /* SwitchDiver.m */; };
 		26F7906A1A770BDB0006098B /* AppIconBlack.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26F790691A770BDB0006098B /* AppIconBlack.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -194,6 +195,8 @@
 		26E419A71A048E3100D79C05 /* QuickScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickScoreViewController.m; sourceTree = "<group>"; };
 		26E5C9241A4DE50700C542F7 /* DiveEnter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveEnter.h; sourceTree = "<group>"; };
 		26E5C9251A4DE50700C542F7 /* DiveEnter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveEnter.m; sourceTree = "<group>"; };
+		26F18E1F1A9DF12100BC1DF1 /* SwitchDiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchDiver.h; sourceTree = "<group>"; };
+		26F18E201A9DF12100BC1DF1 /* SwitchDiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchDiver.m; sourceTree = "<group>"; };
 		26F790691A770BDB0006098B /* AppIconBlack.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIconBlack.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -299,6 +302,8 @@
 		26A07E881A09963700997E5C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				26F18E1F1A9DF12100BC1DF1 /* SwitchDiver.h */,
+				26F18E201A9DF12100BC1DF1 /* SwitchDiver.m */,
 				26D2E5C31A9CA01D00D9EB7A /* ChooseDiveNumberEnter.h */,
 				26D2E5C41A9CA01D00D9EB7A /* ChooseDiveNumberEnter.m */,
 				2677C2751A9A647A002DDC12 /* ChooseDiveNumber.h */,
@@ -573,6 +578,7 @@
 				26BE23501A10275A00E123D0 /* Diver.m in Sources */,
 				2691AE6C1A0691FB000ABD3B /* DiverDetailsVC.m in Sources */,
 				26BE238D1A1027CC00E123D0 /* ValidScores.m in Sources */,
+				26F18E211A9DF12100BC1DF1 /* SwitchDiver.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

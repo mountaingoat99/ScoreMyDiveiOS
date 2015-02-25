@@ -19,6 +19,7 @@
 #import "DiveListScore.h"
 #import "DiveListFinalScore.h"
 #import "DiveListEnter.h"
+#import "SwitchDiver.h"
 
 @interface DiveListChoose ()
 
@@ -199,6 +200,15 @@
         enter.meetInfo = self.meetInfo;
         enter.meetRecordID = self.meetRecordID;
         enter.diverRecordID = self.diverRecordID;
+    }
+    
+    if([segue.identifier isEqualToString:@"SegueChooseDiveToSwitch"]) {
+        
+        SwitchDiver *switchDiver = [segue destinationViewController];
+        
+        switchDiver.meetRecordID = self.meetRecordID;
+        switchDiver.diverRecordID = self.diverRecordID;
+        switchDiver.meetInfo = self.meetInfo;
     }
 }
 

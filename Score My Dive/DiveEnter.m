@@ -20,6 +20,7 @@
 #import "DiveNumberCheck.h"
 #import "ChooseDiveNumberEnter.h"
 #import "TypeDiveNumberEnter.h"
+#import "SwitchDiver.h"
 
 @interface DiveEnter ()
 
@@ -202,6 +203,15 @@
         
         ChooseDiver *choose = [segue destinationViewController];
         choose.meetRecordID = self.meetRecordID;
+    }
+    
+    if([segue.identifier isEqualToString:@"SegueEnterToSwitch"]) {
+        
+        SwitchDiver *switchDiver = [segue destinationViewController];
+        
+        switchDiver.meetRecordID = self.meetRecordID;
+        switchDiver.diverRecordID = self.diverRecordID;
+        switchDiver.meetInfo = self.meetInfo;
     }
 }
 
