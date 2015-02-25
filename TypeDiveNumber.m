@@ -186,7 +186,7 @@
     if (self.txtDiveNumberEntry.text.length > 0 && self.txtDivePositionEntry.text.length > 0) {
         // now make sure the dive is legit
         [self CheckValidDiveFromText];
-        if (self.diveTextArray.count > 0) {
+        if (![self.lblDivedd.text isEqual:@"0.0"]) {
             
             [self ConvertTextEntries];
             

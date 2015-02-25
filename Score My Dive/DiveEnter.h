@@ -90,8 +90,6 @@
 - (IBAction)Dive10EditClick:(UILongPressGestureRecognizer *)sender;
 - (IBAction)Dive11EditClick:(UILongPressGestureRecognizer *)sender;
 
-- (IBAction)btnEnterScoreClick:(id)sender;
-- (IBAction)btnEnterTotalScoreClick:(id)sender;
 - (IBAction)lblOptionsClick:(id)sender;
 
 @end

@@ -97,6 +97,8 @@
     self.txt7.autocompleteType = HTAutoCompleteTypeNumbers;
     self.txt7.delegate = self;
     
+    [self.txt1 becomeFirstResponder];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated {

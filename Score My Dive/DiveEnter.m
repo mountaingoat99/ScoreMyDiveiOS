@@ -8,8 +8,6 @@
 
 #import "DiveEnter.h"
 #import "JudgeScores.h"
-#import "DiveCategory.h"
-#import "DiveTypes.h"
 #import "Meet.h"
 #import "Diver.h"
 #import "DiverBoardSize.h"
@@ -20,8 +18,8 @@
 #import "MeetCollection.h"
 #import "ChooseDiver.h"
 #import "DiveNumberCheck.h"
-#import "ChooseDiveNumber.h"
-#import "TypeDiveNumber.h"
+#import "ChooseDiveNumberEnter.h"
+#import "TypeDiveNumberEnter.h"
 
 @interface DiveEnter ()
 
@@ -34,7 +32,6 @@
 @property (nonatomic) int diveTotal;
 @property (nonatomic, strong) NSNumber *scoreTotal;
 
-// properties to send to the diveScore screen - need to make sure these are showing in the Type and Choose dives
 @property (nonatomic, strong) NSString *diveCategory;
 @property (nonatomic, strong) NSString *divePosition;
 @property (nonatomic, strong) NSString *diveNameForDB;
@@ -48,7 +45,6 @@
 -(void)fillDiveNumber;
 -(void)fillDiveInfo;
 -(void)hideInitialControls;
-//-(void)UpdateDiveInfoToSend;    // maybe send?
 -(void)checkFinishedScoring;
 -(void)ShowScoreTotal:(NSNumber*)scoretotal;
 
@@ -148,37 +144,31 @@
 // push id to the next view controller
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    // send to the diveListScore
-    if ([segue.identifier isEqualToString:@"idSegueDiveEnterToScore"]) {
+    // send to the Choose Dive
+    if ([segue.identifier isEqualToString:@"idSegueEnterToChooseDive"]) {
         
-        DiveListScore *score = [segue destinationViewController];
+        ChooseDiveNumberEnter *score = [segue destinationViewController];
         
         self.listOrNot = 1;
         score.listOrNot = self.listOrNot;
+        score.boardSize = self.boardSize;
         score.meetRecordID = self.meetRecordID;
         score.diverRecordID = self.diverRecordID;
-        score.diveNumber = [self.onDiveNumber intValue];
-        score.diveCategory = self.diveCategory;
-        score.divePosition = self.divePosition;
-        score.diveNameForDB = self.diveNameForDB;
-        score.multiplierToSend = self.multiplierToSend;
+        score.onDiveNumber = self.onDiveNumber;
         score.meetInfo = self.meetInfo;
     }
     
-    // send to the diveListFinalScore
-    if ([segue.identifier isEqualToString:@"idSegueDiveEnterToFinalScore"]) {
+    // send to the TypeDive
+    if ([segue.identifier isEqualToString:@"idSegueEnterToType"]) {
         
-        DiveListFinalScore *score = [segue destinationViewController];
+        TypeDiveNumberEnter *score = [segue destinationViewController];
         
         self.listOrNot = 1;
         score.listOrNot = self.listOrNot;
+        score.boardSize = self.boardSize;
         score.meetRecordID = self.meetRecordID;
         score.diverRecordID = self.diverRecordID;
-        score.diveNumber = [self.onDiveNumber intValue];
-        score.diveCategory = self.diveCategory;
-        score.divePosition = self.divePosition;
-        score.diveNameForDB = self.diveNameForDB;
-        score.multiplierToSend = self.multiplierToSend;
+        score.onDiveNumber = self.onDiveNumber;
         score.meetInfo = self.meetInfo;
     }
     
@@ -213,150 +203,6 @@
         ChooseDiver *choose = [segue destinationViewController];
         choose.meetRecordID = self.meetRecordID;
     }
-    
-    if ([segue.identifier isEqualToString:@""]) {
-        TypeDiveNumber *dest = segue.destinationViewController;
-        
-        //dest.delegate = self;
-        
-        dest.meetRecordID = self.meetRecordID;
-        dest.diverRecordID = self.diverRecordID;
-        dest.meetInfo = self.meetInfo;
-        dest.boardSize = self.boardSize;
-        dest.maxDiveNumber = self.maxDiveNumber;
-        dest.onDiveNumber = self.onDiveNumber;
-        dest.whoCalled = 3;
-    }
-    
-    if ([segue.identifier isEqualToString:@""]) {
-        ChooseDiveNumber *dest = segue.destinationViewController;
-        
-        //dest.delegate = self;
-        
-        dest.meetRecordID = self.meetRecordID;
-        dest.diverRecordID = self.diverRecordID;
-        dest.meetInfo = self.meetInfo;
-        dest.boardSize = self.boardSize;
-        dest.maxDiveNumber = self.maxDiveNumber;
-        dest.onDiveNumber = self.onDiveNumber;
-        dest.whoCalled = 3;
-    }
-}
-
-- (IBAction)btnEnterScoreClick:(id)sender {
-    
-//    // update  and send to next view controller from the txtfields
-//    if (self.txtDiveNumberEntry.text.length > 0) {
-//        // now make sure there is text in the position field
-//        if (self.txtDivePositionEntry.text.length > 0) {
-//        
-//            // now make sure the dive is legit
-//            [self CheckValidDiveFromText];
-//            if (self.diveTextArray.count > 0) {
-//                
-//                [self ConvertTextEntries];
-//                [self UpdateDiveInfoToSend];
-//                
-//                [self performSegueWithIdentifier:@"idSegueDiveEnterToScore" sender:self];
-//            
-//            } else {
-//                UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-//                                                                message:@"That is not a valid dive! Make sure the Dive DD is more than 0.0"
-//                                                               delegate:nil
-//                                                      cancelButtonTitle:@"OK"
-//                                                      otherButtonTitles:nil];
-//                [error show];
-//                [error reloadInputViews];
-//            }
-//            
-//        } else {
-//            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-//                                                            message:@"You also need to pick a Dive Position"
-//                                                           delegate:nil
-//                                                  cancelButtonTitle:@"OK"
-//                                                  otherButtonTitles:nil];
-//            [error show];
-//            [error reloadInputViews];
-//        }
-//    // update  and send to next view controller from the pickers
-//    } else {
-//    
-//        self.selectedPosition = (int)self.SCPosition.selectedSegmentIndex;
-//        
-//        if (self.diveGroupID != 0 && self.diveID != 0 && self.selectedPosition >= 0) {
-//            
-//            [self UpdateDiveInfoToSend];
-//            
-//            [self performSegueWithIdentifier:@"idSegueDiveEnterToScore" sender:self];
-//            
-//        } else {
-//            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-//                                                            message:@"Please make sure you've picked a dive and a valid position"
-//                                                           delegate:nil
-//                                                  cancelButtonTitle:@"OK"
-//                                                  otherButtonTitles:nil];
-//            [error show];
-//            [error reloadInputViews];
-//        }
-//    }
-}
-
-- (IBAction)btnEnterTotalScoreClick:(id)sender {
-    
-//    // update  and send to next view controller from the txtfields
-//    if (self.txtDiveNumberEntry.text.length > 0) {
-//        // now make sure there is text in the position field
-//        if (self.txtDivePositionEntry.text.length > 0) {
-//            
-//            // now make sure the dive is legit
-//            [self CheckValidDiveFromText];
-//            if (self.diveTextArray.count > 0) {
-//                
-//                [self ConvertTextEntries];
-//                [self UpdateDiveInfoToSend];
-//                
-//                [self performSegueWithIdentifier:@"idSegueDiveEnterToFinalScore" sender:self];
-//                
-//            } else {
-//                UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-//                                                                message:@"That is not a valid dive! Make sure the Dive DD is more than 0.0"
-//                                                               delegate:nil
-//                                                      cancelButtonTitle:@"OK"
-//                                                      otherButtonTitles:nil];
-//                [error show];
-//                [error reloadInputViews];
-//            }
-//            
-//        } else {
-//            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-//                                                            message:@"You also need to pick a Dive Position"
-//                                                           delegate:nil
-//                                                  cancelButtonTitle:@"OK"
-//                                                  otherButtonTitles:nil];
-//            [error show];
-//            [error reloadInputViews];
-//        }
-//        // update  and send to next view controller from the pickers
-//    } else {
-//    
-//        self.selectedPosition = (int)self.SCPosition.selectedSegmentIndex;
-//        
-//        if (self.diveGroupID != 0 && self.diveID != 0 && self.selectedPosition >= 0) {
-//            
-//            [self UpdateDiveInfoToSend];
-//            
-//            [self performSegueWithIdentifier:@"idSegueDiveEnterToFinalScore" sender:self];
-//            
-//        } else {
-//            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-//                                                            message:@"Please make sure you've picked a dive and a valid position"
-//                                                           delegate:nil
-//                                                  cancelButtonTitle:@"OK"
-//                                                  otherButtonTitles:nil];
-//            [error show];
-//            [error reloadInputViews];
-//        }
-//    }
 }
 
 - (IBAction)lblOptionsClick:(id)sender {
@@ -417,6 +263,12 @@
         [alertController addAction:finalScoreAction];
         
         [self presentViewController:alertController animated:YES completion:nil];
+        
+        UIPopoverPresentationController *popover = alertController.popoverPresentationController;
+        if (popover) {
+            popover.sourceView = self.view;
+            popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        }
     }
 }
 
@@ -467,6 +319,12 @@
         [alertController addAction:finalScoreAction];
         
         [self presentViewController:alertController animated:YES completion:nil];
+        
+        UIPopoverPresentationController *popover = alertController.popoverPresentationController;
+        if (popover) {
+            popover.sourceView = self.view;
+            popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        }
     }
 }
 
@@ -517,6 +375,12 @@
         [alertController addAction:finalScoreAction];
         
         [self presentViewController:alertController animated:YES completion:nil];
+        
+        UIPopoverPresentationController *popover = alertController.popoverPresentationController;
+        if (popover) {
+            popover.sourceView = self.view;
+            popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        }
     }
 }
 
@@ -567,6 +431,12 @@
         [alertController addAction:finalScoreAction];
         
         [self presentViewController:alertController animated:YES completion:nil];
+        
+        UIPopoverPresentationController *popover = alertController.popoverPresentationController;
+        if (popover) {
+            popover.sourceView = self.view;
+            popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        }
     }
 }
 
@@ -617,6 +487,12 @@
         [alertController addAction:finalScoreAction];
         
         [self presentViewController:alertController animated:YES completion:nil];
+        
+        UIPopoverPresentationController *popover = alertController.popoverPresentationController;
+        if (popover) {
+            popover.sourceView = self.view;
+            popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        }
     }
 }
 
@@ -667,6 +543,12 @@
         [alertController addAction:finalScoreAction];
         
         [self presentViewController:alertController animated:YES completion:nil];
+        
+        UIPopoverPresentationController *popover = alertController.popoverPresentationController;
+        if (popover) {
+            popover.sourceView = self.view;
+            popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        }
     }
 }
 
@@ -717,6 +599,12 @@
         [alertController addAction:finalScoreAction];
         
         [self presentViewController:alertController animated:YES completion:nil];
+        
+        UIPopoverPresentationController *popover = alertController.popoverPresentationController;
+        if (popover) {
+            popover.sourceView = self.view;
+            popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        }
     }
 }
 
@@ -767,6 +655,12 @@
         [alertController addAction:finalScoreAction];
         
         [self presentViewController:alertController animated:YES completion:nil];
+        
+        UIPopoverPresentationController *popover = alertController.popoverPresentationController;
+        if (popover) {
+            popover.sourceView = self.view;
+            popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        }
     }
 }
 
@@ -817,6 +711,12 @@
         [alertController addAction:finalScoreAction];
         
         [self presentViewController:alertController animated:YES completion:nil];
+        
+        UIPopoverPresentationController *popover = alertController.popoverPresentationController;
+        if (popover) {
+            popover.sourceView = self.view;
+            popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        }
     }
 }
 
@@ -867,6 +767,12 @@
         [alertController addAction:finalScoreAction];
         
         [self presentViewController:alertController animated:YES completion:nil];
+        
+        UIPopoverPresentationController *popover = alertController.popoverPresentationController;
+        if (popover) {
+            popover.sourceView = self.view;
+            popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        }
     }
 }
 
@@ -917,6 +823,12 @@
         [alertController addAction:finalScoreAction];
         
         [self presentViewController:alertController animated:YES completion:nil];
+        
+        UIPopoverPresentationController *popover = alertController.popoverPresentationController;
+        if (popover) {
+            popover.sourceView = self.view;
+            popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        }
     }
 }
 
@@ -1286,6 +1198,8 @@
         self.lblDiveNumber.text = @"Complete";
         [self.btnEnterScore setEnabled:NO];
         [self.btnEnterTotalScore setEnabled:NO];
+        [self.btnEnterScore setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [self.btnEnterTotalScore setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         self.lblDiveNumber.text = @"Finished";
     }
 }
@@ -1336,8 +1250,6 @@
     [self.view9 setUserInteractionEnabled:NO];
     [self.view10 setUserInteractionEnabled:NO];
     [self.view11 setUserInteractionEnabled:NO];
-    //[self.backgroundPanel3 setHidden:YES];
-    
 }
 
 @end

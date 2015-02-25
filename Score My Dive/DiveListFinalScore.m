@@ -43,6 +43,8 @@
     self.txtTotalScore.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txtTotalScore.keyboardType = UIKeyboardTypeDecimalPad;
     self.txtTotalScore.delegate = self;
+    
+    [self.txtTotalScore becomeFirstResponder];
 
 }
 
