@@ -5651,7 +5651,7 @@
         <!--SwitchDiver-->
         <scene sceneID="gj4-jb-CNN">
             <objects>
-                <viewController storyboardIdentifier="SwitchDIver" title="SwitchDiver" id="sfg-o9-dp1" customClass="SwitchDiver" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SwitchDIver" title="SwitchDiver" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sfg-o9-dp1" customClass="SwitchDiver" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lJk-KU-GgH"/>
                         <viewControllerLayoutGuide type="bottom" id="65m-3t-kP9"/>
@@ -5735,11 +5735,15 @@
                     <size key="freeformSize" width="400" height="800"/>
                     <connections>
                         <outlet property="tblDiverRankings" destination="Z88-e5-1jC" id="r7k-jj-I1h"/>
+                        <segue destination="O1M-Zl-WrP" kind="show" identifier="SegueSwitchToChoose" id="EOE-Mf-Zuw"/>
+                        <segue destination="ptW-d7-ktO" kind="show" identifier="SegueSwitchToListEnter" id="ETC-JH-JYn"/>
+                        <segue destination="zgt-Qo-0nS" kind="show" identifier="SegueSwitchToListChoose" id="ucJ-ax-QQm"/>
+                        <segue destination="45S-Rk-1AR" kind="show" identifier="SegueSwitchToEnter" id="kwT-mo-PqX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ttc-Pd-2Vs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2091.75" y="1725.75"/>
+            <point key="canvasLocation" x="2165.25" y="1657.5"/>
         </scene>
         <!--RankingsDiver-->
         <scene sceneID="Xa8-ef-FyB">
@@ -6724,7 +6728,7 @@
         <!--ChooseDiveNumberEnter-->
         <scene sceneID="AQD-l9-zHt">
             <objects>
-                <viewController title="ChooseDiveNumberEnter" id="A9S-zN-PQe" customClass="ChooseDiveNumberEnter" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChooseDiveNumberEnter" title="ChooseDiveNumberEnter" useStoryboardIdentifierAsRestorationIdentifier="YES" id="A9S-zN-PQe" customClass="ChooseDiveNumberEnter" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iyW-sD-2qj"/>
                         <viewControllerLayoutGuide type="bottom" id="MUb-dD-uDw"/>
@@ -7532,7 +7536,7 @@
         <!--TypeDiveNumberEnter-->
         <scene sceneID="pCe-EV-mir">
             <objects>
-                <viewController storyboardIdentifier="TypeDiveNumberEnter" title="TypeDiveNumberEnter" id="rgX-tA-aYi" customClass="TypeDiveNumberEnter" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TypeDiveNumberEnter" title="TypeDiveNumberEnter" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rgX-tA-aYi" customClass="TypeDiveNumberEnter" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ldi-Ef-uSg"/>
                         <viewControllerLayoutGuide type="bottom" id="A7z-CU-U1a"/>
@@ -21165,19 +21169,19 @@
         <image name="tabBarMeet" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="N4H-of-22C"/>
-        <segue reference="lAR-fZ-JPX"/>
-        <segue reference="isg-fR-ZIK"/>
-        <segue reference="ZSi-8N-4XL"/>
+        <segue reference="AmW-rT-pfJ"/>
+        <segue reference="ETC-JH-JYn"/>
+        <segue reference="dGL-Wh-1hw"/>
+        <segue reference="ucJ-ax-QQm"/>
+        <segue reference="kwT-mo-PqX"/>
+        <segue reference="EOE-Mf-Zuw"/>
+        <segue reference="y4j-Dk-6Ht"/>
+        <segue reference="Tmb-Nx-zfA"/>
+        <segue reference="dXz-7p-H3j"/>
         <segue reference="8rm-TB-ck0"/>
         <segue reference="Q9B-Pi-oeZ"/>
         <segue reference="esH-D1-NwI"/>
         <segue reference="2fN-uI-qei"/>
-        <segue reference="vyg-tO-Hj7"/>
-        <segue reference="fUy-vt-kRQ"/>
-        <segue reference="EVc-ML-eaf"/>
-        <segue reference="ZHr-1J-Hcf"/>
-        <segue reference="Gci-L1-ReY"/>
         <segue reference="ld9-nS-dHy"/>
         <segue reference="gkk-lV-b4s"/>
         <segue reference="FXP-Wz-CkA"/>

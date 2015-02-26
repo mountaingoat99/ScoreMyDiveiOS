@@ -80,31 +80,40 @@
 -(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
     [super encodeRestorableStateWithCoder:coder];
     
+    [coder encodeObject:self.boardSize forKey:@"boardSize"];
     [coder encodeInt:self.meetRecordID forKey:@"meetId"];
     [coder encodeInt:self.diverRecordID forKey:@"diverId"];
     [coder encodeObject:self.meetInfo forKey:@"meetInfo"];
+    [coder encodeObject:self.onDiveNumber forKey:@"onDiveNumber"];
     [coder encodeInt:self.divePositionID forKey:@"divePos"];
+    [coder encodeInt:self.diveGroupID forKey:@"diveGroupId"];
+    [coder encodeInt:self.diveID forKey:@"diveId"];
+    [coder encodeInt:self.listOrNot forKey:@"listOrNot"];
+    [coder encodeObject:self.diveNumberEntered forKey:@"diveNumberEntered"];
+    [coder encodeObject:self.divePositionEntered forKey:@"divePositionEntered"];
+    [coder encodeObject:self.diveTextArray forKey:@"diveTextArray"];
+    [coder encodeInt:self.selectedPosition forKey:@"position"];
     [coder encodeObject:self.lblDivedd.text forKey:@"dd"];
     [coder encodeObject:self.txtDiveNumberEntry.text forKey:@"diveNumEntry"];
     [coder encodeObject:self.txtDivePositionEntry.text forKey:@"divePosEntry"];
-    [coder encodeObject:self.diveTextArray forKey:@"diveTextArray"];
-    [coder encodeObject:self.boardSize forKey:@"board"];
-    [coder encodeInt:self.listOrNot forKey:@"listOrNot"];
-    [coder encodeObject:self.onDiveNumber forKey:@"onDiveNumber"];
-    
 }
 
 -(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
     [super decodeRestorableStateWithCoder:coder];
     
+    self.boardSize = [coder decodeObjectForKey:@"boardSize"];
     self.meetRecordID = [coder decodeIntForKey:@"meetId"];
     self.diverRecordID = [coder decodeIntForKey:@"diverId"];
     self.meetInfo = [coder decodeObjectForKey:@"meetInfo"];
+    self.onDiveNumber = [coder decodeObjectForKey:@"onDiveNumber"];
+    self.divePositionID = [coder decodeIntForKey:@"divePos"];
     self.diveGroupID = [coder decodeIntForKey:@"diveGroupId"];
     self.diveID = [coder decodeIntForKey:@"diveId"];
-    self.divePositionID = [coder decodeIntForKey:@"divePos"];
+    self.selectedPosition = [coder decodeIntForKey:@"position"];
+    self.listOrNot = [coder decodeIntForKey:@"listOrNot"];
+    self.diveNumberEntered = [coder decodeObjectForKey:@"diveNumberEntered"];
+    self.divePositionEntered = [coder decodeObjectForKey:@"divePositionEntered"];
     self.lblDivedd.text = [coder decodeObjectForKey:@"dd"];
-    
     self.txtDiveNumberEntry.text = [coder decodeObjectForKey:@"diveNumEntry"];
     if (self.txtDiveNumberEntry.text.length == 0) {
         self.txtDiveNumberEntry.text = @"";
@@ -114,9 +123,6 @@
         self.txtDivePositionEntry.text = @"";
     }
     self.diveTextArray = [coder decodeObjectForKey:@"diveTextArray"];
-    self.boardSize = [coder decodeObjectForKey:@"board"];
-    self.listOrNot = [coder decodeIntForKey:@"listOrNot"];
-    self.onDiveNumber = [coder decodeObjectForKey:@"onDiveNumber"];
 }
 
 - (void)didReceiveMemoryWarning {

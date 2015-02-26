@@ -109,54 +109,54 @@
     
     NSNumber *segment = [NSNumber numberWithInt:(int)self.SCPosition.selectedSegmentIndex];
     [coder encodeObject:segment forKey:@"segment"];
+    [coder encodeObject:self.boardSize forKey:@"board"];
     [coder encodeInt:self.meetRecordID forKey:@"meetId"];
     [coder encodeInt:self.diverRecordID forKey:@"diverId"];
     [coder encodeObject:self.meetInfo forKey:@"meetInfo"];
-    [coder encodeObject:self.txtDiveGroup.text forKey:@"diveGroupText"];
+    [coder encodeObject:self.onDiveNumber forKey:@"onDiveNumber"];
     [coder encodeInt:self.diveGroupID forKey:@"diveGroupId"];
-    [coder encodeObject:self.txtDive.text forKey:@"diveText"];
     [coder encodeInt:self.diveID forKey:@"diveId"];
     [coder encodeInt:self.divePositionID forKey:@"divePos"];
+    [coder encodeObject:self.txtDiveGroup.text forKey:@"diveGroupText"];
+    [coder encodeObject:self.txtDive.text forKey:@"diveText"];
+    [coder encodeObject:self.lblDivedd.text forKey:@"dd"];
     [coder encodeObject:self.diveGroupArray forKey:@"diveGroupArray"];
     [coder encodeObject:self.diveArray forKey:@"diveArray"];
-    [coder encodeObject:self.lblDivedd.text forKey:@"dd"];
     [coder encodeObject:self.straight forKey:@"straight"];
-    [coder encodeObject:self.tuck forKey:@"tuck"];
     [coder encodeObject:self.pike forKey:@"pike"];
+    [coder encodeObject:self.tuck forKey:@"tuck"];
     [coder encodeObject:self.free forKey:@"free"];
-    [coder encodeObject:self.boardSize forKey:@"board"];
     [coder encodeInt:self.listOrNot forKey:@"listOrNot"];
-    [coder encodeObject:self.onDiveNumber forKey:@"onDiveNumber"];
 }
 
 -(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
     [super decodeRestorableStateWithCoder:coder];
     
     self.SCPosition.selectedSegmentIndex = [[coder decodeObjectForKey:@"segment"] intValue];
+    self.boardSize = [coder decodeObjectForKey:@"board"];
     self.meetRecordID = [coder decodeIntForKey:@"meetId"];
     self.diverRecordID = [coder decodeIntForKey:@"diverId"];
     self.meetInfo = [coder decodeObjectForKey:@"meetInfo"];
+    self.onDiveNumber = [coder decodeObjectForKey:@"onDiveNumber"];
+    self.diveGroupID = [coder decodeIntForKey:@"diveGroupId"];
+    self.diveID = [coder decodeIntForKey:@"diveId"];
+    self.divePositionID = [coder decodeIntForKey:@"divePos"];
     self.txtDiveGroup.text = [coder decodeObjectForKey:@"diveGroupText"];
     if (self.txtDiveGroup.text.length == 0) {
         self.txtDiveGroup.text = @"";
     }
-    self.diveGroupID = [coder decodeIntForKey:@"diveGroupId"];
     self.txtDive.text = [coder decodeObjectForKey:@"diveText"];
     if (self.txtDive.text.length == 0) {
         self.txtDive.text = @"";
     }
-    self.diveID = [coder decodeIntForKey:@"diveId"];
-    self.divePositionID = [coder decodeIntForKey:@"divePos"];
+    self.lblDivedd.text = [coder decodeObjectForKey:@"dd"];
     self.diveGroupArray = [coder decodeObjectForKey:@"diveGroupArray"];
     self.diveArray = [coder decodeObjectForKey:@"diveArray"];
-    self.lblDivedd.text = [coder decodeObjectForKey:@"dd"];
     self.straight = [coder decodeObjectForKey:@"straight"];
-    self.tuck = [coder decodeObjectForKey:@"tuck"];
     self.pike = [coder decodeObjectForKey:@"pike"];
+    self.tuck = [coder decodeObjectForKey:@"tuck"];
     self.free = [coder decodeObjectForKey:@"free"];
-    self.boardSize = [coder decodeObjectForKey:@"board"];
     self.listOrNot = [coder decodeIntForKey:@"listOrNot"];
-    self.onDiveNumber = [coder decodeObjectForKey:@"onDiveNumber"];
     
     [self loadDivePicker];
     [self DisableDivePositions];

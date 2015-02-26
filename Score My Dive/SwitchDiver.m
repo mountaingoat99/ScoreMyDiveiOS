@@ -10,7 +10,9 @@
 #import "Diver.h"
 #import "Meet.h"
 #import "MeetCollection.h"
+#import "DiveList.h"
 #import "DiveNumber.h"
+#import "ChooseDiver.h"
 #import "DiveEnter.h"
 #import "DiveListEnter.h"
 #import "DiveListChoose.h"
@@ -22,7 +24,7 @@
 
 -(void)loadData;
 -(void)CollectionOfMeets;
--(BOOL)NoScore;    // not sure
+//-(BOOL)NoScore;    // not sure
 
 @end
 
@@ -51,40 +53,70 @@
 }
 
 // restore state
-//-(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
-//    
-//    [super encodeRestorableStateWithCoder:coder];
-//    
-//    [coder encodeInt:self.meetId forKey:@"meetId"];
-//    [coder encodeObject:self.boardSize forKey:@"boardSize"];
-//}
-//
-//-(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
-//    
-//    [super decodeRestorableStateWithCoder:coder];
-//    
-//    self.meetId = [coder decodeIntForKey:@"meetId"];
-//    self.boardSize = [coder decodeObjectForKey:@"boardSize"];
-//}
-//
-//- (void)didReceiveMemoryWarning {
-//    [super didReceiveMemoryWarning];
-//    // Dispose of any resources that can be recreated.
-//}
+-(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+    [super encodeRestorableStateWithCoder:coder];
+    
+    [coder encodeInt:self.meetRecordID forKey:@"meetId"];
+    [coder encodeInt:self.diverRecordID forKey:@"diverId"];
+    [coder encodeObject:self.meetInfo forKey:@"meetInfo"];
+    
+}
+
+-(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+    [super decodeRestorableStateWithCoder:coder];
+    
+    self.meetRecordID = [coder decodeIntForKey:@"meetId"];
+    self.diverRecordID = [coder decodeIntForKey:@"diverId"];
+    self.meetInfo = [coder decodeObjectForKey:@"meetInfo"];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    // Send the id's to the Diver Meet Scores
-    if ([segue.identifier isEqualToString:@""]) {
-        //DiverMeetScores *diver = [segue destinationViewController];
+    // Send the id's to the ChooseDiver
+    if ([segue.identifier isEqualToString:@"SegueSwitchToChoose"]) {
+        ChooseDiver *switchDiver = [segue destinationViewController];
         
-        self.callingIdToReturnTo = 3;
+        switchDiver.meetInfo = self.meetInfo;
+        switchDiver.meetRecordID = self.meetRecordID;
+        switchDiver.diverRecordID = self.diverRecordID;
         
-//        diver.meetInfo = self.meetInfo;
-//        diver.diverIdToView = self.diverId;
-//        diver.meetIdToView = self.meetId;
-//        diver.callingIDToReturnTo = self.callingIdToReturnTo;
-//        diver.boardSize = self.boardSize;
+    }
+    
+    // Send the id's to the List Enter
+    if ([segue.identifier isEqualToString:@"SegueSwitchToListEnter"]) {
+        ChooseDiver *switchDiver = [segue destinationViewController];
+        
+        switchDiver.meetInfo = self.meetInfo;
+        switchDiver.meetRecordID = self.meetRecordID;
+        switchDiver.diverRecordID = self.diverRecordID;
+        
+    }
+    
+    // Send the id's to the ListChoose
+    if ([segue.identifier isEqualToString:@"SegueSwitchToListChoose"]) {
+        ChooseDiver *switchDiver = [segue destinationViewController];
+        
+        switchDiver.meetInfo = self.meetInfo;
+        switchDiver.meetRecordID = self.meetRecordID;
+        switchDiver.diverRecordID = self.diverRecordID;
+        
+    }
+    
+    // Send the id's to the Diver Enter
+    if ([segue.identifier isEqualToString:@"SegueSwitchToEnter"]) {
+        ChooseDiver *switchDiver = [segue destinationViewController];
+        
+        switchDiver.meetInfo = self.meetInfo;
+        switchDiver.meetRecordID = self.meetRecordID;
+        switchDiver.diverRecordID = self.diverRecordID;
+        
     }
 }
 
@@ -94,25 +126,32 @@
     
     // assigns the diverid clicked so it can be sent to the DiverMeetScore controller
     self.diverRecordID = [[[self.arrDivers objectAtIndex:indexPath.row] objectAtIndex:0] intValue];
+    // load the meet collection array from meet and diver id
+    [self CollectionOfMeets];
     
+    DiveList *list = [[[self.meetInfo objectAtIndex:2] objectAtIndex:0] objectAtIndex:1];
+    NSNumber *noList = list.noList;
+    NSNumber *listFilled = list.listFilled;
     
-    // this logic needs to be completely redone to send the diver to the correct page
-    if ([self NoScore]) {
+    // if no list record go to DiveEnterScreen
+    if ([noList isEqualToNumber:@1]) {
         
-        // load the meet collection array
-        [self CollectionOfMeets];
+        [self performSegueWithIdentifier:@"SegueSwitchToEnter" sender:self];
         
-        // this actually send the chosen cell to the next screen
-        [self performSegueWithIdentifier:@"idRankToDiverMeetScores" sender:self];
+    // if list go right to EnterDiveList
+    } else if ([listFilled isEqualToNumber:@1]) {
         
+        [self performSegueWithIdentifier:@"SegueSwitchToListEnter" sender:self];
+        
+    // if list is finished go right to ChooseList
+    } else if ([listFilled isEqualToNumber:@2]) {
+        
+        [self performSegueWithIdentifier:@"SegueSwitchToListChoose" sender:self];
+        
+    // if none of the above just go right back to ChooseDiver
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"There are no scores for this diver yet"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+    
+        [self performSegueWithIdentifier:@"SegueSwitchToChoose" sender:self];
     }
     
 }
@@ -152,16 +191,11 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"idCellRecord" forIndexPath:indexPath];
     
     cell.textLabel.font = [UIFont systemFontOfSize:16.0];
-    //cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
     cell.textLabel.numberOfLines = 1;
     cell.backgroundColor = [UIColor clearColor];
     
             // set the loaded data to the appropriate cell labels
     cell.textLabel.text = [NSString stringWithFormat:@"%@", [[self.arrDivers objectAtIndex:indexPath.row] objectAtIndex:1]];
-    
-//    NSString *points = [NSString stringWithFormat:@"%@", [[self.arrDivers objectAtIndex:indexPath.row] objectAtIndex:2]];
-//    points = [points stringByAppendingString:@" Points"];
-//    cell.detailTextLabel.text = points;
     
     return cell;
 }
@@ -192,15 +226,15 @@
     
 }
 
--(BOOL)NoScore {
-    
-    DiveNumber *nums = [[DiveNumber alloc] init];
-    
-    if ([nums DiveNumberForRankings:self.meetRecordID diverid:self.diverRecordID]) {
-        return true;
-    } else {
-        return false;
-    }
-}
+//-(BOOL)NoScore {
+//    
+//    DiveNumber *nums = [[DiveNumber alloc] init];
+//    
+//    if ([nums DiveNumberForRankings:self.meetRecordID diverid:self.diverRecordID]) {
+//        return true;
+//    } else {
+//        return false;
+//    }
+//}
 
 @end
