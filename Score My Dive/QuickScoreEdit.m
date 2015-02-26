@@ -375,6 +375,7 @@
                                    NSLog(@"OK Action");
                                    UITextField *name = alertController.textFields.firstObject;
                                    self.lblnameTxt.text = name.text;
+                                   [self updateTotal];
                                }];
     
     [alertController addAction:cancelAction];
