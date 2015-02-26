@@ -19,6 +19,9 @@
 
 @interface DiveListEdit : UIViewController <TypeDiveNumberDelegate, ChooseDiveNumberDelegate>
 
+//popover
+@property (nonatomic, retain) UIPopoverController *popoverContr;
+
 // delegate property
 @property (nonatomic, strong) id<DiveListEnterViewControllerDelegate> delegate;
 
@@ -32,5 +35,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lblDiveNumber;
 @property (weak, nonatomic) IBOutlet UILabel *lblOldDiveName;
+
+- (IBAction)btnTypeNumber:(id)sender;
+- (IBAction)btnChooseDives:(id)sender;
 
 @end
