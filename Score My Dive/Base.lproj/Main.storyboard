@@ -5651,7 +5651,7 @@
         <!--SwitchDiver-->
         <scene sceneID="gj4-jb-CNN">
             <objects>
-                <viewController storyboardIdentifier="SwitchDIver" title="SwitchDiver" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sfg-o9-dp1" customClass="SwitchDiver" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SwitchDiver" title="SwitchDiver" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sfg-o9-dp1" customClass="SwitchDiver" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lJk-KU-GgH"/>
                         <viewControllerLayoutGuide type="bottom" id="65m-3t-kP9"/>
@@ -16829,10 +16829,8 @@
                                     </mask>
                                 </variation>
                                 <connections>
+                                    <action selector="btnSwitchDiver:" destination="45S-Rk-1AR" eventType="touchUpInside" id="EVN-EI-Rtz"/>
                                     <action selector="btnSwitchDiver:" destination="ptW-d7-ktO" eventType="touchUpInside" id="xOU-MZ-Kdi"/>
-                                    <segue destination="sfg-o9-dp1" kind="popoverPresentation" identifier="SegueEnterToSwitch" popoverAnchorView="NcI-TF-0YB" id="vyg-tO-Hj7">
-                                        <popoverArrowDirection key="popoverArrowDirection" down="YES" left="YES" right="YES"/>
-                                    </segue>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kM7-M4-R6u">
@@ -17346,6 +17344,7 @@
                         <outlet property="view9" destination="57l-pi-jg1" id="aYx-kG-BmK"/>
                         <segue destination="ClS-uH-tcF" kind="show" identifier="idEnterDivetoEditJudgeScores" id="Gci-L1-ReY"/>
                         <segue destination="U1W-6W-hsU" kind="show" identifier="idEnterDiveToEditFinalScore" id="ZHr-1J-Hcf"/>
+                        <segue destination="sfg-o9-dp1" kind="show" identifier="SegueEnterToSwitch" id="Ny8-Fs-o6l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zM7-cH-Zvq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -21171,12 +21170,12 @@
     <inferredMetricsTieBreakers>
         <segue reference="AmW-rT-pfJ"/>
         <segue reference="ETC-JH-JYn"/>
-        <segue reference="dGL-Wh-1hw"/>
-        <segue reference="ucJ-ax-QQm"/>
+        <segue reference="Ny8-Fs-o6l"/>
         <segue reference="kwT-mo-PqX"/>
+        <segue reference="ZHr-1J-Hcf"/>
+        <segue reference="Gci-L1-ReY"/>
+        <segue reference="ucJ-ax-QQm"/>
         <segue reference="EOE-Mf-Zuw"/>
-        <segue reference="y4j-Dk-6Ht"/>
-        <segue reference="Tmb-Nx-zfA"/>
         <segue reference="dXz-7p-H3j"/>
         <segue reference="8rm-TB-ck0"/>
         <segue reference="Q9B-Pi-oeZ"/>

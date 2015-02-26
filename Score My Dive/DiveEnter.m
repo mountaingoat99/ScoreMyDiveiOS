@@ -53,6 +53,8 @@
 
 @implementation DiveEnter
 
+@synthesize popoverContr;
+
 #pragma  view controller methods
 
 - (void)viewDidLoad {
@@ -213,6 +215,19 @@
         switchDiver.diverRecordID = self.diverRecordID;
         switchDiver.meetInfo = self.meetInfo;
     }
+}
+
+- (IBAction)btnSwitchDiver:(id)sender {
+    
+    UIStoryboard *sboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    SwitchDiver *switchDiver = [sboard instantiateViewControllerWithIdentifier:@"SwitchDiver"];
+    
+    popoverContr = [[UIPopoverController alloc] initWithContentViewController:switchDiver];
+    popoverContr.popoverContentSize = CGSizeMake(400, 400);
+    switchDiver.meetRecordID = self.meetRecordID;
+    switchDiver.diverRecordID = self.diverRecordID;
+    switchDiver.meetInfo = self.meetInfo;
+    [popoverContr presentPopoverFromRect:[(UIButton *)sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 - (IBAction)lblOptionsClick:(id)sender {

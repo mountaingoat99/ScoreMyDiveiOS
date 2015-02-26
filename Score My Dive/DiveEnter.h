@@ -11,6 +11,10 @@
 
 @interface DiveEnter : UIViewController <UIScrollViewDelegate>
 
+//popover
+@property (nonatomic, retain) UIPopoverController *popoverContr;
+- (IBAction)btnSwitchDiver:(id)sender;
+
 @property (nonatomic) int meetRecordID;
 @property (nonatomic) int diverRecordID;
 @property (nonatomic, strong) NSArray *meetInfo;
