@@ -13,7 +13,6 @@
 
 //popover
 @property (nonatomic, retain) UIPopoverController *popoverContr;
-- (IBAction)btnSwitchDiver:(id)sender;
 
 @property (nonatomic) int meetRecordID;
 @property (nonatomic) int diverRecordID;
@@ -95,5 +94,8 @@
 - (IBAction)Dive11EditClick:(UILongPressGestureRecognizer *)sender;
 
 - (IBAction)lblOptionsClick:(id)sender;
+- (IBAction)btnTypeNumber:(id)sender;
+- (IBAction)btnChooseDives:(id)sender;
+- (IBAction)btnSwitchDiver:(id)sender;
 
 @end

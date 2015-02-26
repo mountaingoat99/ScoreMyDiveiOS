@@ -57,9 +57,9 @@
     
     [super encodeRestorableStateWithCoder:coder];
     
-    [coder encodeInt:self.meetRecordID forKey:@"meetId"];
-    [coder encodeInt:self.diverRecordID forKey:@"diverId"];
-    [coder encodeObject:self.meetInfo forKey:@"meetInfo"];
+//    [coder encodeInt:self.meetRecordID forKey:@"meetId"];
+//    [coder encodeInt:self.diverRecordID forKey:@"diverId"];
+//    [coder encodeObject:self.meetInfo forKey:@"meetInfo"];
     
 }
 
@@ -67,9 +67,9 @@
     
     [super decodeRestorableStateWithCoder:coder];
     
-    self.meetRecordID = [coder decodeIntForKey:@"meetId"];
-    self.diverRecordID = [coder decodeIntForKey:@"diverId"];
-    self.meetInfo = [coder decodeObjectForKey:@"meetInfo"];
+//    self.meetRecordID = [coder decodeIntForKey:@"meetId"];
+//    self.diverRecordID = [coder decodeIntForKey:@"diverId"];
+//    self.meetInfo = [coder decodeObjectForKey:@"meetInfo"];
 }
 
 - (void)didReceiveMemoryWarning {

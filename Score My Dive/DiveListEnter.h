@@ -13,13 +13,12 @@
 
 @interface DiveListEnter : UIViewController <DiveListEnterViewControllerDelegate, UIScrollViewDelegate, TypeDiveNumberDelegate, ChooseDiveNumberDelegate>
 
+//popover
+@property (nonatomic, retain) UIPopoverController *popoverContr;
+
 @property (nonatomic) int meetRecordID;
 @property (nonatomic) int diverRecordID;
 @property (nonatomic, strong) NSArray *meetInfo;
-
-//@property (nonatomic) int diveGroupID;
-//@property (nonatomic) int diveID;
-//@property (nonatomic) int divePositionID;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblDiveNumber;
 @property (weak, nonatomic) IBOutlet UILabel *lblDiverName;
@@ -82,6 +81,8 @@
 - (IBAction)btnEnterDive:(id)sender;
 - (IBAction)lblOptionsClick:(id)sender;
 - (IBAction)btnSwitchDiver:(id)sender;
+- (IBAction)btnTypeNumber:(id)sender;
+- (IBAction)btnChooseDives:(id)sender;
 
 // touch events for the dive edits
 - (IBAction)Dive1EditClick:(UILongPressGestureRecognizer *)sender;

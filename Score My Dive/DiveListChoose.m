@@ -46,6 +46,8 @@
 
 @implementation DiveListChoose
 
+@synthesize popoverContr;
+
 #pragma viewController methods
 
 - (void)viewDidLoad {
@@ -202,14 +204,14 @@
         enter.diverRecordID = self.diverRecordID;
     }
     
-    if([segue.identifier isEqualToString:@"SegueChooseDiveToSwitch"]) {
-        
-        SwitchDiver *switchDiver = [segue destinationViewController];
-        
-        switchDiver.meetRecordID = self.meetRecordID;
-        switchDiver.diverRecordID = self.diverRecordID;
-        switchDiver.meetInfo = self.meetInfo;
-    }
+//    if([segue.identifier isEqualToString:@"SegueChooseDiveToSwitch"]) {
+//        
+//        SwitchDiver *switchDiver = [segue destinationViewController];
+//        
+//        switchDiver.meetRecordID = self.meetRecordID;
+//        switchDiver.diverRecordID = self.diverRecordID;
+//        switchDiver.meetInfo = self.meetInfo;
+//    }
 }
 
 //keeps the user from entering text in the txtfield
@@ -279,11 +281,24 @@
 }
 
 // show the next dive number when a user picks the txtbox
--(void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+//-(void)viewDidAppear:(BOOL)animated {
+//    [super viewDidAppear:animated];
+//    
+//    [self.diveNumberPicker selectRow:self.whatNumber inComponent:0 animated:YES];
+//    
+//}
+
+- (IBAction)btnSwitchDiver:(id)sender {
     
-    [self.diveNumberPicker selectRow:self.whatNumber inComponent:0 animated:YES];
+    UIStoryboard *sboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    SwitchDiver *switchDiver = [sboard instantiateViewControllerWithIdentifier:@"SwitchDiver"];
     
+    popoverContr = [[UIPopoverController alloc] initWithContentViewController:switchDiver];
+    popoverContr.popoverContentSize = CGSizeMake(400, 400);
+    switchDiver.meetRecordID = self.meetRecordID;
+    switchDiver.diverRecordID = self.diverRecordID;
+    switchDiver.meetInfo = self.meetInfo;
+    [popoverContr presentPopoverFromRect:[(UIButton *)sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 - (IBAction)btnEnterScoreClick:(id)sender {

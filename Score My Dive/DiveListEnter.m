@@ -49,6 +49,8 @@
 
 @implementation DiveListEnter
 
+@synthesize popoverContr;
+
 #pragma ViewController Events
 
 -(void)viewDidLoad {
@@ -167,42 +169,42 @@
         choose.meetRecordID = self.meetRecordID;
     }
     
-    if ([segue.identifier isEqualToString:@"idSegueListToType"]) {
-        TypeDiveNumber *dest = segue.destinationViewController;
-        
-        dest.delegate = self;
-        
-        dest.meetRecordID = self.meetRecordID;
-        dest.diverRecordID = self.diverRecordID;
-        dest.meetInfo = self.meetInfo;
-        dest.boardSize = self.boardSize;
-        dest.maxDiveNumber = self.maxDiveNumber;
-        dest.onDiveNumber = self.onDiveNumber;
-        dest.whoCalled = 1;
-    }
+//    if ([segue.identifier isEqualToString:@"idSegueListToType"]) {
+//        TypeDiveNumber *dest = segue.destinationViewController;
+//        
+//        dest.delegate = self;
+//        
+//        dest.meetRecordID = self.meetRecordID;
+//        dest.diverRecordID = self.diverRecordID;
+//        dest.meetInfo = self.meetInfo;
+//        dest.boardSize = self.boardSize;
+//        dest.maxDiveNumber = self.maxDiveNumber;
+//        dest.onDiveNumber = self.onDiveNumber;
+//        dest.whoCalled = 1;
+//    }
+//    
+//    if ([segue.identifier isEqualToString:@"idSegueListToChooseDive"]) {
+//        ChooseDiveNumber *dest = segue.destinationViewController;
+//        
+//        dest.delegate = self;
+//        
+//        dest.meetRecordID = self.meetRecordID;
+//        dest.diverRecordID = self.diverRecordID;
+//        dest.meetInfo = self.meetInfo;
+//        dest.boardSize = self.boardSize;
+//        dest.maxDiveNumber = self.maxDiveNumber;
+//        dest.onDiveNumber = self.onDiveNumber;
+//        dest.whoCalled = 1;
+//    }
     
-    if ([segue.identifier isEqualToString:@"idSegueListToChooseDive"]) {
-        ChooseDiveNumber *dest = segue.destinationViewController;
-        
-        dest.delegate = self;
-        
-        dest.meetRecordID = self.meetRecordID;
-        dest.diverRecordID = self.diverRecordID;
-        dest.meetInfo = self.meetInfo;
-        dest.boardSize = self.boardSize;
-        dest.maxDiveNumber = self.maxDiveNumber;
-        dest.onDiveNumber = self.onDiveNumber;
-        dest.whoCalled = 1;
-    }
-    
-    if([segue.identifier isEqualToString:@"SegueEnterListToSwitch"]) {
-        
-        SwitchDiver *switchDiver = [segue destinationViewController];
-        
-        switchDiver.meetRecordID = self.meetRecordID;
-        switchDiver.diverRecordID = self.diverRecordID;
-        switchDiver.meetInfo = self.meetInfo;
-    }
+//    if([segue.identifier isEqualToString:@"SegueEnterListToSwitch"]) {
+//        
+//        SwitchDiver *switchDiver = [segue destinationViewController];
+//        
+//        switchDiver.meetRecordID = self.meetRecordID;
+//        switchDiver.diverRecordID = self.diverRecordID;
+//        switchDiver.meetInfo = self.meetInfo;
+//    }
 }
 
 - (IBAction)btnEnterDive:(id)sender {
@@ -234,6 +236,53 @@
 }
 
 - (IBAction)btnSwitchDiver:(id)sender {
+    
+    UIStoryboard *sboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    SwitchDiver *switchDiver = [sboard instantiateViewControllerWithIdentifier:@"SwitchDiver"];
+    
+    popoverContr = [[UIPopoverController alloc] initWithContentViewController:switchDiver];
+    popoverContr.popoverContentSize = CGSizeMake(400, 400);
+    switchDiver.meetRecordID = self.meetRecordID;
+    switchDiver.diverRecordID = self.diverRecordID;
+    switchDiver.meetInfo = self.meetInfo;
+    [popoverContr presentPopoverFromRect:[(UIButton *)sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
+
+- (IBAction)btnTypeNumber:(id)sender {
+    
+    UIStoryboard *sboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    TypeDiveNumber *enter = [sboard instantiateViewControllerWithIdentifier:@"TypeDiveNumber"];
+    
+    popoverContr = [[UIPopoverController alloc] initWithContentViewController:enter];
+    popoverContr.popoverContentSize = CGSizeMake(400, 150);
+    enter.delegate = self;
+    enter.boardSize = self.boardSize;
+    enter.meetRecordID = self.meetRecordID;
+    enter.diverRecordID = self.diverRecordID;
+    enter.maxDiveNumber = self.maxDiveNumber;
+    enter.onDiveNumber = self.onDiveNumber;
+    enter.meetInfo = self.meetInfo;
+    enter.whoCalled = 1;
+    [popoverContr presentPopoverFromRect:[(UIButton *)sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    
+}
+
+- (IBAction)btnChooseDives:(id)sender {
+    
+    UIStoryboard *sboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    TypeDiveNumber *enter = [sboard instantiateViewControllerWithIdentifier:@"ChooseDiveNumber"];
+    
+    popoverContr = [[UIPopoverController alloc] initWithContentViewController:enter];
+    popoverContr.popoverContentSize = CGSizeMake(400, 235);
+    enter.delegate = self;
+    enter.boardSize = self.boardSize;
+    enter.meetRecordID = self.meetRecordID;
+    enter.diverRecordID = self.diverRecordID;
+    enter.maxDiveNumber = self.maxDiveNumber;
+    enter.onDiveNumber = self.onDiveNumber;
+    enter.meetInfo = self.meetInfo;
+    enter.whoCalled = 1;
+    [popoverContr presentPopoverFromRect:[(UIButton *)sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
 }
 
 - (IBAction)Dive1EditClick:(UILongPressGestureRecognizer *)sender {

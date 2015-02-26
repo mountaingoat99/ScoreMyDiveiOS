@@ -10,6 +10,9 @@
 
 @interface DiveListChoose : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UIScrollViewDelegate, UITextFieldDelegate>
 
+//popover
+@property (nonatomic, retain) UIPopoverController *popoverContr;
+
 @property (nonatomic) int meetRecordID;
 @property (nonatomic) int diverRecordID;
 @property (nonatomic, strong) NSArray *meetInfo;
@@ -55,5 +58,7 @@
 
 - (IBAction)btnEnterScoreClick:(id)sender;
 - (IBAction)btnEnterTotalScoreClick:(id)sender;
+
+- (IBAction)btnSwitchDiver:(id)sender;
 
 @end
