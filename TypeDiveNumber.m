@@ -58,6 +58,8 @@
     self.txtDivePositionEntry.delegate = self;
     [self.txtDivePositionEntry addTarget:self action:@selector(CheckDDForDivePositionEntry) forControlEvents:UIControlEventEditingChanged];
     
+    self.popoverPresentationController.backgroundColor = [UIColor colorWithRed:.16 green:.45 blue:.81 alpha:1];
+    
     [self.txtDiveNumberEntry becomeFirstResponder];
 }
 

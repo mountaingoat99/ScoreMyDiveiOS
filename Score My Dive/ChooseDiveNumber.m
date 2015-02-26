@@ -56,6 +56,8 @@
     self.SCPosition.layer.masksToBounds = NO;
     self.SCPosition.layer.shadowOpacity = 1.0;
     
+    self.popoverPresentationController.backgroundColor = [UIColor colorWithRed:.16 green:.45 blue:.81 alpha:1];
+    
     // color attributes for the segmented controls
     NSDictionary *segmentedControlTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont systemFontOfSize:18.0f]};
     

@@ -40,6 +40,8 @@
     self.tblDiverRankings.layer.masksToBounds = NO;
     self.tblDiverRankings.layer.shadowOpacity = 1.0;
     [self.tblDiverRankings setSeparatorColor:[UIColor blackColor]];
+    
+    self.popoverPresentationController.backgroundColor = [UIColor colorWithRed:.16 green:.45 blue:.81 alpha:1];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
