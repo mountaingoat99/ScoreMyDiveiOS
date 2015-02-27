@@ -24,7 +24,6 @@
 
 -(void)loadData;
 -(void)CollectionOfMeets;
-//-(BOOL)NoScore;    // not sure
 
 @end
 
@@ -50,26 +49,6 @@
     [super viewDidAppear:animated];
     
     [self loadData];
-}
-
-// restore state
--(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
-    
-    [super encodeRestorableStateWithCoder:coder];
-    
-//    [coder encodeInt:self.meetRecordID forKey:@"meetId"];
-//    [coder encodeInt:self.diverRecordID forKey:@"diverId"];
-//    [coder encodeObject:self.meetInfo forKey:@"meetInfo"];
-    
-}
-
--(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
-    
-    [super decodeRestorableStateWithCoder:coder];
-    
-//    self.meetRecordID = [coder decodeIntForKey:@"meetId"];
-//    self.diverRecordID = [coder decodeIntForKey:@"diverId"];
-//    self.meetInfo = [coder decodeObjectForKey:@"meetInfo"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -225,16 +204,5 @@
     self.meetInfo = [collection GetMeetAndDiverInfo:self.meetRecordID diverid:self.diverRecordID];
     
 }
-
-//-(BOOL)NoScore {
-//    
-//    DiveNumber *nums = [[DiveNumber alloc] init];
-//    
-//    if ([nums DiveNumberForRankings:self.meetRecordID diverid:self.diverRecordID]) {
-//        return true;
-//    } else {
-//        return false;
-//    }
-//}
 
 @end

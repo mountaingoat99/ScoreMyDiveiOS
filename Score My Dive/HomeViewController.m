@@ -68,10 +68,6 @@
     // Dispose of any resources that can be recreated.
 }
 
--(IBAction)unwindToMainMenu:(UIStoryboardSegue *)segue{
-    
-}
-
 - (IBAction)btnReportClick:(id)sender {
     
     BOOL check;

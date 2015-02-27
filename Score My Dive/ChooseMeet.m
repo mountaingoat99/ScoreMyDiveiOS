@@ -122,7 +122,6 @@
     self.meetRecordID = [coder decodeIntForKey:@"meetid"];
     self.txtChooseMeet.text = [coder decodeObjectForKey:@"meetText"];
     
-    //NSLog(@"ChooseMeet decode");
 }
 
 // push id to next view controller
@@ -148,12 +147,6 @@
     [self.view endEditing:YES];
 }
 
--(IBAction)unwindToChooseMeet:(UIStoryboardSegue *)segue{
-    
-    //self.txtChooseMeet.text = @"";
-    
-}
-
 - (IBAction)nextClick:(id)sender {
     
     if (self.txtChooseMeet.text.length != 0) {
@@ -170,16 +163,6 @@
         [error reloadInputViews];
     }
 }
-
-//- (IBAction)btnRankClick:(id)sender {
-//    
-//    [self performSegueWithIdentifier:@"idSegueToRankings" sender:self];
-//}
-
-//- (IBAction)btnReturnClick:(id)sender {
-//    
-//    [self performSegueWithIdentifier:@"idSegueMeetChooseToHome" sender:self];
-//}
 
 //keps the user from entering text in the txtfield
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {

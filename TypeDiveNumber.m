@@ -63,76 +63,9 @@
     [self.txtDiveNumberEntry becomeFirstResponder];
 }
 
-// restore state because Apple doesn't know how to write a modern OS
--(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
-    [super encodeRestorableStateWithCoder:coder];
-    
-    [coder encodeObject:self.boardSize forKey:@"boardSize"];
-    [coder encodeInt:self.meetRecordID forKey:@"meetId"];
-    [coder encodeInt:self.diverRecordID forKey:@"diverId"];
-    [coder encodeObject:self.meetInfo forKey:@"meetInfo"];
-    [coder encodeInt:self.maxDiveNumber forKey:@"maxDiveNumber"];
-    [coder encodeObject:self.onDiveNumber forKey:@"onDiveNumber"];
-    [coder encodeInt:self.whoCalled forKey:@"whoCalled"];
-    [coder encodeInt:self.divePositionID forKey:@"divePos"];
-    [coder encodeInt:self.diveGroupID forKey:@"diveGroupId"];
-    [coder encodeInt:self.diveID forKey:@"diveId"];
-    [coder encodeObject:self.diveNumberEntered forKey:@"diveNumberEntered"];
-    [coder encodeObject:self.divePositionEntered forKey:@"divePositionEntered"];
-    [coder encodeObject:self.diveTextArray forKey:@"diveTextArray"];
-    [coder encodeInt:self.selectedPosition forKey:@"position"];
-    [coder encodeObject:self.lblDivedd.text forKey:@"dd"];
-    [coder encodeObject:self.txtDiveNumberEntry.text forKey:@"diveNumEntry"];
-    [coder encodeObject:self.txtDivePositionEntry.text forKey:@"divePosEntry"];
-   
-}
-
--(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
-    [super decodeRestorableStateWithCoder:coder];
-    
-    self.boardSize = [coder decodeObjectForKey:@"boardSize"];
-    self.meetRecordID = [coder decodeIntForKey:@"meetId"];
-    self.diverRecordID = [coder decodeIntForKey:@"diverId"];
-    self.meetInfo = [coder decodeObjectForKey:@"meetInfo"];
-    self.maxDiveNumber = [coder decodeIntForKey:@"maxDiveNumber"];
-    self.onDiveNumber = [coder decodeObjectForKey:@"onDiveNumber"];
-    self.whoCalled = [coder decodeIntForKey:@"whoCalled"];
-    self.divePositionID = [coder decodeIntForKey:@"divePos"];
-    self.diveGroupID = [coder decodeIntForKey:@"diveGroupId"];
-    self.diveID = [coder decodeIntForKey:@"diveId"];
-    self.selectedPosition = [coder decodeIntForKey:@"position"];
-    self.diveNumberEntered = [coder decodeObjectForKey:@"diveNumberEntered"];
-    self.divePositionEntered = [coder decodeObjectForKey:@"divePositionEntered"];
-    self.lblDivedd.text = [coder decodeObjectForKey:@"dd"];
-    self.txtDiveNumberEntry.text = [coder decodeObjectForKey:@"diveNumEntry"];
-    if (self.txtDiveNumberEntry.text.length == 0) {
-        self.txtDiveNumberEntry.text = @"";
-    }
-    self.txtDivePositionEntry.text = [coder decodeObjectForKey:@"divePosEntry"];
-    if (self.txtDivePositionEntry.text.length == 0) {
-        self.txtDivePositionEntry.text = @"";
-    }
-    self.diveTextArray = [coder decodeObjectForKey:@"diveTextArray"];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    if ([segue.identifier isEqualToString:@""]) {
-        // diveListEnter
-    }
-    
-    if ([segue.identifier isEqualToString:@""]) {
-        // diveList Edit
-    }
-    
-    if ([segue.identifier isEqualToString:@""]) {
-        // dive Enter
-    }
 }
 
 //keps the user from entering text in the txtfield

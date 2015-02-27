@@ -168,43 +168,6 @@
         ChooseDiver *choose = [segue destinationViewController];
         choose.meetRecordID = self.meetRecordID;
     }
-    
-//    if ([segue.identifier isEqualToString:@"idSegueListToType"]) {
-//        TypeDiveNumber *dest = segue.destinationViewController;
-//        
-//        dest.delegate = self;
-//        
-//        dest.meetRecordID = self.meetRecordID;
-//        dest.diverRecordID = self.diverRecordID;
-//        dest.meetInfo = self.meetInfo;
-//        dest.boardSize = self.boardSize;
-//        dest.maxDiveNumber = self.maxDiveNumber;
-//        dest.onDiveNumber = self.onDiveNumber;
-//        dest.whoCalled = 1;
-//    }
-//    
-//    if ([segue.identifier isEqualToString:@"idSegueListToChooseDive"]) {
-//        ChooseDiveNumber *dest = segue.destinationViewController;
-//        
-//        dest.delegate = self;
-//        
-//        dest.meetRecordID = self.meetRecordID;
-//        dest.diverRecordID = self.diverRecordID;
-//        dest.meetInfo = self.meetInfo;
-//        dest.boardSize = self.boardSize;
-//        dest.maxDiveNumber = self.maxDiveNumber;
-//        dest.onDiveNumber = self.onDiveNumber;
-//        dest.whoCalled = 1;
-//    }
-    
-//    if([segue.identifier isEqualToString:@"SegueEnterListToSwitch"]) {
-//        
-//        SwitchDiver *switchDiver = [segue destinationViewController];
-//        
-//        switchDiver.meetRecordID = self.meetRecordID;
-//        switchDiver.diverRecordID = self.diverRecordID;
-//        switchDiver.meetInfo = self.meetInfo;
-//    }
 }
 
 - (IBAction)btnEnterDive:(id)sender {

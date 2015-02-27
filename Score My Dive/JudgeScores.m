@@ -211,34 +211,38 @@
     
     diveInfo = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
     
-    // lets throw every part into a seperate stirng
-    divecat = [[diveInfo objectAtIndex:0] objectAtIndex:0];
-    diveType = [[diveInfo objectAtIndex:0] objectAtIndex:1];
-    divePosition = [[diveInfo objectAtIndex:0] objectAtIndex:2];
-    multi = [[diveInfo objectAtIndex:0] objectAtIndex:3];
-    
-    //now lets parse the diveNumber out of the dive
-    dash = [diveType rangeOfString:@"-"];
-    if (dash.location != NSNotFound) {
-        diveType = [diveType substringWithRange:NSMakeRange(0, (dash.location - 1))];
+    if (diveInfo.count > 0) {
+        // lets throw every part into a seperate stirng
+        divecat = [[diveInfo objectAtIndex:0] objectAtIndex:0];
+        diveType = [[diveInfo objectAtIndex:0] objectAtIndex:1];
+        divePosition = [[diveInfo objectAtIndex:0] objectAtIndex:2];
+        multi = [[diveInfo objectAtIndex:0] objectAtIndex:3];
+        
+        //now lets parse the diveNumber out of the dive
+        dash = [diveType rangeOfString:@"-"];
+        if (dash.location != NSNotFound) {
+            diveType = [diveType substringWithRange:NSMakeRange(0, (dash.location - 1))];
+        }
+        
+        // now parse the dive Position
+        dash = [divePosition rangeOfString:@"-"];
+        if (dash.location != NSNotFound) {
+            divePosition = [divePosition substringWithRange:NSMakeRange(0, (dash.location - 1))];
+        }
+        
+        // now lets put it all together
+        diveName = divecat;
+        diveName = [diveName stringByAppendingString:@" - "];
+        diveName = [diveName stringByAppendingString:diveType];
+        diveName = [diveName stringByAppendingString:divePosition];
+        diveName = [diveName stringByAppendingString:@" - DD: "];
+        diveName = [diveName stringByAppendingString:multi];
+        
+        return diveName;
+    } else {
+        NSLog(@"Judgescores GetCatAndName Method returned nil");
+        return diveName;
     }
-    
-    // now parse the dive Position
-    dash = [divePosition rangeOfString:@"-"];
-    if (dash.location != NSNotFound) {
-        divePosition = [divePosition substringWithRange:NSMakeRange(0, (dash.location - 1))];
-    }
-    
-    // now lets put it all together
-    diveName = divecat;
-    diveName = [diveName stringByAppendingString:@" - "];
-    diveName = [diveName stringByAppendingString:diveType];
-    diveName = [diveName stringByAppendingString:divePosition];
-    diveName = [diveName stringByAppendingString:@" - DD: "];
-    diveName = [diveName stringByAppendingString:multi];
-    
-    return diveName;
-    
 }
 
 -(NSString*)GetName:(int)meetid diverid:(int)diverid divenumber:(int)divenumber {

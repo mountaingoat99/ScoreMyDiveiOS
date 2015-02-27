@@ -47,13 +47,11 @@
     if (self.recordIdToEdit != -1) {
         [self loadData];
     }
-    //NSLog(@"DiverHistory viewWillAppear");
 }
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    //NSLog(@"DiverHistory ViewDidAppear");
 }
 
 // only allow portrait in iphone
@@ -78,8 +76,6 @@
     [coder encodeInt:self.meetId forKey:@"MeetId"];
     [coder encodeInt:self.callingIdToReturnTo forKey:@"CallingId"];
     [coder encodeObject:self.diverInfo forKey:@"Info"];
-    
-    //NSLog(@"DiverHistory encode");
 }
 
 -(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
@@ -90,8 +86,6 @@
     self.meetId = [coder decodeIntForKey:@"MeetId"];
     self.callingIdToReturnTo = [coder decodeIntForKey:@"CallingId"];
     self.diverInfo = [coder decodeObjectForKey:@"Info"];
-    
-    //NSLog(@"DiverHistory Decode");
 }
 
 -(void)viewMeetScoreWasFinished {

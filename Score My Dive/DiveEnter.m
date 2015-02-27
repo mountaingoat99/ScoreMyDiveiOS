@@ -147,34 +147,6 @@
 // push id to the next view controller
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    // send to the Choose Dive
-//    if ([segue.identifier isEqualToString:@"idSegueEnterToChooseDive"]) {
-//        
-//        ChooseDiveNumberEnter *score = [segue destinationViewController];
-//        
-//        self.listOrNot = 1;
-//        score.listOrNot = self.listOrNot;
-//        score.boardSize = self.boardSize;
-//        score.meetRecordID = self.meetRecordID;
-//        score.diverRecordID = self.diverRecordID;
-//        score.onDiveNumber = self.onDiveNumber;
-//        score.meetInfo = self.meetInfo;
-//    }
-    
-    // send to the TypeDive
-//    if ([segue.identifier isEqualToString:@"idSegueEnterToType"]) {
-//        
-//        TypeDiveNumberEnter *score = [segue destinationViewController];
-//        
-//        self.listOrNot = 1;
-//        score.listOrNot = self.listOrNot;
-//        score.boardSize = self.boardSize;
-//        score.meetRecordID = self.meetRecordID;
-//        score.diverRecordID = self.diverRecordID;
-//        score.onDiveNumber = self.onDiveNumber;
-//        score.meetInfo = self.meetInfo;
-//    }
-    
     // send to the diveListScore for Edit
     if ([segue.identifier isEqualToString:@"idEnterDivetoEditJudgeScores"]) {
         
@@ -207,14 +179,6 @@
         choose.meetRecordID = self.meetRecordID;
     }
     
-//    if([segue.identifier isEqualToString:@"SegueEnterToSwitch"]) {
-//        
-//        SwitchDiver *switchDiver = [segue destinationViewController];
-//        
-//        switchDiver.meetRecordID = self.meetRecordID;
-//        switchDiver.diverRecordID = self.diverRecordID;
-//        switchDiver.meetInfo = self.meetInfo;
-//    }
 }
 
 - (IBAction)btnSwitchDiver:(id)sender {

@@ -207,11 +207,6 @@
     // Dispose of any resources that can be recreated.
 }
 
--(IBAction)unwindToChooseDiver:(UIStoryboardSegue *)segue{
-
-    
-}
-
 // push id to next view controller
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     

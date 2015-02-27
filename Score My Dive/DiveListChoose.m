@@ -96,12 +96,16 @@
         
         if (self.txtDiveNumber.text.length == 0) {
             self.txtDiveNumber.text = self.diveNumberArray [0];
+            // here we need to see what dive number is chosen and add that number to the self.diveNumber variable
+            [self diveNumberFromPicker];
         }
         // this sets it to what ever the current dive number is
     } else {
         
         if (self.txtDiveNumber.text.length == 0) {
             self.txtDiveNumber.text = self.diveNumberArray[self.whatNumber];
+            // here we need to see what dive number is chosen and add that number to the self.diveNumber variable
+            [self diveNumberFromPicker];
         }
     }
 }
@@ -203,15 +207,6 @@
         enter.meetRecordID = self.meetRecordID;
         enter.diverRecordID = self.diverRecordID;
     }
-    
-//    if([segue.identifier isEqualToString:@"SegueChooseDiveToSwitch"]) {
-//        
-//        SwitchDiver *switchDiver = [segue destinationViewController];
-//        
-//        switchDiver.meetRecordID = self.meetRecordID;
-//        switchDiver.diverRecordID = self.diverRecordID;
-//        switchDiver.meetInfo = self.meetInfo;
-//    }
 }
 
 //keeps the user from entering text in the txtfield
@@ -221,24 +216,28 @@
     
 }
 
-// shows the next dive number as soon as the user presses the txt
--(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    
-    // here we need to see if the dives are all scored, if so we will just set the text back to dive 1
-    if (self.whatNumber == self.diveTotal) {
-        
-        if (self.txtDiveNumber.text.length == 0) {
-            self.txtDiveNumber.text = self.diveNumberArray [0];
-        }
-    // this sets it to what ever the current dive number is
-    } else {
-    
-        if (self.txtDiveNumber.text.length == 0) {
-            self.txtDiveNumber.text = self.diveNumberArray[self.whatNumber];
-        }
-    }
-    return YES;
-}
+//// shows the next dive number as soon as the user presses the txt
+//-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+//    
+//    // here we need to see if the dives are all scored, if so we will just set the text back to dive 1
+//    if (self.whatNumber == self.diveTotal) {
+//        
+//        if (self.txtDiveNumber.text.length == 0) {
+//            self.txtDiveNumber.text = self.diveNumberArray [0];
+//            // here we need to see what dive number is chosen and add that number to the self.diveNumber variable
+//            [self diveNumberFromPicker];
+//        }
+//    // this sets it to what ever the current dive number is
+//    } else {
+//    
+//        if (self.txtDiveNumber.text.length == 0) {
+//            self.txtDiveNumber.text = self.diveNumberArray[self.whatNumber];
+//            // here we need to see what dive number is chosen and add that number to the self.diveNumber variable
+//            [self diveNumberFromPicker];
+//        }
+//    }
+//    return YES;
+//}
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     
@@ -279,14 +278,6 @@
     [super touchesBegan:touches withEvent:event];
     [self.view endEditing:YES];
 }
-
-// show the next dive number when a user picks the txtbox
-//-(void)viewDidAppear:(BOOL)animated {
-//    [super viewDidAppear:animated];
-//    
-//    [self.diveNumberPicker selectRow:self.whatNumber inComponent:0 animated:YES];
-//    
-//}
 
 - (IBAction)btnSwitchDiver:(id)sender {
     

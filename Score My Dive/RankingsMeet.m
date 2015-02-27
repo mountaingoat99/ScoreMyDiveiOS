@@ -72,11 +72,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-// return button from the meet scores page
--(IBAction)unwindToRankingsMeet:(UIStoryboardSegue*)segue {
-    
-}
-
 // keeps the color of the selected cell the same -
 // in Ipad because of some unknown apple logic
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

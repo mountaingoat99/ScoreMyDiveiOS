@@ -565,24 +565,26 @@
     NSString *body = filename;
     
     MFMailComposeViewController *composer = [[MFMailComposeViewController alloc] init];
-    composer.mailComposeDelegate = self;
-    [composer setSubject:subject];
-    [composer setMessageBody:body isHTML:NO];
- 
-    // get the file path from resources
-    NSString *filePath = file;
     
-    // read the file
-    NSData *fileData = [NSData dataWithContentsOfFile:filePath];
+    // lets make sure the user has a mail account configured first
+    if ([MFMailComposeViewController canSendMail]) {
+        composer.mailComposeDelegate = self;
+        [composer setSubject:subject];
+        [composer setMessageBody:body isHTML:NO];
+        
+        // get the file path from resources
+        NSString *filePath = file;
+        // read the file
+        NSData *fileData = [NSData dataWithContentsOfFile:filePath];
+        // set the MIME type
+        NSString *mimetype = @"text/csv";
+        //add attachment
+        [composer addAttachmentData:fileData mimeType:mimetype fileName:filename];
+        
+        // present it on the screen
+        [self presentViewController:composer animated:YES completion:nil];
+    } 
     
-    // set the MIME type
-    NSString *mimetype = @"text/csv";
-    
-    //add attachment
-    [composer addAttachmentData:fileData mimeType:mimetype fileName:filename];
-    
-    // present it on the screen
-    [self presentViewController:composer animated:YES completion:nil];
     
 }
 

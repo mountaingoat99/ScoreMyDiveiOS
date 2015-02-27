@@ -40,6 +40,5 @@
 - (IBAction)EnterListClick:(id)sender;
 - (IBAction)EnterScoresClick:(id)sender;
 - (IBAction)ResetDiverClick:(id)sender;
-//- (IBAction)btnReturnClick:(id)sender;
 
 @end

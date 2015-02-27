@@ -165,9 +165,6 @@
             //viewcontroller table rows
             [self.delegate editInfoWasFinished];
             
-            // pop the view controller
-            //[self.navigationController popViewControllerAnimated:YES];
-            //[self dismissViewControllerAnimated:YES completion:nil];
             [self performSegueWithIdentifier:@"idSegueDiveEnterToDetail" sender:self];
             
          } else {
@@ -175,11 +172,6 @@
         }
     }
 }
-
-//- (IBAction)btnReturnClick:(id)sender {
-//    
-//    [self performSegueWithIdentifier:@"idSegueDiveEnterToDetail" sender:self];
-//}
 
 #pragma private methods
 

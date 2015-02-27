@@ -84,11 +84,6 @@
     }
 }
 
-// handles the return button from meetEdit
--(IBAction)unwindToMeetDetails:(UIStoryboardSegue *)segue{
-    
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

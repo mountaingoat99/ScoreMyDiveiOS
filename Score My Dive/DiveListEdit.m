@@ -98,32 +98,6 @@
         enter.diverRecordID = self.diverRecordID;
     }
     
-//    if ([segue.identifier isEqualToString:@"idSegueEditToType"]) {
-//        TypeDiveNumber *dest = segue.destinationViewController;
-//        
-//        dest.delegate = self;
-//        
-//        dest.meetRecordID = self.meetRecordID;
-//        dest.diverRecordID = self.diverRecordID;
-//        dest.meetInfo = self.meetInfo;
-//        dest.boardSize = self.boardSize;
-//        dest.onDiveNumber = self.diveNumber;
-//        dest.whoCalled = 2;
-//    }
-//    
-//    if ([segue.identifier isEqualToString:@"idSegueEditToChoose"]) {
-//        ChooseDiveNumber *dest = segue.destinationViewController;
-//        
-//        dest.delegate = self;
-//        
-//        dest.meetRecordID = self.meetRecordID;
-//        dest.diverRecordID = self.diverRecordID;
-//        dest.meetInfo = self.meetInfo;
-//        dest.boardSize = self.boardSize;
-//        dest.onDiveNumber = self.diveNumber;
-//        dest.whoCalled = 2;
-//    }
-    
 }
 
 - (IBAction)btnTypeNumber:(id)sender {
