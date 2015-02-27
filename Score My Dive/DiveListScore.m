@@ -37,6 +37,7 @@
 -(BOOL)CalcScores;
 -(BOOL)updateFailedDive;
 -(void)DiverBoardSize;
+-(void)UpdateTxtField;
 
 @end
 
@@ -243,7 +244,59 @@
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:expression options:NSRegularExpressionCaseInsensitive error:&error];
     NSUInteger numberOfMatches = [regex numberOfMatchesInString:newString options:0 range:NSMakeRange(0, [newString length])];
     if (numberOfMatches == 0) return NO;
+    
+    // here we will check to see if the fields have been fully entered
+    [self UpdateTxtField];
+
     return YES;
+}
+
+-(void)UpdateTxtField {
+    
+    if ([self.txt1 isFirstResponder]) {
+        if (self.txt1.text.length == 2 || [self.txt1.text isEqualToString:@"10"]) {
+            [self performSelector:@selector(setNextResponder:) withObject:self.txt2 afterDelay:.02];
+        }
+        return;
+    }
+    
+    if ([self.txt2 isFirstResponder]) {
+        if (self.txt2.text.length == 2 || [self.txt2.text isEqualToString:@"10"]) {
+            [self performSelector:@selector(setNextResponder:) withObject:self.txt3 afterDelay:.02];
+        }
+        return;
+    }
+    
+    if ([self.txt3 isFirstResponder]) {
+        if (self.txt3.text.length == 2 || [self.txt3.text isEqualToString:@"10"]) {
+            [self performSelector:@selector(setNextResponder:) withObject:self.txt4 afterDelay:.02];
+        }
+        return;
+    }
+    
+    if ([self.txt4 isFirstResponder]) {
+        if (self.txt4.text.length == 2 || [self.txt4.text isEqualToString:@"10"]) {
+            [self performSelector:@selector(setNextResponder:) withObject:self.txt5 afterDelay:.02];
+        }
+        return;
+    }
+    
+    if ([self.txt5 isFirstResponder]) {
+        if (self.txt5.text.length == 2 || [self.txt5.text isEqualToString:@"10"]) {
+            [self performSelector:@selector(setNextResponder:) withObject:self.txt6 afterDelay:.02];
+        }
+        return;
+    }
+    if ([self.txt6 isFirstResponder]) {
+        if (self.txt6.text.length == 2 || [self.txt6.text isEqualToString:@"10"]) {
+            [self performSelector:@selector(setNextResponder:) withObject:self.txt7 afterDelay:.02];
+        }
+        return;
+    }
+}
+
+-(void)setNextResponder:(UITextField*)nextResponder {
+    [nextResponder becomeFirstResponder];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
