@@ -344,6 +344,7 @@
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
     if (pickerView == self.meetPicker) {
+        
         // sets the text box for the choosen meet
         self.txtChooseMeet.text = [self.meetArray [row] objectAtIndex:1];
         
@@ -352,7 +353,14 @@
         
         [self loadSpinnerData];
         
-        // here we will need to get the meetobject
+        // if they have chosen a diver and then change meets we need to reset the diver so it can be re-chosen
+        if (self.txtChooseDiver.text.length > 0) {
+            self.txtChooseDiver.text = @"";
+            [self.SCBoardSize setHidden:NO];
+            [self.SCDiveTotals setHidden:NO];
+            [self.lblDiveTotal setHidden:YES];
+            [self.lblBoardSize setHidden:YES];
+        }
         
     } else {
         
