@@ -73,6 +73,7 @@
     if ([self.diveTotal isEqualToNumber:@6]) {
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            self.backgroundConstraint.constant = 65;
             
         } else {
             self.backgroundConstraint.constant = 120;

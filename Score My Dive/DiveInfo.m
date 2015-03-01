@@ -62,6 +62,7 @@
     if (self.judgeTotal == 2 || self.judgeTotal == 3) {
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            self.backgroundConstraint.constant = 65;
             
         } else {
             self.backgroundConstraint.constant = 60;
@@ -70,6 +71,7 @@
     
     if (self.judgeTotal == 5) {
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            self.backgroundConstraint.constant = 30;
             
         } else {
             self.backgroundConstraint.constant = 30;

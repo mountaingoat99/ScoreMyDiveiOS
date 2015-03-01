@@ -145,7 +145,7 @@
     
     if (!self.previousScores) {
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-            self.backgroundBottomContraint.constant = -50;
+            self.backgroundBottomContraint.constant = -40;
         } else {
             self.backgroundBottomContraint.constant = -80;
         }
