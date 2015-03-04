@@ -178,7 +178,7 @@
                 // using the custome class dismiss the popover after passing instance of the class
                 if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
                     [self.controller dismissPopoverAnimated:YES];
-                    [self dismissViewControllerAnimated:YES completion:nil]; // this may not work
+                    [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil]; // this may not work
                 } else {
                     [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
                 }
