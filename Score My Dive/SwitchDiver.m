@@ -16,6 +16,7 @@
 #import "DiveEnter.h"
 #import "DiveListEnter.h"
 #import "DiveListChoose.h"
+#import "WYPopoverController.h"
 
 @interface SwitchDiver ()
 
@@ -42,7 +43,15 @@
     self.tblDiverRankings.layer.shadowOpacity = 1.0;
     [self.tblDiverRankings setSeparatorColor:[UIColor blackColor]];
     
-    self.popoverPresentationController.backgroundColor = [UIColor colorWithRed:.16 green:.45 blue:.81 alpha:1];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        // this doesn't seem to work
+        [WYPopoverController setDefaultTheme:[WYPopoverTheme theme]];
+        WYPopoverBackgroundView *appearance = [WYPopoverBackgroundView appearance];
+        appearance.backgroundColor = [UIColor colorWithRed:.16 green:.45 blue:.81 alpha:1];
+        
+    } else {
+        self.popoverPresentationController.backgroundColor = [UIColor colorWithRed:.16 green:.45 blue:.81 alpha:1];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {

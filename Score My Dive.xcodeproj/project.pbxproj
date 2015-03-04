@@ -68,6 +68,8 @@
 		26E419A81A048E3100D79C05 /* QuickScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E419A71A048E3100D79C05 /* QuickScoreViewController.m */; };
 		26E5C9261A4DE50700C542F7 /* DiveEnter.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E5C9251A4DE50700C542F7 /* DiveEnter.m */; };
 		26F18E211A9DF12100BC1DF1 /* SwitchDiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F18E201A9DF12100BC1DF1 /* SwitchDiver.m */; };
+		26F281021AA67B98006A9EB2 /* WYPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F280FF1AA67B98006A9EB2 /* WYPopoverController.m */; };
+		26F281031AA67B98006A9EB2 /* WYStoryboardPopoverSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F281011AA67B98006A9EB2 /* WYStoryboardPopoverSegue.m */; };
 		26F7906A1A770BDB0006098B /* AppIconBlack.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26F790691A770BDB0006098B /* AppIconBlack.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -197,6 +199,10 @@
 		26E5C9251A4DE50700C542F7 /* DiveEnter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveEnter.m; sourceTree = "<group>"; };
 		26F18E1F1A9DF12100BC1DF1 /* SwitchDiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchDiver.h; sourceTree = "<group>"; };
 		26F18E201A9DF12100BC1DF1 /* SwitchDiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchDiver.m; sourceTree = "<group>"; };
+		26F280FE1AA67B98006A9EB2 /* WYPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYPopoverController.h; sourceTree = "<group>"; };
+		26F280FF1AA67B98006A9EB2 /* WYPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYPopoverController.m; sourceTree = "<group>"; };
+		26F281001AA67B98006A9EB2 /* WYStoryboardPopoverSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYStoryboardPopoverSegue.h; sourceTree = "<group>"; };
+		26F281011AA67B98006A9EB2 /* WYStoryboardPopoverSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYStoryboardPopoverSegue.m; sourceTree = "<group>"; };
 		26F790691A770BDB0006098B /* AppIconBlack.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIconBlack.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -261,6 +267,10 @@
 		263AC5C41A030FD600846CB0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				26F280FE1AA67B98006A9EB2 /* WYPopoverController.h */,
+				26F280FF1AA67B98006A9EB2 /* WYPopoverController.m */,
+				26F281001AA67B98006A9EB2 /* WYStoryboardPopoverSegue.h */,
+				26F281011AA67B98006A9EB2 /* WYStoryboardPopoverSegue.m */,
 				26ADE4431A4A07D600913ABA /* HTAutocompleteManager.h */,
 				26ADE4441A4A07D600913ABA /* HTAutocompleteManager.m */,
 				26ADE4451A4A07D600913ABA /* HTAutocompleteTextField.h */,
@@ -557,6 +567,7 @@
 				26BE237D1A1027CC00E123D0 /* JudgeScores.m in Sources */,
 				2642AB6A1A32A2CD002E8DFA /* MeetCollection.m in Sources */,
 				26E419A81A048E3100D79C05 /* QuickScoreViewController.m in Sources */,
+				26F281031AA67B98006A9EB2 /* WYStoryboardPopoverSegue.m in Sources */,
 				26AAE0F91A993E0700B0E871 /* TypeDiveNumber.m in Sources */,
 				26BE237B1A1027CC00E123D0 /* DiverBoardSize.m in Sources */,
 				267A3FCB1A280E370068FA9E /* DiverHistory.m in Sources */,
@@ -567,6 +578,7 @@
 				26BE237A1A1027CC00E123D0 /* DBManager.m in Sources */,
 				26ADE4481A4A07D600913ABA /* HTAutocompleteTextField.m in Sources */,
 				26BE234E1A10275A00E123D0 /* Judges.m in Sources */,
+				26F281021AA67B98006A9EB2 /* WYPopoverController.m in Sources */,
 				263AC5C71A030FD600846CB0 /* main.m in Sources */,
 				268857671A291981000AEFF2 /* DiveInfo.m in Sources */,
 				26D4A40F1A507D8900FCEC6F /* RankingsMeet.m in Sources */,

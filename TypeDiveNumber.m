@@ -60,7 +60,10 @@
     
     self.popoverPresentationController.backgroundColor = [UIColor colorWithRed:.16 green:.45 blue:.81 alpha:1];
     
-    [self.txtDiveNumberEntry becomeFirstResponder];
+    // we only want the keyboard popping up right away on the ipad
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [self.txtDiveNumberEntry becomeFirstResponder];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -160,11 +163,25 @@
             // 3 is the DiveEnter
             if (self.whoCalled == 1) {
                 [self.delegate typeDiveNumberWasFinished];
-                [self dismissViewControllerAnimated:YES completion:nil];
+                
+                // using the custome class dismiss the popover after passing instance of the class
+                if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+                    [self.controller dismissPopoverAnimated:YES];
+                // else just dismiss the ViewController
+                } else {
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                }
             // this calls the delegate and then goes right back to diveListEnter
             } else if (self.whoCalled == 2) {
                 [self.delegate editDiveNumberWasFinished];
-                [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+                
+                // using the custome class dismiss the popover after passing instance of the class
+                if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+                    [self.controller dismissPopoverAnimated:YES];
+                    [self dismissViewControllerAnimated:YES completion:nil]; // this may not work
+                } else {
+                    [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+                }
             } else {
                 // diveEnterDelegate - this may need to go right to score
             }

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "HTAutocompleteTextField.h"
+#import "WYPopoverController.h"
 
 @protocol TypeDiveNumberDelegate
 
@@ -19,6 +20,9 @@
 @interface TypeDiveNumber : UIViewController <UITextFieldDelegate>
 
 @property (nonatomic, strong) id<TypeDiveNumberDelegate> delegate;
+
+//WYPopoverController delegate
+@property (nonatomic, assign) WYPopoverController *controller;
 
 @property (nonatomic, strong) NSNumber *boardSize;
 @property (nonatomic) int meetRecordID;

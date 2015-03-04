@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WYPopoverController.h"
 
 @protocol ChooseDiveNumberDelegate
 
@@ -18,6 +19,9 @@
 @interface ChooseDiveNumber : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
 
 @property (nonatomic, strong) id<ChooseDiveNumberDelegate> delegate;
+
+//WYPopoverController delegate
+@property (nonatomic, assign) WYPopoverController *controller;
 
 @property (nonatomic, strong) NSNumber *boardSize;
 @property (nonatomic) int meetRecordID;

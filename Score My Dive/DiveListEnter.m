@@ -23,8 +23,12 @@
 #import "TypeDiveNumber.h"
 #import "ChooseDiveNumber.h"
 #import "SwitchDiver.h"
+#import "WYPopoverController.h"
 
-@interface DiveListEnter ()
+@interface DiveListEnter () <WYPopoverControllerDelegate>
+{
+    WYPopoverController* popoverController;
+}
 
 @property (nonatomic, strong) NSNumber *onDiveNumber;
 @property (nonatomic) int maxDiveNumber;
@@ -44,6 +48,7 @@
 -(void)hideInitialControls;
 -(void)updateListFilled;
 -(void)updateListStarted;
+//-(IBAction)showPopover:(id)sender;
 
 @end
 
@@ -75,7 +80,6 @@
     // sets up the following delegate method to disable horizontal scrolling
     // don't forget to declare the UIScrollViewDelegate in the .h file
     self.scrollView.delegate = self;
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -200,52 +204,120 @@
 
 - (IBAction)btnSwitchDiver:(id)sender {
     
-    UIStoryboard *sboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    SwitchDiver *switchDiver = [sboard instantiateViewControllerWithIdentifier:@"SwitchDiver"];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        
+        UIStoryboard *sboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        SwitchDiver *switchDiver = [sboard instantiateViewControllerWithIdentifier:@"SwitchDiver"];
+        
+        popoverController = [[WYPopoverController alloc] initWithContentViewController:switchDiver];
+        popoverController.delegate = self;
+        popoverController.popoverContentSize = CGSizeMake(300, 300);
+        switchDiver.meetRecordID = self.meetRecordID;
+        switchDiver.diverRecordID = self.diverRecordID;
+        switchDiver.meetInfo = self.meetInfo;
+        [popoverController presentPopoverFromRect:[(UIButton *)sender frame] inView:self.view permittedArrowDirections:WYPopoverArrowDirectionNone animated:YES];
+        
+    } else {
     
-    popoverContr = [[UIPopoverController alloc] initWithContentViewController:switchDiver];
-    popoverContr.popoverContentSize = CGSizeMake(400, 400);
-    switchDiver.meetRecordID = self.meetRecordID;
-    switchDiver.diverRecordID = self.diverRecordID;
-    switchDiver.meetInfo = self.meetInfo;
-    [popoverContr presentPopoverFromRect:[(UIButton *)sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        UIStoryboard *sboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        SwitchDiver *switchDiver = [sboard instantiateViewControllerWithIdentifier:@"SwitchDiver"];
+        
+        popoverContr = [[UIPopoverController alloc] initWithContentViewController:switchDiver];
+        popoverContr.popoverContentSize = CGSizeMake(400, 400);
+        switchDiver.meetRecordID = self.meetRecordID;
+        switchDiver.diverRecordID = self.diverRecordID;
+        switchDiver.meetInfo = self.meetInfo;
+        [popoverContr presentPopoverFromRect:[(UIButton *)sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }
 }
 
 - (IBAction)btnTypeNumber:(id)sender {
     
-    UIStoryboard *sboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    TypeDiveNumber *enter = [sboard instantiateViewControllerWithIdentifier:@"TypeDiveNumber"];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        
+        UIStoryboard *sboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        TypeDiveNumber *enter = [sboard instantiateViewControllerWithIdentifier:@"TypeDiveNumber"];
+        
+        popoverController = [[WYPopoverController alloc] initWithContentViewController:enter];
+        popoverController.delegate = self;
+        popoverController.popoverContentSize = CGSizeMake(250, 145);
+        enter.delegate = self;
+        // pass the instance of the custom class to the next class to dismiss it
+        // need to declare this in the h file and then call dismissPopverAnimated on it
+        enter.controller = popoverController;
+        enter.boardSize = self.boardSize;
+        enter.meetRecordID = self.meetRecordID;
+        enter.diverRecordID = self.diverRecordID;
+        enter.maxDiveNumber = self.maxDiveNumber;
+        enter.onDiveNumber = self.onDiveNumber;
+        enter.meetInfo = self.meetInfo;
+        enter.whoCalled = 1;
+        [popoverController presentPopoverFromRect:[(UIButton *)sender frame] inView:self.view permittedArrowDirections:WYPopoverArrowDirectionNone animated:YES];
+        
+    } else {
     
-    popoverContr = [[UIPopoverController alloc] initWithContentViewController:enter];
-    popoverContr.popoverContentSize = CGSizeMake(400, 150);
-    enter.delegate = self;
-    enter.boardSize = self.boardSize;
-    enter.meetRecordID = self.meetRecordID;
-    enter.diverRecordID = self.diverRecordID;
-    enter.maxDiveNumber = self.maxDiveNumber;
-    enter.onDiveNumber = self.onDiveNumber;
-    enter.meetInfo = self.meetInfo;
-    enter.whoCalled = 1;
-    [popoverContr presentPopoverFromRect:[(UIButton *)sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+        UIStoryboard *sboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        TypeDiveNumber *enter = [sboard instantiateViewControllerWithIdentifier:@"TypeDiveNumber"];
+        
+        popoverContr = [[UIPopoverController alloc] initWithContentViewController:enter];
+        popoverContr.popoverContentSize = CGSizeMake(400, 150);
+        enter.delegate = self;
+        enter.boardSize = self.boardSize;
+        enter.meetRecordID = self.meetRecordID;
+        enter.diverRecordID = self.diverRecordID;
+        enter.maxDiveNumber = self.maxDiveNumber;
+        enter.onDiveNumber = self.onDiveNumber;
+        enter.meetInfo = self.meetInfo;
+        enter.whoCalled = 1;
+        [popoverContr presentPopoverFromRect:[(UIButton *)sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    }
     
 }
 
 - (IBAction)btnChooseDives:(id)sender {
     
-    UIStoryboard *sboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    TypeDiveNumber *enter = [sboard instantiateViewControllerWithIdentifier:@"ChooseDiveNumber"];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        
+        UIStoryboard *sboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        TypeDiveNumber *enter = [sboard instantiateViewControllerWithIdentifier:@"ChooseDiveNumber"];
+        
+        popoverController = [[WYPopoverController alloc] initWithContentViewController:enter];
+        popoverController.delegate = self;
+        popoverController.popoverContentSize = CGSizeMake(250, 235);
+        enter.delegate = self;
+        // pass the instance of the custom class to the next class to dismiss it
+        // need to declare this in the h file and then call dismissPopverAnimated on it
+        enter.controller = popoverController;
+        enter.boardSize = self.boardSize;
+        enter.meetRecordID = self.meetRecordID;
+        enter.diverRecordID = self.diverRecordID;
+        enter.maxDiveNumber = self.maxDiveNumber;
+        enter.onDiveNumber = self.onDiveNumber;
+        enter.meetInfo = self.meetInfo;
+        enter.whoCalled = 1;
+        [popoverController presentPopoverFromRect:[(UIButton *)sender frame] inView:self.view permittedArrowDirections:WYPopoverArrowDirectionNone animated:YES];
+        
+    } else {
     
-    popoverContr = [[UIPopoverController alloc] initWithContentViewController:enter];
-    popoverContr.popoverContentSize = CGSizeMake(400, 235);
-    enter.delegate = self;
-    enter.boardSize = self.boardSize;
-    enter.meetRecordID = self.meetRecordID;
-    enter.diverRecordID = self.diverRecordID;
-    enter.maxDiveNumber = self.maxDiveNumber;
-    enter.onDiveNumber = self.onDiveNumber;
-    enter.meetInfo = self.meetInfo;
-    enter.whoCalled = 1;
-    [popoverContr presentPopoverFromRect:[(UIButton *)sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
+        UIStoryboard *sboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        TypeDiveNumber *enter = [sboard instantiateViewControllerWithIdentifier:@"ChooseDiveNumber"];
+        
+        popoverContr = [[UIPopoverController alloc] initWithContentViewController:enter];
+        popoverContr.popoverContentSize = CGSizeMake(400, 235);
+        enter.delegate = self;
+        enter.boardSize = self.boardSize;
+        enter.meetRecordID = self.meetRecordID;
+        enter.diverRecordID = self.diverRecordID;
+        enter.maxDiveNumber = self.maxDiveNumber;
+        enter.onDiveNumber = self.onDiveNumber;
+        enter.meetInfo = self.meetInfo;
+        enter.whoCalled = 1;
+        [popoverContr presentPopoverFromRect:[(UIButton *)sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
+    }
+}
+
+-(BOOL)popoverControllerShouldDismissPopover:(WYPopoverController *)popoverController {
+    return YES;
 }
 
 - (IBAction)Dive1EditClick:(UILongPressGestureRecognizer *)sender {
