@@ -15,7 +15,6 @@
 #import "DiveTypes.h"
 #import "DiveNumber.h"
 #import "JudgeScores.h"
-#import "DiveListEdit.h"
 #import "DiveListChoose.h"
 #import "DiveList.h"
 #import "ChooseDiver.h"
@@ -48,7 +47,9 @@
 -(void)hideInitialControls;
 -(void)updateListFilled;
 -(void)updateListStarted;
-//-(IBAction)showPopover:(id)sender;
+-(void)editDiverPopup;
+-(void)editTypeNumber;
+-(void)editChooseNumber;
 
 @end
 
@@ -137,28 +138,8 @@
     // Dispose of any resources that can be recreated.
 }
 
--(IBAction)unwindToEnterDiveList:(UIStoryboardSegue*)sender {
-    
-}
-
 // push id to the next view controller
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    // send to the diveListEdit
-    if ([segue.identifier isEqualToString:@"idSegueDiveListEdit"]) {
-        // send the variables to edit a JudgesDive
-        DiveListEdit *edit = [segue destinationViewController];
-        
-        //set the delegate here
-        edit.delegate = self;
-        
-        edit.meetInfo = self.meetInfo;
-        edit.meetRecordID = self.meetRecordID;
-        edit.diverRecordID = self.diverRecordID;
-        edit.boardSize = self.boardSize;
-        edit.diveNumber = self.editDiveNumber;
-        edit.oldDiveName = self.oldDiveName;
-    }
     
     if([segue.identifier isEqualToString:@"idSegueDiveListChoose"]) {
         
@@ -326,7 +307,8 @@
         //NSLog(@"Dive1 edit Test");
         self.editDiveNumber = @1;
         self.oldDiveName = self.lblDive1.text;
-        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+        [self editDiverPopup];
+        //[self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
     }
 }
 
@@ -336,7 +318,7 @@
         //NSLog(@"Dive2 edit Test");
         self.editDiveNumber = @2;
         self.oldDiveName = self.lblDive2.text;
-        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+        [self editDiverPopup];
     }
 }
 
@@ -346,7 +328,7 @@
         //NSLog(@"Dive3 edit Test");
         self.editDiveNumber = @3;
         self.oldDiveName = self.lblDive3.text;
-        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+        [self editDiverPopup];
     }
 }
 
@@ -356,7 +338,7 @@
         //NSLog(@"Dive4 edit Test");
         self.editDiveNumber = @4;
         self.oldDiveName = self.lblDive4.text;
-        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+        [self editDiverPopup];
     }
 }
 
@@ -366,7 +348,7 @@
         //NSLog(@"Dive5 edit Test");
         self.editDiveNumber = @5;
         self.oldDiveName = self.lblDive5.text;
-        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+        [self editDiverPopup];
     }
 }
 
@@ -376,7 +358,7 @@
         //NSLog(@"Dive6 edit Test");
         self.editDiveNumber = @6;
         self.oldDiveName = self.lblDive6.text;
-        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+        [self editDiverPopup];
     }
 }
 
@@ -386,7 +368,7 @@
         //NSLog(@"Dive7 edit Test");
         self.editDiveNumber = @7;
         self.oldDiveName = self.lblDive7.text;
-        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+        [self editDiverPopup];
     }
 }
 
@@ -396,7 +378,7 @@
         //NSLog(@"Dive8 edit Test");
         self.editDiveNumber = @8;
         self.oldDiveName = self.lblDive8.text;
-        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+        [self editDiverPopup];
     }
 }
 
@@ -406,7 +388,7 @@
         //NSLog(@"Dive9 edit Test");
         self.editDiveNumber = @9;
         self.oldDiveName = self.lblDive9.text;
-        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+        [self editDiverPopup];
     }
 }
 
@@ -416,7 +398,7 @@
         //NSLog(@"Dive10 edit Test");
         self.editDiveNumber = @10;
         self.oldDiveName = self.lblDive10.text;
-        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+        [self editDiverPopup];
     }
 }
 
@@ -426,16 +408,8 @@
         //NSLog(@"Dive11 edit Test");
         self.editDiveNumber = @11;
         self.oldDiveName = self.lblDive11.text;
-        [self performSegueWithIdentifier:@"idSegueDiveListEdit" sender:self];
+        [self editDiverPopup];
     }
-}
-
-// delegate method to update the info after the dive edit is popped off
--(void)editDiveListWasFinished {
-    
-    [self fillDiveNumber];
-    [self fillDiveInfo];
-    [self EnableStartMeet];
 }
 
 // delegate method to update after typing a dive number
@@ -454,16 +428,132 @@
     [self EnableStartMeet];
 }
 
-// empty
--(void)editDiveNumberWasFinished {
-    // unimplemented delegate method
-}
-
--(void)editChooseDiveNumberWasFinished  {
-    // unimplemented method
-}
-
 #pragma private methods
+
+-(void)editDiverPopup {
+    
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:@"If you edit a dive which has already been scored you will need to update the score by selecting the Enter Scores button"
+                                          message:nil
+                                          preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *TypeNumber = [UIAlertAction
+                                     actionWithTitle:@"Type Dive Number"
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction *action)
+                                     {
+                                         NSLog(@"Type Action");
+                                         [self editTypeNumber];
+                                     }];
+    
+    UIAlertAction *ChooseNumber = [UIAlertAction
+                                  actionWithTitle:@"Choose Dive Number"
+                                  style:UIAlertActionStyleDefault
+                                  handler:^(UIAlertAction *action)
+                                  {
+                                      NSLog(@"Choose Action");
+                                      [self editChooseNumber];
+                                  }];
+    
+    [alertController addAction:TypeNumber];
+    [alertController addAction:ChooseNumber];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+    UIPopoverPresentationController *popover = alertController.popoverPresentationController;
+    if (popover) {
+        popover.sourceView = self.view;
+        CGRect rect = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/2, 1, 1);
+        popover.sourceRect = rect;
+        popover.permittedArrowDirections = 0;
+    }
+    
+}
+
+-(void)editTypeNumber {
+    
+    CGRect rect = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/2, 1, 1);
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        
+        UIStoryboard *sboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        TypeDiveNumber *enter = [sboard instantiateViewControllerWithIdentifier:@"TypeDiveNumber"];
+        
+        popoverController = [[WYPopoverController alloc] initWithContentViewController:enter];
+        popoverController.delegate = self;
+        popoverController.popoverContentSize = CGSizeMake(250, 145);
+        enter.delegate = self;
+        // pass the instance of the custom class to the next class to dismiss it
+        // need to declare this in the h file and then call dismissPopverAnimated on it
+        enter.controller = popoverController;
+        enter.boardSize = self.boardSize;
+        enter.meetRecordID = self.meetRecordID;
+        enter.diverRecordID = self.diverRecordID;
+        enter.onDiveNumber = self.editDiveNumber;
+        enter.meetInfo = self.meetInfo;
+        enter.whoCalled = 2;
+        [popoverController presentPopoverFromRect:rect inView:self.view permittedArrowDirections:WYPopoverArrowDirectionNone animated:YES];
+        
+    } else {
+        
+        UIStoryboard *sboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        TypeDiveNumber *enter = [sboard instantiateViewControllerWithIdentifier:@"TypeDiveNumber"];
+        
+        popoverContr = [[UIPopoverController alloc] initWithContentViewController:enter];
+        popoverContr.popoverContentSize = CGSizeMake(400, 150);
+        enter.delegate = self;
+        enter.boardSize = self.boardSize;
+        enter.meetRecordID = self.meetRecordID;
+        enter.diverRecordID = self.diverRecordID;
+        enter.onDiveNumber = self.editDiveNumber;
+        enter.meetInfo = self.meetInfo;
+        enter.whoCalled = 2;
+        [popoverContr presentPopoverFromRect:rect inView:self.view permittedArrowDirections:0 animated:YES];
+    }
+    
+}
+-(void)editChooseNumber {
+    
+    CGRect rect = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/2, 1, 1);
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        
+        UIStoryboard *sboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        TypeDiveNumber *enter = [sboard instantiateViewControllerWithIdentifier:@"ChooseDiveNumber"];
+        
+        popoverController = [[WYPopoverController alloc] initWithContentViewController:enter];
+        popoverController.delegate = self;
+        popoverController.popoverContentSize = CGSizeMake(250, 235);
+        enter.delegate = self;
+        // pass the instance of the custom class to the next class to dismiss it
+        // need to declare this in the h file and then call dismissPopverAnimated on it
+        enter.controller = popoverController;
+        enter.boardSize = self.boardSize;
+        enter.meetRecordID = self.meetRecordID;
+        enter.diverRecordID = self.diverRecordID;
+        enter.onDiveNumber = self.editDiveNumber;
+        enter.meetInfo = self.meetInfo;
+        enter.whoCalled = 2;
+        [popoverController presentPopoverFromRect:rect inView:self.view permittedArrowDirections:WYPopoverArrowDirectionNone animated:YES];
+        
+    } else {
+        
+        UIStoryboard *sboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        TypeDiveNumber *enter = [sboard instantiateViewControllerWithIdentifier:@"ChooseDiveNumber"];
+        
+        popoverContr = [[UIPopoverController alloc] initWithContentViewController:enter];
+        popoverContr.popoverContentSize = CGSizeMake(400, 235);
+        enter.delegate = self;
+        enter.boardSize = self.boardSize;
+        enter.meetRecordID = self.meetRecordID;
+        enter.diverRecordID = self.diverRecordID;
+        enter.onDiveNumber = self.editDiveNumber;
+        enter.meetInfo = self.meetInfo;
+        enter.whoCalled = 2;
+        [popoverContr presentPopoverFromRect:rect inView:self.view permittedArrowDirections:0 animated:YES];
+    }
+    
+}
 
 -(void)fillText {
     

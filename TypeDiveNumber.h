@@ -13,7 +13,6 @@
 @protocol TypeDiveNumberDelegate
 
 -(void)typeDiveNumberWasFinished;
--(void)editDiveNumberWasFinished;
 
 @end
 

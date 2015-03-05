@@ -358,14 +358,14 @@
             }
             
         } else if (self.whoCalled == 2) {
-            [self.delegate editChooseDiveNumberWasFinished];
+            [self.delegate chooseDiveNumberWasFinished];
             
             // using the custome class dismiss the popover after passing instance of the class
             if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
                 [self.controller dismissPopoverAnimated:YES];
-                [self dismissViewControllerAnimated:YES completion:nil]; // this may not work
             } else {
-                [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+                [self dismissViewControllerAnimated:YES completion:nil];
+                //[self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
             }
         } else {
             // diveEnterDelegate - this may need to go right to score

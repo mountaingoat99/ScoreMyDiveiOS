@@ -12,7 +12,6 @@
 @protocol ChooseDiveNumberDelegate
 
 -(void)chooseDiveNumberWasFinished;
--(void)editChooseDiveNumberWasFinished;
 
 @end
 

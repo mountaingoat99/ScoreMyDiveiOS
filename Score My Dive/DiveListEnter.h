@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DiveListEdit.h"
 #import "TypeDiveNumber.h"
 #import "ChooseDiveNumber.h"
 
-@interface DiveListEnter : UIViewController <DiveListEnterViewControllerDelegate, UIScrollViewDelegate, TypeDiveNumberDelegate, ChooseDiveNumberDelegate>
+@interface DiveListEnter : UIViewController <UIScrollViewDelegate, TypeDiveNumberDelegate, ChooseDiveNumberDelegate>
 
 //popover
 @property (nonatomic, retain) UIPopoverController *popoverContr;
