@@ -116,6 +116,14 @@
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         
+        switch (self.judgeTotal) {
+            case 2: case 3:
+                self.panelConstraint.constant = -90;
+                break;
+            case 5:
+                self.panelConstraint.constant = -140;
+                break;
+        }
         
     } else {
     

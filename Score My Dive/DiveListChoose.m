@@ -20,8 +20,12 @@
 #import "DiveListFinalScore.h"
 #import "DiveListEnter.h"
 #import "SwitchDiver.h"
+#import "WYPopoverController.h"
 
-@interface DiveListChoose ()
+@interface DiveListChoose () <WYPopoverControllerDelegate>
+{
+    WYPopoverController* popoverController;
+}
 
 @property (nonatomic, strong) NSArray *diveNumberArray;
 @property (nonatomic, strong) UIPickerView *diveNumberPicker;
@@ -281,15 +285,31 @@
 
 - (IBAction)btnSwitchDiver:(id)sender {
     
-    UIStoryboard *sboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    SwitchDiver *switchDiver = [sboard instantiateViewControllerWithIdentifier:@"SwitchDiver"];
-    
-    popoverContr = [[UIPopoverController alloc] initWithContentViewController:switchDiver];
-    popoverContr.popoverContentSize = CGSizeMake(400, 400);
-    switchDiver.meetRecordID = self.meetRecordID;
-    switchDiver.diverRecordID = self.diverRecordID;
-    switchDiver.meetInfo = self.meetInfo;
-    [popoverContr presentPopoverFromRect:[(UIButton *)sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        
+        UIStoryboard *sboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        SwitchDiver *switchDiver = [sboard instantiateViewControllerWithIdentifier:@"SwitchDiver"];
+        
+        popoverController = [[WYPopoverController alloc] initWithContentViewController:switchDiver];
+        popoverController.delegate = self;
+        popoverController.popoverContentSize = CGSizeMake(300, 300);
+        switchDiver.meetRecordID = self.meetRecordID;
+        switchDiver.diverRecordID = self.diverRecordID;
+        switchDiver.meetInfo = self.meetInfo;
+        [popoverController presentPopoverFromRect:[(UIButton *)sender frame] inView:self.view permittedArrowDirections:WYPopoverArrowDirectionNone animated:YES];
+        
+    } else {
+        
+        UIStoryboard *sboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        SwitchDiver *switchDiver = [sboard instantiateViewControllerWithIdentifier:@"SwitchDiver"];
+        
+        popoverContr = [[UIPopoverController alloc] initWithContentViewController:switchDiver];
+        popoverContr.popoverContentSize = CGSizeMake(400, 400);
+        switchDiver.meetRecordID = self.meetRecordID;
+        switchDiver.diverRecordID = self.diverRecordID;
+        switchDiver.meetInfo = self.meetInfo;
+        [popoverContr presentPopoverFromRect:[(UIButton *)sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }
 }
 
 - (IBAction)btnEnterScoreClick:(id)sender {

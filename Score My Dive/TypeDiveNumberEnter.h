@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "HTAutocompleteTextField.h"
+#import "WYPopoverController.h"
 
 @interface TypeDiveNumberEnter : UIViewController <UITextFieldDelegate>
+
+//WYPopoverController delegate
+//@property (nonatomic, assign) WYPopoverController *controller;
 
 @property (nonatomic, strong) NSNumber *boardSize;
 @property (nonatomic) int listOrNot;
