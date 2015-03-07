@@ -356,7 +356,9 @@
         UIPopoverPresentationController *popover = alertController.popoverPresentationController;
         if (popover) {
             popover.sourceView = self.view;
-            popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+            CGRect rect = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/2, 1, 1);
+            popover.sourceRect = rect;
+            popover.permittedArrowDirections = 0;
         }
     }
 }
@@ -412,7 +414,9 @@
         UIPopoverPresentationController *popover = alertController.popoverPresentationController;
         if (popover) {
             popover.sourceView = self.view;
-            popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+            CGRect rect = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/2, 1, 1);
+            popover.sourceRect = rect;
+            popover.permittedArrowDirections = 0;
         }
     }
 }
@@ -468,7 +472,9 @@
         UIPopoverPresentationController *popover = alertController.popoverPresentationController;
         if (popover) {
             popover.sourceView = self.view;
-            popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+            CGRect rect = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/2, 1, 1);
+            popover.sourceRect = rect;
+            popover.permittedArrowDirections = 0;
         }
     }
 }
@@ -524,8 +530,9 @@
         UIPopoverPresentationController *popover = alertController.popoverPresentationController;
         if (popover) {
             popover.sourceView = self.view;
-            popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
-        }
+            CGRect rect = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/2, 1, 1);
+            popover.sourceRect = rect;
+            popover.permittedArrowDirections = 0;        }
     }
 }
 
@@ -580,7 +587,9 @@
         UIPopoverPresentationController *popover = alertController.popoverPresentationController;
         if (popover) {
             popover.sourceView = self.view;
-            popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+            CGRect rect = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/2, 1, 1);
+            popover.sourceRect = rect;
+            popover.permittedArrowDirections = 0;
         }
     }
 }
@@ -636,7 +645,9 @@
         UIPopoverPresentationController *popover = alertController.popoverPresentationController;
         if (popover) {
             popover.sourceView = self.view;
-            popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+            CGRect rect = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/2, 1, 1);
+            popover.sourceRect = rect;
+            popover.permittedArrowDirections = 0;
         }
     }
 }
@@ -692,8 +703,9 @@
         UIPopoverPresentationController *popover = alertController.popoverPresentationController;
         if (popover) {
             popover.sourceView = self.view;
-            popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
-        }
+            CGRect rect = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/2, 1, 1);
+            popover.sourceRect = rect;
+            popover.permittedArrowDirections = 0;        }
     }
 }
 
@@ -748,7 +760,9 @@
         UIPopoverPresentationController *popover = alertController.popoverPresentationController;
         if (popover) {
             popover.sourceView = self.view;
-            popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+            CGRect rect = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/2, 1, 1);
+            popover.sourceRect = rect;
+            popover.permittedArrowDirections = 0;
         }
     }
 }
@@ -804,7 +818,9 @@
         UIPopoverPresentationController *popover = alertController.popoverPresentationController;
         if (popover) {
             popover.sourceView = self.view;
-            popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+            CGRect rect = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/2, 1, 1);
+            popover.sourceRect = rect;
+            popover.permittedArrowDirections = 0;
         }
     }
 }
@@ -860,7 +876,9 @@
         UIPopoverPresentationController *popover = alertController.popoverPresentationController;
         if (popover) {
             popover.sourceView = self.view;
-            popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+            CGRect rect = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/2, 1, 1);
+            popover.sourceRect = rect;
+            popover.permittedArrowDirections = 0;
         }
     }
 }
@@ -916,7 +934,9 @@
         UIPopoverPresentationController *popover = alertController.popoverPresentationController;
         if (popover) {
             popover.sourceView = self.view;
-            popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+            CGRect rect = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/2, 1, 1);
+            popover.sourceRect = rect;
+            popover.permittedArrowDirections = 0;
         }
     }
 }
