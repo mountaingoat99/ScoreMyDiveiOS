@@ -30,6 +30,7 @@
 @property (nonatomic, strong) NSNumber *scr7;
 @property (nonatomic, strong) NSNumber *boardSize;
 @property (nonatomic) int judgeTotal;
+@property (nonatomic, strong) NSString *decimalString;
 
 -(void)whatJudgeTotal;
 -(void)HideControls;
@@ -38,6 +39,7 @@
 -(BOOL)updateFailedDive;
 -(void)DiverBoardSize;
 -(void)UpdateTxtField;
+-(void)addDecimal;
 
 @end
 
@@ -254,12 +256,67 @@
     NSError *error = nil;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:expression options:NSRegularExpressionCaseInsensitive error:&error];
     NSUInteger numberOfMatches = [regex numberOfMatchesInString:newString options:0 range:NSMakeRange(0, [newString length])];
-    if (numberOfMatches == 0) return NO;
+    if (numberOfMatches == 0) {
+        return NO;
+    } else {
+        if (textField.text.length == 0
+            && ([newString isEqualToString:@"0"]
+            || [newString isEqualToString:@"2"]
+            || [newString isEqualToString:@"3"]
+            || [newString isEqualToString:@"4"]
+            || [newString isEqualToString:@"5"]
+            || [newString isEqualToString:@"6"]
+            || [newString isEqualToString:@"7"]
+            || [newString isEqualToString:@"8"]
+            || [newString isEqualToString:@"9"])) {
+                
+            self.decimalString = [newString stringByAppendingString:@"."];
+            [self addDecimal];
+            NSLog(@"addedDecimal");
+            return NO;
+        }
+    }
     
     // here we will check to see if the fields have been fully entered
     [self UpdateTxtField];
 
     return YES;
+}
+
+-(void)addDecimal {
+    
+    if ([self.txt1 isFirstResponder]) {
+        self.txt1.text = self.decimalString;
+        return;
+    }
+    
+    if ([self.txt2 isFirstResponder]) {
+        self.txt2.text = self.decimalString;
+        return;
+    }
+    
+    if ([self.txt3 isFirstResponder]) {
+        self.txt3.text = self.decimalString;
+        return;
+    }
+    
+    if ([self.txt4 isFirstResponder]) {
+        self.txt4.text = self.decimalString;
+        return;
+    }
+    
+    if ([self.txt5 isFirstResponder]) {
+        self.txt5.text = self.decimalString;
+        return;
+    }
+    if ([self.txt6 isFirstResponder]) {
+        self.txt6.text = self.decimalString;
+        return;
+    }
+    if ([self.txt7 isFirstResponder]) {
+        self.txt7.text = self.decimalString;
+        return;
+    }
 }
 
 -(void)UpdateTxtField {
