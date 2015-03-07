@@ -224,7 +224,7 @@
         
         popoverController = [[WYPopoverController alloc] initWithContentViewController:enter];
         popoverController.delegate = self;
-        popoverController.popoverContentSize = CGSizeMake(250, 145);
+        popoverController.popoverContentSize = CGSizeMake(250, 170);
         // pass the instance of the custom class to the next class to dismiss it
         // need to declare this in the h file and then call dismissPopverAnimated on it
         //enter.controller = popoverController;
@@ -264,7 +264,7 @@
         
         popoverController = [[WYPopoverController alloc] initWithContentViewController:enter];
         popoverController.delegate = self;
-        popoverController.popoverContentSize = CGSizeMake(250, 235);
+        popoverController.popoverContentSize = CGSizeMake(250, 265);
         // pass the instance of the custom class to the next class to dismiss it
         // need to declare this in the h file and then call dismissPopverAnimated on it
         //enter.controller = popoverController;

@@ -72,7 +72,9 @@
         self.txtDiveNumberEntry.autocompleteType = HTAutocompletePlatform;
     }
     
-    [self.txtDiveNumberEntry becomeFirstResponder];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [self.txtDiveNumberEntry becomeFirstResponder];
+    }
 
 }
 
