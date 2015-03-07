@@ -21,10 +21,8 @@
 		2642AB6A1A32A2CD002E8DFA /* MeetCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2642AB691A32A2CD002E8DFA /* MeetCollection.m */; };
 		2651CF051A17D56E0050D587 /* QuickScoreEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2651CF041A17D56E0050D587 /* QuickScoreEdit.m */; };
 		265CFDDD1A7336A20015A4E0 /* YouTubeWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CFDDC1A7336A20015A4E0 /* YouTubeWebViewViewController.m */; };
-		266ACFC41A462BFB00F89645 /* DiveListEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 266ACFC31A462BFB00F89645 /* DiveListEdit.m */; };
 		266ACFC71A46654700F89645 /* DiveListChoose.m in Sources */ = {isa = PBXBuildFile; fileRef = 266ACFC61A46654700F89645 /* DiveListChoose.m */; };
 		267643E61A218DF000CD2CB1 /* ReportsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 267643E51A218DF000CD2CB1 /* ReportsViewController.m */; };
-		267643E91A218E2C00CD2CB1 /* ChooseMeet.m in Sources */ = {isa = PBXBuildFile; fileRef = 267643E81A218E2C00CD2CB1 /* ChooseMeet.m */; };
 		2677C2771A9A647A002DDC12 /* ChooseDiveNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2677C2761A9A647A002DDC12 /* ChooseDiveNumber.m */; };
 		267A3FC81A280DE80068FA9E /* MeetHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 267A3FC71A280DE80068FA9E /* MeetHistory.m */; };
 		267A3FCB1A280E370068FA9E /* DiverHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 267A3FCA1A280E370068FA9E /* DiverHistory.m */; };
@@ -111,14 +109,10 @@
 		2651CF041A17D56E0050D587 /* QuickScoreEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickScoreEdit.m; sourceTree = "<group>"; };
 		265CFDDB1A7336A20015A4E0 /* YouTubeWebViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeWebViewViewController.h; sourceTree = "<group>"; };
 		265CFDDC1A7336A20015A4E0 /* YouTubeWebViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeWebViewViewController.m; sourceTree = "<group>"; };
-		266ACFC21A462BFB00F89645 /* DiveListEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveListEdit.h; sourceTree = "<group>"; };
-		266ACFC31A462BFB00F89645 /* DiveListEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveListEdit.m; sourceTree = "<group>"; };
 		266ACFC51A46654700F89645 /* DiveListChoose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiveListChoose.h; sourceTree = "<group>"; };
 		266ACFC61A46654700F89645 /* DiveListChoose.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveListChoose.m; sourceTree = "<group>"; };
 		267643E41A218DF000CD2CB1 /* ReportsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportsViewController.h; sourceTree = "<group>"; };
 		267643E51A218DF000CD2CB1 /* ReportsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportsViewController.m; sourceTree = "<group>"; };
-		267643E71A218E2C00CD2CB1 /* ChooseMeet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseMeet.h; sourceTree = "<group>"; };
-		267643E81A218E2C00CD2CB1 /* ChooseMeet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseMeet.m; sourceTree = "<group>"; };
 		2677C2751A9A647A002DDC12 /* ChooseDiveNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseDiveNumber.h; sourceTree = "<group>"; };
 		2677C2761A9A647A002DDC12 /* ChooseDiveNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseDiveNumber.m; sourceTree = "<group>"; };
 		267A3FC61A280DE80068FA9E /* MeetHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetHistory.h; sourceTree = "<group>"; };
@@ -336,8 +330,6 @@
 				267A3FC71A280DE80068FA9E /* MeetHistory.m */,
 				26A248F51A2299C400760F38 /* ChooseDiver.h */,
 				26A248F61A2299C400760F38 /* ChooseDiver.m */,
-				267643E71A218E2C00CD2CB1 /* ChooseMeet.h */,
-				267643E81A218E2C00CD2CB1 /* ChooseMeet.m */,
 				267643E41A218DF000CD2CB1 /* ReportsViewController.h */,
 				267643E51A218DF000CD2CB1 /* ReportsViewController.m */,
 				262756C81A1D811200DAC877 /* DiverEdit.h */,
@@ -354,8 +346,6 @@
 				2691AE6B1A0691FB000ABD3B /* DiverDetailsVC.m */,
 				2691AE6D1A069898000ABD3B /* MeetDetailsVC.h */,
 				2691AE6E1A069898000ABD3B /* MeetDetailsVC.m */,
-				266ACFC21A462BFB00F89645 /* DiveListEdit.h */,
-				266ACFC31A462BFB00F89645 /* DiveListEdit.m */,
 				266ACFC51A46654700F89645 /* DiveListChoose.h */,
 				266ACFC61A46654700F89645 /* DiveListChoose.m */,
 				261E71911A490C9F0036ABE3 /* DiveListScore.h */,
@@ -559,10 +549,8 @@
 				2691AE6F1A069898000ABD3B /* MeetDetailsVC.m in Sources */,
 				263AC5CA1A030FD600846CB0 /* AppDelegate.m in Sources */,
 				261E71961A490D040036ABE3 /* DiveListFinalScore.m in Sources */,
-				266ACFC41A462BFB00F89645 /* DiveListEdit.m in Sources */,
 				26ADE4471A4A07D600913ABA /* HTAutocompleteManager.m in Sources */,
 				26BE234A1A10275A00E123D0 /* QuickScores.m in Sources */,
-				267643E91A218E2C00CD2CB1 /* ChooseMeet.m in Sources */,
 				269FB88B1A6C9ACB006B9C27 /* AllSpringboardDives.m in Sources */,
 				26BE237D1A1027CC00E123D0 /* JudgeScores.m in Sources */,
 				2642AB6A1A32A2CD002E8DFA /* MeetCollection.m in Sources */,
