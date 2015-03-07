@@ -7,7 +7,6 @@
 //
 
 #import "DiveListScore.h"
-#import "HTAutocompleteManager.h"
 #import "Judges.h"
 #import "JudgeScores.h"
 #import "Results.h"
@@ -50,9 +49,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // sets the default datasource for the autocomplete custom text boxes
-    [HTAutocompleteTextField setDefaultAutocompleteDataSource:[HTAutocompleteManager sharedManager]];
-    
     self.backgroundPanel.layer.shadowColor = [UIColor blackColor].CGColor;
     self.backgroundPanel.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.backgroundPanel.layer.masksToBounds = NO;
@@ -61,43 +57,36 @@
     self.txt1.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
     self.txt1.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txt1.keyboardType = UIKeyboardTypeDecimalPad;
-    self.txt1.autocompleteType = HTAutoCompleteTypeNumbers;
     self.txt1.delegate = self;
 
     self.txt2.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
     self.txt2.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txt2.keyboardType = UIKeyboardTypeDecimalPad;
-    self.txt2.autocompleteType = HTAutoCompleteTypeNumbers;
     self.txt2.delegate = self;
 
     self.txt3.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
     self.txt3.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txt3.keyboardType = UIKeyboardTypeDecimalPad;
-    self.txt3.autocompleteType = HTAutoCompleteTypeNumbers;
     self.txt3.delegate = self;
 
     self.txt4.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
     self.txt4.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txt4.keyboardType = UIKeyboardTypeDecimalPad;
-    self.txt4.autocompleteType = HTAutoCompleteTypeNumbers;
     self.txt4.delegate = self;
 
     self.txt5.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
     self.txt5.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txt5.keyboardType = UIKeyboardTypeDecimalPad;
-    self.txt5.autocompleteType = HTAutoCompleteTypeNumbers;
     self.txt5.delegate = self;
 
     self.txt6.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
     self.txt6.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txt6.keyboardType = UIKeyboardTypeDecimalPad;
-    self.txt6.autocompleteType = HTAutoCompleteTypeNumbers;
     self.txt6.delegate = self;
 
     self.txt7.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
     self.txt7.keyboardAppearance = UIKeyboardAppearanceDark;
     self.txt7.keyboardType = UIKeyboardTypeDecimalPad;
-    self.txt7.autocompleteType = HTAutoCompleteTypeNumbers;
     self.txt7.delegate = self;
     
     [self.txt1 becomeFirstResponder];
@@ -252,7 +241,7 @@
         return YES;
     
     NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    NSString *expression = @"^([0-9]|10{1}+)?(\\.([0|5]{1})?)?$";
+    NSString *expression = @"^([0-9]|10|15{1}+)?(\\.([0|5]{1})?)?$";
     NSError *error = nil;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:expression options:NSRegularExpressionCaseInsensitive error:&error];
     NSUInteger numberOfMatches = [regex numberOfMatchesInString:newString options:0 range:NSMakeRange(0, [newString length])];
@@ -274,7 +263,15 @@
             [self addDecimal];
             NSLog(@"addedDecimal");
             return NO;
-        }
+            } else {
+                if ([newString isEqualToString:@"15"]) {
+                    
+                    self.decimalString = @"1.5";
+                    [self addDecimal];
+                    NSLog(@"15String");
+                    return NO;
+                }
+            }
     }
     
     // here we will check to see if the fields have been fully entered
@@ -287,30 +284,48 @@
     
     if ([self.txt1 isFirstResponder]) {
         self.txt1.text = self.decimalString;
+        if ([self.decimalString isEqualToString:@"1.5"]) {
+            [self performSelector:@selector(setNextResponder:) withObject:self.txt2 afterDelay:.02];
+        }
         return;
     }
     
     if ([self.txt2 isFirstResponder]) {
         self.txt2.text = self.decimalString;
+        if ([self.decimalString isEqualToString:@"1.5"]) {
+            [self performSelector:@selector(setNextResponder:) withObject:self.txt3 afterDelay:.02];
+        }
         return;
     }
     
     if ([self.txt3 isFirstResponder]) {
         self.txt3.text = self.decimalString;
+        if ([self.decimalString isEqualToString:@"1.5"]) {
+            [self performSelector:@selector(setNextResponder:) withObject:self.txt4 afterDelay:.02];
+        }
         return;
     }
     
     if ([self.txt4 isFirstResponder]) {
         self.txt4.text = self.decimalString;
+        if ([self.decimalString isEqualToString:@"1.5"]) {
+            [self performSelector:@selector(setNextResponder:) withObject:self.txt5 afterDelay:.02];
+        }
         return;
     }
     
     if ([self.txt5 isFirstResponder]) {
         self.txt5.text = self.decimalString;
+        if ([self.decimalString isEqualToString:@"1.5"]) {
+            [self performSelector:@selector(setNextResponder:) withObject:self.txt6 afterDelay:.02];
+        }
         return;
     }
     if ([self.txt6 isFirstResponder]) {
         self.txt6.text = self.decimalString;
+        if ([self.decimalString isEqualToString:@"1.5"]) {
+            [self performSelector:@selector(setNextResponder:) withObject:self.txt7 afterDelay:.02];
+        }
         return;
     }
     if ([self.txt7 isFirstResponder]) {

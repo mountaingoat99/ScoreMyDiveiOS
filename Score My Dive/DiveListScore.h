@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HTAutocompleteTextField.h"
 
 @interface DiveListScore : UIViewController <UITextFieldDelegate>
 
@@ -41,13 +40,13 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *panelConstraint;
 
 //auto complete text fields
-@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txt1;
-@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txt2;
-@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txt3;
-@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txt4;
-@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txt5;
-@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txt6;
-@property (unsafe_unretained, nonatomic) IBOutlet HTAutocompleteTextField *txt7;
+@property (weak, nonatomic) IBOutlet UITextField *txt1;
+@property (weak, nonatomic) IBOutlet UITextField *txt2;
+@property (weak, nonatomic) IBOutlet UITextField *txt3;
+@property (weak, nonatomic) IBOutlet UITextField *txt4;
+@property (weak, nonatomic) IBOutlet UITextField *txt5;
+@property (weak, nonatomic) IBOutlet UITextField *txt6;
+@property (weak, nonatomic) IBOutlet UITextField *txt7;
 
 - (IBAction)btnTotalClick:(id)sender;
 - (IBAction)btnFailedClick:(id)sender;
