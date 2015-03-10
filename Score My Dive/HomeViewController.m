@@ -172,11 +172,7 @@
 // go to Youtube Link
 -(void)OpenYouTube {
     
-    
-    
-    [self performSegueWithIdentifier:@"idSegueToWebView" sender:self];
-    
-    //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://youtu.be/ndOXhtE_2hs"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://youtu.be/ZaAx2929cuM"]];
     
 }
 
