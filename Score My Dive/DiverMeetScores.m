@@ -18,6 +18,8 @@
 #import "DiveNumber.h"
 #import "JudgeScores.h"
 #import "RankingsDiver.h"
+#import "AlertControllerHelper.h"
+#import "AppDelegate.h"
 
 @interface DiverMeetScores ()
 
@@ -31,6 +33,7 @@
 -(void)loadResults;
 -(void)FindDiveTotal;
 -(void)HideControls;
+-(void)ShowAlert;
 
 @end
 
@@ -40,6 +43,8 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self restrictRotation:YES];
     
     [[self.backgroundPanel1 layer] setShadowColor:[[UIColor blackColor] CGColor]];
     [[self.backgroundPanel1 layer] setShadowOffset:CGSizeMake(1.0f, 1.0f)];
@@ -82,16 +87,10 @@
 }
 
 // only allow portrait in iphone
--(BOOL)shouldAutorotate {
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        
-        return NO;
-        
-    } else {
-        
-        return YES;
-    }
+-(void) restrictRotation:(BOOL) restriction
+{
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    appDelegate.restrictRotation = restriction;
 }
 
 // restore state
@@ -172,6 +171,12 @@
     }
 }
 
+-(void)ShowAlert {
+    
+    [AlertControllerHelper ShowAlert:@"Hold On!" message:@"Please make sure you've picked a dive and a valid position" view:self];
+    
+}
+
 - (IBAction)btnDive1Click:(id)sender {
     
     if (self.maxDiveNumber >= 1) {
@@ -179,13 +184,7 @@
         
         [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"We don't have a score for that one yet"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        [self ShowAlert];
     }
 }
 
@@ -196,13 +195,7 @@
         
         [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"We don't have a score for that one yet"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        [self ShowAlert];
     }
 }
 
@@ -213,13 +206,7 @@
         
         [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"We don't have a score for that one yet"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        [self ShowAlert];
     }
 }
 
@@ -230,13 +217,7 @@
         
         [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"We don't have a score for that one yet"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        [self ShowAlert];
     }
 }
 
@@ -247,13 +228,7 @@
         
         [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"We don't have a score for that one yet"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        [self ShowAlert];
     }
 }
 
@@ -264,13 +239,7 @@
         
         [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"We don't have a score for that one yet"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        [self ShowAlert];
     }
 }
 
@@ -281,13 +250,7 @@
         
         [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"We don't have a score for that one yet"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        [self ShowAlert];
     }
 }
 
@@ -298,13 +261,7 @@
         
         [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"We don't have a score for that one yet"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        [self ShowAlert];
     }
 }
 
@@ -315,13 +272,7 @@
         
         [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"We don't have a score for that one yet"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        [self ShowAlert];
     }
 }
 
@@ -332,13 +283,7 @@
         
         [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"We don't have a score for that one yet"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        [self ShowAlert];
     }
 }
 
@@ -349,13 +294,7 @@
         
         [self performSegueWithIdentifier:@"idSegueDiverScores" sender:self];
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"We don't have a score for that one yet"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        [self ShowAlert];
     }
 }
 

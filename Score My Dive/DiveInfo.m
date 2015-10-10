@@ -14,6 +14,7 @@
 #import "DiverBoardSize.h"
 #import "JudgeScores.h"
 #import "DiverMeetScores.h"
+#import "AppDelegate.h"
 
 @interface DiveInfo ()
 
@@ -33,6 +34,8 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self restrictRotation:YES];
 
     [[self.backgroundPanel1 layer] setShadowColor:[[UIColor blackColor] CGColor]];
     [[self.backgroundPanel1 layer] setShadowOffset:CGSizeMake(1.0f, 1.0f)];
@@ -80,16 +83,10 @@
 }
 
 // only allow portrait in iphone
--(BOOL)shouldAutorotate {
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        
-        return NO;
-        
-    } else {
-        
-        return YES;
-    }
+-(void) restrictRotation:(BOOL) restriction
+{
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    appDelegate.restrictRotation = restriction;
 }
 
 // restore state

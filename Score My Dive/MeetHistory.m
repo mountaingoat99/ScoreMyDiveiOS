@@ -12,6 +12,7 @@
 #import "Meet.h"
 #import "MeetCollection.h"
 #import "Judges.h"
+#import "AppDelegate.h"
 
 @interface MeetHistory ()
 
@@ -33,6 +34,8 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
+    [self restrictRotation:YES];
+    
     self.tblHistory.delegate = self;
     self.tblHistory.dataSource = self;
     
@@ -53,16 +56,10 @@
 }
 
 // only allow portrait in iphone
--(BOOL)shouldAutorotate {
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        
-        return NO;
-        
-    } else {
-        
-        return YES;
-    }
+-(void) restrictRotation:(BOOL) restriction
+{
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    appDelegate.restrictRotation = restriction;
 }
 
 // restore state

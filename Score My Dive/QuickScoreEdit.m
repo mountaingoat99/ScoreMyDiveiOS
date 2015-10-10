@@ -8,6 +8,7 @@
 
 #import "QuickScoreEdit.h"
 #import "QuickScores.h"
+#import "AppDelegate.h"
 
 @interface QuickScoreEdit ()
 
@@ -39,6 +40,8 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
+    [self restrictRotation:YES];
+    
     [[self.backgroundLabel layer] setShadowColor:[[UIColor blackColor] CGColor]];
     [[self.backgroundLabel layer] setShadowOffset:CGSizeMake(1.0f, 1.0f)];
     [[self.backgroundLabel layer] setMasksToBounds:NO];
@@ -58,16 +61,10 @@
 }
 
 // only allow portrait in iphone
--(BOOL)shouldAutorotate {
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        
-        return NO;
-        
-    } else {
-        
-        return YES;
-    }
+-(void) restrictRotation:(BOOL) restriction
+{
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    appDelegate.restrictRotation = restriction;
 }
 
 // restore state

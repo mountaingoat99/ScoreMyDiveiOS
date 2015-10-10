@@ -19,6 +19,8 @@
 #import "DiveListEnter.h"
 #import "DiveEnter.h"
 #import "Results.h"
+#import "AlertControllerHelper.h"
+#import "AppDelegate.h"
 
 @interface ChooseDiver ()
 
@@ -52,6 +54,8 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self restrictRotation:YES];
     
     self.backgroundPanel.layer.shadowColor = [UIColor blackColor].CGColor;
     self.backgroundPanel.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
@@ -142,16 +146,10 @@
 }
 
 // only allow portrait in iphone
--(BOOL)shouldAutorotate {
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        
-        return NO;
-        
-    } else {
-        
-        return YES;
-    }
+-(void) restrictRotation:(BOOL) restriction
+{
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    appDelegate.restrictRotation = restriction;
 }
 
 // restore state
@@ -323,13 +321,8 @@
             return [self.diverArray[row]objectAtIndex:1];
                 
         } else {
-            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                            message:@"Please Pick a Meet choosing a Diver"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [error show];
-            [error reloadInputViews];
+            
+            [AlertControllerHelper ShowAlert:@"Hold On!" message:@"Please pick a Meet before choosing a Diver" view:self];
             
             return nil;
         }
@@ -369,13 +362,7 @@
             [self HideControls];
             
         } else {
-            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                            message:@"Please Pick a Meet before choosing a Diver"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [error show];
-            [error reloadInputViews];
+            [AlertControllerHelper ShowAlert:@"Hold On!" message:@"Please pick a Meet before choosing a Diver" view:self];
         }
     }
 }
@@ -433,23 +420,10 @@
             [self performSegueWithIdentifier:@"idSegueDiveList" sender:self];
             
         } else {
-            
-            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                            message:@"You have already starting scoring this diver without a list. You will need to remove the diver from the meet and start over if you want to use a list."
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [error show];
-            [error reloadInputViews];
+            [AlertControllerHelper ShowAlert:@"Hold On!" message:@"You have already starting scoring this diver without a list. You will need to remove the diver from the meet and start over if you want to use a list." view:self];
         }
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"Please Pick a Diver"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        [AlertControllerHelper ShowAlert:@"Hold On!" message:@"Please pick a diver" view:self];
     }
 }
 
@@ -472,23 +446,13 @@
             
         } else {
             
-            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                            message:@"Please Pick a Diver"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [error show];
-            [error reloadInputViews];
+            [AlertControllerHelper ShowAlert:@"Hold On!" message:@"Please pick a diver" view:self];
         }
         
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"You have already have a dive list started, please reset the diver if you want to enter scores without a list"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        
+        [AlertControllerHelper ShowAlert:@"Hold On!" message:@"You have already have a dive list started, please reset the diver if you want to enter scores without a list" view:self];
+
     }
     
 }
@@ -569,13 +533,7 @@
         
     } else {
         
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"Please Pick a Diver"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        [AlertControllerHelper ShowAlert:@"Hold On!" message:@"Please pick a diver" view:self];
         
     }
 }

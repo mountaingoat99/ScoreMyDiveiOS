@@ -13,6 +13,8 @@
 #import "DiveTypes.h"
 #import "DiveListScore.h"
 #import "DiveListFinalScore.h"
+#import "AlertControllerHelper.h"
+#import "AppDelegate.h"
 
 @interface TypeDiveNumberEnter ()
 
@@ -40,6 +42,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self restrictRotation:YES];
     
     // sets the default datasource for the autocomplete custom text boxes
     [HTAutocompleteTextField setDefaultAutocompleteDataSource:[HTAutocompleteManager sharedManager]];
@@ -76,6 +80,12 @@
         [self.txtDiveNumberEntry becomeFirstResponder];
     }
 
+}
+
+-(void) restrictRotation:(BOOL) restriction
+{
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    appDelegate.restrictRotation = restriction;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -197,22 +207,14 @@
             [self performSegueWithIdentifier:@"SegueTypeEnterToJudge" sender:self];
             
         } else {
-            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                            message:@"That is not a valid dive! Make sure the Dive DD is more than 0.0"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [error show];
-            [error reloadInputViews];
+            
+            [AlertControllerHelper ShowAlert:@"Hold On!" message:@"This is not a valid dive! Make sure the Dive DD is more than 0.0" view:self];
+            
         }
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"You have to enter a Dive Number and Position"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        
+        [AlertControllerHelper ShowAlert:@"Hold On!" message:@"You have to enter a Dive Number and Position" view:self];
+
     }
 
 }
@@ -230,22 +232,14 @@
             [self performSegueWithIdentifier:@"SegueTypeEnterToTotal" sender:self];
             
         } else {
-            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                            message:@"That is not a valid dive! Make sure the Dive DD is more than 0.0"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [error show];
-            [error reloadInputViews];
+            
+            [AlertControllerHelper ShowAlert:@"Hold On!" message:@"This is not a valid dive! Make sure the Dive DD is more than 0.0" view:self];
+  
         }
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"You have to enter a Dive Number and Position"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        
+        [AlertControllerHelper ShowAlert:@"Hold On!" message:@"You have to enter a Dive Number and Position" view:self];
+        
     }
 }
 

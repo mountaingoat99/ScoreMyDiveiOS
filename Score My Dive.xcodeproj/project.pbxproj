@@ -38,6 +38,7 @@
 		26ADE4471A4A07D600913ABA /* HTAutocompleteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 26ADE4441A4A07D600913ABA /* HTAutocompleteManager.m */; };
 		26ADE4481A4A07D600913ABA /* HTAutocompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 26ADE4461A4A07D600913ABA /* HTAutocompleteTextField.m */; };
 		26B1D05C1A3355CC00112692 /* DiverCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B1D05B1A3355CC00112692 /* DiverCollection.m */; };
+		26B527291BC941720004BF2B /* AlertControllerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B527281BC941720004BF2B /* AlertControllerHelper.m */; settings = {ASSET_TAGS = (); }; };
 		26B88D231A12EF9600DBE909 /* MeetEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B88D221A12EF9600DBE909 /* MeetEdit.m */; };
 		26BE234A1A10275A00E123D0 /* QuickScores.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE233D1A10275A00E123D0 /* QuickScores.m */; };
 		26BE234D1A10275A00E123D0 /* DiveList.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BE23421A10275A00E123D0 /* DiveList.m */; };
@@ -142,6 +143,8 @@
 		26ADE4461A4A07D600913ABA /* HTAutocompleteTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTAutocompleteTextField.m; path = ../HTAutocompleteTextField.m; sourceTree = "<group>"; };
 		26B1D05A1A3355CC00112692 /* DiverCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiverCollection.h; sourceTree = "<group>"; };
 		26B1D05B1A3355CC00112692 /* DiverCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiverCollection.m; sourceTree = "<group>"; };
+		26B527271BC941490004BF2B /* AlertControllerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertControllerHelper.h; sourceTree = "<group>"; };
+		26B527281BC941720004BF2B /* AlertControllerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertControllerHelper.m; sourceTree = "<group>"; };
 		26B88D211A12EF9600DBE909 /* MeetEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetEdit.h; sourceTree = "<group>"; };
 		26B88D221A12EF9600DBE909 /* MeetEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetEdit.m; sourceTree = "<group>"; };
 		26BE233C1A10275A00E123D0 /* QuickScores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickScores.h; sourceTree = "<group>"; };
@@ -243,6 +246,7 @@
 		263AC5C31A030FD600846CB0 /* Score My Dive */ = {
 			isa = PBXGroup;
 			children = (
+				26B527261BC940EB0004BF2B /* Helpers */,
 				269FB8821A6C78F2006B9C27 /* Controllers */,
 				26A07ECF1A09CFDC00997E5C /* Model */,
 				26A07E8A1A09991200997E5C /* StoryBoard */,
@@ -416,6 +420,15 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		26B527261BC940EB0004BF2B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				26B527271BC941490004BF2B /* AlertControllerHelper.h */,
+				26B527281BC941720004BF2B /* AlertControllerHelper.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -561,6 +574,7 @@
 				268857671A291981000AEFF2 /* DiveInfo.m in Sources */,
 				26D4A40F1A507D8900FCEC6F /* RankingsMeet.m in Sources */,
 				268857611A28EBCE000AEFF2 /* DiverMeetScores.m in Sources */,
+				26B527291BC941720004BF2B /* AlertControllerHelper.m in Sources */,
 				269FB8881A6C9ABD006B9C27 /* AllPlatformDives.m in Sources */,
 				2688576A1A29693B000AEFF2 /* DiveListEnter.m in Sources */,
 				26B1D05C1A3355CC00112692 /* DiverCollection.m in Sources */,

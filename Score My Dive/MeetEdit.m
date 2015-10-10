@@ -10,6 +10,8 @@
 #import "Meet.h"
 #import "Judges.h"
 #import "Results.h"
+#import "AlertControllerHelper.h"
+#import "AppDelegate.h"
 
 @interface MeetEdit ()
 
@@ -30,6 +32,8 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self restrictRotation:YES];
     
     self.judgeTotal = @2;
     [self.lblJudgeWarning setHidden:YES];
@@ -153,16 +157,10 @@
 }
 
 // only allow portrait in iphone
--(BOOL)shouldAutorotate {
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        
-        return NO;
-        
-    } else {
-        
-        return YES;
-    }
+-(void) restrictRotation:(BOOL) restriction
+{
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    appDelegate.restrictRotation = restriction;
 }
 
 // restore state
@@ -264,13 +262,7 @@
     if (self.txtMeetName.text.length == 0 || self.txtSchool.text.length == 0 ||
         self.txtCity.text.length == 0 || self.txtState.text.length == 0 || self.txtDate.text.length == 0) {
         
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"Please enter a value for all fields"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        [AlertControllerHelper ShowAlert:@"Hold On!" message:@"Please enter a value for all fields" view:self];
         
     } else {
         

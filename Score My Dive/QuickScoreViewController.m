@@ -8,6 +8,7 @@
 
 #import "QuickScoreViewController.h"
 #import "QuickScores.h"
+#import "AppDelegate.h"
 
 @interface QuickScoreViewController ()
 
@@ -25,6 +26,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self restrictRotation:YES];
     
     // make self the delegate and datasource of the table view
     self.tblQuickScores.delegate = self;
@@ -46,16 +49,10 @@
 }
 
 // only allow portrait in iphone
--(BOOL)shouldAutorotate {
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        
-        return NO;
-        
-    } else {
-        
-        return YES;
-    }
+-(void) restrictRotation:(BOOL) restriction
+{
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    appDelegate.restrictRotation = restriction;
 }
 
 

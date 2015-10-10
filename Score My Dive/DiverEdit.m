@@ -8,7 +8,8 @@
 
 #import "DiverEdit.h"
 #import "Diver.h"
-
+#import "AlertControllerHelper.h"
+#import "AppDelegate.h"
 
 @interface DiverEdit ()
 
@@ -23,6 +24,8 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self restrictRotation:YES];
     
     self.backgroundLabel.layer.shadowColor = [UIColor blackColor].CGColor;
     self.backgroundLabel.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
@@ -60,16 +63,10 @@
 }
 
 // only allow portrait in iphone
--(BOOL)shouldAutorotate {
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        
-        return NO;
-        
-    } else {
-        
-        return YES;
-    }
+-(void) restrictRotation:(BOOL) restriction
+{
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    appDelegate.restrictRotation = restriction;
 }
 
 // saving state
@@ -147,13 +144,7 @@
     if (self.txtName.text.length == 0 || self.txtAge.text.length == 0 ||
         self.txtGrade.text.length == 0 || self.txtSchool.text.length == 0) {
         
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"Please enter a value for all fields"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        [AlertControllerHelper ShowAlert:@"Hold On!" message:@"Please enter a value for all fields" view:self];
         
     } else {
         

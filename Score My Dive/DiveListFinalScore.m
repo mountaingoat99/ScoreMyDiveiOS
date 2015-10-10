@@ -14,6 +14,8 @@
 #import "DiverBoardSize.h"
 #import "DiveEnter.h"
 #import "DiveList.h"
+#import "AlertControllerHelper.h"
+#import "AppDelegate.h"
 
 @interface DiveListFinalScore ()
 
@@ -33,6 +35,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self restrictRotation:YES];
     
     self.backgroundPanel.layer.shadowColor = [UIColor blackColor].CGColor;
     self.backgroundPanel.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
@@ -55,16 +59,10 @@
 }
 
 // only allow portrait in iphone
--(BOOL)shouldAutorotate {
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        
-        return NO;
-        
-    } else {
-        
-        return YES;
-    }
+-(void) restrictRotation:(BOOL) restriction
+{
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    appDelegate.restrictRotation = restriction;
 }
 
 // restore state because Apple doesn't know how to write a modern OS
@@ -167,24 +165,14 @@
             
         } else {
             
-            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                            message:@"Score was not valid, please try again"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [error show];
-            [error reloadInputViews];
+            [AlertControllerHelper ShowAlert:@"Hold On!" message:@"Score was not valid, please try again" view:self];
             
         }
         
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"You forgot to enter the score"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        
+        [AlertControllerHelper ShowAlert:@"Hold On!" message:@"You missed the score" view:self];
+        
     }
 }
 
@@ -223,13 +211,8 @@
                                        
                                    } else {
                                        
-                                       UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                                                       message:@"Dive couldn't be failed, please try again"
-                                                                                      delegate:nil
-                                                                             cancelButtonTitle:@"OK"
-                                                                             otherButtonTitles:nil];
-                                       [error show];
-                                       [error reloadInputViews];
+                                       [AlertControllerHelper ShowAlert:@"Hold On!" message:@"Dive was not failed, please try again" view:self];
+                                       
                                    }
                                }];
     

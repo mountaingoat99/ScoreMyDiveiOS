@@ -56,6 +56,19 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+-(UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+{
+    if(self.restrictRotation) {
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            return UIInterfaceOrientationMaskPortrait;
+        } else {
+            return UIInterfaceOrientationMaskAll;
+        }
+    } else {
+        return UIInterfaceOrientationMaskAll;
+    }
+}
+
 //-(MeetHistory *)meetHistoryViewController {
 //    MeetHistory *vcontroller = (MeetHistory *)self.window.rootViewController;
 //    return vcontroller;

@@ -10,6 +10,8 @@
 #import "Meet.h"
 #import "Diver.h"
 #import "RankingsDiver.h"
+#import "AlertControllerHelper.h"
+#import "AppDelegate.h"
 
 @interface RankingsMeet ()
 
@@ -30,6 +32,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self restrictRotation:YES];
+    
     self.tblRankings.delegate = self;
     self.tblRankings.dataSource = self;
     
@@ -44,16 +48,10 @@
 }
 
 // only allow portrait in iphone
--(BOOL)shouldAutorotate {
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        
-        return NO;
-        
-    } else {
-        
-        return YES;
-    }
+-(void) restrictRotation:(BOOL) restriction
+{
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    appDelegate.restrictRotation = restriction;
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -86,13 +84,9 @@
         [self performSegueWithIdentifier:@"idSegueToRankingsDiver" sender:self];
         
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"There are no scores for this meet yet"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        
+        [AlertControllerHelper ShowAlert:@"Hold On!" message:@"There are no scores for this meet yet" view:self];
+        
     }
 }
 

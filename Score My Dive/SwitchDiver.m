@@ -17,6 +17,7 @@
 #import "DiveListEnter.h"
 #import "DiveListChoose.h"
 #import "WYPopoverController.h"
+#import "AppDelegate.h"
 
 @interface SwitchDiver ()
 
@@ -32,6 +33,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self restrictRotation:YES];
     
     self.tblDiverRankings.delegate = self;
     self.tblDiverRankings.dataSource = self;
@@ -52,6 +55,12 @@
     } else {
         self.popoverPresentationController.backgroundColor = [UIColor colorWithRed:.16 green:.45 blue:.81 alpha:1];
     }
+}
+
+-(void) restrictRotation:(BOOL) restriction
+{
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    appDelegate.restrictRotation = restriction;
 }
 
 - (void)viewDidAppear:(BOOL)animated {

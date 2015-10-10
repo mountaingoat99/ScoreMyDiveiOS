@@ -23,6 +23,8 @@
 #import "ChooseDiveNumber.h"
 #import "SwitchDiver.h"
 #import "WYPopoverController.h"
+#import "AppDelegate.h"
+#import "AlertControllerHelper.h"
 
 @interface DiveListEnter () <WYPopoverControllerDelegate>
 {
@@ -62,6 +64,8 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
+    [self restrictRotation:YES];
+    
     
     self.backgroundPanel1.layer.shadowColor = [UIColor blackColor].CGColor;
     self.backgroundPanel1.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
@@ -96,16 +100,10 @@
 }
 
 // only allow portrait in iphone
--(BOOL)shouldAutorotate {
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        
-        return NO;
-        
-    } else {
-        
-        return YES;
-    }
+-(void) restrictRotation:(BOOL) restriction
+{
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    appDelegate.restrictRotation = restriction;
 }
 
 // restore state because Apple doesn't know how to write a modern OS
@@ -163,25 +161,15 @@
         [self performSegueWithIdentifier:@"idSegueDiveListChoose" sender:self];
         
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"You need to enter all the dives in the list first"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        
+        [AlertControllerHelper ShowAlert:@"Hold On!" message:@"You need to enter all the dives in the list first" view:self];
+        
     }
 }
 
 - (IBAction)lblOptionsClick:(id)sender {
     
-    UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Edit a Dive"
-                                                    message:@"To edit a Dive-List entry, just long-press the dive-name that you want to edit."
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [error show];
-    [error reloadInputViews];
+    [AlertControllerHelper ShowAlert:@"Edit Dive" message:@"To edit a Dive-List entry, just long-press the dive-name that you want to edit" view:self];
 }
 
 - (IBAction)btnSwitchDiver:(id)sender {

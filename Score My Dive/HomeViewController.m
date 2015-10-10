@@ -10,6 +10,7 @@
 #import "JudgeScores.h"
 #import "Meet.h"
 #import "Diver.h"
+#import "AppDelegate.h"
 
 @interface HomeViewController ()
 
@@ -25,6 +26,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self restrictRotation:YES];
     
     // drop shadow for the buttons
     self.btnQuick.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -49,19 +52,11 @@
     
 }
 
-// only allow portrait in iphone
--(BOOL)shouldAutorotate {
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        
-        return NO;
-        
-    } else {
-        
-        return YES;
-    }
+-(void) restrictRotation:(BOOL) restriction
+{
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    appDelegate.restrictRotation = restriction;
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -13,6 +13,8 @@
 #import "DiveNumber.h"
 #import "DiverMeetScores.h"
 #import "RankingsMeet.h"
+#import "AlertControllerHelper.h"
+#import "AppDelegate.h"
 
 @interface RankingsDiver ()
 
@@ -34,6 +36,8 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
+    [self restrictRotation:YES];
+    
     self.tblDiverRankings.delegate = self;
     self.tblDiverRankings.dataSource = self;
     
@@ -52,16 +56,10 @@
 }
 
 // only allow portrait in iphone
--(BOOL)shouldAutorotate {
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        
-        return NO;
-        
-    } else {
-        
-        return YES;
-    }
+-(void) restrictRotation:(BOOL) restriction
+{
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    appDelegate.restrictRotation = restriction;
 }
 
 // restore state
@@ -118,13 +116,9 @@
         [self performSegueWithIdentifier:@"idRankToDiverMeetScores" sender:self];
         
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"There are no scores for this diver yet"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        
+        [AlertControllerHelper ShowAlert:@"Hold On!" message:@"There are no score for this diver yet" view:self];
+        
     }
     
 }

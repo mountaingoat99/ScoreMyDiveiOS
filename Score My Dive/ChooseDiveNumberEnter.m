@@ -11,6 +11,8 @@
 #import "DiveTypes.h"
 #import "DiveListScore.h"
 #import "DiveListFinalScore.h"
+#import "AlertControllerHelper.h"
+#import "AppDelegate.h"
 
 @interface ChooseDiveNumberEnter ()
 
@@ -44,6 +46,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self restrictRotation:YES];
     
     self.backgroundPanel.layer.shadowColor = [UIColor blackColor].CGColor;
     self.backgroundPanel.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
@@ -96,6 +100,12 @@
     [self makeDivePicker];
     [self loadGroupPicker];
     [self DisableDivePositions];
+}
+
+-(void) restrictRotation:(BOOL) restriction
+{
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    appDelegate.restrictRotation = restriction;
 }
 
 // done button a picker
@@ -375,13 +385,9 @@
         [self performSegueWithIdentifier:@"SegueChooseEnterToJudge" sender:self];
         
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"Please make sure you've picked a dive and a valid position"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        
+        [AlertControllerHelper ShowAlert:@"Hold On!" message:@"Please make sure you've picked a dive and a valid position" view:self];
+        
     }
 }
 
@@ -396,13 +402,8 @@
         [self performSegueWithIdentifier:@"SegueChooseEnterToTotal" sender:self];
         
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"Please make sure you've picked a dive and a valid position"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        
+        [AlertControllerHelper ShowAlert:@"Hold On!" message:@"Please make sure you've picked a dive and a valid position" view:self];
     }
 }
 

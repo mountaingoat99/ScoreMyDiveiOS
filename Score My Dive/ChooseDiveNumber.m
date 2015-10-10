@@ -12,6 +12,8 @@
 #import "JudgeScores.h"
 #import "DiveList.h"
 #import "DiveListEnter.h"
+#import "AlertControllerHelper.h"
+#import "AppDelegate.h"
 
 @interface ChooseDiveNumber ()
 
@@ -39,6 +41,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self restrictRotation:YES];
     
     self.backgroundPanel.layer.shadowColor = [UIColor blackColor].CGColor;
     self.backgroundPanel.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
@@ -92,6 +96,12 @@
     [self makeDivePicker];
     [self loadGroupPicker];
     [self DisableDivePositions];
+}
+
+-(void) restrictRotation:(BOOL) restriction
+{
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    appDelegate.restrictRotation = restriction;
 }
 
 // done button a picker
@@ -374,13 +384,9 @@
         [self dismissViewControllerAnimated:YES completion:nil];
         
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"Please make sure you've picked a dive and a valid position"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        
+        [AlertControllerHelper ShowAlert:@"Hold On!" message:@"Please make sure you've picked a dive and a valid position" view:self];
+
     }
 }
 

@@ -11,6 +11,8 @@
 #import "MeetHistory.h"
 #import "AppDelegate.h"
 #import "JudgeScores.h"
+#import "AlertControllerHelper.h"
+#import "AppDelegate.h"
 
 @interface MeetDetailsVC ()
 
@@ -32,6 +34,8 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
+    [self restrictRotation:YES];
+    
     self.tblMeets.delegate = self;
     self.tblMeets.dataSource = self;
     
@@ -52,16 +56,10 @@
 }
 
 // only allow portrait in iphone
--(BOOL)shouldAutorotate {
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        
-        return NO;
-        
-    } else {
-        
-        return YES;
-    }
+-(void) restrictRotation:(BOOL) restriction
+{
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    appDelegate.restrictRotation = restriction;
 }
 
 // push the meetId to the next controller
@@ -138,14 +136,7 @@
         
     } else {
         
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"There are no meets with scores yet"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
-        
+        [AlertControllerHelper ShowAlert:@"Hold On!" message:@"There are no meets with scores yet" view:self];
         [self.tblMeets reloadData];
         
     }

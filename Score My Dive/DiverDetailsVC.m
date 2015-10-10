@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "DiverHistory.h"
 #import "JudgeScores.h"
+#import "AlertControllerHelper.h"
 
 @interface DiverDetailsVC ()
 
@@ -29,6 +30,8 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self restrictRotation:YES];
     
     self.tblDivers.delegate = self;
     self.tblDivers.dataSource = self;
@@ -49,17 +52,10 @@
     [self loadData];
 }
 
-// only allow portrait in iphone
--(BOOL)shouldAutorotate {
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        
-        return NO;
-        
-    } else {
-        
-        return YES;
-    }
+-(void) restrictRotation:(BOOL) restriction
+{
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    appDelegate.restrictRotation = restriction;
 }
 
 // make this viewcontroller the delegate of the MeetEdit ViewController
@@ -137,14 +133,7 @@
         
     } else {
         
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"There are no meets with scores yet"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
-        
+        [AlertControllerHelper ShowAlert:@"hold On!" message:@"There are no meets with scores yet" view:self];
         [self.tblDivers reloadData];
         
     }
