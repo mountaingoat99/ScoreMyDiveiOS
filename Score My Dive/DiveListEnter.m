@@ -146,6 +146,7 @@
         DiveListChoose *choose = [segue destinationViewController];
         choose.meetRecordID = self.meetRecordID;
         choose.diverRecordID = self.diverRecordID;
+        choose.boardSize = self.boardSize;
     }
     
     if([segue.identifier isEqualToString:@"idSegueListToChooseDiver"]) {

@@ -22,6 +22,7 @@
 #import "TypeDiveNumberEnter.h"
 #import "SwitchDiver.h"
 #import "WYPopoverController.h"
+#import "DiveNumber.h"
 
 @interface DiveEnter () <WYPopoverControllerDelegate>
 {
@@ -52,6 +53,8 @@
 -(void)hideInitialControls;
 -(void)checkFinishedScoring;
 -(void)ShowScoreTotal:(NSNumber*)scoretotal;
+-(void)FinishMeetEarly;
+-(void)SaveDiveInfo:(int) diveNumber;
 
 @end
 
@@ -296,13 +299,42 @@
 
 - (IBAction)lblOptionsClick:(id)sender {
     
-    UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Edit a Score"
-                                                    message:@"To edit a score just long-press the score for the dive you want to edit."
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [error show];
-    [error reloadInputViews];
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:@"Options"
+                                          message:@"To edit a score just long-press on the score for the dive you want to edit"
+                                          preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:@"Cancel"
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       NSLog(@"Cancel Action");
+                                   }];
+    
+    UIAlertAction *FinisheMeet = [UIAlertAction
+                                       actionWithTitle:@"FinishMeet"
+                                       style:UIAlertActionStyleDefault
+                                       handler:^(UIAlertAction *action)
+                                       {
+                                           NSLog(@"Finish Meet");
+                                           // call method to end the meet
+                                           [self FinishMeetEarly];
+                                           
+                                       }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:FinisheMeet];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+    UIPopoverPresentationController *popover = alertController.popoverPresentationController;
+    if (popover) {
+        popover.sourceView = self.view;
+        CGRect rect = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/2, 1, 1);
+        popover.sourceRect = rect;
+        popover.permittedArrowDirections = 0;
+    }
 }
 
 - (IBAction)Dive1EditClick:(UILongPressGestureRecognizer *)sender {
@@ -1310,6 +1342,72 @@
         [self.btnEnterScore setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         [self.btnEnterTotalScore setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         self.lblDiveNumber.text = @"Finished";
+    }
+}
+
+-(void)FinishMeetEarly {
+    if (self.maxDiveNumber >= 1) {
+        if (self.diveTotal >= self.maxDiveNumber) {
+
+            for (int count = self.maxDiveNumber + 1; count <= self.diveTotal; count++) {
+                [self SaveDiveInfo:count];
+            }
+            
+            [self LoadMeetCollection];
+            [self getTheDiveTotal];
+            [self hideInitialControls];
+            [self fillDiveNumber];
+            [self fillText];
+            [self DiverBoardSize];
+            [self fillDiveInfo];
+            [self checkFinishedScoring];
+        }
+    } else {
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
+                                                        message:@"You need to enter at least one dive to end the meet early. Otherwise go back and delete the diver from the meet."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        [error reloadInputViews];
+    }
+}
+
+-(void)SaveDiveInfo:(int)diveNumber {
+    
+    BOOL validJudgeScoreInsert;
+    BOOL validResultsInsert = false;
+    BOOL validDiveNumberIncrement = false;
+    JudgeScores *scores = [[JudgeScores alloc] init];
+    NSLog(@"%d", diveNumber);
+    //convert the dive Number to nsnumber
+    NSNumber *diveNumberNumber = [NSNumber numberWithInt:diveNumber];
+    //convert the board size to a double
+    double boardSizeDouble = [self.boardSize doubleValue];
+    
+    //create record
+    [scores CreateJudgeScores:self.meetRecordID diverid:self.diverRecordID boardsize:boardSizeDouble divenumber:diveNumberNumber divecategory:@"" divetype:@"" diveposition:@"" failed:@0 multiplier:@0 totalscore:@0 score1:@0 score2:@0 score3:@0 score4:@0 score5:@0 score6:@0 score7:@0];
+
+
+    validJudgeScoreInsert = [scores UpdateJudgeAllScores:self.meetRecordID diverid:self.diverRecordID divenumber:diveNumber totalscore:@0 score1:@0 score2:@0 score3:@0 score4:@0 score5:@0 score6:@0 score7:@0];
+    
+    if (validJudgeScoreInsert) {
+        //update the results table
+        Results *result = [[Results alloc] init];
+        validResultsInsert = [result UpdateOneResult:self.meetRecordID DiverID:self.diverRecordID DiveNumber:diveNumber score:@0];
+    }
+    
+    if (validJudgeScoreInsert && validResultsInsert) {
+        // increment the dive number in the dive_number table
+        DiveNumber *number = [[DiveNumber alloc] init];
+        validDiveNumberIncrement = [number UpdateDiveNumber:self.meetRecordID diverid:self.diverRecordID divenumber:diveNumber];
+    }
+    
+    // now make sure everything was updated correctly
+    if (validJudgeScoreInsert && validResultsInsert && validDiveNumberIncrement) {
+        NSLog(@"EndMeetEarly Dive %d was written to DB", diveNumber);
+    } else {
+        NSLog(@"EndMeetEarly Dive %d was written to DB", diveNumber);
     }
 }
 

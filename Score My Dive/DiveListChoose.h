@@ -15,6 +15,7 @@
 
 @property (nonatomic) int meetRecordID;
 @property (nonatomic) int diverRecordID;
+@property (nonatomic, strong) NSNumber *boardSize;
 @property (nonatomic, strong) NSArray *meetInfo;
 @property (nonatomic) int listOrNot;
 
@@ -60,5 +61,6 @@
 - (IBAction)btnEnterTotalScoreClick:(id)sender;
 
 - (IBAction)btnSwitchDiver:(id)sender;
+- (IBAction)lblOptionsClick:(id)sender;
 
 @end
