@@ -173,7 +173,7 @@
 
 -(void)ShowAlert {
     
-    [AlertControllerHelper ShowAlert:@"Hold On!" message:@"Please make sure you've picked a dive and a valid position" view:self];
+    [AlertControllerHelper ShowAlert:@"Hold On!" message:@"We don't have a score for that one yet" view:self];
     
 }
 

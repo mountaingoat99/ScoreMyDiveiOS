@@ -45,6 +45,7 @@
 -(void)checkforListStarted;
 -(void)resetDiver;
 -(void)showRankings;
+-(void)showFirstAlert;
 
 @end
 
@@ -143,7 +144,19 @@
     }
     
     [self HideControls];
+    
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"hasSeenTutorial"])
+    {
+        [self showFirstAlert];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasSeenTutorial"];
+    }
 }
+
+-(void)showFirstAlert {
+    [AlertControllerHelper ShowAlert:@"Finish Meet Early Option!" message:@"For those of you who have divers only doing 4 or 8 dives you can now finish the meet early in one of the Scoring Screens. Just choose 6 dives if it is a 4 dive meet or choose 11 dives for an 8 dive meet. As soon as you have entered the total dives just click Options in the Scoring Screens and then Click Finish Meet." view:self];
+}
+
+
 
 // only allow portrait in iphone
 -(void) restrictRotation:(BOOL) restriction
