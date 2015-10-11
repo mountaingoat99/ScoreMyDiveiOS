@@ -478,6 +478,15 @@
                                             message:nil
                                             preferredStyle:UIAlertControllerStyleActionSheet];
     
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:@"Cancel"
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       NSLog(@"Cancel Action");
+                                   }];
+    
+    
     UIAlertAction *rankingsAction = [UIAlertAction
                                 actionWithTitle:@"Rankings"
                                 style:UIAlertActionStyleDefault
@@ -496,7 +505,19 @@
                                     [self resetDiver];
                                 }];
     
+    UIAlertAction *sixEightDiveAction = [UIAlertAction
+                                  actionWithTitle:@"4/8 Dive Meets"
+                                  style:UIAlertActionStyleDefault
+                                  handler:^(UIAlertAction *action)
+                                  {
+                                      NSLog(@"sixEightDive Action");
+                                      [self showFirstAlert];
+                                  }];
+    
+    
+    [alertController addAction:cancelAction];
     [alertController addAction:resetAction];
+    [alertController addAction:sixEightDiveAction];
     [alertController addAction:rankingsAction];
     
     [self presentViewController:alertController animated:YES completion:nil];
