@@ -443,9 +443,17 @@
                                       NSLog(@"Choose Action");
                                       [self editChooseNumber];
                                   }];
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:@"Cancel"
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       NSLog(@"Dismiss Action");
+                                   }];
     
     [alertController addAction:TypeNumber];
     [alertController addAction:ChooseNumber];
+    [alertController addAction:cancelAction];
     
     [self presentViewController:alertController animated:YES completion:nil];
     
