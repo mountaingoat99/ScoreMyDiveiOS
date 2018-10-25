@@ -40,12 +40,11 @@
     self.tblQuickScores.layer.shadowOpacity = 1.0;
     [self.tblQuickScores setSeparatorColor:[UIColor blackColor]];
 
+    [self loadData];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    [self loadData];
 }
 
 // only allow portrait in iphone

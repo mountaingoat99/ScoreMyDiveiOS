@@ -47,12 +47,12 @@
     [self.tblMeets setSeparatorColor:[UIColor blackColor]];
     
     [self TabBarSelection];
+    
+     [self loadData];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    [self loadData];
 }
 
 // only allow portrait in iphone

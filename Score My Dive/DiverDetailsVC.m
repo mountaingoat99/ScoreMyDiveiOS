@@ -44,12 +44,12 @@
     [self.tblDivers setSeparatorColor:[UIColor blackColor]];
     
     [self TabBarSelection];
+    
+    [self loadData];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-
-    [self loadData];
+    [super viewDidAppear:animated];    
 }
 
 -(void) restrictRotation:(BOOL) restriction

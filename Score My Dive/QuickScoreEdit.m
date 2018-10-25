@@ -47,17 +47,15 @@
     [[self.backgroundLabel layer] setMasksToBounds:NO];
     [[self.backgroundLabel layer] setShadowOpacity:1.0];
 
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
     // check if we load a specific record to edit
     if(self.recordIDToEdit != -1){
         [self loadInfoToEdit];
     }
-    
     [self updateTotal];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
 }
 
 // only allow portrait in iphone
