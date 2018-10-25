@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DiveEnter : UIViewController <UIScrollViewDelegate>
+@interface DiveEnter : UIViewController <UIScrollViewDelegate, UIPopoverPresentationControllerDelegate>
 
 //popover
-@property (nonatomic, retain) UIPopoverController *popoverContr;
+@property (nonatomic, retain) UIPopoverPresentationController *popoverContr;
 
 @property (nonatomic) int meetRecordID;
 @property (nonatomic) int diverRecordID;

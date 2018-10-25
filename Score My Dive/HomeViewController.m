@@ -11,6 +11,7 @@
 #import "Meet.h"
 #import "Diver.h"
 #import "AppDelegate.h"
+#import "AlertControllerHelper.h"
 
 @interface HomeViewController ()
 
@@ -75,15 +76,7 @@
         [self performSegueWithIdentifier:@"idSegueHomeToReports" sender:self];
         
     } else {
-        
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                      message:@"There are no meets with scores yet"
-                                                     delegate:nil
-                                            cancelButtonTitle:@"OK"
-                                            otherButtonTitles:nil];
-      [error show];
-      [error reloadInputViews];
-        
+        [AlertControllerHelper ShowAlert:@"Hold On!" message:@"There are no meets with scores yet" view:self];
     }
 }
 
@@ -103,15 +96,7 @@
         [self performSegueWithIdentifier:@"idSegueHomeToChoose" sender:self];
         
     } else {
-        
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"Add at least one meet and one diver to go here."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
-        
+        [AlertControllerHelper ShowAlert:@"Hold On!" message:@"Add at least one meet and one diver to go here" view:self];
     }
 }
 
@@ -167,7 +152,7 @@
 // go to Youtube Link
 -(void)OpenYouTube {
     
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://youtu.be/ZaAx2929cuM"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://youtu.be/ZaAx2929cuM"] options:@{} completionHandler:nil];
     
 }
 
@@ -215,39 +200,15 @@
 }
 
 -(void)canceledEmail {
-    
-    UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Email Cancelled"
-                                                    message:@""
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [error show];
-    [error reloadInputViews];
-    
+    [AlertControllerHelper ShowAlert:@"Email Cancelled" message:@"" view:self];
 }
 
 -(void)SentEmail {
-    
-    UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Email Sent"
-                                                    message:@""
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [error show];
-    [error reloadInputViews];
-    
+    [AlertControllerHelper ShowAlert:@"Email Sent" message:@"" view:self];
 }
 
 -(void)FailedEmail {
-    
-    UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Email Failed"
-                                                    message:@""
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [error show];
-    [error reloadInputViews];
-    
+    [AlertControllerHelper ShowAlert:@"Email Failed" message:@"" view:self];
 }
 
 @end

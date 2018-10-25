@@ -10,10 +10,10 @@
 #import "TypeDiveNumber.h"
 #import "ChooseDiveNumber.h"
 
-@interface DiveListEnter : UIViewController <UIScrollViewDelegate, TypeDiveNumberDelegate, ChooseDiveNumberDelegate>
+@interface DiveListEnter : UIViewController <UIScrollViewDelegate, TypeDiveNumberDelegate, ChooseDiveNumberDelegate, UIPopoverPresentationControllerDelegate>
 
 //popover
-@property (nonatomic, retain) UIPopoverController *popoverContr;
+@property (nonatomic, retain) UIPopoverPresentationController *popoverContr;
 
 @property (nonatomic) int meetRecordID;
 @property (nonatomic) int diverRecordID;

@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DiveListChoose : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UIScrollViewDelegate, UITextFieldDelegate>
+@interface DiveListChoose : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UIScrollViewDelegate, UITextFieldDelegate, UIPopoverPresentationControllerDelegate>
 
 //popover
-@property (nonatomic, retain) UIPopoverController *popoverContr;
+@property (nonatomic, retain) UIPopoverPresentationController *popoverContr;
 
 @property (nonatomic) int meetRecordID;
 @property (nonatomic) int diverRecordID;

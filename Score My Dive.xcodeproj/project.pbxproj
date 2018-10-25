@@ -12,6 +12,7 @@
 		261E71931A490C9F0036ABE3 /* DiveListScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 261E71921A490C9F0036ABE3 /* DiveListScore.m */; };
 		261E71961A490D040036ABE3 /* DiveListFinalScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 261E71951A490D040036ABE3 /* DiveListFinalScore.m */; };
 		262756CA1A1D811200DAC877 /* DiverEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 262756C91A1D811200DAC877 /* DiverEdit.m */; };
+		26345E8321813B3F009358F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26345E8221813B3F009358F0 /* Assets.xcassets */; };
 		263AC5C71A030FD600846CB0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 263AC5C61A030FD600846CB0 /* main.m */; };
 		263AC5CA1A030FD600846CB0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 263AC5C91A030FD600846CB0 /* AppDelegate.m */; };
 		263AC5CD1A030FD600846CB0 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263AC5CC1A030FD600846CB0 /* HomeViewController.m */; };
@@ -67,7 +68,6 @@
 		26F18E211A9DF12100BC1DF1 /* SwitchDiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F18E201A9DF12100BC1DF1 /* SwitchDiver.m */; };
 		26F281021AA67B98006A9EB2 /* WYPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F280FF1AA67B98006A9EB2 /* WYPopoverController.m */; };
 		26F281031AA67B98006A9EB2 /* WYStoryboardPopoverSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F281011AA67B98006A9EB2 /* WYStoryboardPopoverSegue.m */; };
-		26F7906A1A770BDB0006098B /* AppIconBlack.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26F790691A770BDB0006098B /* AppIconBlack.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +89,7 @@
 		261E71951A490D040036ABE3 /* DiveListFinalScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveListFinalScore.m; sourceTree = "<group>"; };
 		262756C81A1D811200DAC877 /* DiverEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiverEdit.h; sourceTree = "<group>"; };
 		262756C91A1D811200DAC877 /* DiverEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiverEdit.m; sourceTree = "<group>"; };
+		26345E8221813B3F009358F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../2018icons/Assets.xcassets; sourceTree = "<group>"; };
 		263AC5C11A030FD600846CB0 /* Score My Dive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Score My Dive.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		263AC5C51A030FD600846CB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		263AC5C61A030FD600846CB0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -195,7 +196,6 @@
 		26F280FF1AA67B98006A9EB2 /* WYPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYPopoverController.m; sourceTree = "<group>"; };
 		26F281001AA67B98006A9EB2 /* WYStoryboardPopoverSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYStoryboardPopoverSegue.h; sourceTree = "<group>"; };
 		26F281011AA67B98006A9EB2 /* WYStoryboardPopoverSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYStoryboardPopoverSegue.m; sourceTree = "<group>"; };
-		26F790691A770BDB0006098B /* AppIconBlack.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIconBlack.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -362,7 +362,7 @@
 		26A07E891A0998C600997E5C /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				26F790691A770BDB0006098B /* AppIconBlack.xcassets */,
+				26345E8221813B3F009358F0 /* Assets.xcassets */,
 				26E419A21A0480C800D79C05 /* Images.xcassets */,
 			);
 			name = Assets;
@@ -473,7 +473,7 @@
 		263AC5B91A030FD600846CB0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "SingleCog Software";
 				TargetAttributes = {
 					263AC5C01A030FD600846CB0 = {
@@ -510,10 +510,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26F7906A1A770BDB0006098B /* AppIconBlack.xcassets in Resources */,
 				26E419A31A0480C800D79C05 /* Images.xcassets in Resources */,
 				263AC5D51A030FD700846CB0 /* LaunchScreen.xib in Resources */,
 				26C07FCF1A05921700DF35B4 /* Main.storyboard in Resources */,
+				26345E8321813B3F009358F0 /* Assets.xcassets in Resources */,
 				26D22C701A706ADE0035C80A /* dive_dod.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -636,12 +636,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -668,7 +670,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -688,12 +690,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -713,7 +717,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -729,7 +733,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Score My Dive/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.singlecog.Score-My-Dive";
@@ -746,7 +750,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Score My Dive/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.singlecog.Score-My-Dive";

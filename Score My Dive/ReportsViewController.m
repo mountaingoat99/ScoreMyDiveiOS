@@ -11,6 +11,7 @@
 #import "Meet.h"
 #import "JudgeScores.h"
 #import "AppDelegate.h"
+#import "AlertControllerHelper.h"
 
 @interface ReportsViewController ()
 
@@ -170,13 +171,7 @@
         if (self.txtChooseMeet.text.length > 0) {
             [self CreateMeetResult];
         } else {
-            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                            message:@"You need to pick a meet first"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [error show];
-            [error reloadInputViews];
+            [AlertControllerHelper ShowAlert:@"Hold On!" message:@"You need to pick a meet first" view:self];
         }
         
     } else if (self.reportRecordID == 1) {
@@ -184,26 +179,14 @@
         if (self.txtChooseDiver.text.length > 0 && self.txtChooseMeet.text.length > 0) {
             [self CreateDiverScoreTotalByMeet];
         } else {
-            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                            message:@"You need to pick a diver and a meet first"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [error show];
-            [error reloadInputViews];
+            [AlertControllerHelper ShowAlert:@"Hold On!" message:@"You need to pick a diver and a meet first" view:self];
         }
         
     } else {
         if (self.txtChooseDiver.text.length > 0 && self.txtChooseMeet.text.length > 0) {
             [self CreateDiverJudgeScoreByMeet];
         } else {
-            UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                            message:@"You need to pick a diver and a meet first"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [error show];
-            [error reloadInputViews];
+            [AlertControllerHelper ShowAlert:@"Hold On!" message:@"You need to pick a diver and a meet first" view:self];
         }
     }
 }
@@ -409,13 +392,7 @@
             [self sendEmail:outputFileName fileName:meetName];
         }
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"There are no results for this diver at this meet"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        [AlertControllerHelper ShowAlert:@"Hold On!" message:@"There are no results for this diver at this meet" view:self];
     }
 }
 
@@ -477,15 +454,8 @@
         }
         
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"There are no results for this diver at this meet"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        [AlertControllerHelper ShowAlert:@"Hold On!" message:@"There are no results for this diver at this meet" view:self];
     }
-    
 }
 
 -(void)CreateDiverJudgeScoreByMeet {
@@ -545,15 +515,8 @@
         }
         
     } else {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Hold On!"
-                                                        message:@"There are no results for this diver at this meet"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        [error reloadInputViews];
+        [AlertControllerHelper ShowAlert:@"Hold On!" message:@"There are no results for this diver at this meet" view:self];
     }
-    
 }
 
 -(void)sendEmail:(NSString*)file fileName:(NSString*)filename {
@@ -617,51 +580,19 @@
 }
 
 -(void)canceledEmail {
-    
-    UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Email Cancelled"
-                                                    message:@""
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [error show];
-    [error reloadInputViews];
-    
+    [AlertControllerHelper ShowAlert:@"Email Cancelled" message:@"" view:self];
 }
 
 -(void)savedEmail {
-    
-    UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Email Saved"
-                                                    message:@""
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [error show];
-    [error reloadInputViews];
-    
+    [AlertControllerHelper ShowAlert:@"Email Saved" message:@"" view:self];
 }
 
 -(void)SentEmail {
-    
-    UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Email Sent"
-                                                    message:@""
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [error show];
-    [error reloadInputViews];
-    
+    [AlertControllerHelper ShowAlert:@"Email Sent" message:@"" view:self];
 }
 
 -(void)FailedEmail {
-    
-    UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Email Failed"
-                                                    message:@""
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [error show];
-    [error reloadInputViews];
-    
+    [AlertControllerHelper ShowAlert:@"Email Failed" message:@"" view:self];
 }
 
 

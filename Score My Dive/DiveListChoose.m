@@ -303,12 +303,16 @@
         UIStoryboard *sboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         SwitchDiver *switchDiver = [sboard instantiateViewControllerWithIdentifier:@"SwitchDiver"];
         
-        popoverContr = [[UIPopoverController alloc] initWithContentViewController:switchDiver];
-        popoverContr.popoverContentSize = CGSizeMake(400, 400);
         switchDiver.meetRecordID = self.meetRecordID;
         switchDiver.diverRecordID = self.diverRecordID;
         switchDiver.meetInfo = self.meetInfo;
-        [popoverContr presentPopoverFromRect:[(UIButton *)sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        switchDiver.preferredContentSize = CGSizeMake(400, 400);
+        switchDiver.popoverPresentationController.sourceView = self.view;
+        switchDiver.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        popoverContr = [switchDiver popoverPresentationController];
+        popoverContr.delegate = self;
+        [self presentViewController:switchDiver animated:YES completion:nil];
+        
     }
 }
 

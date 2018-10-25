@@ -206,12 +206,16 @@
         UIStoryboard *sboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         SwitchDiver *switchDiver = [sboard instantiateViewControllerWithIdentifier:@"SwitchDiver"];
         
-        popoverContr = [[UIPopoverController alloc] initWithContentViewController:switchDiver];
-        popoverContr.popoverContentSize = CGSizeMake(400, 400);
         switchDiver.meetRecordID = self.meetRecordID;
         switchDiver.diverRecordID = self.diverRecordID;
         switchDiver.meetInfo = self.meetInfo;
-        [popoverContr presentPopoverFromRect:[(UIButton *)sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        switchDiver.preferredContentSize = CGSizeMake(400, 400);
+        switchDiver.popoverPresentationController.sourceView = self.view;
+        switchDiver.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        popoverContr = [switchDiver popoverPresentationController];
+        popoverContr.delegate = self;
+        [self presentViewController:switchDiver animated:YES completion:nil];
+        
     }
 }
 
@@ -243,17 +247,20 @@
         TypeDiveNumberEnter *enter = [sboard instantiateViewControllerWithIdentifier:@"TypeDiveNumberEnter"];
         
         self.listOrNot = 1;
-        popoverContr = [[UIPopoverController alloc] initWithContentViewController:enter];
-        popoverContr.popoverContentSize = CGSizeMake(400, 180);
         enter.listOrNot = self.listOrNot;
         enter.boardSize = self.boardSize;
         enter.meetRecordID = self.meetRecordID;
         enter.diverRecordID = self.diverRecordID;
         enter.onDiveNumber = self.onDiveNumber;
         enter.meetInfo = self.meetInfo;
-        [popoverContr presentPopoverFromRect:[(UIButton *)sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+        enter.preferredContentSize = CGSizeMake(400, 180);
+        enter.popoverPresentationController.sourceView = self.view;
+        enter.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionLeft;
+        popoverContr = [enter popoverPresentationController];
+        popoverContr.delegate = self;
+        [self presentViewController:enter animated:YES completion:nil];
+        
     }
-
 }
 
 - (IBAction)btnChooseDives:(id)sender {
@@ -283,15 +290,19 @@
         TypeDiveNumberEnter *enter = [sboard instantiateViewControllerWithIdentifier:@"ChooseDiveNumberEnter"];
         
         self.listOrNot = 1;
-        popoverContr = [[UIPopoverController alloc] initWithContentViewController:enter];
-        popoverContr.popoverContentSize = CGSizeMake(400, 270);
         enter.listOrNot = self.listOrNot;
         enter.boardSize = self.boardSize;
         enter.meetRecordID = self.meetRecordID;
         enter.diverRecordID = self.diverRecordID;
         enter.onDiveNumber = self.onDiveNumber;
         enter.meetInfo = self.meetInfo;
-        [popoverContr presentPopoverFromRect:[(UIButton *)sender frame] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
+        enter.preferredContentSize = CGSizeMake(400, 270);
+        enter.popoverPresentationController.sourceView = self.view;
+        enter.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionRight;
+        popoverContr = [enter popoverPresentationController];
+        popoverContr.delegate = self;
+        [self presentViewController:enter animated:YES completion:nil];
+    
     }
 }
 
